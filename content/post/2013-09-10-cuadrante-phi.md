@@ -1,4 +1,3 @@
-
 +++
 title = "Cuadrante Phi"
 date = 2013-09-10T02:13:50Z
@@ -35,9 +34,7 @@ El diseño de la portada consistió en la creación de un monograma con los cara
 
 La diagramación se elaboró sobre una plantilla de dos columnas que ocupan el 75 % de la página. Dentro de estas columnas se ubicó el texto primordial del artículo. El 25 % restante se utilizó para habilitar el uso de cajas en donde se resaltan frases o contenidos que forman parte de lo comprendido en el texto principal. Todos los artículos inician con letra capital y se utiliza la fuente Garamond en diferentes tamaños para administrar los contenidos citados. En la siguiente imagen se ilustra esta descripción:
 
-
 ![Phi Layout](../images/jpg/phi_layout.jpg)
-</figure>
 
 Para los interesados en temas filosóficos a continuación les comparto el documento final con la diagramación del primer número de la revista CuadrantePhi. Advierto que los contenidos no son para todo tipo de público y mi objetivo se reduce a exponer la distribución que se estableció para este elemento.
 
