@@ -30,3 +30,16 @@ JavaScript es uno de los lenguajes de programación más populares para el desar
 Cada jugador queria publicar su propia implementación de un lenguaje de scripting. Netscape, actualmente Mozilla público JavaScript, bajo la autoría de Brendan Eich, Microsoft hizo JScript, y asi otras compañias presentaron su propuesta. Sin embargo, las diferencias entre dichas implementaciones era considerable ya que eran orientadas a navegadores específicos. Pronto,iba a ser necesario un estándar, una solución transversal a todos los cliente que pudiera unificar el proceso de desarrollo y simplificar la creación de páginas web. Dicho estándar se llegó con el nombre de **ECMAScript**
 
 ECMAScript es la especificación del estándar para el lenguaje de scripting que todos los navegadores intentan soportar, y hay multiples implementaciones o dialectos del mismo. El más popular sin duda alguna es JavaScript. Desde su primera publicación, ECMAScript ha estandarizado cosas importantes, consolidando una estabilidad en su versión número 5, ya que logro ser soportada en muchos navegadores. Para información específics delmestándar se recomienda visitar la [página oficial](https://www.ecma-international.org/publications/standards/Ecma-262.htm) del estándar.
+
+¿Qué es JavaScript?
+-------------------
+Antes de empezar a estudiar los patrones de diseño en JavaScript es importante hablar de JavaScript como tal. Una definición aproximada sobre el lenguaje puede ser la siguiente:
+
+>JavaScript es un lenguaje de programación interpretado, ligero y multiparadigma con funciones de primera clase, popularmente conocido como el lenguaje de scripting para páginas web
+
+JavaScript es un lenguaje de scripting fácil de implementar y aprender, cuyo código es interpretado en vez de compilado. Al ser multiparadigma, JavaScript da soporte para estilos procesales, orientado a objetos y programación funcional, característica que lo hace flexible para los desarrolladores.
+
+Hasta ahora, hemos citado características que son similares a otros lenguajes de programación. Es hora de dar un vistazo a una propiedades específicas de JavaScript con respecto a otros lenguajes que merecen una atención especial.
+
+JavaScript soporta funciones de primera clase
+-------------------- 
