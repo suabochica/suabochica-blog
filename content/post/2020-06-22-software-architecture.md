@@ -42,4 +42,26 @@ JavaScript es un lenguaje de scripting fácil de implementar y aprender, cuyo c�
 Hasta ahora, hemos citado características que son similares a otros lenguajes de programación. Es hora de dar un vistazo a una propiedades específicas de JavaScript con respecto a otros lenguajes que merecen una atención especial.
 
 JavaScript soporta funciones de primera clase
--------------------- 
+--------------------
+JavaScript trata las funciones como ciudadanos de primera clase, lo que significa que se pueden pasar funciones como parámetros de otras funciones, de la misma forma que pasamos variables. Por ejemplo:
+
+```javascript
+// Enviamos la función como un parámetro que va ha
+// ser ejecutada dentro de la función llamada
+function performOperation(a, b, callback) {
+    var c = a + b;
+    callback(c)
+}
+
+performOperation(2, 3, function(result) {
+    console.log(result) // prints 5
+});
+```
+
+JavaScript es basado en prototipos
+-----------------------
+Como en muchos lenguajes orientado a objetos, JavaScript soporta objetos, y los primeros términos que vienen a la cabeza después de hablar de objetos son _clases_ y _herencia_. Aquí JavaScript se vuelve un poco quisquilloso, ya que el lenguaje no soporta classes directamentes, sino que lo hace a tráve de herencia basada en prototipos.
+
+En la versión ES6 del estándar la palabra formal `class` fue introducida. No obstante, por debajo se sigue utilizando la herencia basada en prototipos. Si se traspila un código JavaScript bajo el estándar ES6 que utilice la palabra reservada `class` a la versión ES5, se podra evidenciar el uso de la herencia basada en prototipos.
+
+La programación basada en prototipos es un estilo de programación orientada a objetos, cuyo comportamiento de herencia se realiza mediante un proceso de reutilización de objetos existentes. Estos objetos existentes son conocidos como prototipos y habilitan la delegación de comportamientos. Esta característica se ra citada al momento de revisar varios de los patrones de diseño en JavaScript.
