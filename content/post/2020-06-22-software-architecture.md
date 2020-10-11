@@ -64,4 +64,24 @@ Como en muchos lenguajes orientado a objetos, JavaScript soporta objetos, y los 
 
 En la versión ES6 del estándar la palabra formal `class` fue introducida. No obstante, por debajo se sigue utilizando la herencia basada en prototipos. Si se traspila un código JavaScript bajo el estándar ES6 que utilice la palabra reservada `class` a la versión ES5, se podra evidenciar el uso de la herencia basada en prototipos.
 
-La programación basada en prototipos es un estilo de programación orientada a objetos, cuyo comportamiento de herencia se realiza mediante un proceso de reutilización de objetos existentes. Estos objetos existentes son conocidos como prototipos y habilitan la delegación de comportamientos. Esta característica se ra citada al momento de revisar varios de los patrones de diseño en JavaScript.
+La programación basada en prototipos es un estilo de programación orientada a objetos, cuyo comportamiento de herencia se realiza mediante un proceso de reutilización de objetos existentes. Estos objetos existentes son conocidos como prototipos y habilitan la delegación de comportamientos. Esta característica se ra citada al momento de revisar varios de los patrones de diseño en JavaScript. 
+
+JavaScript event loops
+-----------------------
+En JavaScript es común mencionar el término **callback function**. Un callback function, es una función que se envía como paramétro de otra función, y es ejecutsda después de que se active un evento. Recuerde que en JavaScript las funciones son ciudadanos de primera clase. Usualmente las callback function se subscriven a eventos como el clic de un mouse ó le presión de una tecla del teclado.
+
+Un evento debe tener un listener adjunto para ser atendido, de lo contrario, sería un evento perdido. Cada vez que un evento se ejecuta, un mensaje es enviado a una fila de mensajes que son procesados sincronicamente, a través de un mecanismo FIFO (First in first out). Toda esta estructura es conocida como el **event loop** y la siguiente imagen ayuda a sintetizar dicha estructura.
+
+![]()
+
+Cada uno de los mensajes en la fila tiene una función asociada. Una vez el mensaje sale de la fila, la función adjunta es ejecutada completamente en tiempo de ejecución antes de procesar el siguiente mensaje. En otras palabras, si dicha función tiene un llamado a otra función, amabos funciones serán ejecutadas antes de procesar el siguiente mensaje en la fila. Este comportamiento es conocido como _run-to-completion_, y en pseudo código puede ser:
+
+```javascript
+while (queue.waitForMessage()) {
+    queue.processNextMessage();
+}
+```
+
+El método `queue.waitForMessage()`  espera los nuevos mensajes de manera sincrona. Cada uno de los mensajes que está siendo procesado tiene su propio stack, y es procesado hasta que la pila este vacía. Una vez termina, un nuevo mensaje es atendido desde la fila, en caso que exista.
+
+Es importante mencionar que JavaScript es un lengaje _non-blocking_, lo que significa que cuando una operación asíncrona esta siendo procesada, el programa esta en capacidad de procesar otras cosas, tales como, la recepción de nuevas entradas por parte del usuario, y no bloquea la ejecución del hilo principal. Esta propiedad es muy útil y es un tema que puede abordar un árticulo completo. Por ahora, vamos a dejarlo por fuera del alcance de esta publicación.
