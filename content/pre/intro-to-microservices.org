@@ -51,4 +51,18 @@ comunicar los cambios que van a ser publicados.
 Por otra parte, la infraestructura de los microservicios necesita de
 automatización para que sea efectiva. Es aquí donde las tareas operacionales
 son relevantes. 
-* 
+
+* Microservicios
+
+Microservicios es un enfoque de arquitectura para diseñar aplicaciones bajo las
+siguientes pautas:
+
+- Desarrollo modular
+- Fácil de desplegar
+- Escalamiento independiente
+
+Varios de los beneficios del patrón de diseño de los microservicios se ejercen para
+cualquier aplición. Los /rapid developments/ y el /continuos delivery/ son algunos
+de ellos. Paralelamente, los microservicios ejercen presión sobre los limites de
+la mayoria de las herramientas de automatización e infrasestructura. Es esta la 
+razón por la cual es necesario el uso de una herramienta avanzada como Kubernetes.
