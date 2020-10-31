@@ -66,3 +66,24 @@ cualquier aplición. Los /rapid developments/ y el /continuos delivery/ son algu
 de ellos. Paralelamente, los microservicios ejercen presión sobre los limites de
 la mayoria de las herramientas de automatización e infrasestructura. Es esta la 
 razón por la cual es necesario el uso de una herramienta avanzada como Kubernetes.
+
+* Configuración
+Para entrar al mundo de los microservicios es necesario hacer una configuración
+previa sobre una plataforma cloud. Para este caso vamos a utilizar Google Cloud.
+
+En ese orden de ideas es necesario crear una cuenta Google Compute Engine (GCE)
+la cual permitirá la creación de  máquinas virtuales, redes y volúmenes de
+almacenamiento. GCE también suministra un entorno de computo llamado
+[[https://cloud.google.com/shell/docs][Google Cloud Shell]].
+
+Para crear una cuenta en Google Cloud Platform (GCP) es necesario asociar una
+tarjeta de crédito. Es importante resaltar que no hay costo de subscripción,
+pero si se harán cobros sobre los recursos que se utilicen.
+
+Los pasos a seguir son:
+1. Crear un proyecto en GCP
+2. Habilitar el Compute Engine API
+3. Habilitar el Kubernetes Engine API
+4. Configurar el Google Cloud Shell
+5. Instalar la versión más reciente de Go 
+
