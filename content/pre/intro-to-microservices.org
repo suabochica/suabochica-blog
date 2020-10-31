@@ -81,9 +81,111 @@ tarjeta de crédito. Es importante resaltar que no hay costo de subscripción,
 pero si se harán cobros sobre los recursos que se utilicen.
 
 Los pasos a seguir son:
+
 1. Crear un proyecto en GCP
 2. Habilitar el Compute Engine API
 3. Habilitar el Kubernetes Engine API
 4. Configurar el Google Cloud Shell
-5. Instalar la versión más reciente de Go 
 
+ Posteriormente, vamos a descargar una version reciente de Go, ejecutando los
+siguientes comandos:
+
+#+begin_src bash
+wget https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf go1.6.2.linux-amd64.tar.gz
+echo "export GOPATH=~/go" >> ~/.bashrc
+source ~/.bashrc
+#+end_src
+
+Y por último vamos a descargar un proyecto de Udacity:
+
+#+begin_src bash
+mkdir -p $GOPATH/src/github.com/udacity
+cd $GOPATH/src/github.com/udacity
+git clone https://github.com/udacity/ud615
+#+end_src
+
+* Build del proyecto monolito
+  
+Si revisamos los contenido del proyecto, vamos a tener la siguientes estructura
+de directorios:
+
+#+begin_src 
+drwxr-xr-x 2 auth
+drwxr-xr-x 2 certgen
+drwxr-xr-x 2 Godeps
+drwxr-xr-x 2 handlers
+drwxr-xr-x 2 health
+drwxr-xr-x 2 hello
+drwxr-xr-x 2 monolith
+-rw-r--r-- 1 README.md
+drwxr-xr-x 2 user
+drwxr-xr-x 4 vendor
+#+end_src
+
+Notése que el proyecto se compone de tres aplicaciones: monoliht, hello y auth.
+El servicio de ~monolith~, combina los microservicios de ~hello~ y ~auth~.
+
+Para correr la applicación ~monolith~ ejecutamos los siguientes comandos:
+
+#+begin_src 
+app $ mkdir bin
+app $ go build -o ./bin/monolith .monolith/
+app $ sudo ./bin/monolith -http 0.0.0.0:10080
+#+end_src
+
+Estos comandos van a levantar un servidor HTTP el cual vamos a consumir con un 
+cliente HTTP llamado ~curl~, ejecutando el siguiente comando en otra sesión del
+Google Cloud Shell:
+
+#+begin_src 
+app $ curl http://127.0.0.1:10080
+{"message":"Hello"}
+#+end_src
+
+Si se recibe la respuesta ~{"message":"Hello"}~, el consumo del servicio ha sido
+exitoso y significa que el servidor esta funcionando.
+
+Ahora vamos a hacer una petición segura:
+
+#+begin_src 
+app $ curl http://127.0.0.1:10080/secure
+authorization failed
+#+end_src
+
+Esta solicitud HTTP falla, porque ese necesario obtener un [[https://jwt.io][Json Web Token (JWT)]]
+desde el endpoint de inicio de sesión. Para ello ejecutamos el siguiente
+comando:
+
+#+begin_src 
+app $ curl http://127.0.0.1:10080/login -u user
+Enter host password for 'user':
+{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAZXhhbXBsZS5jb20iLCJleHAiOjE2MDQ0MTA3MDAsImlhdCI6MTYwNDE1MTUwMCwiaXNzI
+joiYXV0aC5zZXJ2aWNlIiwic3ViIjoidXNlciJ9.SV2qMc2v5pnBbGRpZr21stucfvk_RmjQ6mbarjPc10s"}
+#+end_src
+
+En la solicitud al endpoint ~login~ especificamos el inicio de sesión con el
+usuario ~user~ cuya contraseña es ~password~. Si se otorgan los credenciales
+apropiadamente vamos a obtener como respuesta el JWT.
+
+Ahora, ya se puede hacer la solicitud a nuestro enpoint de seguridad con el
+siguiente comando:
+
+#+begin_src 
+app $ curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAZXhhbXBsZS5jb20iLCJleHAiOjE2MDQ0MTA3MDAsImlhdCI6MTYwNDE1MTUwMCwiaXNzI
+joiYXV0aC5zZXJ2aWNlIiwic3ViIjoidXNlciJ9.SV2qMc2v5pnBbGRpZr21stucfvk_RmjQ6mbarjPc10s" http://127.0.0.1:10080/secure
+{"message":"Hello"}
+#+end_src
+
+Como esperamos, ahora si esta funcionando. Es importante resaltar que la
+aplicación ~monoliht~ aprovecha muchos beneficios encontrado en los 12 factores
+de una aplicación. Por ejemplo, estamos obteniendo logs estandarizados sin
+necesidad de tocar los archivos logs. Por otra parte, el modelo de la aplicación
+esta auto contenida, y todas nuestras dependencias están agrupadas en el
+directorio ~/vendor~.
+
+Seguir estas practicas hace que la aplicación sea mas fácil de mantener y
+desplegar en la nube.
+
+* Los 12 Factores
