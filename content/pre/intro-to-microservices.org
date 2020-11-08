@@ -189,3 +189,27 @@ Seguir estas practicas hace que la aplicación sea mas fácil de mantener y
 desplegar en la nube.
 
 * Los 12 Factores
+Los 12 factores es una guía de buenas prácticas para construir aplicaciones 
+desplegables de Software-as-a-Service (SaaS). El concepto resalta tres
+importantes cirterios a tener en cuenta en el diseño de aplicaciones
+modernas:
+
+- Portabilidad: Eliminar elementos que varían entre los ambientes de ejecución,
+tales como dependencias o configuraciones.
+- Continuamente desplegable: Generalmente las aplicaciones que usan los 12
+facotres son desplegadas en plataformas cloud (e.g. GCP ó Amazon), y se enfocan
+en mantener los ambientes de desarrollo y producción uniformes. Esto significa
+que se puede configurar herramientas para implementar actualizaciones de código
+rápidamente.
+- Escalabilidad: Las aplicaciones deben atender las demandas de los usuarios,
+mientras se usan las herramientas y las prácticas que se emplean desde un
+principio.
+
+El patrón de diseño de microservicios siguen la mayoría de estos factores. Ahora
+es tiempo de utilizar Docker y Kubernetes para atender estas pautas
+
+** Referencias
+- [[https://12factor.net][12-factor manifesto]]
+
+
+
