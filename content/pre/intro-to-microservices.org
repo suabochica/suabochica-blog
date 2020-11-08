@@ -194,14 +194,14 @@ desplegables de Software-as-a-Service (SaaS). El concepto resalta tres
 importantes cirterios a tener en cuenta en el diseño de aplicaciones
 modernas:
 
-- Portabilidad: Eliminar elementos que varían entre los ambientes de ejecución,
+- *Portabilidad*: Eliminar elementos que varían entre los ambientes de ejecución,
 tales como dependencias o configuraciones.
-- Continuamente desplegable: Generalmente las aplicaciones que usan los 12
+- *Continuamente desplegable*: Generalmente las aplicaciones que usan los 12
 facotres son desplegadas en plataformas cloud (e.g. GCP ó Amazon), y se enfocan
 en mantener los ambientes de desarrollo y producción uniformes. Esto significa
 que se puede configurar herramientas para implementar actualizaciones de código
 rápidamente.
-- Escalabilidad: Las aplicaciones deben atender las demandas de los usuarios,
+- *Escalabilidad*: Las aplicaciones deben atender las demandas de los usuarios,
 mientras se usan las herramientas y las prácticas que se emplean desde un
 principio.
 
@@ -211,5 +211,25 @@ es tiempo de utilizar Docker y Kubernetes para atender estas pautas
 ** Referencias
 - [[https://12factor.net][12-factor manifesto]]
 
+** Ejemplos
+Ahora vamos a aterrizar algunos de los 12 factores asociandolos a unos 
+escenarios especifícos.
 
+Al momento de decidir alamacenar el código de la aplicación en Git, estamos
+aplicando el factor de /código base/, ya que el código esta sobre una
+herramienta que nos ofrece controles de revisión y la posibilidad de correr
+muchos despliegues.
 
+Por otra parte, cuando se imprimen las salidas en un `stdout` estamos aplicando
+el factor /logs/. Esto permite que los desarrolladores usen los logs como una 
+corriente de eventos. Por ejemplo, si se presenta un falló al intentar 
+conectarse a una base de datos, se podría hace una búsqueda de mensajes de
+error en la consola y así identificar la causa del fallo.
+
+Por último, el uso the declaraciones de importanciones es un caso de uso del
+factor /dependencias/. Los paquetes externos son almacenados con la aplicación,
+hecho que reduce los puntos de fallos del despliegue del código dentro de
+diferentes ambientes de ejecución.
+
+Estos son unos ejemplos que nos puede ayudar a comprender mejor la propuesta
+de los 12 factores.
