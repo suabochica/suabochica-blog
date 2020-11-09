@@ -234,7 +234,7 @@ diferentes ambientes de ejecución.
 Estos son unos ejemplos que nos puede ayudar a comprender mejor la propuesta
 de los 12 factores.
 
-* Refactorizar a MSA (Micro Services App)
+* Refactorizar a MSA (Micro Services Architecture)
 Tiempo de desglosar la aplicación monolito en microservicios. Idealmente el
 monolito se descompone al rededor de una funcionalidad autocontenida. Para
 este caso vamos a crear dos microservicios: ~auth~, para manejar procesos de 
@@ -277,3 +277,21 @@ La comlejidad adicional solo crece con el número de servicios que este
 utilizando la aplicación. Este problema es exactamente lo que impulsa la
 adopción de contenedores de aplicaciones y con ayuda de plataformas de 
 administración como Kubernetes, vamos a empezar a coordinarlos.
+
+** Soluciones ofrecidas por MSA
+Es importante tener en cuenta los escenarios sobre los cuales una arquitectura
+de microservicios ofrece soluciones. Para los monolitos, hacer un cambio en una
+parte del código implica una recompilación de todo el binario. Al tener piezas
+independientes de código, podemos enviar los binarios por separado. Esto
+significa que los servicios son unidades de funcionalidad que pueden ser
+reemplazadas o actualizadas separadamente del resto del sistema, obteniendo así
+componentes estrechamente acoplados.
+
+Otra solución de los MSA, es el mantenimiento, ya que trabajamos con componentes
+de escala independiente. Cada servicio es tan pequeño y esto incrementa las
+posibilidades de que sea más fácil de entender. Por otra parte, se fomenta el
+desarrollo de un código base robusto y estable que deberiía ser fácil de
+mantener.
+
+* JWT
+
