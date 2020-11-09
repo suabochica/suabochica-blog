@@ -233,3 +233,47 @@ diferentes ambientes de ejecución.
 
 Estos son unos ejemplos que nos puede ayudar a comprender mejor la propuesta
 de los 12 factores.
+
+* Refactorizar a MSA (Micro Services App)
+Tiempo de desglosar la aplicación monolito en microservicios. Idealmente el
+monolito se descompone al rededor de una funcionalidad autocontenida. Para
+este caso vamos a crear dos microservicios: ~auth~, para manejar procesos de 
+autorización y autenticación y un servicio ~hello~.
+
+Cada servicio tiene su propio binario, y para empezar se va a hacer el build de
+los respectivos servicios para posteriormente ver como funciona el nuevo flujo
+del despliegue de la aplicación.
+
+Comencemos con el servicio ~hello~.
+
+#+begin_src 
+app $ go build -o bin/hello ./hello/
+app $ ./bin/hello -http ":10080" -health ":10081"
+#+end_src
+
+En un nueva sesión de terminal, vamos a hacer los mismo para el servicio ~auth~:
+
+#+begin_src 
+app $ go build -o bin/auth ./auth/
+app $ ./bin/auth -http ":10090" -health ":10091"
+#+end_src
+
+Ahora que tenemos ambos servicios corriendo vamos a usar el comando ~curl~ en
+una nueva sesión de terminal para interactuar con los servicios de ~auth~ y 
+~hello~.
+
+#+begin_src 
+TOKEN=$(curl 127.0.0.1:10090/login -u user | jq -r '.token')
+curl -H "Authorization:  Bearer $TOKEN" http://127.0.0.1:10082/secure
+#+end_src
+
+Si todo sale como se espera, recibiremos la respuesta ~{"message":"Hello"}~, con
+la salvedad de que ahora tenemos multiples binarios que administran la
+aplicación y nuestro despliegue se esta haciendo dos veces más complicado, lo
+que significa que nuestros clientes necesitan saber como hablar con ambos
+servicios por separado.
+
+La comlejidad adicional solo crece con el número de servicios que este
+utilizando la aplicación. Este problema es exactamente lo que impulsa la
+adopción de contenedores de aplicaciones y con ayuda de plataformas de 
+administración como Kubernetes, vamos a empezar a coordinarlos.
