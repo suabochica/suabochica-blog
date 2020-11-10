@@ -294,4 +294,29 @@ desarrollo de un código base robusto y estable que deberiía ser fácil de
 mantener.
 
 * JWT
+Json Web Tokens (JWT), es un método compacto y auto contenido para transferir
+datos de manera segura como objetos JSON. Es un estándar útil, porque envía 
+información que puede verificada y validada con una firma digital.
 
+Los JWTs son medios compactos de almacenamiento de datos faciles de descodificar
+o codificar en la mayoria de los lenguajes.
+
+Por último, JWT es ideal para autenticación e intercambio de información gracias
+a su tamaño y al hecho de que pueden ser firmados. Esto nos permite auditar la
+identidad de quienes envían la información y tener garantías sobre que los datos
+enviados nos están alterados.
+
+* How does JWT work
+  
+#+CAPTION: El cliente envía una solicitud de log in
+[[../images/microservices/01-how_jwt_works.png]]
+#+CAPTION: El servidor crea un JWT
+[[../images/microservices/02-how_jwt_works.png]]
+#+CAPTION: El servidor retorna el JWT al cliente
+[[../images/microservices/03-how_jwt_works.png]]
+#+CAPTION: El cliente envía una copia del JWT cuando hace una petición
+[[../images/microservices/04-how_jwt_works.png]]
+#+CAPTION: El servidor valida la firma del JWT
+[[../images/microservices/05-how_jwt_works.png]]
+#+CAPTION: El servidor envía la respuesta al cliente
+[[../images/microservices/06-how_jwt_works.png]]
