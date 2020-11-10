@@ -320,3 +320,18 @@ enviados nos están alterados.
 [[../images/microservices/05-how_jwt_works.png]]
 #+CAPTION: El servidor envía la respuesta al cliente
 [[../images/microservices/06-how_jwt_works.png]]
+
+* Recapitulación
+En esta publicasión se desarrolló la siguiente idea: Entendimiento del
+diseño de las aplicaciones modernas, incluyendo el patrón de diseño de los
+microservicios.
+
+Se puede observar como las aplicaciones modernas están empujando los limites de
+las herramientas de automatización actuales. En vez de tener un gran binario, 
+ahora estas aplicaciones estan compuestas por muchas partes que son más 
+pequeñas, más fáciles de escribir y desplegar.
+
+Esta nueva propuesta nos obliga a revisar las herramientas y la infrasestructura
+que se está utilizando para apoyar estas aplicaciones modernas. En consecuencia,
+es necesario optar por nuevas herramientas de automatización como Docker y
+Kubernetes.
