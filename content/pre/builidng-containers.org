@@ -1,0 +1,74 @@
+#+TITLE: Building the containers with docker
+#+DESCRIPTION: Usa docker para construir contenedores de imágenes para empacar
+una aplicación y sus dependencias y así hacer un despliegue en una sola máquina
+#+AUTHOR: Sergio Benítez
+#+DATE:<2020-11-10 Tue> 
+
+* Por qué Docker
+
+Luego de tener un conocimiento sólido sobre el diseño de aplicaciones modernas
+a través del patrón de diseño de microservicios, el siguiente paso es desplegar
+el código.
+
+El primer criterio a considerar es las dependecias de las aplicaciones. La
+secuencia empezaría con la construcción de paquetes y distribuir todas estas
+aplicaciones, y es de esperarse que eso requiera mucho trabajo.
+
+Una opción es decifrar todas las dependecias y construir un paquete nativo para
+cada distribución de linux que se quierar soportar, ó se puede omitir este
+enfoque y contruir on contenedor de imagen.
+
+Ahora bien, ¿qué es un contenedor de imagen?. Básicamente, es un formato de
+empaque que no solo incluye la aplicación, sino toda las dependencias o
+información de tiempo de ejecución requerida para ejecutarla.
+
+Una analogía adecuada, es un teléfono celular. Usted descarga una aplicación
+autocontenida y la ejecuta. Los contenedores son la misma cosa, pero para sus
+servidores. La tecnología de contenedores esta construida para la mayoría de los
+sistemas operativos, pero no es precisamente fácil de usar desde el primer
+momento. Para ello, es necesario una herramienta como docker, ya que provee un
+API con las último en la tecnología de contenedores y facilita la /creación/,
+/distribución/ y la /ejecución/ de contenedores de imagenes en los servidores.
+
+** Tutorial básico de docker
+1. Clonar: podemos clonar imágenes en repositorios de GitHub, los cuales
+contienen todo lo necesario para construir la imagen y correrla como un
+contenedor. Los siguientes comandos nos permiten clonar un respositorio de 
+prueba suministrado por docker:
+
+#+begin_src bash
+docker run --name repo alpine/git clone \ 
+https://github.com/docker/gettign-started.git
+
+docker cp repo:/git/getting-started/ .
+#+end_src
+
+2. Build: Ahora, es tiempo de construir la imagen. Una imagen de docker es un
+sistema privado de archivos para tu contenedor. El provee todos los archivos y
+el código que el contenedor precisa.
+
+#+begin_src bash
+cd getting-started
+
+docker build -t docker101tutorial .
+#+end_src
+
+3. Run: Ejecuta tu primer contenedor. Inicie el contenedor basado en la imagen
+que se construyó en el paso previo. Ejecutar el contenedor lanza la aplicación
+con recursos privados, asegurados y aislados del resto de tu máquina.
+
+#+begin_src bash
+docker run -d -p 80:80 --name docker-tutorial docker101tutorial
+#+end_src
+
+4. Share: Por último, salva y comparte tu imagen en Docker Hub con el fin de que
+otros usuarios puedan descargarla y ejecutarla en cualquier máquina.
+
+#+begin_src bash
+docker tag docker101tutorial username/docker101tutorial
+
+docker push username/docker101tutorial
+#+end_src
+
+* 
+
