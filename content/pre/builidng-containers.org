@@ -70,5 +70,22 @@ docker tag docker101tutorial username/docker101tutorial
 docker push username/docker101tutorial
 #+end_src
 
-* 
+* Revisión general de docker
+
+Docker és una herramienta open source que hace fácil la creación, distribución y
+y ejecución de aplicaciones. Lo hace empaquetando las aplicaciones como un
+conjunto de contenedores de imágenes que envuelve todas las dependencias
+incluidas con él.
+
+Los contenedores de imágenes pueden correr en cualquier máquina que tenga docker
+instalado, haciendo posible el sueño de cualquier administrador de paquetes, ya
+que docker ofrece contendores reproducible y consistentes.
+
+Al igual que los procesos en un computadores, los contenedores pueden prenderse
+y apagarse rápidamente. Al mismo tiempo, los contenedores proveen los beneficios
+de una máquina virual como el aislamiento entre las aplicaciones que se están
+ejecutando en una misma máquina. Por ende, no tenemos que preocuparnos por
+conflictos de dependencias entre aplicaciones.
+
+
 
