@@ -87,7 +87,7 @@ Los pasos a seguir son:
 3. Habilitar el Kubernetes Engine API
 4. Configurar el Google Cloud Shell
 
- Posteriormente, vamos a descargar una version reciente de Go, ejecutando los
+Posteriormente, vamos a descargar una version reciente de Go, ejecutando los
 siguientes comandos:
 
 #+begin_src bash

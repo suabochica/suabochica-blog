@@ -87,5 +87,52 @@ de una máquina virual como el aislamiento entre las aplicaciones que se están
 ejecutando en una misma máquina. Por ende, no tenemos que preocuparnos por
 conflictos de dependencias entre aplicaciones.
 
+* Instalando aplicaciones con herramientas nativas del sistema operativo
+
+Una vez conectados al GCS, vamos a dar un vistazo a como administrar
+aplicaciones sin docker. Empezemos creando una máquina virtual de Ubuntu para
+jugar con ella usando el gcloud.
+
+#+begin_src bash
+$ gcloud config set project [PROJECT_ID]
+$ gcloud compute instances create ubuntu --image-project ubuntu-os-cloud --image ubuntu-1604-xenial-v20160429
+#+end_src
+
+Al crear la máquina virtual, nos podemos conectar a ella usando el commando ssh
+de gcloud:
 
 
+#+begin_src bash
+$ gcloud compute ssh ubuntu
+#+end_src
+
+Para validar que estamos conectados a la máquina virtual, en el shell de
+aparecer la siguiente información al inicio de cada línea: ~username@ubuntu:~$~.
+
+Ahora, con ayuda de un administrador de paquetes nativos se va a instalar NGINX
+y todas sus dependencias:
+
+#+begin_src bash
+$ sudo apt-get update
+$ sudo apt-get install nginx
+#+end_src
+
+Validamos la instalación de NGINX con el comando ~nginx -v~ y la consola
+imprimirá una salida como esta: ~nginx version: nginx/1.10.3 (Ubuntu)~.
+Complementariamente, para saber si NGINX está corriendo, podemos usar el comando 
+~systemctl~.
+
+#+begin_src bash
+$ sudo systemctl status nginx
+#+end_src
+
+Este comando imprime los logs relacionados al estado de NGINX, y así se podrá
+saber si esta siendo ejecutado. Por último, se prueba si NIGNX esta disponible
+localmente con ayuda del ~curl~:
+
+#+begin_src bash
+$ curl http://127.0.0.0
+#+end_src
+
+¡Perfecto! los sistemas operativos modernos hacen muy fácil instalar, iniciar y
+ejecutar aplicaciones.
