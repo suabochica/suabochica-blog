@@ -166,6 +166,36 @@ lograr correr dos instancias de NGINX con versiones diferentes en la misma
 máquina virtual.
 
 Por defecto, la mayoría de los sistemas operativos solo permite instalar una
-versión de una aplicación. Eso significa que para lograr el propósito de correr
-dos instancias de una misma aplicación en una máquina virtual hay que
-reconsiderar el enfoque.
+versión de una aplicación y ejecutar una instancia de la misma. Eso significa
+que para lograr el propósito de correr dos instancias de una misma aplicación
+con versiones diferentes en una máquina virtual hay que reconsiderar el enfoque.
+Este nuevo enfoque son los contenedores.
+
+* Revisión general del contendor
+
+Los contenedores fueron desarrollados para solucionar los problemas con la
+instalación y ejecución de software a través de diferentes sistemas operativos.
+
+Ya se ha visto los problemas de instalar y ejecutar aplicaciones sobre una única
+máquina. Ahora, imaginesé instalar NGINX en multiples máquinas y a través de
+diferentes sistemas operativos. Eso sería una pesadilla.
+
+Con contenedores se obtienen paquetes autocontenidos /independientes/ que evitan
+conflictos con las versiones. Eso es parte del atractivo de los contenedores de
+imágenes. Ellos son fáciles de distribuir porque se encargan de todas sus
+dependencias por si mismos.
+
+Adicionalmente, los contendores ofrecen /aislamiento/ sobre varios procesos.
+En secciones previas, se habló de aislamiento a nivel de sistema de archivos,
+pero también existen otros tipos de aislamiento, como por ejemplo el aislamiento
+ de red. El aislamiento de red significa que cada instancia tendrá su propia 
+dirección IP, y por ende cada máquina tendrá disponible el puerto 80, que es el
+puerto por defecto utilizado por NGINX, ahorrando así los problemas de lidiar
+con la configuración de los scripts de inicialización. 
+
+Algo importante para considerar, es que mientras se corran dos máquinas 
+virtuales en un computador, se tendrán dos sistemas operativos completamente
+separados, y multiples contenedores se ejecutaran sobre el mismo sistema 
+operativo, debido a que los contenedores son una construcción lógica usada
+dentro del sistema operativo. Esto hace que los contenedores sean ligeros y sean
+fáciles de prender o apagar.
