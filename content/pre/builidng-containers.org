@@ -16,25 +16,26 @@ aplicaciones, y es de esperarse que eso requiera mucho trabajo.
 
 Una opción es decifrar todas las dependecias y construir un paquete nativo para
 cada distribución de linux que se quierar soportar, ó se puede omitir este
-enfoque y contruir on contenedor de imagen.
+enfoque y contruir un contenedor de imagen.
 
 Ahora bien, ¿qué es un contenedor de imagen?. Básicamente, es un formato de
-empaque que no solo incluye la aplicación, sino toda las dependencias o
+empaque que no solo incluye la aplicación, sino todas las dependencias o
 información de tiempo de ejecución requerida para ejecutarla.
 
-Una analogía adecuada, es un teléfono celular. Usted descarga una aplicación
-autocontenida y la ejecuta. Los contenedores son la misma cosa, pero para sus
-servidores. La tecnología de contenedores esta construida para la mayoría de los
-sistemas operativos, pero no es precisamente fácil de usar desde el primer
-momento. Para ello, es necesario una herramienta como docker, ya que provee un
-API con las último en la tecnología de contenedores y facilita la /creación/,
-/distribución/ y la /ejecución/ de contenedores de imagenes en los servidores.
+Una analogía adecuada, es un teléfono celular. En su celular, se descarga una
+aplicación autocontenida y la ejecuta. Los contenedores son la misma cosa,
+pero para sus servidores. La tecnología de contenedores esta construida para la
+mayoría de los sistemas operativos, pero no es precisamente fácil de usar desde
+el primer momento. Para ello, es necesario una herramienta como docker, ya que
+provee un API con las último en la tecnología de contenedores y facilita la 
+/creación/, /distribución/ y la /ejecución/ de contenedores de imágenes en los
+servidores.
 
 ** Tutorial básico de docker
-1. Clonar: podemos clonar imágenes en repositorios de GitHub, los cuales
+1. Clonar: se pueden clonar imágenes en repositorios de GitHub, los cuales
 contienen todo lo necesario para construir la imagen y correrla como un
-contenedor. Los siguientes comandos nos permiten clonar un respositorio de 
-prueba suministrado por docker:
+contenedor. Los siguientes comandos permiten clonar un respositorio de  prueba
+suministrado por docker:
 
 #+begin_src bash
 docker run --name repo alpine/git clone \ 
@@ -53,15 +54,15 @@ cd getting-started
 docker build -t docker101tutorial .
 #+end_src
 
-3. Run: Ejecuta tu primer contenedor. Inicie el contenedor basado en la imagen
-que se construyó en el paso previo. Ejecutar el contenedor lanza la aplicación
-con recursos privados, asegurados y aislados del resto de tu máquina.
+3. Run: Ejecute su primer contenedor. Inicie el contenedor basado en la imagen
+que se construyó en el paso previo. Al ejecutar el contenedor se lanza la
+aplicación con recursos privados, asegurados y aislados del resto de tu máquina.
 
 #+begin_src bash
 docker run -d -p 80:80 --name docker-tutorial docker101tutorial
 #+end_src
 
-4. Share: Por último, salva y comparte tu imagen en Docker Hub con el fin de que
+4. Share: Por último, salve y comparta su imagen en Docker Hub con el fin de que
 otros usuarios puedan descargarla y ejecutarla en cualquier máquina.
 
 #+begin_src bash
@@ -79,18 +80,18 @@ incluidas con él.
 
 Los contenedores de imágenes pueden correr en cualquier máquina que tenga docker
 instalado, haciendo posible el sueño de cualquier administrador de paquetes, ya
-que docker ofrece contendores reproducible y consistentes.
+que docker ofrece contendores reproducibles y consistentes.
 
 Al igual que los procesos en un computadores, los contenedores pueden prenderse
 y apagarse rápidamente. Al mismo tiempo, los contenedores proveen los beneficios
 de una máquina virual como el aislamiento entre las aplicaciones que se están
-ejecutando en una misma máquina. Por ende, no tenemos que preocuparnos por
-conflictos de dependencias entre aplicaciones.
+ejecutando en una misma máquina. Por ende, no hay preocupaciones por conflictos
+de dependencias entre aplicaciones.
 
 * Instalando aplicaciones con herramientas nativas del sistema operativo
 
-Una vez conectados al GCS, vamos a dar un vistazo a como administrar
-aplicaciones sin docker. Empezemos creando una máquina virtual de Ubuntu para
+Luego de conectase  al GCS, se va a dar un vistazo a como administrar
+aplicaciones sin docker. Para empezar se crea una máquina virtual de Ubuntu para
 jugar con ella usando el gcloud.
 
 #+begin_src bash
@@ -98,16 +99,15 @@ $ gcloud config set project [PROJECT_ID]
 $ gcloud compute instances create ubuntu --image-project ubuntu-os-cloud --image ubuntu-1604-xenial-v20160429
 #+end_src
 
-Al crear la máquina virtual, nos podemos conectar a ella usando el commando ssh
-de gcloud:
-
+Al crear la máquina virtual, se usa el commando ssh de gcloud para establecer la
+conxexión con dicha máquina:
 
 #+begin_src bash
 $ gcloud compute ssh ubuntu
 #+end_src
 
-Para validar que estamos conectados a la máquina virtual, en el shell de
-aparecer la siguiente información al inicio de cada línea: ~username@ubuntu:~$~.
+Para validar la conexión a la máquina virtual, en el shell debe aparecer la 
+siguiente información al inicio de cada línea: ~username@ubuntu:~$~.
 
 Ahora, con ayuda de un administrador de paquetes nativos se va a instalar NGINX
 y todas sus dependencias:
@@ -117,9 +117,9 @@ $ sudo apt-get update
 $ sudo apt-get install nginx
 #+end_src
 
-Validamos la instalación de NGINX con el comando ~nginx -v~ y la consola
+La instalación de NGINX se valida con el comando ~nginx -v~ y la consola
 imprimirá una salida como esta: ~nginx version: nginx/1.10.3 (Ubuntu)~.
-Complementariamente, para saber si NGINX está corriendo, podemos usar el comando 
+Complementariamente, para saber si NGINX está corriendo, se usa el comando 
 ~systemctl~.
 
 #+begin_src bash
@@ -136,3 +136,36 @@ $ curl http://127.0.0.0
 
 ¡Perfecto! los sistemas operativos modernos hacen muy fácil instalar, iniciar y
 ejecutar aplicaciones.
+
+* Problema: ¿Cómo instalar dos versiones?
+Ahora se tratará de instalar dos versiones de NGINX en la máquina virtual. Si se
+instala nuevamente usando el administrador de paquetes nativo se obtiene un
+mensaje diciendo que NGINX ya está instalado con su última versión.
+
+Al usar el comando ~systemctl~ se observa que solo esta corriendo una instancia
+de NGINX y para confirmar dicho ustado se usa el comando ~ps~ en conjunto con
+~grep~ como se muestra a continuación:
+
+#+begin_src bash
+$ sudo ps aux | grep nginx
+#+end_src
+
+En está salida se indica que solo hay un proceso NGINX corriendo con su
+respectivo worker. Por lo tanto, solo hay una instancia principal de la
+aplicación que se esta ejecutando.
+
+Para lograr crear dos instancias de NGINX en la misma máquina virual usando las
+herramientas nativas del sistema operativo es necesario modificar los scripts de
+inicialización. Para el caso puntual de NGINX, los cambios irián en el archivo
+~/etc/init/nginx.conf~.
+
+Adicionalmente, se requiere administrar los puertos, ya que las dos instancias
+no pueden enlazarse al mismo puerto. En resumen, hay mucha complejidad para
+hacer las configuraciones con las herramientas nativas del sistema operativo y 
+lograr correr dos instancias de NGINX con versiones diferentes en la misma
+máquina virtual.
+
+Por defecto, la mayoría de los sistemas operativos solo permite instalar una
+versión de una aplicación. Eso significa que para lograr el propósito de correr
+dos instancias de una misma aplicación en una máquina virtual hay que
+reconsiderar el enfoque.
