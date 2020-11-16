@@ -199,3 +199,21 @@ separados, y multiples contenedores se ejecutaran sobre el mismo sistema
 operativo, debido a que los contenedores son una construcción lógica usada
 dentro del sistema operativo. Esto hace que los contenedores sean ligeros y sean
 fáciles de prender o apagar.
+
+* Instalando imágenes con docker
+  
+#+begin_src bash
+sudo apt-get install docker.io
+#+end_src
+
+#+begin_src bash
+sudo docker images
+#+end_src
+
+#+begin_src bash
+sudo docker pull nginx:1.10.0
+#+end_src
+
+#+begin_src bash
+sudo dpkg -l | grep nginx
+#+end_src
