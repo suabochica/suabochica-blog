@@ -4,7 +4,7 @@ una aplicación y sus dependencias y así hacer un despliegue en una sola máqui
 #+AUTHOR: Sergio Benítez
 #+DATE:<2020-11-10 Tue> 
 
-* Por qué Docker
+* Por qué docker
 
 Luego de tener un conocimiento sólido sobre el diseño de aplicaciones modernas
 a través del patrón de diseño de microservicios, el siguiente paso es desplegar
@@ -252,4 +252,77 @@ sudo dpkg -l | grep nginx
 
 Notesé que ahora hay dos paqutes de nginx instalados, uno con el administrador
 de paquetes del sistema operativo y otro con docker, ambos con la misma versión.
+
+* Corriendo imágenes con docker
+
+Ya se sabe que se pueden instalar multiples instancias de NGINX via docker. Pero
+, ¿se pueden ejecutar? Se realizará la prueba respectiva.
+
+Primero, se usa el siguiente comando para correr la primera instancia de NGINX:
+
+#+begin_src bash
+$ sudo docker run -d nginx:1.10.0
+#+end_src
+
+Para verificar la lista de los procesos docker que se están ejcutando
+actualmente se pone en marcha el siguiente comando:
+
+#+begin_src bash
+$ sudo docker ps
+#+end_src
+
+Ahora, se va a correr otra instancia de NGINX con una versión diferente.
+
+#+begin_src bash
+$ sudo docker run -d nginx:1.9.3
+#+end_src
+
+Dado que esta versión no se ha descargado previamente, el comando ~docker run~
+traerá automaticamente la imagen correspondiente de la versión 1.9.3 de NGINX.
+Se puede repetir este proceso para n instancias que se requieran. Por tanto,
+se ejecutará nuevamente otra instancia.
+
+#+begin_src bash
+$ sudo docker run -d nginx:1.10.0
+#+end_src
+
+Al verificar la lista de procesos que se están corriendo actualmente en docker,
+se obtiene la siguiente salida:
+
+#+begin_src bash
+CONTAINER ID        IMAGE               COMMAND                  CREATED        
+96fef877f851        nginx:1.10.0        "nginx -g 'daemon of…"   5 seconds ago 
+03349cc81243        nginx:1.9.3         "nginx -g 'daemon of…"   13 seconds ago 
+1012cf1911d0        nginx:1.10.0        "nginx -g 'daemon of…"   25 seconds ago
+#+end_src
+
+Con el siguiente comando, se consiguen los procesos actuales de NGINX 
+que están siendo ejecutados en el sistema operativo:
+
+#+begin_src bash
+$ sudo ps aux | grep nginx
+root     11382  0.0  0.1  31684  5152 ?        Ss   13:06   0:00 nginx: master process nginx -g daemon off;
+syslog   11422  0.0  0.0  32068  2952 ?        S    13:06   0:00 nginx: worker process
+root     11601  0.0  0.1  31500  4952 ?        Ss   13:06   0:00 nginx: master process nginx -g daemon off;
+syslog   11643  0.0  0.0  31876  2816 ?        S    13:06   0:00 nginx: worker process
+root     11759  0.0  0.1  31684  5072 ?        Ss   13:06   0:00 nginx: master process nginx -g daemon off;
+syslog   11795  0.0  0.0  32068  2888 ?        S    13:06   0:00 nginx: worker process
+sergio_+ 11906  0.0  0.0  12948   972 pts/0    S+   13:10   0:00 grep --color=auto nginx
+#+end_src
+
+Nótese que en esta salida, hay tres procesos maestros de NGINX corriendo.
+
+* Hablando con las instancias de docker
+
+* Creando imágenes de docker propias
+
+* Creando una imagen
+
+* Creando otros contenedores
+
+* Registros públicos vs privados
+
+* Empujando imágenes
+
+* Outro
 
