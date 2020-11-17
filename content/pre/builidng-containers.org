@@ -201,19 +201,55 @@ dentro del sistema operativo. Esto hace que los contenedores sean ligeros y sean
 fáciles de prender o apagar.
 
 * Instalando imágenes con docker
+
+Tiempo para ver porque docker realmente resplandece al demostrar lo sencillo 
+que resulta tener multiples versiones de NGINX ejecutandose en la misma máquina.
+Es aquí donde docker agrega valor, ya que permite ejecutar aplicaciones auto
+contentidas con sus propias versiones y con paqutes que incluyen sus propias
+dependencias. Cabe resaltar que dos versiones necesitan dependecias distintas y
+docker permite dicho escenario al crear dos contendores con las respectivas
+versiones.
+
+Además, docker abstrae el administrador de paquetes del sistema operativo. Si es
+un contenedor con Red Hat se utiliza ~RPM~ y de ser Debian se usa ~apt-get~.
+Esto se logra con aprendizaje sobre la línea de comandos de docker.
+
+Para empezar, se instala docker con el siguiente comando:
   
 #+begin_src bash
 sudo apt-get install docker.io
 #+end_src
 
+Una vez instalado, ya se esta listo para trabajar con imágenes de docker. Se
+puede consultar la disponibilidad de las imágenes de docker con el siguiente
+comando:
+
 #+begin_src bash
 sudo docker images
 #+end_src
+
+Por el momento, no se verá ningún resultado ya que no hay ninguna imagen
+instalada en el sistema. Con el siguiente comando se instalará una imagen de
+NGINX con la misma versión se instaló a traves del administrador de paquetes
+nativo del sistema operativo.
 
 #+begin_src bash
 sudo docker pull nginx:1.10.0
 #+end_src
 
+Este comando tomará algo de tiempo para descargar la imagen del repositorio,
+puesto que se esta halando NGINX con todas sus dependencias para que la imagen
+pueda ser autónoma. Los repositorios se desarrollarán más adelante, por ahora,
+el enfoque está en la imágenes de docker.
+
+Al correr nuevamente el comando para consultar las imágenes de docker se obtiene
+un resultado, la imagen de NGINX. La versión del NGINX instalado con docker se 
+puede corroborar con el siguiente comando:
+
 #+begin_src bash
 sudo dpkg -l | grep nginx
 #+end_src
+
+Notesé que ahora hay dos paqutes de nginx instalados, uno con el administrador
+de paquetes del sistema operativo y otro con docker, ambos con la misma versión.
+
