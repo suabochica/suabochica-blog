@@ -310,9 +310,55 @@ syslog   11795  0.0  0.0  32068  2888 ?        S    13:06   0:00 nginx: worker p
 sergio_+ 11906  0.0  0.0  12948   972 pts/0    S+   13:10   0:00 grep --color=auto nginx
 #+end_src
 
-Nótese que en esta salida, hay tres procesos maestros de NGINX corriendo.
+Nótese que en esta salida, hay tres procesos maestros de NGINX corriendo. Docker
+hace esto muy fácil, ya que no hay que intervenir sobre scripts de
+inicialización o configuración, especificar puertos y otros procesos tediosos 
+para correr multiples instancias al mismo tiempo.
 
 * Hablando con las instancias de docker
+
+  
+Antes de establecer una comunicación con las instancias de docker, es necesario
+saber que contendores están siendo ejecutados con el comando que se reviso
+anteriormente.
+
+#+begin_src bash
+$ sudo docker ps
+#+end_src
+
+De esta salida, se puede usar el identificador del contenedor para establecer el
+destinatario de la comunicación. Con ayuda del comando ~inspect~ de docker se
+obtiene información relevante al contenedor que se está ejecutando.
+
+#+begin_src bash
+$ sudo docker inspect 96fef877f851
+#+end_src
+
+En la log de salida se puede ver la dirección IP del contenedor. Con ayuda de
+curl se puede golpear la instancia NGINX que esta corriendo dentro del
+contenedor.
+
+#+begin_src bash
+$ curl http://172.17.0.4
+#+end_src
+
+Asi se comunica con una instancia en particular. Ahora que se terminó
+la inspección de las instancias, es tiempo de limpiar los procesos de docker.
+Una instancia de docker puede detenerse con el comando ~stop~, el cuál recibe
+como argumento el identificador del contenedor, de manera similar a como se uso
+el comando ~inspect~:
+
+#+begin_src bash
+$ sudo docker stop 96fef877f851
+#+end_src
+
+Para remover el contenedor de docker del sistema, se usa el comando ~rm~:
+
+#+begin_src bash
+$ sudo docker rm 96fef877f851
+#+end_src
+
+Este comando también borrará todos los archivos asociados al contenedor.
 
 * Creando imágenes de docker propias
 
