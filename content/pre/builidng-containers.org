@@ -315,8 +315,8 @@ hace esto muy fácil, ya que no hay que intervenir sobre scripts de
 inicialización o configuración, especificar puertos y otros procesos tediosos 
 para correr multiples instancias al mismo tiempo.
 
-* Hablando con las instancias de docker
 
+* Hablando con las instancias de docker
   
 Antes de establecer una comunicación con las instancias de docker, es necesario
 saber que contendores están siendo ejecutados con el comando que se reviso
@@ -361,6 +361,64 @@ $ sudo docker rm 96fef877f851
 Este comando también borrará todos los archivos asociados al contenedor.
 
 * Creando imágenes de docker propias
+
+Hasta ahora se han construido y ejecutado imágenes de docker ya hechas de NIGNX.
+Es tiempo de aprender a construir imágenes propias de docker. Como buena
+práctica, no se va a construir esta aplicación con docker. En su lugar, se va a
+tomar un binario proveniente del pipeline de integración continua. Posterior a
+ello, si se usa docker para empacar la aplicación como una imagen contenedora, y
+para lograrlo, se usa un Dockerfile.
+
+Los Dockerfiles son documentos de texto que contienen todos los pasos necesarios
+para construir una imagen desde la línea de comandos. Al usar el comando ~build~
+de docker, el Dockerfile automatiza el proceso mediante la ejecución de las 
+instrucciones en líneas de comando y asi construir la imagen resultante.
+
+Es importante preservar el nombre ~Dockerfile~, ya que es una convención que usa
+docker para ejecutar las instrucciones definidas en el archivo.
+
+El comando que usa docker para crear la imagen, también crea un contexto
+de todos los archivos en el directorio y sus repectivos subdirectorios. En este
+paso el demonio de construcción irá a buscar el archivo llamado Dockerfile.
+
+Para imágenes nuevas, la buena practica es iniciar con un directorio vacío,
+acompañado del Dockerfile. Porsteriormente, se agregan los archivos necesarios
+en el directorio para construir la imagen de docker.
+
+El siguiente texto, es un ejemplo de un Dockerfile para la imagen ~hello~:
+
+#+begin_src bash
+# Dockerfile
+FROM alpine:3.1
+MANTAINER Sergio Benitez <sl.benitezd@gmail.com>
+ADD hello /usr/bin/hello
+ENTRYPOINT ["hello"]
+#+end_src
+
+Cada línea en un Dockerfile comienza con un comando. Para este caso puntual se
+usan cuatro comandos: ~FROM~, ~MANTAINER~, ~ADD~ y ~ENTRYPOINT~.  El Dockerfile,
+también tiene sintáxis para comentarios, usando el carácter numeral `#`.
+
+El comando ~FROM~ le dice a docker cuál es la imagen base sobre la que se va a 
+construir la imagen nueva. Generalmente se usa Alpine Linux, ya que es pequeña, 
+tiene un administrador de paquetes y permite depurar los contenedores en 
+producción. En consecuencia, es la imagen base que se usa por defecto para las
+imágenes oficiales de docker. 
+
+El comando ~MANTAINER~ indica el author y la persona que hace el mantenimiento 
+de la imagen.
+
+El comando ~ADD~ toma un archivo o directorio de la máquina anfitriona y la
+agrega al sistema de archivos del contendor en la ubicación especificada. Para
+este caso se esta copiando el binario ~hello~ del pipeline de integración 
+continua en el contenedor de la imangen. 
+
+Por último, el comando ~ENTRYPOINT~ que permitar correr el contenedor como un
+ejecutable, por lo que cuando el contenedor se inicia, va a ejecutar la
+aplicación hello.
+
+Hay muchos más comandos para utilizar en el Dockerfile, por ahora, estos son
+suficiente.
 
 * Creando una imagen
 
