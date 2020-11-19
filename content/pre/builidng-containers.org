@@ -422,6 +422,97 @@ suficiente.
 
 * Creando una imagen
 
+  
+Docker también puede ser utilizado para construir ambientes. Primero se
+construye la aplicación tal y como se ha visto en las sesiones pasadas. En ese
+orden de ideas, se va a hacer un nuevo directorio para almacenar el código fuente
+de la aplicación.
+
+#+begin_src bash
+$ mkdir -p $GOPATH/src/github.com/kelseyhightower
+#+end_src
+
+Ahora, se accede al nuevo directorio y se clona la aplicación de ejemplo desde
+github. Esta aplicación es un monolíto.
+
+#+begin_src bash
+$ cd $GOPATH/src/github.com/kelseyhightower
+$ git clone https://github.com/kelseyhightower/app.git
+#+end_src
+
+Con el código fuente en su lugar, es tiempo de construir el binario de la
+aplicación. Para ello se navega hasta la aplicación y se ejecuta el comando
+~build~ de go:
+
+
+#+begin_src bash
+$ cd app/monolith
+$ go build -tags netgo --ldflags '-extldflags "-lm -lstdc++ -static"'
+#+end_src
+
+Ya con el binario generado, se puede proceder a la cración del contenedor de la
+aplicación. Se da un vistazo al Dockerfile de la aplicación, para tener algo
+de contexto:
+
+#+begin_src bash
+$ cat Dockerfile
+FROM alpine:3.1
+MANTAINER Kelsey Hightower <kelsey.hightower@gmail.com>
+ADD hello /usr/bin/monolith
+ENTRYPOINT ["monolith"]
+#+end_src
+
+El comando ~ADD~ del Dockerfile esta copiando el binario que se generó
+anteriormente con el comando ~build~ de go. El comando ~ENTRYPOINT~ declara el 
+punto de entrada para el contenedor, que para este caso será la aplicación 
+~monolith~.
+
+Con el Dockerfile y el binario del monolíto en su lugar, es tiempo de crear la
+imagen de docker del monolíto. Para ello, se usa el comando ~build~ de docker
+para actualizar el contexto en el demononio de docker que es ejecutado con dicho
+comando. El comando ~build~ va a reproducir una imange de la aplicación
+~monolith~. 
+
+#+begin_src bash
+$ docker build -t monolith:1.0.0
+#+end_src
+
+Cuando la construcción de la imagen este completa, se usa el comando ~images~ de
+docker para ver la imangen del monolíto.
+
+#+begin_src bash
+$ docker images monolith:1.0.0
+#+end_src
+
+Para asegurarse de que la imagen del monolíto esta funcionando de manera 
+esperada, se usa el comando ~run~ de docker para crear el contender de la imagen
+. 
+
+#+begin_src bash
+$ sudo docker run -d monolith:1.0.0
+#+end_src
+
+Con en contenedor del monolíto en ejecución, se usa el comando ~inspect~ de 
+docker para recuperar la dirección IP sobre la que se esta cargando el servidor
+web de la aplicación.
+
+#+begin_src bash
+$ docker inspect monolith:1.0.0
+...
+   "IPAddress": 172.18.0.2
+#+end_src
+
+Por último, usamos ~curl~ sobre la IP del paso previo para probar si el
+contennedor esta funcionado como se espera.
+
+#+begin_src bash
+$ curl 172.18.0.2
+{"message": "Hello"}
+#+end_src
+
+¡Funciona!. Como se pudo observar, construir imágenes es muy fácil cuando se
+usan Dockerfiles y el comando ~build~ de docker.
+
 * Creando otros contenedores
 
 * Registros públicos vs privados
