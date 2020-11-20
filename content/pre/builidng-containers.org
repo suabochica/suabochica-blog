@@ -515,6 +515,35 @@ usan Dockerfiles y el comando ~build~ de docker.
 
 * Creando otros contenedores
 
+Para complementar el ejercicio se van a crear imágenes de docker para los
+microservicios restantes: ~auth~ y ~hello~.
+
+Para construir la aplicación ~auth~ se ejecutan los siguientes comandos:
+
+#+begin_src bash
+cd $GOPATH/src/github.com/udacity/ud615/app
+cd auth
+go build --tags netgo --ldflags '-extldflags "-lm - lstdc++ -static"'
+sudo docker build -t auth:1.0.0 .
+CID2=$(sudo docker run -d auth:1.0.0)
+#+end_src
+
+Similarmente, se construye la aplicación ~hello~
+
+#+begin_src bash
+cd $GOPATH/src/github.com/udacity/ud615/app
+cd hello
+go build --tags netgo --ldflags '-extldflags "-lm - lstdc++ -static"'
+sudo docker build -t hello:1.0.0 .
+CID3=$(sudo docker run -d hello:1.0.0)
+#+end_src
+
+Para ver los contenedores que se están ejecutando usamos el comando ~ps~:
+
+#+begin_src bash
+sudo docker ps -a
+#+end_src
+
 * Registros públicos vs privados
 
 * Empujando imágenes
