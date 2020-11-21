@@ -1,6 +1,6 @@
 baseurl = "/"
 title = "Suabochica's Blog"
-theme = "ghostwriter"
+theme = "harbor"
 
 [Params]
     mainSections = ["post"]
