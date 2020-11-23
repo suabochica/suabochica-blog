@@ -315,7 +315,6 @@ hace esto muy fácil, ya que no hay que intervenir sobre scripts de
 inicialización o configuración, especificar puertos y otros procesos tediosos 
 para correr multiples instancias al mismo tiempo.
 
-
 * Hablando con las instancias de docker
   
 Antes de establecer una comunicación con las instancias de docker, es necesario
@@ -545,6 +544,26 @@ sudo docker ps -a
 #+end_src
 
 * Registros públicos vs privados
+Una vez se tiene la aplicación empaquetada se procede a copiarla en un servidor
+y luego ejecutarla. Esta propuesta es válida para un conjunto pequeño de
+máquinas. Si se escala la magnitud de la aplicación a cientos de máquinas es
+necesario empujar los contenedores de imágenes a un repositorio remoto y
+aprovechar herramientas como docker para obtener esas imágenes desde un lugar
+central cuando se necesite correrlas. Este lugar central es conocido como docker
+hub.
+
+Por defecto, todas las imágenes empujadas a docker hub son públicas, y por ende
+cualquier persona puede utilizarlas. No obstante, existe la opción de hacer que
+las imágenes sean privadas y limitar el acceso a ellas. Docker hub ofrece la 
+flexibilidad para compartir imagenes públicas y privadas.
+
+Un caso muy frecuente de un uso mixto de permisos en las imágenes es cuando las
+compañias desarrollan proyectos de código abierto que comparten al mundo, pero 
+guardan su salsa secreta para sí mismos.
+
+** Alternativas a docker hub 
+- Quay
+- Google Cloud Registry
 
 * Empujando imágenes
 
