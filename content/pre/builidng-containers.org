@@ -567,5 +567,57 @@ guardan su salsa secreta para sí mismos.
 
 * Empujando imágenes
 
+Como se abordo anteriormente, docker no solo ayuda a construir imágenes, también
+ofrece una plataforma para compartirlas. Para lograr este objetivo, es necesario
+un huésped para las imágenes en un registro de contenedores remoto como Docker
+Hub. 
+
+Por defecto todas las imágenes de docker van hacia Docker Hub el cual asume que
+se tiene su propio repositorio a través de un nombre de usuario perteneciente a
+una cuenta creada en la plataforma. Por lo tanto, se debe agregar el nombre de
+usuario a la imagen de docker a través del comando ~tag~ de docker:
+
+#+begin_src bash
+$ docker tag -h
+Usage: docker tag [OPTIONS] IMAGE[:TAG] [REGISTRYHOST/] [USERNAME/] NAME[:TAG]
+#+end_src
+
+Como se puede ver en la salida de la opción ~h~, el comando demanda una 
+combinación de imagen con etiqueta, un nombre de usuario y un repositorio. El 
+comando resultante sería:
+
+#+begin_src bash
+$ docker tag monolith:1.0.0 kelseyhightower/monolith:1.0.0
+#+end_src
+
+Al validar nuevamente con el comando ~images~ se observa que en la salida se
+asigna un valor a la columna ~TAG~. En este registro también se observa que el
+nombre de la imagen tiene el mismo identificador que la imagen ~monolith~.
+
+#+begin_src bash
+$ docker images
+
+REPOSITORY                     TAG     IMAGE ID        CREATED          SIZE
+monolith                       1.0.0   04d702954792    9 minutes ago    .37 MB
+kelseyhightower/monolith       1.0.0   04d702954792    9 minutes ago    .37 MB
+#+end_src
+
+Ahora ya se está listo para empujar el contenedor de imagen a Docker Hub. Para
+ello, es necesario iniciar sesión con el comando ~login~
+
+#+begin_src bash
+$ docker login
+#+end_src
+
+Posteriormente, se ejecuta el comando ~push~ como se muestra a continuación:
+
+#+begin_src bash
+$ docker push kelseyhightower/monolith:1.0.0
+#+end_src
+
+De este modo se logra hospedar una imagen de docker en un repositorio para
+compartirlo con otras personas.
+
 * Outro
+
 
