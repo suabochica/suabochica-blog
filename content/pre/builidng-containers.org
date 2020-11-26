@@ -620,4 +620,20 @@ compartirlo con otras personas.
 
 * Outro
 
+Ya se sabe como empaquetar aplicaciones en imágenes de docker distribuir los
+paquetes, y ejecutarlos es diferentes rangos de máquinas. Este hecho, desbloquea
+las puertas de una automatización más avanzada. Ahora es posible abstaer los
+detalles para empaquetar y correr la aplicación en un sistema operativo
+específico. Ahora la atención está en el desarrollo de tus ideas y hacer
+usuarios felices.
 
+No obstante, este es el primer paso. Hasta ahora se ha trabajdo en una única
+máquina. La demanda de usuarios en los días actuales no es soportada por una
+única máquina. La pregunta es ¿Es posible coordinar, distribuir y administrar 
+contenedores a esa escala?. En un nivel más fundamental, se deberían correr 
+contenedores específicos sobre máquinas puntuales.
+
+Algo importante a considerar es las aplicaciones se pueden ejecutar por si
+mismas, entregando valor y siendo fáciles de monitorear y mantener. Con dichas
+caracteristicas, es posible usar plataformas como Kubernetes para manejar toda
+esta complejidad.
