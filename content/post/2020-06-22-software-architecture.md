@@ -85,3 +85,14 @@ while (queue.waitForMessage()) {
 El método `queue.waitForMessage()`  espera los nuevos mensajes de manera sincrona. Cada uno de los mensajes que está siendo procesado tiene su propio stack, y es procesado hasta que la pila este vacía. Una vez termina, un nuevo mensaje es atendido desde la fila, en caso que exista.
 
 Es importante mencionar que JavaScript es un lengaje _non-blocking_, lo que significa que cuando una operación asíncrona esta siendo procesada, el programa esta en capacidad de procesar otras cosas, tales como, la recepción de nuevas entradas por parte del usuario, y no bloquea la ejecución del hilo principal. Esta propiedad es muy útil y es un tema que puede abordar un árticulo completo. Por ahora, vamos a dejarlo por fuera del alcance de esta publicación.
+
+What are design patterns?
+-----------------------
+Los patrones de diseño son soluciones reutilizables a problema que ocurren con frecuencia en el diseño de software. A continuación se va a dar un vistazo a algunas categorias de patrones de diseño:
+
+### Proto-patrón
+Antes de comenzar es recomendable hacer la siguiente pregunta ¿Cómo se crea un patrón? Suponga que reconoció un problema repetitivo y encontró su solución respectiva. No obstante, esta solución no es reconocida globalmente, pero usted la utiliza cada vez que se topa con el problema. Después de varios usos, usted considera  que la solución puede beneficiar a una comunidad de desarrolladores.
+
+No cante victoria porque esto definitivamente no es un patrón. A menudo se confunden buenas prácticas de escritura de código con patrones. Para reconocer que su solución realmente es un patrón es necesario conocer las opiniones de otros desarrolladores al respecto, compararlo con otros patrones y familiarizarlos con el contexto de su propuesta. Hay una fase por la que tiene que pasar un patron antes de convertirse en un patrón completo, y es el proto-patrón
+
+El proto-patrón es un patrón futuro si pasa cierto periodo de prueba por parte de varios desarrolladores y escenarios en donde se demuestra ser útil. Hay una gran cantidad de trabajo y documentación a desarrollar para lograr que un patrón sea completo y reconocido por la comunidad. 
