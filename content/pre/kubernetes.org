@@ -1,0 +1,80 @@
+#+TITLE: Building the containers with docker
+#+DESCRIPTION: Usa docker para construir contenedores de imágenes para empacar
+una aplicación y sus dependencias y así hacer un despliegue en una sola máquina
+#+AUTHOR: Sergio Benítez
+#+DATE:<2020-11-10 Tue> 
+
+* Profundizando en arquitectura
+  
+Hasta ahora solo se ha demostrado el trabajo de docker en una única máquina.
+Para escalar la infraestructura es necerio pensar en crecimiento externo. 
+
+Los contenedores están jugando un rol importante para el desarrollo de
+aplicaciones y el despliegue de las mismas. En el historial de grandes sistemas
+en centros de datos se han usado máquinas de metal puro que luego de ser
+compradas suelen tener tres años de vida útil para posteriormente depreciarse.
+Este ciclo se viene repitiendo una y otra vez. Estás máquinas viejas pueden ser
+pensadas como mascotas, pero lo que realmente se quiere es tener un ganado. Bajo
+este contexto el hecho de perder una vaca, no significa que se vaya a perder la
+producción de leche. Eventualmente se puede conseguir otra vaca. Este es el tipo
+de modelo al que las infraestructuras se están proyectando, en vez de tener una
+máquinas con características especificas que al ser afectada pueda causar un 
+falló total de la aplicación.
+
+La transición de máquinas específicas a rebaños de máquinas, es algo que puede
+realizarse con máquinas virtuales, pero dichas máquinas no están diseñadas para
+ser usadas en periodos cortos de tiempo. Adicionalmente, eliminar una maquina
+virtual es un proceso dispendioso. Por otro lado, los contenedores son rápidos
+de crear y destruir dando como resultado un montaje eficiente de infraestructura
+. Cabe resaltar que la informática tiende hacia tiempos de inicio y parada aún
+más rápidos. Si se lleva este concepto al límite, es posible crear un contenedor
+con una simple petición y apagarlo con otra. Esta versatilidad esta abriendo
+cabidad al concepto de /serverless computing/ y ya hay algunos frameworks que 
+promueven el uso de este concepto.
+
+Ahora, evidentemente hay varios retos a sobrellevar con la escritura de
+aplicaciones contenerizadas. El primer inconveniente es que las orgranizaciones
+mantienen sus viejas prácticas y por lo tanto sus monólitos. Ya hay una cultura
+organizacional establecida al rededor del monolito, y la transición al uso de
+micro servicios es un proceso gradual que debe cultivarse en el trabajo interno
+de los equipos de desarrollo. Con este nuevo enfoque, se va a tener personas de
+cualquier parte del mundo generando aportes al desarrollo de software y eso 
+requiere procesos de validación y auditoria al momento de revisar que cambios de
+código van a publicarse en la aplicación. Eso implica que la creación de 
+software va ser una especie de formulario. Este formulario es a veces llamado la
+ley de Conway, la cual dice que las organizaciones diseñan sistemas que imitan 
+sus propias estructuras de comunicación. En otras palabras, una empresa no puede
+producir microservicos si es una organización con producción en cascada. Por lo
+tanto, se pueden perder los benecficios del patrón de microservicos por esquemas
+de la organización. 
+
+El segundo inconveniente con la implementación aplicaciones en contenedores son
+los obstáculos técnicos. Este patrón requiere de procesos automatizados bien 
+ejecutados, El movimiento de piezas hace que los sistemas estén en capacidad de
+hacer descubrimientos dinámicos que luego se deben monitoriar. Una pregunta 
+válida es si los desarrolladores deberián escribir estos sistemas de 
+automatización por cuenta propia, y la respuesta es no. Estas implementaciones
+requieren de mucho trabajo y por ende es mejor encontrar un sistema que funcione
+y deje la puerta abierta al cambio para infraestructuras venideras, como 
+Kubernetes. 
+
+
+* Como me enteré the Kubernetes (a.k.a k8)
+* Qué es Kubernetes
+* Configurando Kubernetes
+* Pequeña demostración de Kubernetes
+* Introducción a los pods
+* Interactuando con los pods
+* Revisión general de MHC
+* Configuración de la aplicación
+* Revisión general sobre seguridad
+* Creando secretos
+* Accediendo a una endpoint HTTPS
+* Revisión general de servicios
+* Creando servicios
+* Agregando etiquetas a los pods
+* Outro
+
+
+
+  
