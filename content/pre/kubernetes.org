@@ -58,8 +58,20 @@ requieren de mucho trabajo y por ende es mejor encontrar un sistema que funcione
 y deje la puerta abierta al cambio para infraestructuras venideras, como 
 Kubernetes. 
 
-
 * Como me enteré the Kubernetes (a.k.a k8)
+
+Uno de los retos a los cuales muchas personas se someten en el mercado de la
+informática, es escoger entre una gran variedad de teconologías para hacer
+tareas puntuales. Está búsequeda puede llegar a ser abrumadora, ya que también 
+determina que aprendizajes se deben ejecutar. Para atender esta elección, es
+conveniente guiarse de alguién con más experiencia y respaldar la decisión con 
+el aporte y el estado de la comunidad detrás de la tecnología. 
+  
+Para el manejo de aplicaciones una de las mejores herramientas es Kubernetes.
+Kubernetes es una herramienta que observa a los contenedores en un nivel
+superior. La abstracción sobre la que opera Kuberntes puede llegar a tener mucho
+sentido.
+
 * Qué es Kubernetes
 * Configurando Kubernetes
 * Pequeña demostración de Kubernetes
