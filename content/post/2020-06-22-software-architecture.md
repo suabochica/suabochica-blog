@@ -96,3 +96,13 @@ Antes de comenzar es recomendable hacer la siguiente pregunta ¿Cómo se crea un
 No cante victoria porque esto definitivamente no es un patrón. A menudo se confunden buenas prácticas de escritura de código con patrones. Para reconocer que su solución realmente es un patrón es necesario conocer las opiniones de otros desarrolladores al respecto, compararlo con otros patrones y familiarizarlos con el contexto de su propuesta. Hay una fase por la que tiene que pasar un patron antes de convertirse en un patrón completo, y es el proto-patrón
 
 El proto-patrón es un patrón futuro si pasa cierto periodo de prueba por parte de varios desarrolladores y escenarios en donde se demuestra ser útil. Hay una gran cantidad de trabajo y documentación a desarrollar para lograr que un patrón sea completo y reconocido por la comunidad. 
+
+
+### Anti-patrones
+Así como un patrón de diseño representa una buena práctica, un anti-patrón representa una mala práctica.
+
+Un ejemplo de un anti-patrón sería modificar el `Object` de la clase prototipo. Casi todos los objetos en JavaScript heredan del `Object` (recuerden que JavaScript usa herencia basada en prototipos) e imaginar un escenario en donde se altera el prototipo, definitivamente seria nadar en contra de la corriente. Cambiar el prototipo de `Object`, implicaría que el cambio se reflejaría en todos los objetos que heredan el prototipo, causando así un escenario con alta probabilidad de causar comportamientos no esperados. 
+
+Otro ejemplo similar, es la modificación de objetos que no le pertenecen. Un ejemplo de esto sería anular una función de un objeto utilizado en muchos escenarios de la aplicación. Si está trabajando con un equipo grande, imagine la confusión que esto causaría; rápidamente se encontraría con colisiones de nombres, implementaciones incompatibles y pesadillas de mantenimiento.
+
+La moraleja a compartir es que así como es de útil conocer todas las buenas prácticas y soluciones, también es muy importante conocer las malas. De esta manera, se pueden identificar y evitar cometer el error por adelantado.
