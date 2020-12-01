@@ -69,10 +69,36 @@ el aporte y el estado de la comunidad detrás de la tecnología.
   
 Para el manejo de aplicaciones una de las mejores herramientas es Kubernetes.
 Kubernetes es una herramienta que observa a los contenedores en un nivel
-superior. La abstracción sobre la que opera Kuberntes puede llegar a tener mucho
-sentido.
+superior. La abstracción sobre la que opera Kubernetes puede llegar a tener
+mucho sentido.
 
 * Qué es Kubernetes
+
+Docker hace que el despliegue y la ejecución de los contenedores sea sencillo.
+El próximo paso lógico es usar docker en todas las máquinas y buscar una forma
+para integrarlas. El empaquetamiento de contenedores corresponde al 5% del
+problema. Los inconvenientes reales vienen cuando se trabaja las configuraciones
+de las aplicaciones, los descubrimientos de servicios, la administración de 
+actualizacione y el monitoreo de las máquinas.
+
+Todas estas carácteristicas se construyen sobre docker, y la recomendación es
+tomar ventaja de una plataforma como Kubernetes que se encargue de manejar toda 
+esta complejidad de infraestructura.
+
+Kubernetes provee un nuevo conjunto de abstracciones que van más allá de las 
+bases del despliegue de contenedores, y habilita a que el desarrollador se
+enfoque en el panorama general.
+
+Anteriormente el punto a tratar era el despliegue de aplicaciones en máquinas 
+individuales, lo cual funciona en flujos de trabajo limitados. Kubernetes
+permite abstraer las máquinas individuales de una forma que el grupo de máquinas
+se trate como una única máquina ĺógica. La aplicación se convierte en un
+ciudadano de primera clase que habilita su administración a través del uso de
+abstracciones de alto nivel.
+
+En Kubernetes se puede describir un conjunto de aplicaciones y como deerian
+interactuar entre ellas. Así es como Kubernetes resuelve toda esta complejidad.
+
 * Configurando Kubernetes
 * Pequeña demostración de Kubernetes
 * Introducción a los pods
