@@ -100,7 +100,100 @@ En Kubernetes se puede describir un conjunto de aplicaciones y como deerian
 interactuar entre ellas. Así es como Kubernetes resuelve toda esta complejidad.
 
 * Configurando Kubernetes
+  
+Use el siguiente directorio de proyecto:
+
+#+begin_src bash
+cd $GOPATH/src/github.com/udacity/ud615/kubernetes
+#+end_src
+
+o si está en el repositorio del curso:
+
+#+begin_src bash
+cd kubernetes
+#+end_src
+
+> *Nota:* En cualquier momento puede limipiar la aplicación ejeuctando el script
+~cleanup.sh~
+
+** Aprovisiona un clúster de Kubernetes con GKE mediante gcloud
+
+Kubernetes se puede configurar con muchas opciones y complementos, pero puede
+llevar mucho tiempo arrancar desde cero. En esta sección, iniciará Kubernetes
+con Google Container Engine (GKE).
+
+GKE es un Kubernetes alojado por Google. Los clústeres de GKE se pueden
+personalizar y admiten diferentes tipos de máquinas, cantidad de nodos y
+configuraciones de red.
+
+Utilice el siguiente comando para crear su clúster y utilizarlo durante el resto
+de esta sección.
+
+
+#+begin_src bash
+gcloud container clusters create k0 --zone us-central1-a
+#+end_src
+
 * Pequeña demostración de Kubernetes
+  
+La forma más sencilla de comenzar con Kubernetes es usando el comando ~kubectl~.
+Para correr una única instancia del contenedor de nginx se ejecuta el siguiente
+comando:
+
+#+begin_src bash
+kubectl run nginx --image=nginx:1.10.0
+pod/nginx created
+#+end_src
+
+Como se puede observar, el mensaje de salida indica que el pod nginx ha sido
+creado. Más adelante se desarrollará el concepto de pod, pero por ahora es
+suficiente saber que los pods son los contenedores desplegables en kubernetes.
+
+Para revisar el contenedor de nginx que se acaba de crear se esta ejecutando, se
+usa el siguiente comando. 
+
+#+begin_src bash
+kubectl get pods
+NAME    READY   STATUS    RESTARTS   AGE
+nginx   1/1     Running   0          20h
+#+end_src
+
+Una vez se sepa que el contenedor de NGINX se esta ejecutando, se puede exponer
+por fuera del contexto de Kubernetes con el siguiente comando:
+
+#+begin_src bash
+kubectl expose deployment nginx --port 80 --type LoadBalancer
+kubectl expose deployment nginx --port 80 --type NodePort
+service "nginx" exposed
+#+end_src
+
+Detrás de escenas, kubernetes ha creado un balanceador de carga externo con un 
+dirección IP pública adjunta. Cualquier cliente que golpee esta dirección IP
+pública, será enrutado a los pods que soportan el servicio. Pare este caso
+puntual, se tiene el pod de nginx.
+
+Para enlistar los servicios que se están ejecutando, se usa el siguiente comando:
+
+#+begin_src bash
+kubectl get services
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.3.240.1   <none>        443/TCP   20h
+nginx        ClusterIP   10.3.240.40                443/TCP   31h
+#+end_src
+
+En la salida se observa la IP pública que se puede utilizar para golpear el
+contenedor nginx remotamente.
+
+Kubernetes soporta una flujo de trabajo sencillo fuera del la caja usando los
+comandos ~run~ y ~expose~ de ~kubectl~. Con este breve tour por Kubernetes, es
+tiempo de profundizar en cada uno de los componentes y las abstracciones. 
+
+** Hoja de trucos para kubernetes
+
+Este primera aproximación a kubernetes puede ser algo abrumadora. No hay por que
+tener, con el tiempo va a ver mayor familiarización con la plataforma. Una ayuda
+efectiva es la [[https://kubernetes.io/docs/reference/kubectl/cheatsheet/][hoja de trucos]] de comandos de kubernetes.
+
 * Introducción a los pods
 * Interactuando con los pods
 * Revisión general de MHC
