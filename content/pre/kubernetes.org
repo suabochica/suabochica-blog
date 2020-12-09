@@ -195,6 +195,32 @@ tener, con el tiempo va a ver mayor familiarización con la plataforma. Una ayud
 efectiva es la [[https://kubernetes.io/docs/reference/kubectl/cheatsheet/][hoja de trucos]] de comandos de kubernetes.
 
 * Introducción a los pods
+
+El núcleo de Kubernetes son los pods. Los pods representan una aplicación lógica.
+Los pods mantienen una colección de uno o más contenedores. Generalmente, cuando
+se tienen múltiples contenedores con una fuerte dependencia entre ellos, se
+deben empaquetar dentro de un único pod.
+
+En el ejemplo de referencia, se usa un pod que tiene dos contenedores; uno del
+monolito y otro de nginx.
+
+Los pods tambien tienen volúmenes. los volúmenes son divisiones de datos que
+viven tanto tiempo como el pod y pueden ser utilizados por cualquiera de los
+contenedores ese pod. Esto es posible porque los pods proporcionan un espacio de
+nombres compartido para su contenido.
+
+Eso significa que los dos contenedores dentro de pod de ejemplo se pueden
+comunicar entre ellos, y compartir los volumenes adjuntos.
+
+Los pods también comparten un espacio de nombre de red, lo que implica que hay
+una dirección IP por pod.
+
+La siguiente ilustración sirve para aglomerar todos los conceptos que componen
+un pod:
+
+#+CAPTION: El cliente envía una solicitud de log in
+[[../images/microservices/01-kubernetes-pod.png]]
+
 * Interactuando con los pods
 * Revisión general de MHC
 * Configuración de la aplicación
