@@ -221,6 +221,79 @@ un pod:
 #+CAPTION: El cliente envía una solicitud de log in
 [[../images/microservices/01-kubernetes-pod.png]]
 
+* Creando pods
+
+Los pods son creados a través de archivos de configuración pod. A continuación
+se revisará el modelo del archivo de configuración del pod que se está usando
+como ejemplo:
+
+#+begin_src bash
+$ cat pods/monolith.yalm
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: monolith
+  labels:
+    app: monolith
+spec:
+  containers:
+    - name: monolith
+      image: udacity/example-monolith:1.0.0
+      args:
+        - "-http=0.0.0.0:80"
+        - "-health=0.0.0.0:81"
+        - "-secret=secret"
+      ports:
+        - name: http
+          containerPort: 80
+        - name: health
+          containerPort: 81
+      resources:
+        limits:
+          cpu: 0.2
+          memory: "10Mi"
+#+end_src
+
+Se tiene información relevante en este archivo, como por ejemplo, que el pod
+solo tiene un contenedor llamado monolith. También se puede observar que se
+están pasando tres argumentos al contenedor al momento de iniciarse y por último
+, El puerto 80 está abierto para tráfico HTTP, y el puerto 81 para health checks.
+
+Para crear el pod del monolith, se usa ~kubectl~ con el siguiente comando:
+
+#+begin_src bash
+$ kubectl create -f pods/monolith.yaml
+pod "monolith" created
+#+end_src
+
+Para examinar los pod, se ejecuta el siguiente comando para obtener una lista de
+todos los pods que se están corriendo en el espacio de nombre por defecto:
+
+#+begin_src bash
+$ kubectl get pods
+NAME       READY   STATUS    RESTARTS   AGE
+monolith   1/1     Running   0          11s
+nginx      1/1     Running   0          8d
+#+end_src
+
+Se tomará algunos segundos mientras que el pod monolith este arriba y corriendo,
+ya que el contenedor de la imagen del monolíto necesita ser traído desde el 
+docker hub antes de poder correrlo.
+
+Con el comando de descripción, se obtiene varia información sobre el pod
+monolito, desde la dirección IP hasta el log de eventos. Esta información
+resulta práctica para la solución de problemas.
+
+#+begin_src bash
+$ kubectl describe pods monolith
+#+end_src
+
+Como se puede observar, Kubernetes hace fácil la creación de pods a través de un
+arhcivo de configuración y la visualización de los mismo cuando se están
+corriendo. En este punto se tiene la habilidad de crear todos los pods que de 
+acuerdo a los requisitos de despliegue.
+
 * Interactuando con los pods
 * Revisión general de MHC
 * Configuración de la aplicación
