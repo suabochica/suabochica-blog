@@ -295,6 +295,45 @@ corriendo. En este punto se tiene la habilidad de crear todos los pods que de
 acuerdo a los requisitos de despliegue.
 
 * Interactuando con los pods
+
+Los pods son ubicados por defecto en una dirección IP privada y no puede ser 
+alcanzada por fuera del cluster. El siguiente comando permite mapear un puerto
+local con un puerto dentro del pod.
+
+#+begin_src bash
+$ kubectl port-forward monolith 10080:80
+Forwarding from 127.0.0.1:10080 -> 80
+#+end_src
+
+La recomendación para la interacción con pods es usar dos terminales, una para 
+correr el comando ~port-forward~ y otra emitir los comandos del kernel, como
+por ejemplo:
+
+#+begin_src bash
+$ curl http://127.0.0.1:10080
+{"message":"Hello"}
+#+end_src
+
+De esta forma, se establece la comunicación con el pod. Si se intenta golpear
+el ~/secure~ endpoint, sin haber iniciado sesión, se obtiene el error de
+autorización fallida.
+
+#+begin_src bash
+$ curl http://127.0.0.1:10080/secure
+authorization failed
+#+end_src
+
+Es importante recordar, que para iniciar sesión se hace la petición al endopoint
+respectivo, con sus debidas credenciales.
+
+#+begin_src bash
+$ curl -u user http://127.0.0.1:10080/login
+Enter password:
+#+end_src
+
+De este modo se obtiene el JWT, el cual debe ser enviado como parámetro para
+consultar el ~secure~ endpoint
+
 * Revisión general de MHC
 * Configuración de la aplicación
 * Revisión general sobre seguridad
