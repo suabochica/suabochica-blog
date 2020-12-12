@@ -332,7 +332,49 @@ Enter password:
 #+end_src
 
 De este modo se obtiene el JWT, el cual debe ser enviado como parámetro para
-consultar el ~secure~ endpoint
+consultar el ~secure~ endpoint.
+
+Otro comando importante es el que muestra los logs para el pod del monolito:
+
+#+begin_src bash
+$ kubectl logs monolith
+#+end_src
+
+La bandera ~-f~ de este comando es usada para habilitar una corriente con los
+logs que se están mostrando en tiempo real.
+
+#+begin_src bash
+$ kubectl logs -f monolith
+#+end_src
+
+El comando ~exec~ se usa para ejecutar una vista interactiva dentro del modelo
+de pod. 
+
+#+begin_src bash
+$ kubectl exec monolith --stdin --tty -c monolith /bin/sh
+#+end_src
+
+Este comando resulta útil cuando se perecise solucionar problemas que se
+presentan dentro del contenedor. Por ejemplo, una vez dentro del shell del
+contenedor del monolito, se puede probar la conexión externa a través del
+comando ~ping~. 
+
+#+begin_src bash
+$ # ping -c 3 google.com
+#+end_src
+
+Una vez terminada la sesión en el shell, es importante asegurarse de cerrar la
+sesión con el comando ~exit~.
+
+#+begin_src bash
+$ # exit
+#+end_src
+
+En conclusión, la interacción con pods is fácil de lograr gracias a los comandos
+suministrados por ~kubctl~. Desde intentos para golpear el contenedor
+remotamente, hasta iniciar sesión en el shell interno del contenedor para la 
+resolución de problemas. Kubernetes proveé todo lo que se necesita para ponerse
+en marcha.
 
 * Revisión general de MHC
 * Configuración de la aplicación
