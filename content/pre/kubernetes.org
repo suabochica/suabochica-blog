@@ -377,6 +377,57 @@ resolución de problemas. Kubernetes proveé todo lo que se necesita para poners
 en marcha.
 
 * Revisión general de MHC
+
+#+CAPTION: El cliente envía una solicitud de log in
+[[../images/microservices/03-kubernetes-mhc-dead.png]]
+
+#+CAPTION: El cliente envía una solicitud de log in
+[[../images/microservices/02-kubernetes-mhc-alive.png]]
+
+** MHC files and comands 
+   
+#+begin_src bash
+$ cat pods/healthy-monolith.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "healthy-monolith"
+  labels:
+    app: monolith
+spec:
+  containers:
+    - name: monolith
+      image: udacity/example-monolith:1.0.0
+      ports:
+        - name: http
+          containerPort: 80
+        - name: health
+          containerPort: 81
+      resources:
+        limits:
+          cpu: 0.2
+          memory: "10Mi"
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: 81
+          scheme: HTTP
+        initialDelaySeconds: 5
+        periodSeconds: 15
+        timeoutSeconds: 5
+      readinessProbe:
+        httpGet:
+          path: /readiness
+          port: 81
+          scheme: HTTP
+        initialDelaySeconds: 5
+        timeoutSeconds: 1
+#+end_src
+
+#+begin_src bash
+kubeclt describe pods healthy-monolith
+#+end_src
+
 * Configuración de la aplicación
 * Revisión general sobre seguridad
 * Creando secretos
