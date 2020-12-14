@@ -378,11 +378,45 @@ en marcha.
 
 * Revisión general de MHC
 
+Algunas veces un contenedor dentro de un pod puede estar montado y corriendose,
+pero la aplicación dentro del contenedor puede esta funcionando mal, como por
+ejemplo, que el código de la aplicación este bloqueado.
+
+Kubernetes fue construido para soportar y dar garantias sobre que la aplicación
+se este ejecutando correctamente a través de controles de salud y preparación,
+implementados por el usuario.
+
+Las sondas de preparación (readiness en inglés), indican cuando el pod esta
+listo para el tráfico de servidor. Si este control falla, entonces el contenedor
+será marcado como _no listo_ y sera descartado por cualquier balanceador de
+carga.
+
+Las sondas de vivacidad (liveness en inglés) indican que un contenedor está
+vivo. Si la sonda de vitalidad falla multiples veces, entonces el contenedor
+será reiniciado.
+
+Una referencia visual puede ser la siguiente. En este ejemplo se muestra un pod
+con un contender ~app v1~ y un demonio de Kubernetes llamado Kubelet. Kubelet es
+responsable de la salud del pod, y va a ejecutar el control de vida. Para este
+caso el contenedor es muerto y se utiliza el color rojo del para indicar dicho
+estado.
+
 #+CAPTION: El cliente envía una solicitud de log in
 [[../images/microservices/03-kubernetes-mhc-dead.png]]
 
+Un periodo de tiempo establecido por el usuario indica la frecuencia con la que
+Kubelet emite sondas para corroborar el estado del contenedor. Para este caso,
+el contenedor responde que esta muerto y la acción a ejecutar por Kubelet es el
+reinicio del contenedor, y posteriormente ejecutará en control de salud
+nuevamente. 
+
 #+CAPTION: El cliente envía una solicitud de log in
 [[../images/microservices/02-kubernetes-mhc-alive.png]]
+
+Para esta oportunidad, todo esta funcionando como se espera, y el estado del
+contenedor esta perfecto, como lo determina el color azul.
+
+Esto es a grandes rasgos un monitorio de pods sobre controles de salud. 
 
 ** MHC files and comands 
    
