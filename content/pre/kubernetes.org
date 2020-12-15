@@ -416,10 +416,22 @@ nuevamente.
 Para esta oportunidad, todo esta funcionando como se espera, y el estado del
 contenedor esta perfecto, como lo determina el color azul.
 
-Esto es a grandes rasgos un monitorio de pods sobre controles de salud. 
+Esto es a grandes rasgos un monitoreo de pods sobre controles de salud. 
 
-** MHC files and comands 
-   
+** MHC archivos y comandos 
+
+Para complementar el monitoreo de controles de salud, es valido hacer las
+siguientes preguntas:
+
+- ¿Cómo se ejecuta la sonda de preparación?
+- ¿Con qué frecuencia se emite la sonda de preparación?
+- ¿Con qué frecuencia se comprueba la sonda de vitalidad?
+
+Las respuesta a estas preguntas se encuentran en el archivo
+~healthy-monolith.yaml~ y en el comando ~kubeclt describe pods healthy-monolith~.
+
+A continuación se muestra el contenido del archivo ~healthy-monolith.yaml~.
+ 
 #+begin_src bash
 $ cat pods/healthy-monolith.yaml
 apiVersion: v1
@@ -458,9 +470,43 @@ spec:
         timeoutSeconds: 1
 #+end_src
 
+En este archivo se encuentra la respuesta de como se crea la prueba de
+preparación. Se observa que hay información relevante al ~readinessProbe~ en 
+donde se especifíca que el retraso inicial para enviar la sonda al puerto 81
+a través del protocolo HTTP es de 5 segundos. Por otra parte, la respuesta del
+servidor, sea exitosa ó fallida, se envía 1 segundo después.
+
+Para responder la segunda pregunta, es necesario usar el siguiente comando, para
+obtener la información relevante al monolith.
+
 #+begin_src bash
-kubeclt describe pods healthy-monolith
+kubeclt describe pods healthy-monolith | grep Readiness
+
+Readiness:
+http-get http://:81/readiness
+delay=5s
+timeout=1s
+period=10s
 #+end_src
+
+Se valida que hay un campo ~period~ que indica que cada 10 segundos la sonda de
+preparación es ejecutada.
+
+Para la última pregunta usamos un comando similar al anterior:
+
+#+begin_src bash
+kubeclt describe pods healthy-monolith | grep Liveness
+
+Liveness:
+http-get http://:81/healthz
+delay=5s
+timeout=55
+period=15s
+#+end_src
+
+En esta ocasión, el periodo definido para la prueba de vitalidad es de 15
+segundos. Con estos ejercicios se refuerzan los procesos de monitoreo y pruebas
+de control.
 
 * Configuración de la aplicación
 * Revisión general sobre seguridad
