@@ -1,0 +1,33 @@
+#+TITLE: HTML and JavaScript tips
+#+DESCRIPTION: Instalar paquetes en melpa dentro de spacemacs
+#+AUTHOR: Sergio Benítez
+#+DATE:<2020-11-10 Tue> 
+
+* Configuracíon de layers
+#+begin_src elisp
+   ;; List of configuration layers to load.
+   dotspacemacs-configuration-layers
+   '(
+     ;; ----------------------------------------------------------------
+     ;; Example of useful layers you may want to use right away.
+     ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
+     ;; `M-m f e R' (Emacs style) to install them.
+     ;; ----------------------------------------------------------------
+     (auto-completion :variables
+                      auto-completion-return-key-behavior nil
+                      auto-completion-tab-key-behavior 'complete)
+     html
+     (javascript :variables
+                 javascript-backend 'lsp
+                 javascript-fmt-tool 'prettier)
+     syntax-checking)
+#+end_src
+* HTML
+Con la definición del layer ~html~ las etiquetas del mark up serán cerradas cada
+vez que se digite ~</~. Esto significa que si en un archivo html se tiene abierta
+una etiqueta ~<p>~, posterior a escribir su texto se digita ~</~ y con esta expr-
+sión el layer autocompletara el cierre de etiqueta.
+
+TODO Autocompletar con tab
+
+* JavaScript
