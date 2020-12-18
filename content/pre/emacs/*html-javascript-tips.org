@@ -5,29 +5,58 @@
 
 * Configuracíon de layers
 #+begin_src elisp
-   ;; List of configuration layers to load.
-   dotspacemacs-configuration-layers
-   '(
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
-     ;; `M-m f e R' (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
-     (auto-completion :variables
-                      auto-completion-return-key-behavior nil
-                      auto-completion-tab-key-behavior 'complete)
-     html
-     (javascript :variables
-                 javascript-backend 'lsp
-                 javascript-fmt-tool 'prettier)
-     syntax-checking)
+  ;; List of configuration layers to load.
+  dotspacemacs-configuration-layers
+  '(
+    ;; ----------------------------------------------------------------
+    ;; Example of useful layers you may want to use right away.
+    ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
+    ;; `M-m f e R' (Emacs style) to install them.
+    ;; ----------------------------------------------------------------
+    (auto-completion :variables
+                     auto-completion-return-key-behavior nil
+                     auto-completion-tab-key-behavior 'complete)
+    html
+    (javascript :variables
+                javascript-backend 'lsp
+                javascript-fmt-tool 'prettier)
+    react
+    syntax-checking)
 #+end_src
+
 * HTML
 Con la definición del layer ~html~ las etiquetas del mark up serán cerradas cada
 vez que se digite ~</~. Esto significa que si en un archivo html se tiene abierta
 una etiqueta ~<p>~, posterior a escribir su texto se digita ~</~ y con esta expr-
 sión el layer autocompletara el cierre de etiqueta.
 
-TODO Autocompletar con tab
+Por defecto, el layer de autocompletar despliega las opciones y para seleccionar
+una de las mismas se usa la tecla ~RET~. Esta configuración resulta algo
+intrusiva, y personalmente se prefiere autocompletar los textos con la tecla
+~TAB~, tal y como se hace en una línea de comandos. Esas son la configuraciones
+que se especifican en la sección ~:variables~ del layer.
 
 * JavaScript
+El layer de JavaScript básico no es un layer para ECMAscript, y es por esta razón
+que se imprimen varios errores en spacemacs. Actualmente no hay un layer para
+ECMAscript, y una alternativa es usar el layer de ~react~.
+
+Una vez configurado el layer, se puede entrar al modo react digitando
+~:react-mode~. Para hacer esta configuración por defecto, se agrega el parámetro
+en la sección ~dotspacemacs/user-config~ como se muestra a continuación:
+
+#+begin_src elisp
+  (defun dotspacemacs/user-config ()
+    "Configuration for user code:
+  This function is called at the very end of Spacemacs startup, after layer
+  configuration.
+  Put your configuration code here, except for variables that should be set
+  before packages are loaded."
+    ;; Avoid warning with yas
+    (defvaralias 'helm-c-yas-space-match-any-greedy 'helm-yas-space-match-any-greedy "Temporary alias for Emacs27")
+
+    ;; Avoid warning with dired
+    (add-to-list 'auto-mode-alist '("'\\.js\\'" . react-mode))
+    (add-to-list 'auto-mode-alist '("'\\.vue\\'" . web-mode))
+    )
+#+end_src
