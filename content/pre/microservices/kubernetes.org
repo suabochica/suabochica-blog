@@ -552,9 +552,63 @@ A modo de conclusión, los secretos se crean para almacenar datos sensibles de l
 aplicación, y los mapas de configuración se crean para almacenar datos de
 configuración para correr la aplicación.
 
-
-* Revisión general sobre seguridad
 * Creando secretos
+
+Ahora se va a crear un nuevo pod llamado monolíto seguro, cuya principal
+característica serán los accesos seguros al mismo a través de NGINX el cual
+servirá como un proxy inverso HTTPS. El contenedor de NGINX será desplegado en el
+mismo pod del contenedor del monolíto ya que estan fuertemente asociados.
+
+Antes de usar el contenedor NGINX para revisar el tráfico HTTP, se van a
+necesitar algunos certificados TLS. Para este caso en puntual, los certificados
+TLS estarán almacenados en kubernetes como secretos. La seguridad en el acceso
+de un pod se obtiene con el uso de certificados. Se pueden revisar los
+certificados ejecutando el siguiente comando:
+
+#+begin_src bash
+$ ls tls
+ca-key.pem  ca.pem  cert.pem  key.pem  ssl-extensions-x509.cnf  update-tls.sh
+#+end_src
+
+Los archivos ~cert.pem~ y el ~key.pem~ serán usados para el tráfico seguro sobre
+el servidor del monolito y el ~ca.pem~ será utilizado por los clientes HTTP como
+los cliente autorizados en los que se confía. Dado que los certificados que
+utiliza el servidor monolito fueron firmados por la CA representada por ~ca.pem~,
+los clientes HTTP que confían en ca.pem podrán validar la conexión SSL al
+servidor monolito.
+
+Para crear el secreto tls-certs a partir de los certificados TLS almacenados en
+el directorio ~tls~, se corre el siguiente comando:
+
+#+begin_src bash
+$ kubectl create secret generic tls-certs --from-file=tls/
+#+end_src
+
+Kubectl creará una clave para cada archivo en el directorio tls bajo el depósito
+secreto tls-certs. Utilice el comando ~kubectl describe~ para verificarlos:
+  
+#+begin_src bash
+$ kubectl describe secrets tls-certs
+#+end_src
+
+A continuación, es necesario crear una entrada de mapa de configuración para el
+archivo de configuración ~proxy.conf~ nginx usando el comando
+~kubectl create configmap~, de la siguiente manera:
+
+#+begin_src bash
+$ kubectl create configmap nginx-proxy-conf --from-file=nginx/proxy.conf
+#+end_src
+
+Utilice el comando ~kubectl describe configmap~ para obtener más detalles sobre
+la entrada del mapa de configuración ~nginx-proxy-conf~:
+
+#+begin_src bash
+$ kubectl describe configmap nginx-proxy-conf
+#+end_src
+
+TLS y SSL pueden ser temas confusos, es recomendable tener algunas bases sobre
+la capa de transporte seguro, para asimilar mejor sus usos.
+
 * Accediendo a una endpoint HTTPS
 * Revisión general de servicios
 * Creando servicios
