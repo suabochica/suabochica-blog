@@ -681,6 +681,14 @@ El comando ~kubectl port-forward~ es grandioso para porbar pods directamente. No
 obstante, en producción los pods se exponen usando servicios
 
 * Revisión general de servicios
+
+Como se vió anteriormente, los pods pueden ser reiniciados por multiples razones,
+como por ejemplo un fallo en un contro de vitalidad, controles de preparación,
+entre otros.
+  
+#+CAPTION: Secretos y mapas de configuración
+[[../images/microservices/05-kubernetes-services.png]]
+
 * Creando servicios
 * Agregando etiquetas a los pods
 * Outro
