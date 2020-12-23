@@ -610,6 +610,76 @@ TLS y SSL pueden ser temas confusos, es recomendable tener algunas bases sobre
 la capa de transporte seguro, para asimilar mejor sus usos.
 
 * Accediendo a una endpoint HTTPS
+
+Ahora se va a exponder el pod NGINX con su respectivo mapa de configuración y
+afirmar los secretos del monolíto seguro en tiempos de ejecución. En primera
+medida se examina el archivo de configuración del monolíto seguro a través del
+siguietne comando:
+
+#+begin_src bash
+$ cat pods/secure-monolith.yaml
+#+end_src
+
+Este seria el primer pod multi-contenedor. En la salida de este comando se puede
+observar las definiciones de ambos contenedores; nginx y el monolito. Los
+contenedores son desplegados en el mismo pod ya que uno depende del otro. Los
+detalles sobre el monolito ya fueron señalados, y por parte de contenedor de
+NGINX hay dos cosas importantes por destacar.
+
+La primera, es que en el archivo de configuración se agregó un cierre elegante
+al contenedor al incluir un gancho de ciclo de vida en la propiedad ~lifecycle~.
+Por lo tanto para apagar el contenedor se ejecuta el comando especificado en
+dicha propiedad. Esto le permite a NGINX hacer la tarea apropiada, manejar todo
+el trafico restante y apagarse limpiamente.
+
+Lo segundo, es que al final del archivo de configuración, se observan la
+definición de volúmenes correspondientes. De este modo, el contenedor NGINX
+puede acceder a los secretos y a los archivos de configuración.
+
+Para crear el modelo seguro del pod, se usa el siguiente comando de ~kubectl~:
+
+#+begin_src bash
+$ kubectl create -f pods/secure-monolith.yaml
+#+end_src
+
+Para examinar el pod creado, se corre el siguiente comando:
+
+#+begin_src bash
+$ kubectl get pods secure-monolith
+#+end_src
+
+Esta salida evidencia la que dos contenedores se están corriendo dentro del pod.
+Con estas instrucciones ya se tienen garantías de que el pod esta montado y se
+esta ejecutando. Para acceder a dicho pod, se ejecuta este comando en una
+segunda terminal:
+
+#+begin_src bash
+$ kubectl port-forward secure-monolith 10443:443
+#+end_src
+
+Aquí es importante resaltar que el puerto 443 es por donde el contenedor NGINX
+esta escuchando las peticiones.
+
+Por último, se usa el comando ~curl~ para probar el endpoint HTTP en una tercera
+terminal: 
+
+#+begin_src bash
+$ curl --cacert tls/ca.pem https://127.0.0.1:10443
+#+end_src
+
+Si todo funciona, se debe obtener la respuesta desde el servidor con el ya
+frecuente mensaje ~{"message":"Hello"}~ sobre la conexión segura HTTPS .
+
+De manera complementaria, el comando ~kubectk logs~ ayuda a verificar el tráfico
+sobre el contenedor NGINX del pod monolito seguro.
+
+#+begin_src bash
+$ kubectl logs -c nginx secure-monolith
+#+end_src
+
+El comando ~kubectl port-forward~ es grandioso para porbar pods directamente. No
+obstante, en producción los pods se exponen usando servicios
+
 * Revisión general de servicios
 * Creando servicios
 * Agregando etiquetas a los pods
