@@ -4,6 +4,21 @@
 #+DATE:<2020-11-10 Tue> 
 
 * TODO Layers y MELPA
+
+Los layers son un concepto de Spacemacs el cual se define como: 
+
+#+begin_notes
+Una unidad de configuración recopilada que se puede habilitar o deshabilitar en
+Spacemacs. Generalmente un layer reúne uno o más paquetes de MELPA sazonados
+con código de configuración para que funcionen bien entre sí, bajo el contexto
+de Spacemacs en general.
+#+end_notes
+
+Los layers son probrablemente la funcionalidad más grande de Spacemacs sobre el
+Emacs vanilla. El proyecto entero está organizado con una serie de layers, cada
+uno para una funcionalidad en particular. Esta es la [[https://www.spacemacs.org/layers/LAYERS.html][lista completa]] de los
+layers de Spacemacs.
+
 * TODO .spacemacs 
   
 #+begin_src elisp
