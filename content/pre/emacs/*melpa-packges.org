@@ -3,7 +3,12 @@
 #+AUTHOR: Sergio Benítez
 #+DATE:<2020-11-10 Tue> 
 
-* TODO Layers y MELPA
+* PROGRESS Layers y MELPA
+
+MELPA (Milkypostman’s Emacs Lisp Package Archive) es un repositorio de paquetes
+que contiene una cantidad enorme de paquetes útiles que complementan Emacs. Su
+configuración es a través del archivo ~packages.el~ que funciona como un
+administrador de paquetes.
 
 Los layers son un concepto de Spacemacs el cual se define como: 
 
@@ -19,8 +24,16 @@ Emacs vanilla. El proyecto entero está organizado con una serie de layers, cada
 uno para una funcionalidad en particular. Esta es la [[https://www.spacemacs.org/layers/LAYERS.html][lista completa]] de los
 layers de Spacemacs.
 
-* TODO .spacemacs 
-  
+No obstante, hay un escenario en donde se quiere utilizar un complemento puntual
+que no es ofrecido por los layers de Spacemacs y si por los paquetes en MELPA.
+
+Afortunadamente los creadores de Spacemacs anticiparon este caso y en el archivo
+de configuración ~.spacemacs~ disponen de una función cuyos argumentos son los
+nombres de los paqutes que no están empaquetdos en un layer.
+
+A continuación se muestra como se hace la instalación de los paquetes
+˜drag-stuff˜ y ~atome-one-dark-theme~:
+
 #+begin_src elisp
    ;; List of additional packages that will be installed without being wrapped
    ;; in a layer (generally the packages are installed only and should still be
