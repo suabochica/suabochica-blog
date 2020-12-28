@@ -683,10 +683,31 @@ obstante, en producción los pods se exponen usando servicios
 * Revisión general de servicios
 
 Como se vió anteriormente, los pods pueden ser reiniciados por multiples razones,
-como por ejemplo un fallo en un contro de vitalidad, controles de preparación,
+como por ejemplo un fallo en un control de vitalidad, controles de preparación,
 entre otros.
   
-#+CAPTION: Secretos y mapas de configuración
+Este escenario hace válida la siguiente pregunta: ¿Qué sucedería si se quisiera
+comunicar con un conjunto de pods que al reiniciarse pueden tener un dirección
+IP diferente? La respuesta esta en los servicios.
+
+En vez de confiar en las direcciones IP de los pod, Kubernetes provee los
+servicios como un punto final para los pods. Los pods expuestos por los
+servicios están basados en un conjunto de etiquetas. Si los pods tienen las
+etiquetas correctas, ellos serán automaticamente recogidos y expuestos por los
+servicios.
+
+Por otra parte, el nivel de acceso que los servicios suministran a los pods
+depende del tipo del servicio. Actualmente hay tres tipos:
+
+1. ClusterIP que es solo acceso interno
+2. NodePort, que habilita al nodo una IP externa para compartir su acceso
+3. LoadBalancer, que agrega un balanceador de carga desde el proveedor en la
+   nube para forzar el tráfico desde el servicio hacia los nodos que están en él
+
+La siguiente imagen, es un resumen del contexto sobre el cual los servicios se
+desenvuelven.
+
+#+CAPTION: Servicios
 [[../images/microservices/05-kubernetes-services.png]]
 
 * Creando servicios
