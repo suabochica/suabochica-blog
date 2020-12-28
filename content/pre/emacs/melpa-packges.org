@@ -3,12 +3,14 @@
 #+AUTHOR: Sergio Benítez
 #+DATE:<2020-11-10 Tue> 
 
-* PROGRESS Layers y MELPA
+* DONE Layers y MELPA
+  CLOSED: [2020-12-27 Sun 23:23]
 
 MELPA (Milkypostman’s Emacs Lisp Package Archive) es un repositorio de paquetes
-que contiene una cantidad enorme de paquetes útiles que complementan Emacs. Su
+que contiene una cantidad enorme de utilidades que complementan Emacs. Su
 configuración es a través del archivo ~packages.el~ que funciona como un
-administrador de paquetes.
+administrador de paquetes. Pero en Spacemacs, esta configuración es diferente.
+Más adelante se retomará el tema.
 
 Los layers son un concepto de Spacemacs el cual se define como: 
 
@@ -24,15 +26,16 @@ Emacs vanilla. El proyecto entero está organizado con una serie de layers, cada
 uno para una funcionalidad en particular. Esta es la [[https://www.spacemacs.org/layers/LAYERS.html][lista completa]] de los
 layers de Spacemacs.
 
-No obstante, hay un escenario en donde se quiere utilizar un complemento puntual
-que no es ofrecido por los layers de Spacemacs y si por los paquetes en MELPA.
+No obstante, es posible un escenario en donde se requiere utilizar un
+complemento puntual que no es ofrecido por los layers de Spacemacs y si por los
+paquetes en MELPA.
 
 Afortunadamente los creadores de Spacemacs anticiparon este caso y en el archivo
 de configuración ~.spacemacs~ disponen de una función cuyos argumentos son los
-nombres de los paqutes que no están empaquetdos en un layer.
+nombres de los paquetes que no están empaquetdos en un layer.
 
 A continuación se muestra como se hace la instalación de los paquetes
-˜drag-stuff˜ y ~atome-one-dark-theme~:
+~drag-stuff~ y ~atom-one-dark-theme~:
 
 #+begin_src elisp
    ;; List of additional packages that will be installed without being wrapped
@@ -46,6 +49,33 @@ A continuación se muestra como se hace la instalación de los paquetes
    dotspacemacs-additional-packages '(drag-stuff
                                       atom-one-dark-theme)
 #+end_src
+
+Traduciendo las líneas comentadas en esta función, se dice que después de
+agregar los paquetes, estos serán instalados y para cargarlos se requiere
+especificar la acción en la sección ~user-config~ del archivo ~.spacemacs~. Esta
+sección también es la encargada de definir las configuraciones necesarias sobre
+el paquete instalado. Como ejemplo, se va a utilizar una configuración sobre el
+paquete ~drag-stuff~ para intercalar líneas de un archivo de texto con la
+combinación de teclas ~Ctrl + Shift + Up/Down arrow~:
+
+#+begin_src elisp
+(defun dotspacemacs/user-config ()
+  "Configuration for user code:
+This function is called at the very end of Spacemacs startup, after layer
+configuration.
+Put your configuration code here, except for variables that should be set
+before packages are loaded."
+  ;; Drag setup to move selection up and down
+  (drag-stuff-mode t)
+  (global-set-key (kbd "<C-S-up>") 'drag-stuff-up)
+  (global-set-key (kbd "<C-S-down>") 'drag-stuff-down)
+)
+#+end_src
+
+De este modo se pueden usar paquetes en MELPA dentro de Spacemacs. Habrán
+paquetes que requieran configuraciones más complejas, pero en términos generales
+este proceso es la guía para lograr la convivencia entre paquetes MELPA y
+Spacemacs.
 
 * Referencia
 - [[https://github.com/syl20bnr/spacemacs/issues/5968][How to install a MELPA package]]
