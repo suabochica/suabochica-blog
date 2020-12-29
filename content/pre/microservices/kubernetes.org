@@ -711,6 +711,86 @@ desenvuelven.
 [[../images/microservices/05-kubernetes-services.png]]
 
 * Creando servicios
+
+Es tiempo de exponer el pod del monolito seguro externamente a través de la
+creación de un servicio de Kubernetes. Para empezar, es recomendable explorar el
+contenido del archivo de configuración del servicio a través del siguiente
+comando:
+
+#+begin_src bash
+$ cat services/monolith.yaml
+kind: Service
+apiVersion: v1
+metadata:
+  name: "monolith"
+spec:
+  selector:
+    app: "monolith"
+    secure: "enabled"
+  ports:
+    - protocol: "TCP"
+      port: 443
+      targetPort: 443
+      nodePort: 31000
+  type: NodePort
+#+end_src
+
+Dos cosas por resaltar en esta salida. Primero, la sección ~selector~ la cual
+es utilzada para encotrar y exponer automaticamente cualquier pod con esas
+etiquetas ~app: "monolith"~ y ~secure: enabled~.
+
+Segundo, en la sección ~ports~ hay una nueva propiedad ~nodePort: 31000~ el cual
+indica que por el puerto 31000 se destinará al tráfico externo y el puerto 443
+es para NIGNX. 
+
+Con el siguiente comando se crea el servicio Kubernetes:
+
+#+begin_src bash
+$ kubectl create -f services/monolith.yaml
+
+You have exposed your service on an external port on allnodes in your cluste. If
+you want to expose this service to the extenal internet, you may need to set up
+firewall rules for the service port tcp:31000 to serve traffic
+
+service "monolith" created 
+#+end_src
+
+Este mensaje indica que se esta usando el puerto 31000 para exponer el servicio.
+Eso significa que es posible tener colisiones de puertos si alguna otra
+aplicación intenta enlazarse a ese puerto en uno de los servidores.
+
+Normalmente, es Kubernetes quien se encarga de manejar la asignación de puertos.
+No obstante, hacer dicha asignación manual, hace que sea más fácil de configurar
+los puntos de salud.
+
+Para definir las reglas del firewall se ejecuta el siguiente comando:
+
+#+begin_src bash
+gcloud compute firewall-rules create allow-monolith-nodeport --allow=tcp:31000
+#+end_src
+
+Con esta regla se habilita el trafico en el servició monolito sobre el puerto
+de nodo expuesto.
+
+Ahora que todos esta configurado, ya se estaría en campacidad de golpear el
+servidor del monolito por fuera del cluster y sin usar el puento 40.
+
+Para hacer la prueba, se recupera la dirección IP del nodo con el siguiente
+comando:
+
+#+begin_src bash
+gcloud compute instances list
+#+end_src
+
+Posteriormente, golpeamos el monolito seguro con ~curl~.
+
+#+begin_src bash
+curl -k https://104.197.223
+#+end_src
+
+Sin embargo, no hay respuesta, ya que hace falta un paso: agregar las etiquetas
+a los pods.
+
 * Agregando etiquetas a los pods
 * Outro
 
