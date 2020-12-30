@@ -79,7 +79,7 @@ El próximo paso lógico es usar docker en todas las máquinas y buscar una form
 para integrarlas. El empaquetamiento de contenedores corresponde al 5% del
 problema. Los inconvenientes reales vienen cuando se trabaja las configuraciones
 de las aplicaciones, los descubrimientos de servicios, la administración de 
-actualizacione y el monitoreo de las máquinas.
+actualizaciones y el monitoreo de las máquinas.
 
 Todas estas carácteristicas se construyen sobre docker, y la recomendación es
 tomar ventaja de una plataforma como Kubernetes que se encargue de manejar toda 
@@ -779,21 +779,89 @@ Para hacer la prueba, se recupera la dirección IP del nodo con el siguiente
 comando:
 
 #+begin_src bash
-gcloud compute instances list
+$ gcloud compute instances list
 #+end_src
 
 Posteriormente, golpeamos el monolito seguro con ~curl~.
 
 #+begin_src bash
-curl -k https://104.197.223
+$ curl -k https://104.197.223:31000
 #+end_src
 
 Sin embargo, no hay respuesta, ya que hace falta un paso: agregar las etiquetas
 a los pods.
 
 * Agregando etiquetas a los pods
+
+Actualemente, el servicio de monolito seguro no tiene ningún endpoint. Una forma
+de solucionar este problema es usando el comando ~kubectl~ con la bandera de
+etiqueta:
+
+#+begin_src bash
+$ kubectl get pods -l "app=monolith"
+NAME
+monolith
+secure-monolith
+#+end_src
+
+Se puede observar que actualmente se tienen un par de pods corriendo con la
+etiqueta "monolith". No obstante, al agregar la etiqueta "secure=enabled" se
+obtienen cero resultados:
+
+#+begin_src bash
+$ kubectl get pods -l "app=monolith,secure=enabled"
+#+end_src
+
+En ese orden de ideas, el siguiente paso es validar cuales son las etiquetas de
+los pods seguros. Para ello se corre el siguiente comando:
+
+#+begin_src bash
+$ kubectl describe pods pods secure-monolith | grep Labels
+Labels: app=monolith
+#+end_src
+
+Esta salida indica el fallo. La etiqueta "secure=enable" no se ha agregado a los
+pods seguros. Para ello se ejecuta el siguiente comando:
+
+#+begin_src bash
+$ kubectl label pods secure-monolith "secure=enabled"
+pod "secure-monolith" labeled
+#+end_src
+
+Se corre el comando ~describe~ para ver si la etiqueta fue añadida:
+ 
+#+begin_src bash
+$ kubectl describe pods secure-monolith | grep Labels
+Labels: app=monolith,secure=enabled
+#+end_src
+
+He aquí la anhelada etiqueta "secure=enabled". Ahora que las etiquetas estan
+configuradas apropiadamente, se valida la lista de endpoints sobre el servicio
+del monolito:
+
+#+begin_src bash
+$ kubectl describe services monolith | grep Endpoints
+Endpoints: 10.52.1.4:443
+#+end_src
+
+Ahora hay un resultado. Al correr nuevamente el ~curl~, se logra la respuesta.
+
+#+begin_src bash
+$ curl -k https://104.197.223:31000
+{"message": "Hello"}
+#+end_src
+
 * Outro
 
+Al igual que Docker, Kubernetes hace que sea fácil correr y hacer introespección
+en las aplicaciones. Esto es lo que se llama automatización. En esta guía se
+revisarion varias de la primitivas de despliegue que Kubernetes ofrece a los
+desarrolladores. En este punto, se debe ser consciente del poder de abstracción
+de alto nivel que ofrece Kubernetes lo cual permite tener más enfoque sobre la
+aplicación y no sobre la administración de despliegues.
 
-
+Sin embargo, estas son tan solo las bases. Es momento de retirar la ruedas de
+entrenamiento y aprender no solo a escalar la aplicación de manera automática,
+sino también, realizar actualizaciones continuas sin tiempos de inactividad y
+como trabajar con información delicada. 
   
