@@ -1,0 +1,21 @@
+#+TITLE: Project
+#+DESCRIPTION: Usa docker para construir contenedores de imágenes para empacar
+una aplicación y sus dependencias y así hacer un despliegue en una sola máquina
+#+AUTHOR: Sergio Benítez
+#+DATE:<2020-12-31 Thu> 
+
+* Intro
+
+* Revisión general de un despliegue
+
+* Creando despliegues
+
+* Revisión generar de escalamiento
+
+* Despliegues de escalamiento
+
+* Descripción general de actualizaciones
+
+* Actualizaciones continuas
+
+* Outro
