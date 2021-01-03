@@ -28,6 +28,34 @@ Se prosigue con el uso de k8s en casos más avanzados.
 
 * Revisión general de un despliegue
 
+El objetivo con Docker y Kubernetes es estar en capacidad de escalar y manejar
+contenedores en producción, y es aquí donde los despliegues empiezan a tener el
+protragonismo.
+
+Los despliegues son formas declarativas para decir que va en donde. El uso de su
+estados es dado por el usuario final. Destrás de escenas, los displiegues en k8s
+usan un concepto llamado conjuntos de replica con el fin de asegurar que el
+número actual de pods es igual al número deseado.
+
+Al momento de administrar los pods, el despliegue debe ser consciente de
+detalles de bajo nivel, como en que nodo esta el pod y en donde se esta
+ejecutando. El tiempo de vida del pod esta ligado al del nodo, lo que implica
+que si el nodo se cae, el por también lo hará.
+
+Está administración de nodos se le delega e los despliegues, ya que con una
+serie de instrucciones se puede gestar efectivamente los estados de los nodos.
+
+En el ejemplo de la siguiente imagen, se muestra un desplieuge con tres replicas.
+Una de ellas está caida y la misma configuración estará en capacidad de iniciar
+un nuevo pod y encontrar un lugar para él. En este caso, el pod se inicia en el
+segundo nodo, comportamiento que resulta bastante útil.
+
+#+CAPTION: El cliente envía una solicitud de log in
+[[../images/microservices/01-project-deployments.png]]
+
+Es tiempo de combinar todo lo que se ha aprendido hasta ahora de pods y servicios
+y romper un aplicación monolito en pequeños servicios usando despliegues.
+
 * Creando despliegues
 
 * Revisión generar de escalamiento
