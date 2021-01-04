@@ -45,7 +45,7 @@ que si el nodo se cae, el por también lo hará.
 Está administración de nodos se le delega e los despliegues, ya que con una
 serie de instrucciones se puede gestar efectivamente los estados de los nodos.
 
-En el ejemplo de la siguiente imagen, se muestra un desplieuge con tres replicas.
+En el ejemplo de la siguiente imagen, se muestra un despliegue con tres replicas.
 Una de ellas está caida y la misma configuración estará en capacidad de iniciar
 un nuevo pod y encontrar un lugar para él. En este caso, el pod se inicia en el
 segundo nodo, comportamiento que resulta bastante útil.
@@ -213,8 +213,24 @@ Y esto es todo, ahora se tiene una aplicación de multiservicios desplegada
 usando k8s. Estas habilidades permitirán desplegar applicaciones más complicadas
 sobre k8s, usando colecciones de despliegues y servicios.
 
-
 * Revisión generar de escalamiento
+
+El escalamiento es hecho con la actualización del valor en la propuedad replicas
+de nuestro manifiesto de despliegue. Esta es considerada una buena práctica, ya
+que a pesar de tener métodos imperativos con ~kubectl scale~ no hay estado
+guardado en ninguna parte.
+
+Por debajo, los despliegues crean un conjunto de replicas para manejar la
+creación, supresión y actulización de pods. Los despliegues administran por
+cuenta propia los conjuntos de replicas y por ende no se debe preocuparse por
+ellos.
+
+Esta característica de los despliegues hace que el escalamiento hacia arriba y
+hacia abajo sea igual de facil para uno, dos o n nodos. En la siguiente imagen
+se muestra como el despliegue de ~auth~ se amplia por tres replicas:
+
+#+CAPTION: El cliente envía una solicitud de log in
+[[../images/microservices/02-project-scaling.png]]
 
 * Despliegues de escalamiento
 
