@@ -58,6 +58,162 @@ y romper un aplicación monolito en pequeños servicios usando despliegues.
 
 * Creando despliegues
 
+Es momento de crear despliegues, uno por cada servicio: ~auth~, ~frontend~ y
+~hello~. Se van a definir servicios internos para los despliegues de ~auth~ y
+~hello~ y un servicio externo para el despliegue del ~frontend~.
+
+Es recomendable empezar con revisar los contenidos de los archivos de
+configuración. Para este caso puntual vamos a revisar el archivo ~auth.yalm~
+
+#+begin_src bash
+$ cat deployments/auth.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "auth"
+  template:
+    metadata:
+      labels:
+        app: auth
+        track: stable
+    spec:
+      containers:
+        - name: auth
+          image: "udacity/example-auth:1.0.0"
+          ports:
+            - name: http
+              containerPort: 80
+            - name: health
+              containerPort: 81
+          resources:
+            limits:
+              cpu: 0.2
+              memory: "10Mi"
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 81
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 15
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /readiness
+              port: 81
+              scheme: HTTP
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+#+end_src
+
+En esta salida se obtiene información útil como el número de replicas, las
+etiquetas que se van a usar y la versión de la imagen de docker sobre la cual se
+va a generar el contenedor. Se resalta que dicha configurarción se puede editar
+cuando se requiera necesario.
+
+Para crear el despliegue del servicio se usa el siguiente comando:
+
+#+begin_src bash
+$ kubectl create -f deployments/auth.yaml
+deployment.apps/auth created
+#+end_src
+
+Al igual que cualquier otro objeto kubernetes, se puede usar el comando
+~describe~ para obtener más información sobre el despliegue del servicio:
+
+#+begin_src bash
+$ kubectl describe deployments auth
+Name:                   auth
+Namespace:              default
+CreationTimestamp:      Mon, 04 Jan 2021 21:02:35 +0000
+Labels:                 <none>
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app=auth
+Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=auth
+           track=stable
+  Containers:
+   auth:
+    Image:       udacity/example-auth:1.0.0
+    Ports:       80/TCP, 81/TCP
+    Host Ports:  0/TCP, 0/TCP
+    Limits:
+      cpu:        200m
+      memory:     10Mi
+    Liveness:     http-get http://:81/healthz delay=5s timeout=5s period=15s #success=1 #failure=3
+    Readiness:    http-get http://:81/readiness delay=5s timeout=1s period=10s #success=1 #failure=3
+    Environment:  <none>
+    Mounts:       <none>
+  Volumes:        <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   auth-784c79df7f (1/1 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  99s   deployment-controller  Scaled up replica set auth-784c79df7f to 1
+#+end_src
+
+Con esta configurarción, ya se está en capacidad de crear el servicio de ~auth~,
+siguiendo un proceso similar al que se descrbió anteriormente:
+
+#+begin_src bash
+$ kubectl create -f services/auth.yaml
+services.apps/auth created
+#+end_src
+
+Se repiten estos pasos con cada uno de los servicios:
+
+#+begin_src bash
+$ kubectl create -f deployments/hello.yaml
+deployment.apps/hello created
+
+$ kubectl create -f services/hello.yaml
+services.apps/hello created
+
+$ kubectl create configmap nginx-frontend-conf --from-file=nginx/frontend.conf
+configmap/nginx-frontend-conf created
+
+$ kubectl create -f deployments/frontend.yaml
+deployment.apps/frontend created
+
+$ kubectl create -f services/frontend.yaml
+services.apps/frontend created
+#+end_src
+
+Para el caso del servicio frontend, es necesario configurar NGINX tal y como se
+reviso previamente, a través del ~configmap.
+
+Con dicha configuración, se esta listo para interectuar con el servicio
+~frontend~ agarrando la dirección IP externa y usando ~curl~ para golpearla.
+
+#+begin_src bash
+$ kubectl get services frontend
+NAME       TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)         AGE
+frontend   LoadBalancer   10.3.241.59   35.188.198.204   443:31017/TCP   5m47s
+
+$ curl -k https://35.188.198.204
+{"message": "hello"}
+#+end_src
+
+Y esto es todo, ahora se tiene una aplicación de multiservicios desplegada
+usando k8s. Estas habilidades permitirán desplegar applicaciones más complicadas
+sobre k8s, usando colecciones de despliegues y servicios.
+
+
 * Revisión generar de escalamiento
 
 * Despliegues de escalamiento
