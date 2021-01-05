@@ -300,7 +300,7 @@ secure-monolith           1/1     Running             0          3h45m
 Similarmente, el comando describe sobre ~hello~ es consistente con el resultado:
 
 #+begin_src bash
-$ kubectl describe deployment hello
+$ kubectl describe deployments hello
 Replicas:               3 desired | 3 updated | 3 total | 3 available | 0 unavailable
 StrategyType:           RollingUpdate
 MinReadySeconds:        0
@@ -378,4 +378,216 @@ de haber terminado la actualización.
 
 * Actualizaciones continuas
 
+Kubernetes hace fácil la implementación de actualizaciones en las aplicaciones
+al modificar y administrar los despliegues. Nuevamente se va a modificar el
+archivo ~deployments/auth.yalm~ para usar la versión ~2.0.0~ de la imagen en el
+contenedor, tal y como se muestra a continuación:
+
+#+begin_src bash
+$ vim deployments/auth.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "auth"
+  template:
+    metadata:
+      labels:
+        app: auth
+        track: stable
+    spec:
+      containers:
+        - name: auth
+          image: "udacity/example-auth:2.0.0" # here!
+          ports:
+            - name: http
+              containerPort: 80
+            - name: health
+              containerPort: 81
+          resources:
+            limits:
+              cpu: 0.2
+              memory: "10Mi"
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 81
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 15
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /readiness
+              port: 81
+              scheme: HTTP
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+#+end_src
+
+Para aplicar la actualización se ejecuta el siguiente comando:
+
+#+begin_src bash
+$ kubectl apply -f deployments/auth.yaml
+deployment "auth" configured
+#+end_src
+
+Para hacer seguimiento sobre el progreso de la actualización se usa el comando
+~kubectl describe~:
+
+#+begin_src bash
+$ kubectl describe deployments auth
+Name:                   auth
+Namespace:              default
+CreationTimestamp:      Mon, 04 Jan 2021 21:02:35 +0000
+Labels:                 <none>
+Annotations:            deployment.kubernetes.io/revision: 2
+Selector:               app=auth
+Replicas:               1 desired | 1 updated | 2 total | 1 available | 1 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  1 max unavailable, 1 max surge # here!
+Pod Template:
+  Labels:  app=auth
+           track=stable
+  Containers:
+   auth:
+    Image:       udacity/example-auth:2.0.0
+    Ports:       80/TCP, 81/TCP
+    Host Ports:  0/TCP, 0/TCP
+    Limits:
+      cpu:        200m
+      memory:     10Mi
+    Liveness:     http-get http://:81/healthz delay=5s timeout=5s period=15s #success=1 #failure=3
+    Readiness:    http-get http://:81/readiness delay=5s timeout=1s period=10s #success=1 #failure=3
+    Environment:  <none>
+    Mounts:       <none>
+  Volumes:        <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    ReplicaSetUpdated
+OldReplicaSets:  auth-784c79df7f (1/1 replicas created)
+NewReplicaSet:   auth-56746f6f6 (1/1 replicas created) # here!
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  10s   deployment-controller  Scaled up replica set auth-56746f6f6 to 1
+#+end_src
+
+Para revisar la estrategia de actualizaciones, se localiza la información en
+~RollingUpdateStrategy: 1 max unavailable, 1 max surge~. Como se puede observar,
+hay garantías sobre el número de pods que están siempre dispondibles.
+
+En la propiedad ~NewReplicaSet: auth-56746f6f6 (1/1 replicas created)~ se
+asegura que el contenedor ~auth~ esta corriendo en su última verisión.
+
+Una vez la implementación de la actualización está completa, se pueden ver los
+pods que se están corriendo sobre el servicio ~auth~ con el comando
+~kubeclt get pods~.
+
+#+begin_src bash
+$ kubectl get pods
+NAME                      READY   STATUS              RESTARTS   AGE
+auth-784c79df7f-jwdgp     1/1     Running             0          2m
+frontend-868c46fc-k7nl5   0/1     ContainerCreating   0          3h45m
+hello-67dfcd5745-7fswt    1/1     Running             0          3h45m
+hello-67dfcd5745-7fsst    1/1     Running             0          3h45m
+hello-67dfcd5745-7fszt    1/1     Running             0          3h45m
+nginx-87dfcd5745-7fszt    1/1     Running             0          3h45m
+monolith                  1/1     Running             0          3h45m
+secure-monolith           1/1     Running             0          3h45m
+#+end_src
+
+El indicador para saber si la nueva versión esta siendo utilizada es el tiempo
+registrado en la columna ~AGE~. Este valor determina el tiempo que lleva
+corriendo ese pod, y al ser un periodo corto, nos da guías para identificar que
+la última version fue levantada hace dos minutos. Por defecto, el contendor
+nuevo reemplaza los previos.
+
+La prueba definitiva para saber si el pod esta corriendo es usar el
+~kubectl describe~ con el nombre específico del pod:
+
+#+begin_src bash
+$ kubectl describe pods auth-784c79df7f-jwdgp
+Priority:     0
+Node:         gke-k0-default-pool-c1896f1f-wh9h/10.128.0.7
+Start Time:   Tue, 05 Jan 2021 21:40:03 +0000
+Labels:       app=auth
+              pod-template-hash=56746f6f6
+              track=stable
+Annotations:  <none>
+Status:       Running
+IP:           10.0.5.4
+IPs:
+  IP:           10.0.5.4
+Controlled By:  ReplicaSet/auth-56746f6f6
+Containers:
+  auth:
+    Container ID:   docker://d93a62df764bce076044030ce9419efbd3260b481904727996de2bd91ec568d4
+    Image:          udacity/example-auth:2.0.0 # here!
+    Image ID:       docker-pullable://udacity/example-auth@sha256:02e142517709d35ca6cd51f8c1416a1c9514bcc0c369126fa0942007d23cf79a
+    Ports:          80/TCP, 81/TCP
+    Host Ports:     0/TCP, 0/TCP
+    State:          Running
+      Started:      Tue, 05 Jan 2021 21:40:06 +0000
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:     200m
+      memory:  10Mi
+    Requests:
+      cpu:        200m
+      memory:     10Mi
+    Liveness:     http-get http://:81/healthz delay=5s timeout=5s period=15s #success=1 #failure=3
+    Readiness:    http-get http://:81/readiness delay=5s timeout=1s period=10s #success=1 #failure=3
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-gv274 (ro)
+Conditions:
+  Type              Status
+  Initialized       True
+  Ready             True
+  ContainersReady   True
+  PodScheduled      True
+Volumes:
+  default-token-gv274:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-gv274
+    Optional:    false
+QoS Class:       Guaranteed
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                 node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  14m   default-scheduler  Successfully assigned default/auth-56746f6f6-wgzfq to gke-k0-default-pool-c1896f1f-wh9h
+  Normal  Pulling    14m   kubelet            Pulling image "udacity/example-auth:2.0.0"
+  Normal  Pulled     14m   kubelet            Successfully pulled image "udacity/example-auth:2.0.0"
+  Normal  Created    14m   kubelet            Created container auth
+  Normal  Started    14m   kubelet            Started container auth
+#+end_src
+
+
+En la propiedad ~Image: udacity/example-auth:2.0.0~ se puede validar la versión
+de la imagen del contenedor que se esta corriendo en el pod.
+
+Nuevamente, las actualizaciones en k8s conservan un enfoque declarativo limpio
+que hace sencillo implementar cambios dentro de los pods. Es cuestion de
+organizar unos cuantos comandos del ~kubctl~.
+
 * Outro
+
+Esta última publicación se explicaron los temas de escalamiento y actualización
+de clusteres en la nube. Al usar estas funcionalidades de k8s, las aplicaciones
+en la nube son más elásticas y finalmente pueden ser llamadas listas para
+producción.
+
+Recuerde que el objetivo es el diseño de aplicaciones modernas a través de
+paquetes decorativos y contenedores distribuidos.
