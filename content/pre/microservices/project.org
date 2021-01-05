@@ -234,6 +234,108 @@ se muestra como el despliegue de ~auth~ se amplia por tres replicas:
 
 * Despliegues de escalamiento
 
+Es importante tener presente que cada despliegue es mapeado hacia un conjunto de
+replicas activo. El siguiente comando permite visualizar el conjunto actual de
+replicas que se están ejecutando:
+
+#+begin_src bash
+$ kubectl get replicasets
+NAME                DESIRED   CURRENT   READY   AGE
+auth-784c79df7f     1         1         1       3h38m
+frontend-868c46fc   1         1         0       3h31m
+hello-67dfcd5745    1         1         1       3h32m
+nginx-26dfcd5745    1         1         1       3h32m
+#+end_src
+
+Los conjuntos de replicas son escalados hacia los despliegues por cada servicio
+y este proceso se puede hacer de manera independiente. Como se menciono
+anteriormente, la verdadera fortaleza de k8s viene cuando se trabaja de manera
+declarativa, en vez de usar comandos imperativos de kubctl.
+
+Si se quiere ver cuantos pods de ~hello~ se estan corriendo, se ejecuta el
+siguiente comando:
+
+#+begin_src bash
+$ kubectl get pods -l "app=hello,track=stable"
+NAME
+hello-67dfcd5745
+#+end_src
+
+Para escalar el despliegue ~hello~ con tres replicas, se debe actualizar la
+propiedad ~replicas: 3~ en el archivo ~deployments/hello.yaml~. Para aplicar los
+cambios se corre el siguiente comando:
+
+#+begin_src bash
+$ kubectl apply -f deployments/hello.yaml
+deployment "hello" configured
+#+end_src
+
+Se ejecuta nuevamente el ~replicasets~ y se verán los cambios:
+
+#+begin_src bash
+$ kubectl get replicasets
+NAME                DESIRED   CURRENT   READY   AGE
+auth-784c79df7f     1         1         1       3h38m
+frontend-868c46fc   1         1         0       3h31m
+hello-67dfcd5745    3         3         3       3h32m
+nginx-26dfcd5745    1         1         1       3h32m
+#+end_src
+
+El valor ~DESIRED~ para indicar el número deseado de replicas fue actualizado.
+Al correr el comando ~kubectl get pods~ también se observa el cambio:
+
+#+begin_src bash
+$ kubectl get pods
+NAME                      READY   STATUS              RESTARTS   AGE
+auth-784c79df7f-jwdgp     1/1     Running             0          3h52m
+frontend-868c46fc-k7nl5   0/1     ContainerCreating   0          3h45m
+hello-67dfcd5745-7fswt    1/1     Running             0          3h45m
+hello-67dfcd5745-7fsst    1/1     Running             0          3h45m
+hello-67dfcd5745-7fszt    1/1     Running             0          3h45m
+nginx-87dfcd5745-7fszt    1/1     Running             0          3h45m
+monolith                  1/1     Running             0          3h45m
+secure-monolith           1/1     Running             0          3h45m
+#+end_src
+
+Similarmente, el comando describe sobre ~hello~ es consistente con el resultado:
+
+#+begin_src bash
+$ kubectl describe deployment hello
+Replicas:               3 desired | 3 updated | 3 total | 3 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=hello
+            track=stable
+  Containers:
+    hello:
+    Image:       udacity/example-hello:1.0.0
+    Ports:       80/TCP, 81/TCP
+    Host Ports:  0/TCP, 0/TCP
+    Limits:
+      cpu:        200m
+      memory:     10Mi
+    Liveness:     http-get http://:81/healthz delay=5s timeout=5s period=15s #success=1 #failure=3
+    Readiness:    http-get http://:81/readiness delay=5s timeout=1s period=10s #success=1 #failure=3
+    Environment:  <none>
+    Mounts:       <none>
+  Volumes:        <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   hello-67dfcd5745 (3/3 replicas created)
+Events:          <none>
+#+end_src
+
+En este punto se tienen múltiples copias del servicio ~hello~ corriendo en k8s y
+se tiene un solo servicio frontend que esta de intermediario sobre el tráfico
+hacia los tres pods. Esto perimite compartir la carga y escalar los contenedores
+en k8s.
+
 * Descripción general de actualizaciones
 
 * Actualizaciones continuas
