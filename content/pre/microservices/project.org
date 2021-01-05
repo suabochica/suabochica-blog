@@ -338,6 +338,44 @@ en k8s.
 
 * Descripción general de actualizaciones
 
+El último escenario que hace falta abordar, es el de las actualizaciones a
+nuevas actualizaciones de la aplicación. Obviamente, las actualizaciones de los
+contenedores deben proteger los datos y pueden ser nuevos cambios en el frontend
+para los usuarios. No obstante, sería arriesgado implementar todos los cambios
+al mismo tiempo.
+
+En vez de eso, se puede utilizar ~kubeclt rollout~, el cual funcionará de la
+siguiente manera.
+
+Retomando el mapa de un despliegue con tres replicas de un pod, tal y como se
+muestra en la siguiente imagen, se decide actualizar los pods a una nueva
+versión disparando el comando ~kubeclt rollout~.
+
+#+CAPTION: rolling update step 1
+[[../images/microservices/03-project-update1.png]]
+
+Como se observa en la imagen, un nuevo pod se publica y entonces el servicio
+empieza a enrutar el tráfico hacia este nuevo pod, con la versión actualizada.
+Esto significa que en determinado momento, se van a tener dos pods, uno con la
+primera versión y otro con la segunda, y el tráfico será dirigido hacia ambos.
+
+Posteriormente, el tráfico hacia el pod viejo es detenido, y por último se
+deshace de él por completo. Las líneas amarillas en las imágenes representan el
+tráfico entre el servicio y el pod. En la siguiente imagen se consolida la
+descripción realziada.
+
+#+CAPTION: rolling update step 2
+[[../images/microservices/03-project-update2.png]]
+
+En este punto, el ciclo continua a través de todas las replicas hasta tener
+todos los pods en la segunda versión, como ilustra la siguiente imagen. 
+
+#+CAPTION: rolling update step 3
+[[../images/microservices/03-project-update3.png]]
+
+Al final, todos los pods en el servicio, contaran con la segunda versión, luego
+de haber terminado la actualización.
+
 * Actualizaciones continuas
 
 * Outro
