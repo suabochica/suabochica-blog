@@ -4,13 +4,17 @@ title = "Capricornio 26"
 description = "Proyecto mobiliario sobre licorera bogotana"
 date = 2011-06-21T02:13:50Z
 author = "Sergio Benítez, Miranda Garrido, Mariana Hoyos y Juan Sanchez"
+tags = [
+    "design",
+    "furniture",
+]
 +++
 
 # Mobiliario
 
 El proyecto elaborado por el grupo __tácito__ se genera luego de realizar una etnografía de aproximadamente 2 meses sobre una licorera llamada _Capricornio 26_ situada en una zona popular de Bogotá, con el objetivo de identificar oportunidades de diseño y ofrecer resultados de la manera más objetiva posible.
 
-![Tácito Light](../images/jpg/tacito_01.jpg)
+![Tácito Light](../../images/jpg/tacito_01.jpg)
 
 La tienda fue fundada en 1980 bajo el nombre Capricornio 26 (aunque más tarde por error perdió el seis). Dicho nombre se atribuye al signo zodiacal de la mayor parte de la familia. El local hace parte de una casa que ha sido siempre una tienda. Allí se venden productos de la canasta familiar y licores como cerveza, ron y aguardiente; también cuenta con juegos como rana y bolirana que entre los clientes siempre han sido populares. Cuenta con una rocola que define el ambiente de la tienda. La mayoría del mobiliario y decoración son patrocinados por marcas de cerveza.
 

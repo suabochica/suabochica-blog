@@ -1,18 +1,37 @@
 baseurl = "/"
-title = "Suabochica's Blog"
-theme = "harbor"
+title = "Sua Bochica"
+theme = "m10c"
+paginate = 10
 
-[Params]
-    mainSections = ["post"]
-    intro = true
-    headline = "Suabochica"
-    description = "Code like a writer"
-    github = "https://github.com/suabochica"
-    twitter = "https://twitter.com/suabochica"
-    email = "info@suabochica.com"
-    opengraph = true
-    shareTwitter = true
-    dateFormat = "Mon, Jan 2, 2006"
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+  [[menu.main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "/tags/"
 
-[Permalinks]
-    post = "/:filename/"
+[params]
+  author = "Sergio Benítez"
+  description = "Code like a writer"
+  avatar = "/sua_profile.jpg"
+  favicon = "/sua_profile.jpg"
+  menu_item_separator = " - "
+  [[params.social]]
+    name = "github"
+    url = "https://github.com/suabochica"
+  [[params.social]]
+    name = "twitter"
+    url = "https://twitter.com/suabochica"
+  [[params.social]]
+    name = "instagram"
+    url = "https://instagram.com/suabochica"
+
+  [params.style]
+    darkestColor = "#315659"
+    darkColor = "#253031"
+    primaryColor = "#f99157"
+    lightColor = "#96a879"
+    lightestColor = "#fff"
