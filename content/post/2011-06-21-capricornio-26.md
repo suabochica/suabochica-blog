@@ -1,4 +1,3 @@
-
 +++
 title = "Capricornio 26"
 description = "Proyecto mobiliario sobre licorera bogotana"

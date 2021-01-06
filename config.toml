@@ -1,7 +1,7 @@
 baseurl = "/"
 title = "Sua Bochica"
 theme = "m10c"
-paginate = 10
+paginate = 12
 
 [menu]
   [[menu.main]]

@@ -3,6 +3,9 @@ title = "El Ciclo Solicitud/Respuesta de HTTP"
 date = 2018-12-19T02:13:50Z
 author = "Sergio L. Benítez D."
 description = "Qué es una solicitud HTTP, obtener una y multiples solicitudes HTTP. Enviar datos con una petición POST HTTP"
+tags = [
+    "HTTP",
+]
 +++
 
 En esto documento se revisarán los siguientes contenidos:

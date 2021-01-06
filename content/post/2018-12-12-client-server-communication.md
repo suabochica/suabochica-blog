@@ -1,8 +1,11 @@
 +++
-title = "Comunicacón Cliente Servidor"
+title = "Comunicación Cliente Servidor"
 date = 2018-12-12T02:13:50Z
 author = "Sergio L. Benítez D."
 description = "Introducción a la serie de publicaciones para desarrollar la relación cliente-servidor de la web"
+tags = [
+    "HTTP",
+]
 +++
 
 Esta serie va a tratar un tema **web**. _La comunicación cliente-servidor_. La web es solo una pequeña parte del Internet. Sin embargo es la única parte de Internet que la gente usa sin darse cuenta de que están usando la web. La web es una plataforma en donde los desarrolladores web publican sus ideas para el mundo.
