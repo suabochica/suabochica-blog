@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "http://suabochica.local"
 title = "Sua Bochica"
 theme = "m10c"
 paginate = 12
@@ -28,10 +28,3 @@ paginate = 12
   [[params.social]]
     name = "instagram"
     url = "https://instagram.com/suabochica"
-
-  [params.style]
-    darkestColor = "#315659"
-    darkColor = "#253031"
-    primaryColor = "#f99157"
-    lightColor = "#96a879"
-    lightestColor = "#fff"
