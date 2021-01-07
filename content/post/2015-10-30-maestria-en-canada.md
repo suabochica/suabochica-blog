@@ -3,6 +3,9 @@ title = "Maestría en Canada"
 date = 2015-10-30T02:13:50Z
 author = "Sergio L. Benítez D"
 description = "Conclusiones sobre el proceso que realicé para realizar mis estudios de maestría en Canada"
+tags = [
+    "misc",
+]
 +++
 
 Luego de estar nueve meses elaborando, organizando ,entregando y enviando documentos a diferentes identidades para realizar mis estudios de maestría en el exterior (Canadá), he decidido compartir esta experiencia con dos intenciones: esperar que esta información sea útil para personas con un proyecto similar. Tener un registro de todos los pasos ejecutados para cumplir con el objetivo.

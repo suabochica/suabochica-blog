@@ -2,7 +2,10 @@
 title = "Guía comprensiva sobre patrones de diseño en JavaScript"
 date = 2020-06-23T02:13:50Z
 author = "Sergio L. Benítez D."
-description = "Breve introdución de programación funcional en JavaScript."
+description = "Patrones de diseño en JavaScript"
+tags = [
+    "javascript",
+]
 +++
 
 Un buen desarrollador en JavaScript debe luchar por escribir un código limpio, saludable y mantenible. Con frecuencia el desarrolador resuelve problemas interesantes que no necesariamente requieren soluciones únicas y paralelamente es posible que haya escrito un código similar para solucionar un problema completamente diferente ha alguno que haya manejado antes. Puede que no lo sepa, pero al hacer esto ha utilizado un **patrón de diseño** en JavaScript.

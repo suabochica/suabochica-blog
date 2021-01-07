@@ -3,6 +3,10 @@ title = "Suficiente Programación Functional en JavaScript"
 date = 2019-08-03T02:13:50Z
 author = "Sergio L. Benítez D."
 description = "Breve introdución de programación funcional en JavaScript."
+tags = [
+    "javascript",
+    "functional programming",
+]
 +++
 
 En los últimos años, la industria del desarrollo de software ha presenciado un resurgimiento de la programación funcional. Con el adjetivo _suficiente_ se pretende dar una introducción a la programación funcional en JavaScript sin atascarse en la jerga y la teoría matemática que puede ser intimidante.

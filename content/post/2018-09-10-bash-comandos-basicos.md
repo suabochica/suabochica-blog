@@ -3,6 +3,10 @@ title = "Comandos Básicos en Bash"
 date = 2018-09-10T02:13:50Z
 author = "Sergio L. Benítez D."
 description = "Comandos para navegar con Bash. Lectura, creación y borrado de archivos y carpetas con Bash"
+tags = [
+    "ops",
+    "bash",
+]
 +++
 
 ### Índice

@@ -3,6 +3,9 @@ title = "Control Indirecto en Lemmings"
 date = 2013-01-29T02:13:50Z
 author = "Sergio L. Benítez D."
 description = "Análisis de los métodos de control indirecto utilizados en Lemmings"
+tags = [
+    "games",
+]
 +++
 
 __Lemmings__ es un videojuego desarrollado originalmente para __Commodore Amiga__, diseñado por la empresa escocesa __DMA Design__ fundada por _David Jones_, la cual en el 2001 se convirtió en __Rockstar North__ . Actualmente es uno de los estudios de la compañía estadounidense __Rockstar Games__, reconocida por los títulos desarrollados para la serie _Grand Theft Auto_. Durante 1991, año del lanzamiento de __Lemmings__, el juego se consolidó como uno de los videojuegos de mayor éxito en la época, reflejado por la gran acogida que tuvo a nivel mundial.

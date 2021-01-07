@@ -3,6 +3,10 @@ title = "Características de Bash"
 date = 2018-11-01T02:13:50Z
 author = "Sergio L. Benítez D."
 description = "Encadenamiento de comando, redireccionamiento de contexto input/output y creación y ejecución de bash scripts"
+tags = [
+    "ops",
+    "bash",
+]
 +++
 
 ### Índice

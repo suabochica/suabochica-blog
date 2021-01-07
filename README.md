@@ -2,7 +2,7 @@
 
 ## TODO
 1. Add favicon
-2. Add tags
+2. ~~Add tags~~
 3. Organize images
 4. Customize styles
 

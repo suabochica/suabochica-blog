@@ -3,6 +3,9 @@ title = "Narrativa en Diablo"
 date = 2012-09-11T02:13:50Z
 author = "Sergio L. Benítez D."
 description = "Análasis de la narrativa propuesta en la saga Diablo de Blizzard"
+tags = [
+    "games",
+]
 +++
 
 El videojuego seleccionado para analizar su narrativa es uno de los tres pilares de la prestigiosa compañía Blizzard Enterteiment, cuyo primer título fue lanzado en 1996 e identifica a toda una generación de jugadores. En el escrito se citarán criterios importantes para descomponer el aspecto narrativo de un videojuego, consolidando como guía las _lógicas aristotélicas_ que componen un drama y profundizando estos elementos a través de _los arquetipos de Vogler_ y el _arco narrativo de Freytag_. Ademas, se establecerá un punto de vista con respecto a la propuesta del diseñador de videojuegos __Chris Metzen__, de “intentar recopilar toda la mitología interna y la historia de la franquicia en un elemento externo que permita crear la ilusión de que ese mundo existe en algún lugar“ por medio de _Diablo III: Libro de Caín_.

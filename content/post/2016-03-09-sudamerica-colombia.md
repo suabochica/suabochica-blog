@@ -3,6 +3,9 @@ title = "Sudamérica, Colombia"
 date = 2016-03-09T02:13:50Z
 author = "Sergio L. Benítez D"
 description = "Historias sobre mi viaje por Suramérica"
+tags = [
+    "travel",
+]
 +++
 
 El 17 de Febrero del 2015 inicie la travesía para cumplir un objetivo que me había planteado mientras terminaba mis estudios universitarios. Dicho objetivo era realizar un viaje por sudamérica que expandiera mi visión del mundo en cuanto temas culturales, naturales y personales, respetando la faceta de viajero e ignorando el perfil de turista. Esta experiencia no hubiera sido la misma, sin la compañía de la mujer con quien comparto mis arrebatos, la cual además de su grata compañia ha sido complice de la construcción de un apoyo mutuo para alcanzar nuestras metas. En las siguientes líneas compartiré nuestra preparación para el viaje, algunos gastos, las descripciones sobre los lugares y las personas que enriquecieron este recorrido de casi 7000 Km.

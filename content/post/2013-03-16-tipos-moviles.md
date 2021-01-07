@@ -3,6 +3,10 @@ title = "Tipos Móviles"
 date = 2013-01-29T02:13:50Z
 author = "Sergio L. Benítez D., Carlos Celis, Leonardo Hidalgo, Ricardo Ladino y Catalina Saavedra"
 description = "Creación de una galera para el entendimiento de los conceptos técnicos relativos a los tipos móviles"
+tags = [
+    "design",
+    "typography",
+]
 +++
 
 Los tipos móviles son unas piezas actualmente metálicas utilizadas para ejercer la impresión a presión. Sus orígenes se atribuyen a la cultura oriental en el año 1040 d. C., en donde el chino Bi Sheng genero un sistema de tipos móviles en porcelana. Uno de los principales abandonos de la cultura oriental sobre el tema de los tipos móviles se atribuye al enorme conjunto de caracteres que suelen manejar los alfabetos de estos países. Esta iniciativa fue retomada por el alemán Johannes Gutenberg, cuyo aporte más significativo fue establecer un material que hiciera el tipo móvil más resistente.

@@ -3,6 +3,9 @@ title = "Identidad Corporativa"
 date = 2014-06-12T02:13:50Z
 author = "Sergio L. Benítez D"
 description = "Recopilación del trabajo de identidad corporativa realizado para Software House Ltda."
+tags = [
+    "web design",
+]
 +++
 
 El mundo del mercadeo actual es tan complejo y evolucionado que para sobrevivir es recomendable acudir a una serie de métodos con el fin de lograr posicionarse en el entorno comercial. Lastimosamente gran parte del ámbito empresarial subestima los beneficios de aplicar dichos métodos y terminan pasando por alto los numerables beneficios que un proceso de _Construcción de la marca_ puede ofrecer.

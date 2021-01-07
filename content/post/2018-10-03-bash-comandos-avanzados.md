@@ -3,6 +3,10 @@ title = "Comandos Avanzados en Bash"
 date = 2018-10-03T02:13:50Z
 author = "Sergio L. Benítez D."
 description = "Comando grep para búsqueda de texto y comando curl para hacer peticiones HTTP con Bash"
+tags = [
+    "ops",
+    "bash",
+]
 +++
 
 ### Índice

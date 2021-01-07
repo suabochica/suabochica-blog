@@ -3,6 +3,9 @@ title = "Factor Diversión"
 description = "Analísis del factor diversion sobre The Legend Of Zelda: Spirit tracks"
 date = 2012-08-10T02:13:50Z
 author = "Sergio Benítez"
+tags = [
+    "games",
+]
 +++
 
 El juego a desenvolver bajo el factor de diversión es uno de los dos títulos desarrollados para la videoconsola portátil Nintendo DS de la saga The Legend of Zelda. Es importante resaltar que el juego será analizado a través de las herramientas suministradas por el profesor de tecnología y entretenimiento __Jesse Schell__, en su artículo _Understanding Entertaiment: Story and Gameplay Are One_, con el fin de orientar el análisis desarrollado. Aclarados estos detalles se procede a profundizar el videojuego seleccionado.

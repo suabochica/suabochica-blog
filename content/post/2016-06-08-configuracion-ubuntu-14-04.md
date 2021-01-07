@@ -3,6 +3,9 @@ title = "Configuración Ubuntu 14.04 LTS"
 date = 2016-06-08T02:13:50Z
 author = "Sergio L. Benítez D."
 description = "Recopilación de pasos para configurar Ubuntu"
+tags = [
+    "ops",
+]
 +++
 
 ## Nota Previa
