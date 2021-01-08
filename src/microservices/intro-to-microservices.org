@@ -3,6 +3,7 @@
 disponibles usan el patrón de diseño de microservicios
 #+AUTHOR: Sergio Benítez
 #+DATE:<2020-10-29 Thu> 
+#+STARTUP content
 
 * La evolución de las aplicaciones
 
