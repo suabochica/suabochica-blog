@@ -2,7 +2,7 @@
 #+DESCRIPTION: Serie que recopila los beneficios de usar Storybook
 #+AUTHOR: Sergio Benítez
 #+DATE:<2021-01-08 Fri> 
-#+STARTUP content
+#+STARTUP: fold
 
 Storybook es el lider sandbox para el desarrollo y la documentación de
 componentes de interfaz de usuario. En esta serie de publicaciones relativas a
@@ -68,6 +68,38 @@ Cabe resaltar que Storybook es solo una herramienta en la que usted obtiene lo
 que haya decidio poner.
   
 * ¿Qué és Storybook?
+
+Mucha gente describe Storybook una guía de estilos viviente ó una biblioteca de
+componentes. No obstante, esta definición no és tan justa con Storybook ya que
+no és suficientemente compresiva con todo lo que ofrece la herramienta. La
+defición oficial en el sitio we de Storybook es:
+
+#+begin_notes
+Storybook es una herramienta open source para desarrollar componentes UI en
+aislamiento para los frameworks UI más populares: React, Vue and Angular.
+#+end_notes
+
+Esta definición se puede complementar con lo siguiente: 
+
+#+begin_notes
+Storybook es un sandbox para construir componentes UI en aislamiento, para que
+el desarrollador pueda crear estados difíciles de alcanzar y casos extremos.
+#+end_notes
+
+Lo que se puede reslatar de ambas descripciones que que Storybook es una
+herramienta. La salida de dicha herramienta es algo que se puede llamar una guía
+o una biblioteca de componentes. Incluso, podría ser la cara de un sistema de
+diseño.
+
+#+begin_notes
+Nota: Storybook no es un sistema de diseño por si mismo, pero es usado para
+ayudar a consilidar uno.
+#+end_notes
+
+La otra característica a subrayar de Storybook es que es agnóstico a los
+frameworks UI. La mayoría de los frameworks son soportados por Storybook y en el
+desarrollo de esta serie se utilizará React. En definitiva, Storybook es una
+herramienta flexible que se adpata a cualquier framework.
   
 * ¿Cómo funciona Storybook?
   
