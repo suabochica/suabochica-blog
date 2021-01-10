@@ -3,7 +3,7 @@
 una aplicación y sus dependencias y así hacer un despliegue en una sola máquina
 #+AUTHOR: Sergio Benítez
 #+DATE:<2020-11-10 Tue> 
-#+STARTUP content
+#+STARTUP: content
 
 * Por qué docker
 

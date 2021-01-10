@@ -91,7 +91,7 @@ herramienta. La salida de dicha herramienta es algo que se puede llamar una guí
 o una biblioteca de componentes. Incluso, podría ser la cara de un sistema de
 diseño.
 
-#+begin_notes
+#+begin_notesqq
 Nota: Storybook no es un sistema de diseño por si mismo, pero es usado para
 ayudar a consilidar uno.
 #+end_notes
@@ -102,7 +102,46 @@ desarrollo de esta serie se utilizará React. En definitiva, Storybook es una
 herramienta flexible que se adpata a cualquier framework.
   
 * ¿Cómo funciona Storybook?
-  
+
+Para identificar como funciona Storybook primero se va a revisar su interfaz
+gráfica:
+
+#+CAPTION: rolling update step 1
+[[../images/storybook/01-storybook-interface.png]]
+
+En la barra lateral de la GUI, se tiene la lista de todas las historias. Dicha
+barra funciona como un explorador de archivos y su propósito es organizar y
+habilitar el acceso a los cotenidos dentro de Storybook. Para este caso puntal,
+se tienen varias categorías y subcategorias sobre la histora ~Banner~.
+Puntualmente se esta revisando la historia ~Banner> Major > With Text~.
+
+En la parte derecha superior se tiene la vista de la historia. El próposito es
+usar esta vista en el sitio web que se encuentra en producción. Es decir,
+el detalle importante és que los componentes que se desplieguan en el sitio web
+sean mismos que se almacenan en Storybook. Esta es la gran diferencia entre una
+guía de estilos estática, con Storybook. En vez de describir cómo debería ser el
+componente, Storybook muestra los componentes tal y como son.
+
+Si se inspecciona la página con las herramientas para desarrolladores del
+navegador, se puede observar que la vista está en una etiqueta ~<iframe>~. Con
+este enfoque se tienen garantías sobre que los estilos de las historias están
+totalmente aisladod. En otras palabas, los estilos de cada historia son
+independientes y no abrá interferencia entre ellos así corran en el mismo
+sandbox.
+
+En la parte inferior derecha del GUI, se tiene el panel de configuraciones de la
+historia. Para este caso puntual están las pestañas /Knobs/, /Action/ y
+/See Also/. Knobs, es un complemento personalizado que se revisará en detalle
+más adelante. Por ahora, solo se quiere resaltar que los cambios que se realicen
+en el formulario de Knobs actualizarán inmediatamente los contenidos en la vista
+de la historia, dando así un adelanto de los alcances de Storybook. Esto es
+posible gracias a la estructura en cómo esta formado el componente, el cual
+espera unos parámetros que equivalen a los campos definidos en el formulario de
+Knobs. 
+
+Storybook es simplemente una aplicación secundaria que usa los componentes de un
+sitio web.
+
 * ¿Por qué usaría Storybook?
   
 * ¿Cómo aprovecharía al máximo Storybook?

@@ -2,7 +2,7 @@
 #+DESCRIPTION: Uso de Kubernetes en aplicaciones reales
 #+AUTHOR: Sergio Benítez
 #+DATE:<2020-12-31 Thu> 
-#+STARTUP content
+#+STARTUP: content
 
 * Intro
 
