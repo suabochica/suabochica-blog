@@ -207,7 +207,13 @@ En conclusión estas son las razones por la cuales se debería usar Storybook:
 - Es fácil experimentar con los diferentes estados de un componente.
 - Se tiene una repercusión directa sobre la implementación de la aplicación.
   
-* ¿Cómo aprovecharía al máximo Storybook?
+* ¿Cómo aprovechar al máximo Storybook?
+
+La mejor forma de aprovechar Storybook es utilizando. Hoy en día, empresas como
+Airbnb y Lonely Planet comparten su biblioteca de componentes UI a través de
+Storybook. Estos son ejemplos de los alcances de Storybook. Estar pendiente a
+sus actualizaciones y revisar con frecuencia el sitio we oficial son prácticas
+recomendables para utilizar Storybook.
   
 * Referencias
   - [[https://app.pluralsight.com/library/courses/4118347c-c328-43a6-b03d-c55efc5366da][Storybook getting started]] 
