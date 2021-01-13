@@ -1,0 +1,188 @@
+#+TITLE: Instalando Storybook
+#+DESCRIPTION: Serie que recopila los beneficios de usar Storybook
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-01-11 Mon> 
+#+STARTUP: fold
+
+
+* Instalando Storybook
+
+Antes de instalar Storybook es necesario instalar [[https://nodejs.org/en/][NodeJS]]. Para validar si se
+tiene instalado el runtime se puede ejecutar el siguiente comando:
+
+#+begin_src
+$ node -v
+v12.0.1
+#+end_src
+
+Una vez instalado NodeJS, se inicializa un proyecto NodeJS corriendo el
+siguiente comando:
+
+#+begin_src
+$ npm init -y
+Wrote to /mnt/c/Users/suabochica/Development/suabochica-storybook/package.json:
+
+{
+  "name": "suabochica-storybook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suabochica/suabochica-storybook.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/suabochica/suabochica-storybook/issues"
+  },
+  "homepage": "https://github.com/suabochica/suabochica-storybook#readme"
+}
+#+end_src
+
+Con el proyecto NodeJS creado es momento de instalar algunas dependencias para
+correr Storybook con React. En ese orden de ideas, se ejecuta este comando:
+
+#+begin_src
+$ npm i -s react react-dom
+#+end_src
+
+~i~ es una abreviatura de ~install~ y ~-s~ es una opción para indicar que el
+paquete se instale en la sección ~dependencies~ del archivo ~package.json~.
+
+Tiempo de instalar Storybook con soporte para React:
+
+#+begin_src
+$ npm i @storybook/react -D
+#+end_src
+
+~-D~ es una opción para indicar que el paquete se instale en la sección
+~devDependencies~ del archivo ~package.json~.
+
+El último paquete que se va a instalar para resolver temas de traspilación es
+~babel-loader~:
+
+#+begin_src
+$ npm i babel-loader @babel/core -D
+#+end_src
+
+Una vez instalado todos los paquetes es tiempo de definir un script dentro del
+archivo ~package.json~ para inicializar el servidor de Storybook. El siguiente
+es un ejemplo del ~package.json~ con el script configurado:
+
+#+begin_src json
+{
+  "name": "suabochica-storybook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "start-storybook"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@storybook/react": "^6.1.14",
+    "babel-loader": "^8.2.2"
+  }
+}
+#+end_src
+
+Por último, se debe crear un directorio con un archivo de configuración en la
+siguiente ruta ~.storybook/config.js~. El contenido de dicho archivo es:
+
+#+begin_src js
+import { configure } from "@storybook/react";
+
+function loadStories() {
+    const req = require.context('../stories', true, /\.stories\.js$/);
+
+    req.keys().forEach(filename => req(filename));
+}
+
+configure(loadStories, module);
+#+end_src
+
+Básicamente se esta indicando que todos los archivos dentro de la carpeta
+~/stories~ son requeridos para la cargar las historias dentro de Storybook.
+Esto implica la creación del drectorio ~/stories~ que por ahora puede estar
+vacio.
+
+Tiempo de probar la instalación ejecutando el script de Storybook:
+
+#+begin_src
+$ npm run storybook
+#+end_src
+
+Si se imprime la siguiente salida:
+
+#+begin_src
+╭──────────────────────────────────────────────────────╮
+│                                                      │
+│   Storybook 6.1.14 started                           │
+│   36 s for preview                                   │
+│                                                      │
+│    Local:            http://localhost:9001/          │
+│    On your network:  http://192.168.224.161:9001/    │
+│                                                      │
+╰──────────────────────────────────────────────────────╯
+#+end_src
+
+Significa que la instalación ha sido exitosa
+
+** Errores
+Eseta configuración no funciona con la version 13.3.0 de node. Al correr el
+comando ~npm run storybook~ se obtiene el siguiente error:
+
+#+begin_src
+suabochica-storybook on 䳭 main [!?] is 📦 v1.0.0 via ⬢ v13.3.0 took 1m36s
+❯ npm run storybook
+
+> suabochica-storybook@1.0.0 storybook /mnt/c/Users/suabochica/Development/suabochica-storybook
+> start-storybook -p 9001
+
+internal/modules/cjs/loader.js:621
+  throw e;
+  ^
+
+Error: No valid exports main found for '/mnt/c/Users/suabochica/Development/suabochica-storybook/node_modules/colorette'
+    at resolveExportsTarget (internal/modules/cjs/loader.js:618:9)
+    at applyExports (internal/modules/cjs/loader.js:499:14)
+    at resolveExports (internal/modules/cjs/loader.js:548:12)
+    at Function.Module._findPath (internal/modules/cjs/loader.js:650:22)
+    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:948:27)
+    at Function.Module._load (internal/modules/cjs/loader.js:854:27)
+    at Module.require (internal/modules/cjs/loader.js:1023:19)
+    at require (internal/modules/cjs/helpers.js:72:18)
+    at Object.<anonymous> (/mnt/c/Users/suabochica/Development/suabochica-storybook/node_modules/autoprefixer/lib/autoprefixer.js:5:17)
+    at Module._compile (internal/modules/cjs/loader.js:1128:30) {
+  code: 'MODULE_NOT_FOUND'
+}
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! suabochica-storybook@1.0.0 storybook: `start-storybook -p 9001`
+npm ERR! Exit status 1
+npm ERR!
+npm ERR! Failed at the suabochica-storybook@1.0.0 storybook script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/suabochica/.npm/_logs/2021-01-12T17_17_11_966Z-debug.log
+#+end_src
+
+La solución es actualizar la versión de node ala 14.15.4
+
+* Agregando Storybook a un proyecto existente
+
+* Aplicaciones de ejemplo
