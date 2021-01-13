@@ -185,4 +185,34 @@ La solución es actualizar la versión de node ala 14.15.4
 
 * Agregando Storybook a un proyecto existente
 
+Para agregar Storybook en un proyecto existente, que generalmente debe estar
+bajo un sistema de control de versiones distribuido como git, tan solo se debe
+ejecutar el siguiente comando:
+
+#+begin_src
+$ npx -p @storybook/cli sb init
+#+end_src
+
+~npx~ es un corredor de paquetes que le permite ejecutar herramientas CLI que
+están alojadas en el registro de node. Con este comando, Storybook realizará los
+siguientes pasos:
+
+1. Detectará el tipo de proyecto (e.g. React)
+2. Agregará soporte sobre Storybook para la aplicación actual.
+3. Instalará las dependencias pertinentes.
+
+Si no ahy ningún percance la salidar de este comando le indicara ejecutar el
+siguiente comando:
+
+#+begin_src
+$ npm run storybook
+#+end_src
+
+Este comando constuye y lanzará el sandbox de Storybook en su navegador. Tras
+bambalinas, el comando inicial lo que hace es crear las carpetas ~/.storybook~ y
+~/stories~ con una configuración por defecto, muy parecida a la que se compartió
+en la sección anterior. Adicionalmente, instala las dependencias de Storybook en
+función al tipo de proyecto y agrega los scripts para lanzar y construir el
+sandbox de Storybook.
+
 * Aplicaciones de ejemplo
