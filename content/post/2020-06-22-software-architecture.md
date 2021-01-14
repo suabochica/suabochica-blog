@@ -20,7 +20,7 @@ Los principales beneficion que se obtienen de los patrones de diseño son:
 - **Son fáciles de reutilizar:** Los patrones de diseño documentan soluciones reutilizables que pueden ser modificados para resovler multiples problemas particulares, ya que no están vinculado a un problema en específico.
 - **Son expresivos:** Los patrones de diseño pueden explicar una admirable solución de manera elegante y sencilla.
 - **Facilitan la comunicación:** Cuando los desarrolladores están familiarizados con los patrones de diseño, pueden comunicarse más facilmente entre sí acerca de las posibles soluciones a un problema determinado.
-- **Previenen la necesidad de refactorizar el código:**Cuando una aplicación está escrita con patrones de diseño, hay una alta probabilidad de no acudir a refactorizar el código más adelante puesto que un patrón de diseño aplicado correctamente a un problema determinado ya es un solucion óptima.
+- **Previenen la necesidad de refactorizar el código:** Cuando una aplicación está escrita con patrones de diseño, hay una alta probabilidad de no acudir a refactorizar el código más adelante puesto que un patrón de diseño aplicado correctamente a un problema determinado ya es un solucion óptima.
 - **Reducen el tamaño del código base:** Los patrones de diseño al ser soluciones elegantes y óptimas, requiren menoscódigo que otras soluciones.
 
 Con estos beneficios en mente, vamos a revisar algunos patrones de diseño aplicados sobre JavaScript. 

@@ -13,6 +13,12 @@ Command to run the hugo server
 hugo server
 ```
 
+Command to build the page
+
+```
+hugo
+```
+
 ## Folder structure
 
 ```
@@ -75,7 +81,7 @@ tags = [
 
 # What is this?
 categories = [ 
-    "Development",
+    "development",
     "golang",
 ]
 +++

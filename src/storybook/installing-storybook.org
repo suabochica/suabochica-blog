@@ -216,3 +216,35 @@ función al tipo de proyecto y agrega los scripts para lanzar y construir el
 sandbox de Storybook.
 
 * Aplicaciones de ejemplo
+
+La empresa Carved Rock Fitness lo ha contratado para que usted colabore con la
+construcción de un e-commerce. Actualmente la compañia cuenta con un home page
+como el que se muestra a continuación:
+
+#+CAPTION: Web Components on a homepage
+[[../images/storybook/01-storybook-interface.png]]
+
+En rojo se resaltan algunos elementos UI del sitio web: una barra de menú, un
+avatar, una barra de búsqueda, etc. La mayoria de estos elementos pueden
+reutilizarse a lo largo de toda la aplicación y perfilarlos como candidatos para
+convertirlos en componentes. Adicionalemnte, algunos precisarán de una
+documentación para determinar como y cuando deben ser utilizados.
+
+Actualmente, Carved Rock Fitness tiene los diseños de dos páginas adicionales;
+la página de producto y la págica del carrito de compras. No obstante estás
+páginas no han sido implementadas aún.
+
+Alguno elementos como la barra de menú y el avatar se repiten en estos bosquejos.
+Sin embargo hay nuevos elementos en estos diseños, como por ejemplo,
+contadores para determinar la cantidad y el tamaño del producto, que al final
+podrián ser el mismo componente con la variación de que para la cantidad se usan
+números y para el tamaño se usan textos. Por otra parte está el botón de agregar
+al carrito, cuyos estilos pueden ser reutilizados en otras páginas.
+
+El punto es que cada uno de los bosquejos son una oportunidad para luchar en
+contra de los problemas de comunicación entre los roles que participan en la
+construcción del sitio web, promoviendo un camino que parte desde la frustación y
+se dirige hacia la colaboración de equipo, convirtiento estos elementos de UI,
+en componentes y por último en historias. Una vez se consoliden las historias,
+el equipo estará en capacidad de validar si las implementaciones coinciden con
+los diseños establecidos.

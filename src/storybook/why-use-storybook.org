@@ -106,7 +106,7 @@ herramienta flexible que se adpata a cualquier framework.
 Para identificar como funciona Storybook primero se va a revisar su interfaz
 gráfica:
 
-#+CAPTION: rolling update step 1
+#+CAPTION: Storybook GUI
 [[../images/storybook/01-storybook-interface.png]]
 
 En la barra lateral de la GUI, se tiene la lista de todas las historias. Dicha
