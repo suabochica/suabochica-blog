@@ -18,7 +18,7 @@ En el proyecto que se compartió al inicio de esta publicación, en la rama
 ~m3-installing-storybook~, se tiene el siguiente estado: Dos historias están ya
 definidas, Welcome y Button, y dentro de la historia Button se encuentran dos
 items, ~with text~ y ~with some emoji~. Estos dos items son ejemplos de
-historias. Al revisar los contenido de cada uno, se obtiene que la etiquta del
+historias. Al revisar los contenido de cada uno, se obtiene que la etiqueta del
 botón es diferente, demostrando así dos posibles usos para el componente Button.
 
 Cada componente de ejemplo tiene un conjunto de historias que muestran los
@@ -144,11 +144,212 @@ configure(loadStories, module);
 Se puede notar que lo que se agregó en este código fueron las importaciones de
 los estilos definidos por Bootstrap en sus respectivos archivos. Al salvar estos
 cambios, el servidor de Storybook va a reconstruir los archvios y si se revisa
-nuevamente el navegador, el botón del CallToAction ahora tiene un fondo amarillo
+nuevamente el navegador, el botón del CallToAction ahora tiene un fondo naranja
 y un texto blanco, evidenciando que los selectores definidos en el componente
 están consumiendo los estilos establecidos por Bootstrap.
 
+Ahora bien, regresando al estado actual del CallToAction, el botón solo está
+recibiendo una etiqueta y no se esta suministrando una vía para atender el
+evento del clic. Afortunadamente, Storybook cuenta con un complemento que viene
+por defecto en su istalación llamado _actions_. Para usarlo, se deben realizar
+los siguientes cambios en el archivo ~stories/button.stories.js~:
+
+#+begin_src javascript
+// stories/button.stories.js
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions;
+import CallToAction from '../components/cta-button';
+
+storiesOf('Button', module)
+  .add('Call to Action', () => (
+    <CallToAction
+      label="Submit"
+      onClick={action("button-click")}
+    />
+));
+#+end_src
+
+Primero, se importo el complemento directamente desde Storybook, y luego se
+agregó una nueva propiedad llamada ~onClick~ en la definición del componente
+CallToAction. Si se revisa el navegador, se pueda dar cuenta que no hay ningún
+cambio visual sobre el componente, pero ahora, si se da clic sobre el botón, en
+el panel de herramienta se vera un registro del evento ejecuto sobre el botón.
+Para ete caso, bajo la pestaña Actions se va imprimir el mensaje "button-click".
+
+Esto es un pasabocas de los alcances de los complementos de Storybook. Este
+tema sera desarrollado más adelante.
+
 * Usando assets en la historia
+
+Hay casos en donde los componentes requieren de assets para poder implementarse.
+Un ejemplo explicito es un banner. Bajo el contexto del e-commerce se requieren
+dos tipos de banner: Major y Minor. Los siguientes snippets corresponden a las
+implementaciones de estos componente en React:
+
+#+begin_src javascript
+// components/major.banner.js
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const MajorBanner = ({
+  title, subtitle, body, photo,
+}) => (
+  <div className="jumbotron jumbotron-fluid crf-hero d-flex" style={{ backgroundImage: `url("./${photo}")` }}>
+    <div className="container d-flex flex-column justify-content-center align-items-sm-stretch align-items-md-center">
+      <h1 className="col-sm-12">{title}</h1>
+      <h2>{subtitle}</h2>
+      <p className="lead">{body}</p>
+    </div>
+  </div>
+);
+
+MajorBanner.propTypes = {
+  /** The last line of the text */
+  body: PropTypes.string,
+  /** The URL to the background image */
+  photo: PropTypes.string,
+  /** The middle line of text. Stands out due to color */
+  subtitle: PropTypes.string,
+  /** The top and most prominent portion of the text */
+  title: PropTypes.string,
+};
+
+MajorBanner.defaultProps = {
+  body: null,
+  photo: null,
+  subtitle: null,
+  title: null,
+};
+
+export default MajorBanner;
+#+end_src
+  
+#+begin_src javascript
+// components/minor.banner.js
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const MinorBanner = ({
+  title, subtitle, body, leftPhoto, rightPhoto,
+}) => (
+  <div className="container crf-cigar-banner">
+    <div className="row">
+      <div className="crf-cigar-banner--container d-flex justify-content-center align-items-center">
+        {
+                    leftPhoto && <img alt="Brown Boots" className="order-sm-0 order-md-0" src={leftPhoto} />
+                }
+
+        <div className="crf-cigar-banner--text order-sm-2 order-md-1">
+          <div className="text-light">{title}</div>
+          <div className="text-secondary">{subtitle}</div>
+          <div className="text-primary">{body}</div>
+        </div>
+        {
+                    rightPhoto && <img alt="Grey Boots" className="order-sm-1 order-md-2" src={rightPhoto} />
+                }
+      </div>
+    </div>
+  </div>
+);
+
+MinorBanner.propTypes = {
+  /** The last line of the text */
+  body: PropTypes.string,
+  /** The URL to the left image */
+  leftPhoto: PropTypes.string,
+  /** The URL to the right image */
+  rightPhoto: PropTypes.string,
+  /** The middle line of text. Stands out due to color */
+  subtitle: PropTypes.string,
+  /** The top and most prominent portion of the text */
+  title: PropTypes.string,
+};
+
+MinorBanner.defaultProps = {
+  body: null,
+  leftPhoto: null,
+  rightPhoto: null,
+  subtitle: null,
+  title: null,
+};
+
+export default MinorBanner;
+#+end_src
+
+Notesé que ambos componentes requiere como propiedades algunas fotografías.
+Ahora es tiempo de definir la historia para el banner. La historia se va a
+organizar de la siguiente manera:
+
+- Major Banner
+  - With Only Tytle
+  - With All Text Options
+- Minor Banner
+  - No Picture
+  - With Pictures
+
+En consecuencia, se va a crear un archivo ~stories/banner.stories.js~ con el
+siguiente contenido:
+
+#+begin_src javascript
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import MajorBanner from '../components/major.banner';
+import MinorBanner from '../components/minor.banner';
+
+storiesOf('Components | Banners/Major', module)
+  .add('With Only Title', () => (
+    <MajorBanner title="Banner Title" photo="People Outdoors/shutterstock_116403520.jpg" />
+  ))
+  .add('With All Text Options', () => (
+    <MajorBanner
+      photo="People Outdoors/shutterstock_116403520.jpg"
+      title="Banner Title"
+      subtitle="Banner Subtitle"
+      body="Banner Body"
+    />
+  ));
+
+storiesOf('Components | Banners/Minor', module)
+  .add('No Pictures', () => (
+    <MinorBanner title="Banner Title" subtitle="Banner Subtitle" body="Banner Body" />
+  ))
+  .add('With Pictures', () => (
+    <MinorBanner
+      title="Banner Title"
+      subtitle="Banner Subtitle"
+      body="Banner Body"
+      leftPhoto="Products/boots/shutterstock_66842440.jpg"
+      rightPhoto="Products/boots/shutterstock_1121278055.jpg"
+    />
+  ));
+#+end_src
+
+Se se revisa el estado actualmente de las nuevas historias que se agregaron, se
+observa que fueron incluidas dentro del panel lateral de Storybook, pero los
+componentes se están renderizando sin las fotografías. Esto se debe a que
+Storybook no tiene las herramienta para encontrar las rutas especificadas en las
+propiedades ~photo~ del MajorBanner y ~leftPhoto~, ~rightPhoto~ del MinorBanner.
+
+Para solucionar este percance, se debe actualizar el script de Storybook en el
+~packages.json~ indicando la carpeta en donde se van a almacenar los assets del
+proyecto. Para esta caso puntual el directorio es ~/Images~ y en consecuencia el
+script quedaría así:
+
+#+begin_src json
+// package.json
+...
+  "scripts": {
+    "storybook": "start-storybook -s ./Images -p 6006",
+  },
+...
+#+end_src
+
+Con la opción ~-s~ se especifica la ruta en donde se van a almacenar los
+archivos estáticos del proyecto. El gran beneficio de realizar esta
+configuración es que ahora los componentes se están perfilando para consolidarse
+en la applicación final
+
 * Agrupando historias
 * Tematizando Storybook
 * Configurando Jest con Storybook
