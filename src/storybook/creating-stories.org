@@ -1,0 +1,162 @@
+#+TITLE: Creando historias
+#+DESCRIPTION: Serie que recopila los beneficios de usar Storybook
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-01-14 Thu> 
+#+STARTUP: fold
+
+Los secciones abordadas en este articulo, toman como referencia el proyecto
+alojado en el siguiente repositorio de github:
+
+- https://github.com/taylonr/storybook-getting-started
+
+* Creando historias
+Una historia captura el estado renderizado de un componente de la interfaz de
+usuario. Los desarrolladores escriben varias historias por componente que
+describen todos los estados "interesantes" que un componente puede soportar.
+
+En el proyecto que se compartió al inicio de esta publicación, en la rama
+~m3-installing-storybook~, se tiene el siguiente estado: Dos historias están ya
+definidas, Welcome y Button, y dentro de la historia Button se encuentran dos
+items, ~with text~ y ~with some emoji~. Estos dos items son ejemplos de
+historias. Al revisar los contenido de cada uno, se obtiene que la etiquta del
+botón es diferente, demostrando así dos posibles usos para el componente Button.
+
+Cada componente de ejemplo tiene un conjunto de historias que muestran los
+estados que soporta. Puede explorar las historias en la interfaz de usuario y
+ver el código detrás de ellas en archivos que terminan en ~.stories.js~ o
+~.stories.ts~. Las historias están escritas en Component Story Format (CSF), un
+estándar basado en módulos de ES6, para escribir ejemplos de componentes.
+
+Si se revisa el proyecto a nivel del editor de texto, se tiene el siguiente
+contenido dentro de archivo ~stories/index.stories.js~:
+
+#+begin_src js
+// stories/index.stories.js
+  
+import React from 'react';
+
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+import { linkTo } from '@storybook/addon-links';
+
+import { Button, Welcome } from '@storybook/react/demo';
+
+storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
+
+storiesOf('Button', module)
+  .add('with text', () => (
+    <Button onClick={action('clicked')}>Hello Button</Button>
+  ))
+  .add('with some emoji', () => (
+    <Button onClick={action('clicked')}>
+      <span role="img" aria-label="so cool">
+        😀 😎 👍 💯
+      </span>
+    </Button>
+  ));
+
+#+end_src
+
+Es evidente que en este archivo se están enlistando cada una de las historias
+que se describieron anteriormente. Cada grupo de historias se empieza con la
+función ~storiesOf~. Debajo de la función ~storiesOf~ correspondiente al Button
+se tienen dos instancias de la función ~add~, y es así como se definen las
+historias individuales en grupos de historias más grandes. Como se puede dar
+cuenta, dentro de la función ~add~ se retornan componentes React. En resumen,
+aquí están las partes de una historia.
+
+   1. El título del grupo: Generalmente suele ser el nombre del componente (e.g. Button).
+   2. El titulo de la historia: A menudo suele describir los estados de la historia (e.g. with text).
+   3. El cuerpo de la historia: Son los componentes a renderizar junto con sus respectivas propiedades.
+
+#+begin_notes
+Nota: Cabe resaltar que la configuración de Storybook ha ido actualizandose con
+el lanzamiento de las últimas versiones. El artículo [[https://medium.com/storybookjs/declarative-storybook-configuration-49912f77b78][Declarative Storybook configuration]]
+aborda de manera clara la transición a los nuevos estándares de configuración.
+#+end_notes
+
+* Escribiendo su primera historia
+
+La primera historia que se va a escribir es otro uso de Button. Un caso
+paritcular de un botón es el /call to action/ para incentivar una acción en el
+usuario, como por ejemplo agregar un producto a un carro de compras. A
+continuación se muestra el códido de este elemento:
+
+#+begin_src javascript
+// components/form/cta-button.js
+import React from 'react';
+import Button from './button';
+
+const CallToAction = props => (
+  <Button className="crf-button crf-button--call-to-action" {...props} />
+);
+
+export default CallToAction;
+#+end_src
+
+Para empezar, este componente importa el genérico Button. Luego especifíca
+algunos nombres de clases para estilos a través del atributo ~className~, ya que
+és la palabra reservada en react para agregar selectores CSS en nuestro
+componente. Por último se usa el spread operator sobre los props
+(i. e. ~{...props}~) para pasar todos los atributos que precisa el componente.
+Con esta sintaxis se esta diciendo que todos los atributos configurados en el
+CTA se van a aplicar sobre el botón base.
+
+Ahora es tiempo de visualizar el componente en Storybook. Para ello, se va a
+crear el siguiente archivo dentro de la carpeta ~/stories~:
+
+#+begin_src javascript
+// stories/button.stories.js
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import CallToAction from '../components/cta-button';
+
+storiesOf('Button', module)
+  .add('Call to Action', () => (
+    <CallToAction label="Submit" />
+));
+#+end_src
+
+Con este cambio, al abrir nuevamente Storybook en el navegador se puede ver que
+la historia CallToAction fue agregada al grupo Button, así este en un archivo
+diferente. Por ahora, este bóton no tienen ningun estilo en particular y es
+momento de personalizarlos, habilitando los selectores CSS definidos para el
+componente. Para lograr este objetivo se debe actualizar el archivo ~config.js~.
+
+#+begin_src javascript
+// .storybook/config.js
+import { configure } from '@storybook/react';
+
+import "../bootstrap-reboot.min.css"
+import "../bootstrap.css"
+import "../bootstrap-grid.css"
+import '../main.css';
+
+// automatically import all files ending in *.stories.js
+const req = require.context('../stories', true, /\.stories\.js$/);
+function loadStories() {
+  req.keys().forEach(filename => req(filename));
+}
+
+configure(loadStories, module);
+#+end_src
+
+Se puede notar que lo que se agregó en este código fueron las importaciones de
+los estilos definidos por Bootstrap en sus respectivos archivos. Al salvar estos
+cambios, el servidor de Storybook va a reconstruir los archvios y si se revisa
+nuevamente el navegador, el botón del CallToAction ahora tiene un fondo amarillo
+y un texto blanco, evidenciando que los selectores definidos en el componente
+están consumiendo los estilos establecidos por Bootstrap.
+
+* Usando assets en la historia
+* Agrupando historias
+* Tematizando Storybook
+* Configurando Jest con Storybook
+
+#+begin_notes
+Para poder utilizar enzyme, es necesario tener la versión 16 de React ya que
+actualmente enzyme no tiene soporte para React 17.
+#+end_notes
+
+* Problemas comunes y recordatorios
+
