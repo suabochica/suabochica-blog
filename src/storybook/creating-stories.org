@@ -292,12 +292,13 @@ En consecuencia, se va a crear un archivo ~stories/banner.stories.js~ con el
 siguiente contenido:
 
 #+begin_src javascript
+// stories/banner.stories.js
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import MajorBanner from '../components/major.banner';
 import MinorBanner from '../components/minor.banner';
 
-storiesOf('Components | Banners/Major', module)
+storiesOf('Major Banner', module)
   .add('With Only Title', () => (
     <MajorBanner title="Banner Title" photo="People Outdoors/shutterstock_116403520.jpg" />
   ))
@@ -310,7 +311,7 @@ storiesOf('Components | Banners/Major', module)
     />
   ));
 
-storiesOf('Components | Banners/Minor', module)
+storiesOf('Minor Banner', module)
   .add('No Pictures', () => (
     <MinorBanner title="Banner Title" subtitle="Banner Subtitle" body="Banner Body" />
   ))
@@ -351,6 +352,79 @@ configuración es que ahora los componentes se están perfilando para consolidar
 en la applicación final
 
 * Agrupando historias
+Storybook es una herramienta utilizada para realizar prototipado rápido y es
+útil saber rapidamente que componentes existen. Para ello, definir una
+convención para organizar las historias es de gran ayuda, y Storybook ofrece
+varias sintáxis para establecer la estructura del directorio de historias:
+
+Actualmente, el navegador despliega las siguientes historias:
+
+#+CAPTION: Current stories organization
+[[../images/storybook/03-storybook-current-stories.png]]
+
+La primera asociación a realizar es la de agrupar el Major y el Minor Banner, en
+una categoria Banner. Para lograr esta jerarquía se debe actualizar el título
+de las historias del banner bajo la siguiente convención:
+
+#+begin_src javascript
+// stories/banner.stories.js
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import MajorBanner from '../components/major.banner';
+import MinorBanner from '../components/minor.banner';
+
+storiesOf('Banners/Major', module)
+  .add('With Only Title', () => (...))
+  .add('With All Text Options', () => (..));
+
+storiesOf('Banners/Minor', module)
+  .add('No Pictures', () => (...))
+  .add('With Pictures', () => (...));
+#+end_src
+
+Con este cambio en el título, el navegador va a organizar las historia como se
+muestra en la siguiente imagen:
+
+#+CAPTION: Organizing stories by component
+[[../images/storybook/04-storybook-grouping-stories-by-component.png]]
+
+
+Se puede agregar otro nivel en el árbol utilizando el carácter ~/~. Por ejemplo,
+si el título de la historia se cambia por ~'Banners/Adverstiment/Major'~, se
+mostrarían tres niveles en la estructura del árbol. Esta covención es
+equivalente a las rutas de los archivos definidas a través de una terminal.
+
+Adicionalmente, Storybook ofrece otra sintaxis para agrupar las historias dentro
+de etiquetas, tal y como se muestra en este snippet:
+
+#+begin_src javascript
+// stories/banner.stories.js
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import MajorBanner from '../components/major.banner';
+import MinorBanner from '../components/minor.banner';
+
+storiesOf('Component | Banners/Major', module)
+  .add('With Only Title', () => (...))
+  .add('With All Text Options', () => (..));
+
+storiesOf('Component | Banners/Minor', module)
+  .add('No Pictures', () => (...))
+  .add('With Pictures', () => (...));
+#+end_src
+
+Ahora, el panel lateral de Storybook organizará las historias con el formato de
+abajo:
+
+#+CAPTION: Organizing stories by label
+[[../images/storybook/05-storybook-grouping-stories-by-label.png]]
+
+Esta ofertas en sintáxis ayudan a romper Storybook en distinciones
+significativas. Algunas etiquetas comunes son 'Foundational' en donde se agrupan
+cosas como la tipografía y el espaciado. Otra es 'Form elements' para reunir
+elementos como botones y cajas de entrada de texto. En últimas la elección
+de un esquema de organización realmente la toma el equipo de trabajo.
+
 * Tematizando Storybook
 * Configurando Jest con Storybook
 
