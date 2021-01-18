@@ -426,6 +426,69 @@ elementos como botones y cajas de entrada de texto. En últimas la elección
 de un esquema de organización realmente la toma el equipo de trabajo.
 
 * Tematizando Storybook
+
+Otro de los atractivos de Storybook es que es una herramienta personalizable.
+Eso significa, que para cuestiones de marca se pueden hacer una serie de
+configuraciones para evitar que Storybook se visualice como una herramienta
+genérica.
+
+Siguiendo con el hilo del e-commerce, a continuación se va a crear un archivo
+~.storybook/crfTheme.js~ en donde se va a configurar el tema de la marca sobre
+Storybook:
+
+#+begin_src javascript
+// .storybook/crfTheme.js
+import { create } from '@storybook/theming';
+
+export default create({
+    base: 'dark',
+    brandTitle: 'Carved Rock Fitness',
+    brandImage: 'Logos/carved-rock-logo-yellow.png',
+    colorSecondary: '#faa541'
+});
+#+end_src
+
+Lo mas importante en este snippet es la importación de la función ~create~, la
+cual recibe como argumento un objeto con las siguientes configuraciones:
+
+- La propiedad ~base~ indica que nuestra tema va a ser oscuro, en vez de claro.
+- La propiedad ~brandTitle~ establece el título de la marca
+- La propiedad ~brandImage~ usa el logo de la marca
+- La propiedad ~colorSecondary~ actualiza el color de fondo de la historia consultada
+
+Para poder utilizar este archivo de configuración se debe acualizar el archivo
+~.storybook/config.js~.
+
+#+begin_src javascript
+// .storybook/config.js
+import { addParameters, configure } from '@storybook/react';
+import crfTheme from './crfTheme';
+
+...
+
+addParameters({
+  options: {
+    theme: crfTheme
+  }
+})
+
+configure(loadStories, module);
+#+end_src
+
+Lo relevante en este snippet en cuanto personalización de tema es la importación
+de la función ~addParameters~ y el archivo ~crfTheme~ implementado anteriormente.
+La función ~addParameters~ recibe como argumento un objeto con las posibles
+opciones personificables de Storybook. Para este caso puntual a la llave ~theme~
+se le pasa el valor ~crfTheme~. Si se actualiza el navegador, ahora la interfaz
+de Storybook será como:
+
+#+CAPTION: Theming Storybook
+[[../images/storybook/06-storybook-theming.png]]
+
+Storybook tiene muchos más elementos que son personalizables. Para saber más
+sobre dichas opciones se hace la invitación a revisar la documentación oficial
+de Storybook en la sección [[https://storybook.js.org/docs/react/configure/theming][Theming]].
+
 * Configurando Jest con Storybook
 
 #+begin_notes
