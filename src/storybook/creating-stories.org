@@ -425,6 +425,7 @@ cosas como la tipografía y el espaciado. Otra es 'Form elements' para reunir
 elementos como botones y cajas de entrada de texto. En últimas la elección
 de un esquema de organización realmente la toma el equipo de trabajo.
 
+
 * Tematizando Storybook
 
 Otro de los atractivos de Storybook es que es una herramienta personalizable.
@@ -489,12 +490,18 @@ Storybook tiene muchos más elementos que son personalizables. Para saber más
 sobre dichas opciones se hace la invitación a revisar la documentación oficial
 de Storybook en la sección [[https://storybook.js.org/docs/react/configure/theming][Theming]].
 
-* Configurando Jest con Storybook
-
-#+begin_notes
-Para poder utilizar enzyme, es necesario tener la versión 16 de React ya que
-actualmente enzyme no tiene soporte para React 17.
-#+end_notes
-
 * Problemas comunes y recordatorios
+
+A continuación se recopila una serie de problemas comunes que se presentan con
+storybook:
+
+- La historia no se muestra. Para solucionar este inconveniente, aseguresé de
+  que el nombre del archvio es correcto y coincide con la expresión definida
+  en el archivo de configuración. Para este caso la ruta es ~../stories~
+- Los componentes no estan con los estilos esperados. Para resolver este
+  problema recuerde importar los archivos CSS en el ~config.js~
+- Los assets están perdidos. Para ajustar este contratiempo, recuerde indicar
+  la ruta de los archivos éstaticos en el script de storybook definido en el
+  ~package.json~.
+ 
 
