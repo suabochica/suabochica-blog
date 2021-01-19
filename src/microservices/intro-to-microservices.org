@@ -45,7 +45,7 @@ equipo de trabajo para que se desenvuelvan a su propia velocidad. Uno de los
 mayores beneficios ofrecidos por los microservicios es que no es necesario
 coordinar la entrega de trabajo. El propósito es dejar que cada uno liberé su
 código bajo su propio ciclo. Para ello es necesario que las interfaces sean
-estables y que cada pieza de codigo que se despliega es independiente de otra.
+estables y que cada pieza de código que se despliega es independiente de otra.
 No se debe pedir permiso para publicar los cambios, pero si es necesario
 comunicar los cambios que van a ser publicados.
 

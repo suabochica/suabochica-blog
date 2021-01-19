@@ -158,7 +158,7 @@ los siguientes cambios en el archivo ~stories/button.stories.js~:
 // stories/button.stories.js
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions;
+import { action } from '@storybook/addon-actions';
 import CallToAction from '../components/cta-button';
 
 storiesOf('Button', module)

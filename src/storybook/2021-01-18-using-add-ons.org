@@ -18,7 +18,7 @@ como se configuró el uso de este complemento:
 // stories/button.stories.js
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions;
+import { action } from '@storybook/addon-actions';
 import CallToAction from '../components/cta-button';
 
 storiesOf('Button', module)
@@ -46,6 +46,94 @@ Los complementos son muy útiles para abordar los posibles comportamientos que
 puede manifestar un componente.
   
 * Complementos con información
+
+Una de las funcionalidades más llamativas de Storybook es la capacidad de ver
+exactamente lo que se necesita implementar para tener el componente funcionando
+en la aplicación. Esto se logra a través del complemente ~info~. Para empezar 
+a utilizarlo primero debe ser instalado:
+
+#+begin_src
+$ npm i -D @storybook/addon-info
+#+end_src
+
+Una vez instalado, se puede utilizar en los componentse tal y como se muestra
+a continuación, en el componentse Button:
+  
+#+begin_src javascript
+// stories/button.stories.js
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+import { withInfo } from '@storybook/addon-info';
+import CallToAction from '../components/cta-button';
+
+storiesOf('Button', module)
+  .addDecorator(withInfo)
+  .add('Call to Action', () => (
+    <CallToAction
+      label="Submit"
+      onClick={action("button-click")}
+    />
+));
+#+end_src
+
+Este complemento se implementa ligeramente diferente al de ~actions~, ya que
+requiere del uso de la función ~addDecorator~ de Storybook para React, el cual
+retorna un compenente empaquetado. Si revisa el navegador se obtiene el
+siguiente resultado:
+
+#+CAPTION: Add-on info show button
+[[../images/storybook/07-storybook-add-on-info-button.png]]
+
+Al dar clic en el botón Show Info, la vista cambia por:
+
+#+CAPTION: Add-on info show info
+[[../images/storybook/08-storybook-add-on-info-show.png]]
+
+
+Ahora está disponible la información necesaria para usar el componente
+adecuadamente. La visualización de la documentación puede modificarse, ya que la
+función ~withInfo~ puede recibir como argumento un objeto de configuración. Por
+ejemplo, se puede considerar innecesario que se tenga que dar clic en el botón
+Show Info para ver la información. Hay una vista alternativa en donde el
+componente se muestra dentro de la documentación. Para habilitarla se pasa el 
+siguiente objeto com parámetro de la función ~withInfo~,
+
+#+begin_src javascript
+// stories/button.stories.js
+...
+storiesOf('Button', module)
+  .addDecorator(withInfo({
+     inline: true,
+   }))
+));
+#+end_src
+
+Este complemento es bastante útil pero actualmente solo esta habilitado en el 
+componente Button. Si se revisa el componente Banner, no hay ningún botón Show
+Info que permita visualizar la documentación del Banner. Para habilitar el 
+complemento ~info~ globalmente en Storybook, se deben deshacer los cambios 
+mostrados previamente, y se debe actualizar el ~.storybook/config.js~, con el
+siguiente código: 
+
+#+begin_src javascript
+// .storybook/config.js
+import { addDecorators, addParameters, configure } from '@storybook/react';
+import { withInfo } from '@storybook/addon-info';
+import crfTheme from './crfTheme';
+
+...
+
+addDecorator(withInfo({
+    inline: true
+}));
+
+configure(loadStories, module);
+#+end_src
+
+Con este cambio, se podrá visualizar la documentación de todos los componentes
+que estan alojados en Storybook.
+
 * Knobs
 * Sobreescribiendo configuraciones
 * Revisión
