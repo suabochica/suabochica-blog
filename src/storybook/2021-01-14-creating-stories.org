@@ -425,7 +425,6 @@ cosas como la tipografía y el espaciado. Otra es 'Form elements' para reunir
 elementos como botones y cajas de entrada de texto. En últimas la elección
 de un esquema de organización realmente la toma el equipo de trabajo.
 
-
 * Tematizando Storybook
 
 Otro de los atractivos de Storybook es que es una herramienta personalizable.

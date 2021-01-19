@@ -1,0 +1,51 @@
+#+TITLE: Usando Complementos
+#+DESCRIPTION: Serie que recopila los beneficios de usar Storybook
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-01-18 Thu> 
+#+STARTUP: fold
+* Usando complementos
+
+Tener la disposición de como su componente se va a ver dentro de la aplicación
+final es un primer paso importante, pero ser capaz de ver como se comportará es
+igual de importante. Es tiempo de revisar como se interactua con un componente
+dentro de Storybook.
+
+En la publicación pasada se dió un vistazo al complemento ~action~ para atender
+el evento del clic sobre el componente botón. Es conveniente revisar nuevamente
+como se configuró el uso de este complemento:
+
+#+begin_src javascript
+// stories/button.stories.js
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions;
+import CallToAction from '../components/cta-button';
+
+storiesOf('Button', module)
+  .add('Call to Action', () => (
+    <CallToAction
+      label="Submit"
+      onClick={action("button-click")}
+    />
+));
+#+end_src
+
+Dos cosas a reslatar de este snippet. Primero el complemento se importa
+directamente desde Storybook. Luego, la función ~action~ se usa dentro del
+componente CallToAction al indicar que la función ~onClick~ va a llamar a la
+función ~action~. Dentro de esta última función el mensaje ~"button-click~ será
+procesado y se obtiene como salida un registro de la ejecución del evento dentro
+del panel Actions de la interfaz de Storybook.
+
+Por otra parte, un patrón que se puede encontrar entre los complementos es que
+suelen agregar funcionalidades a la previsualización de la historia y a la
+sección de paneles que conforman la parte superior e inferior del GUI de
+Storybook respectivamente.
+
+Los complementos son muy útiles para abordar los posibles comportamientos que 
+puede manifestar un componente.
+  
+* Complementos con información
+* Knobs
+* Sobreescribiendo configuraciones
+* Revisión
