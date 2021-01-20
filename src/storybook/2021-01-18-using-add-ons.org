@@ -135,5 +135,106 @@ Con este cambio, se podrá visualizar la documentación de todos los componentes
 que estan alojados en Storybook.
 
 * Knobs
+  
+Un complemento bastante útil en Storybook es Knobs, ya que permite editar las
+propiedades de un componente dinamicamente.
+
+El primer paso es instalar el addon:
+
+#+begin_src 
+$ npm i @storybook/addon-knobs -D
+#+end_src
+
+Luego, se tienen que hacer las siguientes modificaciones en el archivo
+~.storybook/config.js~: 
+
+#+begin_src javascript
+// .storybook/config.js
+import { addDecorators, addParameters, configure } from '@storybook/react';
+import { withInfo } from '@storybook/addon-info';
+import { withKnobs } from '@storybook/addon-knobs';
+import crfTheme from './crfTheme';
+
+...
+
+addDecorator(withInfo({
+    inline: true
+}));
+
+addDecorator(withKnobs);
+
+configure(loadStories, module);
+#+end_src
+
+Un detalle a considerar es el orden en el que se agregan los decoradores.
+Siempre el decorador del complemento ~info~ tiene que ser el primero para evitar
+comportamientos inesperados.
+
+Se prosige con la actuialización en el código de alguno de los
+componentes para consumir knobs. En este caso se va a utilizar el MajorBanner
+With All Text Options como ejemplo:
+
+#+begin_src javascript
+// stories/banner.stories.js
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { text } from '@storybook/addon-knobs';
+import MajorBanner from '../components/major.banner';
+import MinorBanner from '../components/minor.banner';
+
+storiesOf('Major Banner', module)
+  .add('With Only Title', () => (...))
+  .add('With All Text Options', () => {
+    const title = text('Title', 'BannerTitle');
+    return (
+      <MajorBanner
+        photo="People Outdoors/shutterstock_116403520.jpg"
+        title={title}
+        subtitle="Banner Subtitle"
+        body="Banner Body"
+      />
+    )
+  });
+
+storiesOf('Minor Banner', module)
+  .add('No Pictures', () => (...))
+  .add('With Pictures', () => (...));
+#+end_src
+
+Dos cosas a resaltar en este snippter. Primero, la importación de la función
+~text~ desde knobs. Segundo, el uso de esta función en la historia With All Text
+Options se ve reflejado en una asignación a la variable ~title~ cuyo valor es
+igual al llamado de la función ~text~, la cual recibe dos argumentos: El nombre
+de la propiedad, y el valor por defecto con el que se inicializa la propiedad.
+
+Para terminar el consumo del complemento knobs en el componente, se actualiza la
+propiedad ~title~ en el ~<MajorBanner>~ para que  referencie la variable que se
+definió previamente.
+
+El último paso es agregar el complemento ~knobs~ al registro de complementos en 
+Storybook. En consecuencia el contenido del archivo ~.storybook/addons.js~ 
+debe ser el siguiente:
+
+#+begin_src javascript
+// .storybook/addons.js
+import '@storybook/addon-actions/register';
+import '@storybook/addon-info/register';
+import '@storybook/addon-knobs/register';
+#+end_src
+
+Se guarda el archivo y se reinicia el servidor de Storybook. Al revisar en el
+navegador se tendra una interfaz como la que se muestra a continuación:
+ 
+#+CAPTION: Add-on knobs with a title
+[[../images/storybook/09-storybook-add-on-knobs.png]]
+
+Ahora es tiempo de poner en práctica el poder de ~knobs~. Si se cambia la
+entrada con el texto 'Banner Title' por 'Knobs' se puede observar como el texto
+del título en el componente se actualiza a 'Knobs'.
+
+Knobs permite hacer más que edición de textos. Algunas opciones disponibles son
+booleanos, números, objetos, selects, fechas o incluso archivos. Para ver la
+lista de los knobs disponibles por facor revisar el siguiente [[https://github.com/storybookjs/storybook/tree/master/addons/knobs][enlace]].
+
 * Sobreescribiendo configuraciones
 * Revisión
