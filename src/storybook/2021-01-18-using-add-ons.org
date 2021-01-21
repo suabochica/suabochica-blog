@@ -237,4 +237,134 @@ booleanos, números, objetos, selects, fechas o incluso archivos. Para ver la
 lista de los knobs disponibles por facor revisar el siguiente [[https://github.com/storybookjs/storybook/tree/master/addons/knobs][enlace]].
 
 * Sobreescribiendo configuraciones
+
+Otra de las funcionalidades atractivas de Storybook es que permite establecer 
+configuraciones a nivel global, grupal e individual.
+
+Todas las configuraciones globales están agrupadas en el archivos
+~.storybook/config.js~
+
+#+begin_src javascript
+// .storybook/config.js
+import { addParameters, configure, addDecorator } from '@storybook/react';
+import { withInfo } from '@storybook/addon-info';
+import { withKnobs } from '@storybook/addon-knobs';
+
+import crfTheme from './crfTheme';
+
+import "../bootstrap-reboot.min.css"
+import "../bootstrap.css"
+import "../bootstrap-grid.css"
+import '../main.css';
+
+// automatically import all files ending in *.stories.js
+const req = require.context('../stories', true, /\.stories\.js$/);
+function loadStories() {
+  req.keys().forEach(filename => req(filename));
+}
+
+addParameters({
+  options: {
+    theme: crfTheme
+  }
+})
+
+addDecorator(withInfo({
+  inline: true
+}));
+
+addDecorator(withKnobs);
+
+configure(loadStories, module);
+#+end_src
+
+Ahora bien, se ha decidido que el componente MajorBanner, no debe mostrar su
+documentación bajo el formato ~iniline~ que esta definido como una configuración
+global. Para sobreescribir este formato se hace la siguiente modificación en el
+archivo ~stories/banner.stories.js~
+
+#+begin_src javascript
+// stories/banner.stories.js
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { text } from '@storybook/addon-knobs';
+import MajorBanner from '../components/major.banner';
+import MinorBanner from '../components/minor.banner';
+
+storiesOf('Major Banner', module)
+  .addParameters({
+     info: {
+       inline: false
+     }
+   }).add('With Only Title', () => (...))
+  .add('With All Text Options', () => {
+    const title = text('Title', 'BannerTitle');
+    return (
+      <MajorBanner
+        photo="People Outdoors/shutterstock_116403520.jpg"
+        title={title}
+        subtitle="Banner Subtitle"
+        body="Banner Body"
+      />
+    )
+  });
+
+storiesOf('Minor Banner', module)
+  .add('No Pictures', () => (...))
+  .add('With Pictures', () => (...));
+#+end_src
+
+Si se examina Storybook dentro del navegador, se puede evidenciar que las
+historias de MajorBanner ya no siguen el formato ~inline~ y muestran el botón
+Show Info en la parte superior derecha del visualizador de historias. No
+obstante, tanto el Button como el MinorBanner siguen mostrandose bajo el formato
+~iniline~. Es así como se sobreescribe una configurarción global de un
+complemento en un grupo de historias.
+
+Anular las configuraciones globales, también puede hacerse a nivel de historias.
+A continuación se muestra como se va a sobreescribir el complemento ~info~ en
+la historia MinorBanner - No Pictures, para deshabilitar la vista ~inline~ en la
+historia: 
+
+#+begin_src javascript
+// stories/banner.stories.js
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { text } from '@storybook/addon-knobs';
+import MajorBanner from '../components/major.banner';
+import MinorBanner from '../components/minor.banner';
+
+storiesOf('Major Banner', module)
+  .addParameters(...)
+  .add('With Only Title', () => (...))
+  .add('With All Text Options', () => {...});
+
+storiesOf('Minor Banner', module)
+  .add('No Pictures', () => (
+    <MinorBanner title="Banner Title" subtitle="Banner Subtitle" body="Banner Body" />
+  ), {
+    info: {
+      inline: false,
+    },
+  })
+  .add('With Pictures', () => (...));
+#+end_src
+
+Al verificar en el navegador, puede darse cuenta de que el formato inline ya no
+se aplica en el Minnor Banner - No Pictures, pero si en el Minnor Banner - With
+Pictures.
+
+Es importante resaltar que el objeto para realizar las configuraciones en los
+tres casos fue practicamente el mismo. Por otra parte, varias de las opciones
+del complemento ~info~ se pueden sobreescribir; desde las fuentes de los
+encabezados y los snippets, el uso de tablas de propiedades hasta los estilos y
+el número máximo de propiedades.
+
+En reseumen, este es la relación de las configuraciones por jerarquía:
+
+- Las configuraciones globales se hacen en ~.storybook/config.js~
+- las configuracioens grupales se hacen en ~stories/story.js~ con la función ~addParameters~
+- las configuracioens por historia se hacen en ~stories/story.js~ con el segundo
+parámetro de la función ~add~
+
 * Revisión
