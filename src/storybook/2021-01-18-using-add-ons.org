@@ -1,4 +1,4 @@
-#+TITLE: Usando Complementos
+#+TITLE: Usando complementos
 #+DESCRIPTION: Serie que recopila los beneficios de usar Storybook
 #+AUTHOR: Sergio Benítez
 #+DATE:<2021-01-18 Thu> 
@@ -368,3 +368,32 @@ En reseumen, este es la relación de las configuraciones por jerarquía:
 parámetro de la función ~add~
 
 * Revisión
+
+Se cubrieron varios contenidos en esta publicación y es tiempo de destacar los
+puntos clave.
+
+El principal dato para llevar es que Storybook ofrece una gran cantidad de
+opciones de configuración que se habilitan a través de complementos. Para este
+documentos se trabajaron tres complementos:
+
+1. ~actions~, instalado por defecto, permite capturar eventos sobre las historias.
+2. ~info~, el cual suministra el código fuente, la trabla de propiedades y texto
+personalizable al rededor de la historia
+3. ~knobs~, el cual permite ediciones dinámicas de los datos que se muestran en
+la historia.
+
+Todos los complementos se pueden consultar en la [[https://storybook.js.org/addons][página oficial de addons]] para
+Storybook. Hay unos muy útiles para trabajar temas de accesibilidad y otros
+sobre diseño responsivo.
+
+Por otra parte, el uso de complementos desencadena un nuevo concepto, los
+decoradores. Los decoradores son envolturas para los componentes y son usados
+sobre las historias para habilitar cambios en los paneles o en el visualizador
+de historias.
+
+Recuerde que para evitar problemas, una vez instalado el complemento, este se
+debe registrar en el archivo ~addons.js~ y posteriormente reiniciar el servidor
+de Storybook para así habilitar el consumo del mismo.
+
+Por último, las configuraciones se pueden escribir a tres niveles: global,
+grupal y a nivel de historia.

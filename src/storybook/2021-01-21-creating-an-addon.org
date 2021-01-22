@@ -1,0 +1,43 @@
+#+TITLE: Creando un complemento
+#+DESCRIPTION: Serie que recopila los beneficios de usar Storybook
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-01-21 Thu> 
+#+STARTUP: fold
+* Creando un complemento
+
+Una vez repasados los temas de escritura de historias y uso de complementos, el
+siguiente paso es indagar sobre la creación de complementos. Es posible que en
+algún momento se precise de alguna funcionalidad que todavía no existe como un
+complemento de Storybook.
+
+Antes de escribir el complemento es adecuado definir que va a hacer dicho
+complemento. Para este caso se va a crear una nueva pestaña en la sección de
+paneles llamada *See Also*, la cual redireccionará a historias relacionadas con
+la historia actual. La siguiente es una imagen con la vista del nuevo componente:
+
+#+CAPTION: Add-on info show button
+[[../images/storybook/10-storybook-see-also-add-on.png]]
+
+Detras de escenas este es el paso a paso del uso del complemento personalizado.
+
+1. El usuario seleciona una historia desde la barra lateral, en donde está el
+   explorador de historias.
+2. Al seleccionar la historia el evento de cambio es ejecutado. Es así como
+   Storybook carga una historia, incluyendo todos los datos necesarios para
+   visualizar la misma.
+3. La idea es capturar este evento para que con algún código se agregue el panel
+   See Also, junto con los otros paneles que la historia carga. Asi mismo,
+   durante la etapa en la que Storybook procesa la información de la historia que
+   esta siendo cargada, se va a adjuntar la información de las historias
+   relacionadas que serán agregadas al panel See Also.
+4. Por último, cuando el usario hace clic sober la historia que esta dentro del
+   panel See Also, el panel captura ese evento y a través del API de Storybook
+   se indica que información se va a cargar. 
+
+En terminos generales este será el complemento a implementar.
+
+* Creando el panel
+* Recibiendo datos
+* Usando el nuevo complemento
+* API de Storybook
+* Revision
