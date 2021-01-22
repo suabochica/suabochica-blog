@@ -37,6 +37,61 @@ Detras de escenas este es el paso a paso del uso del complemento personalizado.
 En terminos generales este será el complemento a implementar.
 
 * Creando el panel
+
+Para crear el panel See Also se va a crear un directorio ~seeAlso~ con un archivo
+~register.js~ el cual tendrá el siguiente contendio:
+
+#+begin_src javascript
+// seeAlso/register.js
+import React from 'react';
+import addons from '@storybook/addons';
+
+class SeeAlsoPanel extends React.Component {
+
+  render() {
+    return <div>See also panel </div>;
+  }
+}
+
+// Register the addon with a unique name.
+addons.register('SEEALSO', (api) => {
+  addons.addPanel('SEEALSO/panel', {
+    title: 'See Also',
+    render: ({ key }) => <SeeAlsoPanel key={key} api={api} />,
+  });
+});
+#+end_src
+
+Varias cosas a resaltar de este snippet. Primero es la importación de ~React~ y
+de ~addons~ desde los respectivos paquetes. Con React se va a crear el componente
+~SeeAlsoPanel~ que será renderizado dentro del panel See Also. La integración
+entre este componente y Storybook se realiza con el objeto ~addon~. La función
+~register~ del objeto ~addon~ recibe como argumentos un identificador para el
+complemento y una función con el objeto ~api~ como argumento. Este objeto ~api~
+será revisado con mayor detalle más adelante. Dentro de esta función se hace el
+llamado a la función ~addPanel~, a quién se le pasa como primer argumento el
+identificador del complemento y como segundo parámetro obtiene un objeto de
+configuración. En dicho objeto se indica el título del panel y en la propiedad
+~render~ se llama el componente SeeAlsoPanel con las propieades key y api.
+
+Ahora bien, para habilitar este complemento dentro de Storybook es necesario
+agregarlo al registro de complementos de Storybook, de la misma forma que se hizo
+con Knobs. En ese orden de ideas el archivo ~.storybook/addons.js~ debe
+actualizarse de la siguiente manera.
+
+#+begin_src javascript
+// .storybook/addons.js
+import '@storybook/addon-actions/register';
+import '@storybook/addon-info/register';
+import '@storybook/addon-knobs/register';
+import '../seeAlso/register'
+#+end_src
+
+Se reinicia el servidor de Storybook y al abrir el navegador se podrá visualizar
+el panel See Also cuyo contenido es el texto "See also panel" que por ahora es un
+texto estático. En las siguientes secciones se va a revisar como agregarle datos
+al complemento y como atender los eventos de Storybook.
+
 * Recibiendo datos
 * Usando el nuevo complemento
 * API de Storybook
