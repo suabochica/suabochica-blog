@@ -93,6 +93,111 @@ texto estático. En las siguientes secciones se va a revisar como agregarle dato
 al complemento y como atender los eventos de Storybook.
 
 * Recibiendo datos
+
+Por ahora el componente SeeAlso no resulta útil si no esta en capacidad de
+mostrar datos. Para interactuar con datos, se va a hacer uso del estado en los
+componentes React. En ese orden de ideas se va a modificar el archivo
+~seeAlso/register.js~ de la siguiente manera.
+  
+#+begin_src javascript
+// seeAlso/register.js
+import React from 'react';
+import addons from '@storybook/addons';
+
+class SeeAlsoPanel extends React.Component {
+  state = {seeAlso: {}};
+  setData = (seeAlso) => {
+    this.setState({seeAlso});
+  }
+
+  componentDidMount() {
+    const {api} = this.props;
+    api.on("seeAlso/storySelected", this.setData);
+  }
+
+  componentWillMount() {
+    const {api} = this.props;
+    api.off("seeAlso/storySelected", this.setData);
+  }
+
+  render() {
+    const {seeAlso} = this.state;
+    return <div>{seeAlso.label}</div>;
+  }
+}
+
+// Register the addon with a unique name.
+addons.register('SEEALSO', (api) => {
+  addons.addPanel('SEEALSO/panel', {
+    title: 'See Also',
+    render: ({ key }) => <SeeAlsoPanel key={key} api={api} />,
+  });
+});
+#+end_src
+
+El primer detalle es la definción de ~state~, inicalmente como un objeto vacío.
+Luego se tiene la definición de la función ~setData~ que como su nombre lo
+indica, al momento de ser llamado va a actualizar el estado del componente con
+ayuda de la función ~setState~.
+
+Posteriormente se tienen los llamados de las funciones que nos permiten acceder
+al ciclo de vida del componente React: ~componentDidMount~ y ~componentWillMount~.
+el cuerpo de ambos funciones es muy parecido, ya que recuperan el objeto ~api~
+desde las propiedades del componente y la diferencia esta en la suscripción y
+la cancelación a la suscripción del evento ~seeAlso/storySelected~ con los
+métodos ~on~ y ~off~ respectivamente.
+
+Por último, en la función ~render~ del componente en vez de quemar un texto
+dentro de la etiqueta ~div~, se imprime la etiqueta ~label~ del objeto ~seeAlso~.
+
+Ahora bien, esta pendiente buscar una forma para usar el complemento y para
+ello se va a crear un archvo ~seeAlso/index.js~ con el siguiente código:
+
+#+begin_src javascript
+// seeAlso/index.js
+import addons, { makeDecorator } from '@storybook/addons';
+
+const wihtSeeAlso = makeDecorator({
+  name: 'withSeeAlso',
+  parameterName: 'seeAlso',
+  skipIfNoParametersOrOptions: true,
+  wrapper: (getStory, context, {parameters}) => {
+    const channel = addons.getChannel();
+
+    channel.emit("seeAlso/storySelected", parameters);
+
+    return getStory(context);
+  }
+})
+export default withSeeAlso;
+#+end_src
+
+El protagonista en este snippet es la función ~makeDecorator~. Se resalta que un
+decorador en el contexto de Storybook es una forma de empaquetar en una historia
+funcionalidad extra en la renderización. Esta función obtiene como parámetro un
+objeto de configuración con diferentes propiedades. Para este caso se usaron las
+propiedades ~name~, ~parameterName~, ~skipIfNoParametersOrOptions~ y ~wrapper~.
+Las tres primeras se explican por si solas, y la propiedad ~wrapper~ es la
+llamativa, puesto que su valor es una función que recibe tres parámetros,
+~getStory~, ~context~ y ~parameters~ y en su cuerpo emite el evento que permite
+la interacción entre Storybook y el complemento SeeAlso.
+
+En ese orden de ideas, se obtiene un canal de Storybook con el que se comunica
+el panel SeeAlso que se creo en el archivo ~register.js~. Este canal emite el
+evento al que se suscribe en la función ~componentDidMount~ junto con los
+parámetros que se envian desde la historia. Al final, se llama la función
+~getStory~ con el argumento ~context~ para permitirle a Storybook que continue
+con todo lo demás que debe procesar para una historia en particular.
+
+Este es un resumen de los pasos descritos:
+
+- Se modificó el registro para empezar a escuchar eventos
+- Se actualizó el componente con manejo de estado
+- Se usa el estado durante la renderización del componente
+- Se creó un decorador para comunicar Storybook con el complemento
+
+Este complemento esta empezando a tener forma. Es tiempo de empezar a utilizarlo.
+
 * Usando el nuevo complemento
 * API de Storybook
 * Revision
