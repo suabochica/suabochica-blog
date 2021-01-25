@@ -199,5 +199,148 @@ Este es un resumen de los pasos descritos:
 Este complemento esta empezando a tener forma. Es tiempo de empezar a utilizarlo.
 
 * Usando el nuevo complemento
+
+
+#+begin_src javascript
+// stories/banner.stories.js
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { text } from '@storybook/addon-knobs';
+import MajorBanner from '../components/major.banner';
+import MinorBanner from '../components/minor.banner';
+import withSeeAlso from '../seeAlso/index';
+
+storiesOf('Components | Banners/Major', module)
+  .addDecorator(withSeeAlso)
+  .addParameters({
+    info: {
+      text: `
+        ### When to Use
+        This banner should be used, at most, once per page. When it is used, it should be placed at the top of the page, below the navigation bar. This banner is considered "Shouting", the focus is to grab the attention of the user before they have a chance to see anything else.
+        ___
+        ,**Location:**  1st element below navigation
+        ,**Max Quantity:** 1
+        ,**See Also:** Minor Banner
+      `,
+    },
+    seeAlso: {
+        story: 'Components | Banners/Minor',
+        label: 'Minor Banners'
+    },
+  })
+  .add('With Only Title', () => (
+    <MajorBanner title="Banner Title" photo="People Outdoors/shutterstock_116403520.jpg" />
+  ))
+  .add('With All Text Options', () => {
+    const title = text('Title', 'Banner Title');
+    return (
+      <MajorBanner
+        photo="People Outdoors/shutterstock_116403520.jpg"
+        title={title}
+        subtitle="Banner Subtitle"
+        body="Banner Body"
+      />
+    );
+  });
+
+storiesOf('Components | Banners/Minor', module)
+  .add(...)
+  .add(...);
+#+end_src
+
+#+begin_src javascript
+// seeAlso/register.js
+import React from 'react';
+import PropTypes from 'prop-types';
+import addons from '@storybook/addons';
+import { STORY_CHANGED } from '@storybook/core-events';
+
+class SeeAlsoPanel extends React.Component {
+  state = { seeAlso: {} };
+
+  componentDidMount() {
+    const { api } = this.props;
+    api.on('pluralsightSeeAlso/storySelected', this.setData);
+    api.on(STORY_CHANGED, this.clearState);
+  }
+
+  componentWillUnmount() {
+    const { api } = this.props;
+    api.off('pluralsightSeeAlso/storySelected', this.setData);
+  }
+
+  setData = (seeAlso) => {
+    this.setState({ seeAlso });
+  };
+
+  clearState = () => {
+    this.setState({ seeAlso: null });
+  }
+
+  render() {
+    const {api} = this.props;
+    const { seeAlso } = this.state;
+    return seeAlso
+      ? (<div> {seeAlso.label}</div>)
+      : null;
+  }
+}
+
+SeeAlsoPanel.propTypes = {
+  api: PropTypes.object.isRequired,
+};
+
+// Register the addon with a unique name.
+addons.register('SEEALSO', (api) => {
+  addons.addPanel('SEEALSO/panel', {
+    title: 'See Also',
+    render: ({ key }) => <SeeAlsoPanel key={key} api={api} />,
+  });
+});
+#+end_src
+
+#+begin_src javascript
+// seeAlso/register.js
+import React from 'react';
+import PropTypes from 'prop-types';
+import addons from '@storybook/addons';
+import { STORY_CHANGED } from '@storybook/core-events';
+
+class SeeAlsoPanel extends React.Component {
+  state = { seeAlso: {} };
+
+  componentDidMount() {...}
+
+  componentWillUnmount() {...}
+
+  setData = (seeAlso) => {...};
+
+  clearState = () => {...}
+
+  render() {
+    const {api} = this.props;
+    const { seeAlso } = this.state;
+    return seeAlso ? (
+      <a onClick={() => api.selectStory(seeAlso.story)}
+          style={{ paddingLeft: '20px', cursor: 'pointer' }}>
+            {seeAlso.label}
+          </a>
+    ) : null;
+  }
+}
+
+SeeAlsoPanel.propTypes = {
+  api: PropTypes.object.isRequired,
+};
+
+// Register the addon with a unique name.
+addons.register('SEEALSO', (api) => {
+  addons.addPanel('SEEALSO/panel', {
+    title: 'See Also',
+    render: ({ key }) => <SeeAlsoPanel key={key} api={api} />,
+  });
+});
+#+end_src
+  
 * API de Storybook
 * Revision
