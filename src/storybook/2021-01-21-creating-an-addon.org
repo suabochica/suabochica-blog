@@ -396,4 +396,43 @@ momento de dar clic sobre la etiqueta que aparece en el contenido del panel
 SeeAlso
 
 * API de Storybook
+Anteriormente se uso el API de Storybook para saltar de una historia a otra. No
+obstante, el API ofrece muchas más funcionalidades que resultan útiles si se
+quieren desarrollar complementos avanzados.
+
+En el complemento SeeAlso se usaron las siguientes funciones del API:
+
+ - ~getChannel~: Para proveer un canal de comunicación entre la historia y el
+   administrador de Storybook. Así es como se activa el evento de seleccionar
+   una historia.
+ - ~register~: Para habilitar el API de Storybook dentro del complemento. Si
+   se recuerda el arhcivo ~.storybook/register.js~ al momento de definir el
+   complemento se pasa como uno de los parámetros el objeto ~api~ de Storybook
+   y es así como se pueden usar funciones como ~selectStory~.
+ - ~addPanel~: Para crear el nuevo panel dentro de la sección de paneles de
+   Storybook.
+ - ~selectStory~: Para seleccionar especificamente el tipo de historia o o las
+   historias que son parte de la historia. En el caso puntual del ejercicio se
+   uso sobre ~'Components | Banners/Minor'~.
+
+Ahora bien, estás son algunas funciones adicionales del API de Storybook que
+pueden ser de utilidad:
+ 
+ - ~selectInCurrentKind~: Esta función es parecida a ~selectStory~, pero solo
+   opera sobre el tipo actual de historia. Recibe como parámetro el nombre de
+   la historia. Por lo tanto, si se usará sobre el tipo MinnorBanner, permitirá
+   seleccionar cualquiera de sus dos sub historias; ~No Pictures~ o ~With Pictures~.
+   Pero no le permitiría seleccionar las historias de MajorBanner.
+ - ~get/setQueryParams~: Esta función es útil si se decide interactuar con
+   parámetros en las URLs. Un caso común es tener un almacenamiento temporal
+   para el complemento, agregando o removiendo parámetros a la URL.
+ - ~onStory(fn)~: Esta función toma otra función como parámetro, y es llamada
+   cuando el usuario navega entre historias. La función callback es llamada con
+   el tipo y la historia, para habilitar la ejecución de acciones cuando la
+   historia cambia.
+
+El uso de estás funciones habilita la creación de complementos más poderosos,
+ofreciendo la posibilidad de extender Storybook para que se ajuste a las
+necesidades de los equipos.
+
 * Revision
