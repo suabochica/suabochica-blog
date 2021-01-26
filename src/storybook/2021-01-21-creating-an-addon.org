@@ -200,6 +200,9 @@ Este complemento esta empezando a tener forma. Es tiempo de empezar a utilizarlo
 
 * Usando el nuevo complemento
 
+Es tiempo de emepzar a usar el complemento SeeAlso, y la historia candidato para
+hacerlos es el MajorBanner. En ese orden de ideas se introducen las siguientes
+modificaciones en el archivo ~stories/banner.stories.js~
 
 #+begin_src javascript
 // stories/banner.stories.js
@@ -247,6 +250,26 @@ storiesOf('Components | Banners/Minor', module)
   .add(...)
   .add(...);
 #+end_src
+
+Se van a recalcar cada uno de los cambios introducidos en este snippet. El
+primero es la importación del complemento ~witSeeAlso~. El segundo, es el uso del
+método ~addDecorator~ que recibe como argumento el complemento importado
+previamente. El tercer cambio es la propiedad ~seeAlso~ del objeto que se pasa
+como parámetro de la función ~addParameters~. Se recuerda que el complemento
+será ignorado si no se pasan los parámetros respectivos, que para este caso es
+un objeto con las propiedades ~story~, cuyo valor es el grupo de la historia que
+se va a relacionar, y el ~label~ el cual será el nombre que se mostrará en el
+contenido del panel SeeAlso.
+
+Si se examina el servidor de Storybook en el navegador se puede evidenciar que
+el nombre de la historia relaiconada aparece como contenido del panel SeeAlso.
+No obstante, por ahora este texto es estático y si se revisa otra historia, por
+ejemplo, Button, se observa que en el contenido del panel SeeAlso se esta
+apareciendo nuevamente la historia MinorBanner, y este comportamiento no tiene
+sentido. La razón por la cual se mantiene esta relación es por que no se esta
+limpiando el estado en nuestro complemento al momento de consultar una nueva
+historia. Para atender este comportamiendo se debe actualizar el contenido del
+archivo ~seeAlso/register.js~ como se muestra a continuación:
 
 #+begin_src javascript
 // seeAlso/register.js
@@ -299,6 +322,18 @@ addons.register('SEEALSO', (api) => {
 });
 #+end_src
 
+Nuevamente hay varias cosas para destacar. Primero esta la importación del
+evento ~STORY_CHANGED~ desde el núcleo de Storybook. El complemento se suscribe
+a dicho evento en la función ~componentDidMount~ y ejecuta una nueva función
+llamada ~clearState~ para asignar el objeto del estado a un nulo. De esta manera
+se soluciona el inconveniente de asociar la historia del Button con el
+MinorBanner.
+
+Ahora bien, sigue pendiente una tarea, y es redirigir desde el panel SeeAlso
+a la historia que se encuentra dentro de su contenido cuando se hace clic sobre
+la etiqueta de dicha historia. Para ello se deben hacer unas modificaciones en
+la función ~render~ del archivo ~seeAlso/register.js~
+
 #+begin_src javascript
 // seeAlso/register.js
 import React from 'react';
@@ -322,9 +357,10 @@ class SeeAlsoPanel extends React.Component {
     const { seeAlso } = this.state;
     return seeAlso ? (
       <a onClick={() => api.selectStory(seeAlso.story)}
-          style={{ paddingLeft: '20px', cursor: 'pointer' }}>
-            {seeAlso.label}
-          </a>
+          style={{ paddingLeft: '20px', cursor: 'pointer' }}
+      >
+        {seeAlso.label}
+      </a>
     ) : null;
   }
 }
@@ -341,6 +377,23 @@ addons.register('SEEALSO', (api) => {
   });
 });
 #+end_src
-  
+
+El primer cambio es que se reemplazo la etiqueta HTML ~<div>~ por ~<anchor>~ y
+se hace uso de la función de React ~onClick~ a la cual se le pasa una función
+que dentro de su cuerpo utiliza el objeto ~api~ de Storybook recuperado desde
+las propiedades del componente React para llamar la función ~selectStory~ que
+recibe como argumento la propiedad ~seeAlso.story~ que se definió en los
+parámetros del archivo ~stories/banner.stories.js~. Para este caso puntual, ese
+valor es ~'Components | Banners/Minor'~.
+
+Adicionalmente, se uso la propiedad ~style~ dentro del jsx para especificar un
+~paddingLeft~  y actualizar el cursor a un apuntador cuando se flota por encima
+del nombre de la historia relacionada.
+
+Al validar en el navegador estos últimos cambios, el complemento esta
+funcionando tal y como se espera, redirigiendo al la historia relacionado al
+momento de dar clic sobre la etiqueta que aparece en el contenido del panel
+SeeAlso
+
 * API de Storybook
 * Revision
