@@ -417,7 +417,7 @@ En el complemento SeeAlso se usaron las siguientes funciones del API:
 
 Ahora bien, estás son algunas funciones adicionales del API de Storybook que
 pueden ser de utilidad:
- 
+
  - ~selectInCurrentKind~: Esta función es parecida a ~selectStory~, pero solo
    opera sobre el tipo actual de historia. Recibe como parámetro el nombre de
    la historia. Por lo tanto, si se usará sobre el tipo MinnorBanner, permitirá
@@ -435,4 +435,28 @@ El uso de estás funciones habilita la creación de complementos más poderosos,
 ofreciendo la posibilidad de extender Storybook para que se ajuste a las
 necesidades de los equipos.
 
-* Revision
+* Recapitulación
+
+De los posibles usos de Storybook, quizas las creación de complementos sea la
+menos utilizada. Sin embargo, es importante tener presente la personalización que
+se puede ejercer sobre la herramienta.
+
+Para la creación de un nuevo complemento, hay cuatro aspectos fundamentales:
+
+1. El componente de panel: Este fue creado en el archivo de registro y esta en
+   capacidad de aceptrar un mostrar los datos que vienen desde la historia.
+2. La función de registro: También es parte del archivo de registro y se usa para
+   garantizar que el nuevo panel estará en la lista de paneles de Storybook
+3. El decorador para la historia: Este fue creado en el archivo índice y es
+   usado para enviar eventos al nuevo panel.
+4. Los parámetros establecidos para el complemento: Son agregado desde la
+   historia y su objetivo es atender la configuración del complemento.
+
+Algunos problema comunes cons sus respectiva soluciones son:
+
+- Los datos no son recibidos. Recuerde que los nombres de los eventos deben
+  coincidir.
+- Los datos sobrantes. Valide que dentro del flujo del complemento hay un espacio
+  para limpiar el estado del mismo.
+- El API de storybook no funciona. Aseguresé que la variable para asignar el API
+  esta declarada.
