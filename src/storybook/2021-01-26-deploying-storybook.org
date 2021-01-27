@@ -1,0 +1,65 @@
+#+TITLE: Desplegando Storybook
+#+DESCRIPTION: Serie que recopila los beneficios de usar Storybook
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-01-26 Tue> 
+#+STARTUP: fold
+
+* Desplegando Storybook
+
+Hasta el momento, solo se ha trabajado con Storybook en un entorno local bajo
+una etapa de desarrollo que hace fácil evidenciar los cambios introducidos en el
+navegador. Sin embargo, la construcción del ambiente de desarrollo no es muy
+buena en rendimiento, ya que por ejemplo los archivos JavaScript no están
+minificados. Afortunadamente, Storybook tiene la habilidad de construir una
+copia de producción fácilmente. Si se revisa la sección de scripts en el archivo
+~package.jso~ se tienen las siguiente líneas:
+
+#+begin_src json
+  {...
+    "scripts": {
+      "lint": "eslint --fix ./",
+      "storybook": "start-storybook -s ./Images -p 6006",
+      "build-storybook": "build-storybook -s ./Images",
+    }
+  }
+#+end_src
+
+Para construir una copia de producción se ejecuta el script ~build-storybook~
+desde la línea de comandos:
+
+#+begin_src
+$ npm run build-storybook
+...
+
+Output directory: Users/suabochica/Development/storybook/storybook-static
+#+end_src
+
+El comando crea un directorio de salida en donde se almacena la copia de
+producción del proyecto. Para revisar el resultado se pone la siguiente ruta en
+el navegador:
+
+#+begin_src
+files:///Users/suabochica/Development/storybook/storybook-static/index.html
+#+end_src
+
+Dado que Storybook construye una versión estática del proyecto, el alojamiento
+es bastante sencillo ya que solo se necesita una servidor web. 
+
+** Opciones para alojamientos estático
+   - [[https://www.netlify.com][Netlify]] es una gran opción ya que se integra a varios proveedores de
+     alojamiento de desarrollo de software, como GitHub, y es capaz de halar la
+     rama que contiene el proyecto y ejecutar un comando, para este caso puntual,
+     el comando sería ~npm run build-storybook~.
+   - AWS, es otra opción que permite copia los contenidos del folder con los
+     estáticos generado por Storybook dentro de un bucket S3 y usar varias
+     herramientas de build, como pipelines para consolidar el comando que crea
+     la copia de producción.
+   - Por último, el proyecto puede alojarse en cualquier infraestructura
+     existente con la que el desarrollador esté familiarizado.
+
+No importa el camino que se escoja, Stoybook ofrece la construcción de un
+entorno de producción que se adapata con facilidad a despliegues públicos.
+
+* Soporte de Storybook
+* Actividades relacionadas
+* Recapitualción
