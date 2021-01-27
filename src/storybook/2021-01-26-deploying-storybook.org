@@ -63,3 +63,36 @@ entorno de producción que se adapata con facilidad a despliegues públicos.
 * Soporte de Storybook
 * Actividades relacionadas
 * Recapitualción
+
+En esta serie de publicaciones relacionadas a Storybook se trabajaron los
+siguientes temas:
+
+- Instalación y configuración de la herramienta
+- Adición de historias individuales y grupales
+- Personalización del tema de Storybook
+- Interacción con historias a trabés del complementos Knobs
+- Uso y creación de la documentación
+- Creación de complementos
+
+Por otra parte, es importante volver a citar porque Storybook es una alternativa
+llamativa y que relación puede tener con los diferentes roles de un equipo:
+
+- Para un administrador, es una herramienta efectiva para lograr que todo el
+  equipo se encuentre en la misma página ya que las discusiones sobre los
+  comportamientos de los complementos parten de un mismo ambiente de pruebas.
+- Para un diseñador, hay una gran oportunidad para mejorar su flujo de trabajo.
+  Este rol estará en capacidad de ejecutar chequeos de calidad sobre el proyecto
+  al revisar la historia dentro de Storybook, teniendo encuenta que estos
+  componentes son los mismos que se están usando dentro de la aplicación.
+  Adicionalmente, el diseñador podrá participar activamente en la documentación
+  de la historia entregando las guías necesarias al desarrollador para la
+  implementación del componente diseñado.
+- Para un desarrollador, se podrá interactuar de manera rápida y sencilla con
+  cada componente en entornos aislados, logrando replicas sobre estados que
+  pueden se engorrosos de generar en la aplicación final. Además, se puede sacar
+  provecho de la funcionalidades ofrecidas por los diferentes complementos, como
+  Knobs, para visualizar datos en la historia de manera dinámica.
+
+La conclusión es que Storybook es una herramienta para la colaboración y
+comunicación entre equipos al proveer repositorios centrales de documentación y
+ejemplos reales de casos de uso a través del sandbox.
