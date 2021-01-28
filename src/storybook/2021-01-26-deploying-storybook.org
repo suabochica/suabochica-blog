@@ -61,6 +61,50 @@ No importa el camino que se escoja, Stoybook ofrece la construcción de un
 entorno de producción que se adapata con facilidad a despliegues públicos.
 
 * Soporte de Storybook
+
+El soporte sobre Storybook es muy activo gracias a la enorme comunidad que esta
+detrás de esta herramienta. Para enfrentar casos específicos que no fueron
+abordados en esta serie de árticulos, se invita a dar un vistazo a los
+siguientes recursos:
+
+** La documentación oficial de Storybook
+https://storybook.js.org/docs/react/get-started/introduction
+
+Este recurso cubre algunos de los temas revisados en la serie. Por ejemplo, el
+como empezar con el uso de Storybook. Adicionalmente, hay una sección de
+configuraciones que no se mencionó a lo largo de las publicaciones; hacer una
+configuración personalizada de Storybook en Webpack, Storybook para Vue,
+Storybook para Angular, entre otros.
+
+Un aspecto llamativo de esta documentación es que a medida de que se va leyendo,
+el lector esta en capacidad de crear una solicitud de cambio (pull request en
+inglés) para mejorar las guías de la herramienta. Cada página tiene una opción
+de edición para solicitar modificaciones en los contenidos de la misma.
+
+** El ejemplo oficial de Storybook
+https://storybooks-official.netlify.app/?path=/story/ui-panel--default
+
+
+Este recurso es quizas el más llamativo de los tres, puesto que es una
+documentación interactiva y una referencia del trabajo que se puede lograr con
+Storybook. Storybook tiene su propio Storybook, es decir usan su herramienta
+para construir su aplicación.
+
+El proyecto esta almacenado en Netlify, un buen candidato para alojar sitios con
+contenidos estáticos, tal y como se recomendo previamente. Al entrar a este
+sitio web, la curiosidad es la mejor guía. Por ejemplo, en la sección de
+complementos, hay uno relacionado a accesibilidad. Se puede explorar el
+complemento antes de tomar la decisión de incluirlo en el propio Storybook.
+
+** El canal oficial de Storybook en Discord
+https://discord.com/invite/UUt2PJb
+
+El último recurso es el chat en Discord de Storybook. Si no ha podido encontrar
+una solución a su problema luego de revisar la documentación, esta alternativa
+es bastante útil para abordar problemas en tiempo real. Allí va encontrar
+canales para frameworks específicos que le ayudarán a realizar su pregunta a la
+persona indicada.
+
 * Actividades relacionadas
 * Recapitualción
 
