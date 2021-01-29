@@ -13,7 +13,7 @@ tags = [
 
 El proyecto elaborado por el grupo __tácito__ se genera luego de realizar una etnografía de aproximadamente 2 meses sobre una licorera llamada _Capricornio 26_ situada en una zona popular de Bogotá, con el objetivo de identificar oportunidades de diseño y ofrecer resultados de la manera más objetiva posible.
 
-![Tácito Light](../../images/jpg/tacito_01.jpg)
+![Tácito Light](../../images/tacito/01_tacito.jpg)
 
 La tienda fue fundada en 1980 bajo el nombre Capricornio 26 (aunque más tarde por error perdió el seis). Dicho nombre se atribuye al signo zodiacal de la mayor parte de la familia. El local hace parte de una casa que ha sido siempre una tienda. Allí se venden productos de la canasta familiar y licores como cerveza, ron y aguardiente; también cuenta con juegos como rana y bolirana que entre los clientes siempre han sido populares. Cuenta con una rocola que define el ambiente de la tienda. La mayoría del mobiliario y decoración son patrocinados por marcas de cerveza.
 
@@ -33,7 +33,7 @@ Jaime Torres, también trabaja en calzado Joy, pero es un man de mayor edad que 
 
 > "Usted no sabe lo difícil que es ver cómo un hijo se mete a donde no es y no poder hacer nada", Jaime
 
-![Tácito Light](../images/jpg/tacito_03.jpg)
+![Tácito Light](../../images/tacito/03_tacito.jpg)
 
 * * *
 
@@ -75,7 +75,7 @@ Jaime Torres, también trabaja en calzado Joy, pero es un man de mayor edad que 
 - No se pueden contratar empleados
 - Elementos indispensables: Rana, Bolirana, Rocola, Televisior y baño de hombres
 
-![Tácito Light](../images/jpg/tacito_02.jpg)
+![Tácito Light](../../images/tacito/02_tacito.jpg)
 
 * * *
 
