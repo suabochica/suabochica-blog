@@ -84,7 +84,6 @@ de edición para solicitar modificaciones en los contenidos de la misma.
 ** El ejemplo oficial de Storybook
 https://storybooks-official.netlify.app/?path=/story/ui-panel--default
 
-
 Este recurso es quizas el más llamativo de los tres, puesto que es una
 documentación interactiva y una referencia del trabajo que se puede lograr con
 Storybook. Storybook tiene su propio Storybook, es decir usan su herramienta
@@ -106,6 +105,30 @@ canales para frameworks específicos que le ayudarán a realizar su pregunta a l
 persona indicada.
 
 * Actividades relacionadas
+
+La primera actividad a realizar, es el complmento sobre el trabajo hecho con el
+ejercicio de ejemplo que se utiizó en estas publicaciones. Hay varias
+historias por desarrollar, como por ejemplo el filtro de productos por
+demografía.
+
+Por otra parte, consultar que otros complementos están disponbiles para
+Storybook no esta de más. Se recomienda dar un vistazo al complemento de
+Viewports para atender temas de diseño responsivo y validar la visualización de
+las historias en diferentes tamaños de pantallas.
+
+Se resalta nuevamente que Storybook no es un sistema de diseño. El enfoque
+apropiado sería que Storybook es una herramienta para construir un sistema de
+diseño y es importante hacer la distinción. El argumento parte de que el
+sistem de diseño es un mutuo acuerdo entre los miembros del equipo que requiere
+de mucho trabajo para se consolidado. Para la comprensión de los sistemas de
+diseño se invita a hacer la lectura de los siguientes libros:
+
+- [[https://www.smashingmagazine.com/design-systems-book/][Design Systems]], de Smashing Magazine
+- [[https://www.apress.com/gp/book/9781484245132][Building Design Systems]], de Apress
+
+No obstante, hay toda una comunidad generando contenidos relativos a sistemas de
+diseño que se evidencian en coferencias o incluso en redes sociales.
+
 * Recapitualción
 
 En esta serie de publicaciones relacionadas a Storybook se trabajaron los
