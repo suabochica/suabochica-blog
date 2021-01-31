@@ -2,7 +2,7 @@
 #+DESCRIPTION: Usa docker para construir contenedores de imágenes para empacar
 una aplicación y sus dependencias y así hacer un despliegue en una sola máquina
 #+AUTHOR: Sergio Benítez
-#+DATE:<2020-11-10 Tue> 
+#+DATE:<2020-11-19 Thu> 
 #+STARTUP: content
 
 * Profundizando en arquitectura

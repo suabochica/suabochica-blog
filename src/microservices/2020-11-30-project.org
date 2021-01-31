@@ -1,7 +1,7 @@
 #+TITLE: Project
 #+DESCRIPTION: Uso de Kubernetes en aplicaciones reales
 #+AUTHOR: Sergio Benítez
-#+DATE:<2020-12-31 Thu> 
+#+DATE:<2020-11-30 Mon> 
 #+STARTUP: content
 
 * Intro
