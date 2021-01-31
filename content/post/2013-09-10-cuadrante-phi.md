@@ -32,13 +32,14 @@ El objetivo consistió en reconstruir el concepto de publicación digital que se
 
 El diseño de la portada consistió en la creación de un monograma con los caracteres "C" y "Phi" de la fuente Bebas Neue. Una vez definido el monograma se realizó una transformación de rotación de 45 grados y para unir el asta descendente del carácter "Phi" se ejecutó una transformación de reflejo horizontal en un duplicado del carácter en cuestión. Por otra parte, se aplicó una trasformación de reflejo vertical en el carácter "C". Con estas alteraciones se conformaron varias repeticiones para construir un patrón con el monograma. El resultado se visualiza en la siguiente imagen.
 
-![Phi Cover](../images/jpg/phi_cover_01.jpg)
+![Phi Cover](../../images/cuadrante_phi/01-phi-cover.jpg)
+![Phi Cover](../../images/cuadrante_phi/02-phi-cover.jpg)
 
 ### Diagramación
 
 La diagramación se elaboró sobre una plantilla de dos columnas que ocupan el 75 % de la página. Dentro de estas columnas se ubicó el texto primordial del artículo. El 25 % restante se utilizó para habilitar el uso de cajas en donde se resaltan frases o contenidos que forman parte de lo comprendido en el texto principal. Todos los artículos inician con letra capital y se utiliza la fuente Garamond en diferentes tamaños para administrar los contenidos citados. En la siguiente imagen se ilustra esta descripción:
 
-![Phi Layout](../images/jpg/phi_layout.jpg)
+![Phi Layout](../../images/cuadrante_phi/03-phi-layout.jpg)
 
 Para los interesados en temas filosóficos a continuación les comparto el documento final con la diagramación del primer número de la revista CuadrantePhi. Advierto que los contenidos no son para todo tipo de público y mi objetivo se reduce a exponer la distribución que se estableció para este elemento.
 
