@@ -10,9 +10,11 @@ tags = [
 
 El juego a desenvolver bajo el factor de diversión es uno de los dos títulos desarrollados para la videoconsola portátil Nintendo DS de la saga The Legend of Zelda. Es importante resaltar que el juego será analizado a través de las herramientas suministradas por el profesor de tecnología y entretenimiento __Jesse Schell__, en su artículo _Understanding Entertaiment: Story and Gameplay Are One_, con el fin de orientar el análisis desarrollado. Aclarados estos detalles se procede a profundizar el videojuego seleccionado.
 
-![TLZ Spirit Tracks](../images/png/funtlz_01.png)
+![TLZ Spirit Tracks](../../images/funtlz/01-funtlz.png)
 
 > The Legend of Zelda: Spirit Tracks es un videojuego de acción-aventura para la videoconsola portátil Nintendo DS lanzado al mercado en diciembre del 2009, como sucesor de The Legend of Zelda: Phantom Hourglass. Dentro de este título, _Link_ (personaje principal de la saga) viaja a través de un escenario de carriles por medio de una locomotora de vapor equipada con un cañón, de manera similar al sistema de navegación planteado para Phantom Hourglass donde el medio era un barco de vapor para zarpar en los mares. En cuanto a narrativa, la introducción del juego se define por una batalla épica entre el demonio _Mallard_ y los espíritus de Hyrule que concluye con la sumisión del demonio en cuatro carriles espirituales. Cien años después aparece Link como un aprendiz de conductor de ferrocarriles quien esta a punto de recibir el título de “maquinista real” en el castillo de Zelda. Paralelo a este hecho surge un misterio por la desaparición de los carriles espirituales que se traduce en la liberación del demonio _Mallard_. Como es característico de toda la saga, Link contará con un instrumento musical denominado _Flauta Terrenal_ que será de ayuda en su periplo.
+
+![TLZ Link](../../images/funtlz/02-funtlz.jpg)
 
 El análisis se realizará por medio de un paralelo entre los ejes explicados por __Jesse Schell__ para evaluar el factor de diversión de un videojuego: _Entretenimiento e Interés_. El factor de _entretenimiento_ se abordará a través del modelo conformado por los elementos de _enfoque, empatía e imaginación_. Por otra parte, para comprender el _interés_ se hará referencia a los principios de _interés inherente, poesía de presentación y proximidad psicológica_. Finalmente, se citaran los _métodos indirectos de control_ utilizados en el videojuego por parte de los desarrolladores.
 

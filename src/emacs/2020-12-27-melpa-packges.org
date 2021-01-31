@@ -1,10 +1,13 @@
 #+TITLE: MELPA packages in spacemacs
 #+DESCRIPTION: Instalar paquetes en melpa dentro de spacemacs
 #+AUTHOR: Sergio Benítez
-#+DATE:<2020-11-10 Tue> 
+#+DATE:<2020-12-27 Tue>
+#+HUGO_BASE_DIR: /Users/sbenitez/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
 
-* DONE Layers y MELPA
-  CLOSED: [2020-12-27 Sun 23:23]
+* Layers y MELPA
 
 MELPA (Milkypostman’s Emacs Lisp Package Archive) es un repositorio de paquetes
 que contiene una cantidad enorme de utilidades que complementan Emacs. Su
