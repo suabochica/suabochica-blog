@@ -109,3 +109,58 @@ Un ejemplo de un anti-patrón sería modificar el `Object` de la clase prototipo
 Otro ejemplo similar, es la modificación de objetos que no le pertenecen. Un ejemplo de esto sería anular una función de un objeto utilizado en muchos escenarios de la aplicación. Si está trabajando con un equipo grande, imagine la confusión que esto causaría; rápidamente se encontraría con colisiones de nombres, implementaciones incompatibles y pesadillas de mantenimiento.
 
 La moraleja a compartir es que así como es de útil conocer todas las buenas prácticas y soluciones, también es muy importante conocer las malas. De esta manera, se pueden identificar y evitar cometer el error por adelantado.
+
+### Categorización de patrones de diseño
+
+Los patrones de diseño pueden categorizarse en muchas formas, pero las más populares son las siguientes:
+
+- Creacionales
+- Estructurales
+- Conductuales
+- De Concurrencia
+- Arquitucterales
+
+#### Patrones de diseño para creación
+Estos patrones tratan con mecanismos de creación de objetos que optimizan la producción de los mismos en comparación a un enfoque básico. En ocaciones la creación básica de objetos puede generar problemas de diseño futuros. Los patrones de diseño de creación evitan estos inconvenientes, controlando de alguna manera la invención de objetos. Algunos de los patrones de diseño populares en esta categoría son:
+
+- El método de fábrica
+- Fábrica abstracta
+- Constructor
+- Prototipo
+- Singleton
+
+#### Patrones de diseño para estructuras
+Estos patrones se ocupan de las relaciones entre objetos. Se aseguran de que si una parte de un sistema cambia, todo el sistema no necesita cambiar junto a la modificación realizada. Los patrones más populares en esta categoría son:
+
+- Adaptador
+- Puente
+- Compuesto
+- Decorador
+- Fachada
+- Flyweight
+- Proxy
+
+#### Patrones de diseño para concurrencia
+Estos patrones de diseño tratan con paradigmas de programación multiproceso. Algunos de los más populares son:
+
+- Objeto activo
+- Reacción Nuclear
+- Planificador
+
+#### Patrones de diseño para arquitectura
+Estos patrones de diseño son usados con fines arquitectonicos. Los mas famosos son:
+
+- MVC (Model-View-Controller)
+- MVP (Model-View-Presenter)
+- MVVM (Model-View-ViewModel)
+
+En la siguiente sección, se dará un vistazo más de cerca a algunos de los patrones de diseño antes mencionados con ejemplos proporcionados para una mejor comprensión.
+
+### Ejemplos de patrones de diseño
+Cada uno de los patrones de diseño representa una solución puntual a un problema en específico. No existe un conjunto universal de patrones que siempre se adapte mejor a determinado entorno. Es necesario saber cuando un patrón en particular resultará útil y si proporcinará un valor real al contexto que se esté enfrentando. Para ello, la experiencia es la mejor herramienta para pulir la capacidad de determinar cuál patrón de diseño utilizar para resolver un problema en particular.
+
+Recuerde que la aplicación de un patrón incorrecto a un ambiente determinado puede provocar efectos no deseados, como por ejemplo, complejidad innecesaria del código, sobrecarga en el rendimiento o la aparición de un anti patrón.
+
+Todos estos elementos deben ser considerados al momento de aplicar un patrón de diseño en el código. Los siguientes ejemplos resultarán útiles para un desarrollador en JavaScript.
+
+#### Patrón constructor
