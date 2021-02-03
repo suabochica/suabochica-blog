@@ -17,7 +17,7 @@ paginate = 12
   author = "Sergio Benítez"
   description = "Code like a writer"
   avatar = "/sua_profile.jpg"
-  favicon = "/sua_profile.jpg"
+  favicon = "/favicon.ico"
   menu_item_separator = " - "
   [[params.social]]
     name = "github"

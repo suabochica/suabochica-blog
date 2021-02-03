@@ -25,7 +25,7 @@ Los principales beneficion que se obtienen de los patrones de diseño son:
 
 Con estos beneficios en mente, vamos a revisar algunos patrones de diseño aplicados sobre JavaScript. 
 
-Una breve historia de Javascript
+Una breve historia de JavaScript
 ================================
 
 JavaScript es uno de los lenguajes de programación más populares para el desarrollo web en la actualidad. Inicialmente fue hecho como un tipo de _pegamento_ para varios elementos HTML exhibidos en el navegador Netscape, el cual solo podia presentar contenidos HTML estáticos en sus primeras versiones. La idea de liderar un lenguaje scripting en clientes desató una guerra entre los grandes jugadores de la industria del desarrollo de navegadores.
@@ -77,7 +77,7 @@ Un evento debe tener un listener adjunto para ser atendido, de lo contrario, ser
 
 ![]()
 
-Cada uno de los mensajes en la fila tiene una función asociada. Una vez el mensaje sale de la fila, la función adjunta es ejecutada completamente en tiempo de ejecución antes de procesar el siguiente mensaje. En otras palabras, si dicha función tiene un llamado a otra función, amabos funciones serán ejecutadas antes de procesar el siguiente mensaje en la fila. Este comportamiento es conocido como _run-to-completion_, y en pseudo código puede ser:
+Cada uno de los mensajes en la fila tiene una función asociada. Una vez el mensaje sale de la fila, la función adjunta es ejecutada completamente en tiempo de ejecución antes de procesar el siguiente mensaje. En otras palabras, si dicha función tiene un llamado a otra función, ambas funciones serán ejecutadas antes de procesar el siguiente mensaje en la fila. Este comportamiento es conocido como _run-to-completion_, y en pseudo código puede ser:
 
 ```javascript
 while (queue.waitForMessage()) {
@@ -164,3 +164,86 @@ Recuerde que la aplicación de un patrón incorrecto a un ambiente determinado p
 Todos estos elementos deben ser considerados al momento de aplicar un patrón de diseño en el código. Los siguientes ejemplos resultarán útiles para un desarrollador en JavaScript.
 
 #### Patrón constructor
+Cuando se piensa en los lenguajes de programación clásicos orientados a objetos, un constructor es una función especial en una clase que inicializa un objeto con un cojunto de valores por defecto. En JavaScript se tienene tres formas para crear objetos: A través de las llaves, por medio del método `create` de `Object`, y con ayuda de la palabra reservada `new`:
+
+```javascript
+const instance = {};
+const instance = Object.create(Object.prototype);
+const instance = new Object();
+```
+
+Después de crear un objeto, hay cuatro formas de agregarle propiedades al mismo: la notación punto, la notación de corchetes, el método `defineProperty` de `Object` para definir una sola propiedad y el método `defineProperties` para definit multiples propiedades:
+
+```javascript
+instance.key = "A key's values";
+instance["key"] = "A key's values";
+Object.defineProperty(
+  instance,
+  "key",
+  {
+    value: "A key's value",
+    writable: true,
+    enumerable: true,
+    configurable: true,
+  }
+);
+Object.defineProperties(
+  instance,
+  {
+    "firstKey": {
+      value: "First key's value",
+      writable: true,
+    }
+    "secondKey": {
+      value: "Second key's value",
+      writable: false,
+    }
+  }
+);
+```
+
+La forma más popular de crear objetos en JavaScript es a través de las llaves, agregando las propiedades pro medio de la notación punto, o la notación de corchetes.
+
+Como se mencionó anteriormente, JavaScript no soporta clases nativas, pero soporta constructores mediante el uso de la palabra `new` como prefijo a una llamada de una función. De esta forma se puede usar la función como un constructor e inicializar sus propoiedades de la misma forma que se hace en un lenguaje clásico con un constructor.
+
+```javascript
+function Person(name, age, isDeveloper) {
+  this.name = name;
+  this.age = age;
+  this.isDeveloper = isDeveloper || false;
+  
+  this.writesCode = function() {
+    console.log(this.isDeveloper ? "This person does write code" "This person does not write code");
+  }
+}
+
+const person1 = new Person("Bob", 38, true);
+const person2 = new Person("Bart", 32, false);
+
+person1.writesCode(); // prints out: This person does write code;
+person2.writesCode(); // prints out: This person does not write code;
+```
+
+Sin embargo, todavía hay un espacio para mejorar esta implementación y es aprovechando el hecho de que JavaScript usa herencia basada en prototipos. Con el código actual, el método `writesCode` se redefine para cada una de las instancias del constructor `Person`. Este detalle se puede evitar definiento el método dentro de la función prototipo:
+
+```javascript
+function Person(name, age, isDeveloper) {
+  this.name = name;
+  this.age = age;
+  this.isDeveloper = isDeveloper || false;
+}
+
+Person.prototype.writesCode = function() {
+  console.log(this.isDeveloper ? "This person does write code" "This person does not write code");
+}
+
+const person1 = new Person("Bob", 38, true);
+const person2 = new Person("Bart", 32, false);
+
+person1.writesCode(); // prints out: This person does write code;
+person2.writesCode(); // prints out: This person does not write code;
+```
+
+Ahora, ambas instancias del constructor `Person` pueden acceder a la instancia compartida del método `writesCode`.
+
+#### Patrón módulo
