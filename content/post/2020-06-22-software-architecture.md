@@ -247,3 +247,64 @@ person2.writesCode(); // prints out: This person does not write code;
 Ahora, ambas instancias del constructor `Person` pueden acceder a la instancia compartida del método `writesCode`.
 
 #### Patrón módulo
+Una de las características de JavaScript es que no admite modificadores de acceso. En un lenguaje de programación orientado a objetos, el desarrolador al momento de definir una clase, determina los derechos de acceso para la misma, y es comun ver palabras claves como `public`, `private` o `protected`. Dado que JavaScript en su forma simple no admite clases ni modificadores de accesos, la comunidad ha encontrado una dorma de imitar este comportamiento cuando sea necesario.
+
+Antes de entrar en los detalles del patrón módulo, es necesario hablar del concepto _closure_. Un closure en una función con acceso al scope del padre, incluso despues de que la función padre se haya cerrado. Por lo tanto, en JavaScript se imita el comportamiento de los modificadores de acceso a través del scope. Se complementa el concepto con el siguiente ejemplo:
+
+```javascript
+let counterIncrementer = (function() {
+  let counter = 0;
+  
+  return function() {
+    return ++counter;
+  };
+})();
+
+console.log(counterIncrementer()); // prints out: 1
+console.log(counterIncrementer()); // prints out: 2
+console.log(counterIncrementer()); // prints out: 3
+```
+
+Como se puede observar, al usar IIFE (Inmediately Invoked Function Expression) se ha vinculado la variable de contador a una función que fue invocada y cerrada, pero que aún puede ser accedere a la función interna que incrementa la variable `counter`. Dado que la variable `counter` no se pudede acceder por fuera de la expresión de la función, se convierte en una variable privada mediante la manipulación del scope.
+
+Usando closuere, se puende crear objetos con partes públicas y privadas. Estos se denominan módulos y son útiles cuando se pretende ocultar determinadas partes de un objeto y solo exponer una interfaz al quién este usando el módulo. Por ejemplo:
+
+```javascript
+let collection = (function() {
+  // private members
+  let objects = [];
+  
+  // public members
+  return {
+    addObject: function(object) {
+      objects.push(object);
+    },
+    removeObject: function(object) {
+      let index = objects.indexOf(object);
+
+      if (index >= 0)
+        objects.splice(index, 1);
+    },
+    getObject: function() {
+      return JSON.parse(JSON.stringify(objects));
+    },
+  }
+})();
+
+collection.addObject("Bob");
+collection.addObject("Alice");
+collection.addObject("Franck");
+
+console.log(collection.getObjects()); // prints ["Bob", "Alice", "Franck"]
+
+collection.removeObject("Alice"); 
+
+console.log(collection.getObjects()); // prints ["Bob", "Franck"]
+```
+
+Lo más útil que ofrece este patrón es la separación de las partes públicas y privadas de un objeto. Este concepto es familiar para los desarrolladores con conocimiento en la programación orientada a objetos.
+
+No obstante, en JavaScript se siguen presentando algunas particularidades. Si se desea cambiar la visibilidad de un miembro, se debe modificar el códgo en cada una de las implementaciones que hayan consumido dicho miembro, por la naturaleza de como se acceden a las partes públicas y privadas del objeto. Por otra parte, los métodos que se agregan al objeto posterior a su creación no pueden acceder a los miembros privados del mismo.
+
+
+#### Patrón de módulo revelador
