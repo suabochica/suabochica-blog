@@ -294,11 +294,8 @@ let collection = (function() {
 collection.addObject("Bob");
 collection.addObject("Alice");
 collection.addObject("Franck");
-
 console.log(collection.getObjects()); // prints ["Bob", "Alice", "Franck"]
-
 collection.removeObject("Alice"); 
-
 console.log(collection.getObjects()); // prints ["Bob", "Franck"]
 ```
 
@@ -308,3 +305,48 @@ No obstante, en JavaScript se siguen presentando algunas particularidades. Si se
 
 
 #### Patrón de módulo revelador
+
+Este patrón es una mejora del patrón que se explicó anteriormente. La principal diferencia es que ahora la lógica del objeto estará en el ámbito privado del módulo y luego se expone las partes públicas mediante el retorno de un objeto anónimo. Una ventaja con este enfoque es que ahora se podrá cambiar el nombre de los miembros privados cuando se asignen a los miembros públicos. A continuación se muestra el código que aplica el patrón
+
+```javascript
+const namesCollection = (function() {
+    // private members
+    var objects = [];
+
+    function addObject(object) {
+        objects.push(object);
+    }
+
+    function removeObject(object) {
+        var index = objects.indexOf(object);
+        if (index >= 0) {
+            objects.splice(index, 1);
+        }
+    }
+
+    function getObjects() {
+        return JSON.parse(JSON.stringify(objects));
+    }
+
+    // public members
+    return {
+        addName: addObject,
+        removeName: removeObject,
+        getNames: getObjects
+    };
+})();
+
+namesCollection.addName("Bob");
+namesCollection.addName("Alice");
+namesCollection.addName("Franck");
+console.log(namesCollection.getNames()); // prints ["Bob", "Alice", "Franck"]
+namesCollection.removeName("Alice");
+console.log(namesCollection.getNames()); // prints ["Bob", "Franck"]
+```
+
+El patrón de módulo revelador es una de la tres formas en la que se puede implementar el patrón módulo. Cómo se señalo anteriormente, su particularidad esta en como se exponen los miembros públicos. Con esta implementación es mucho más fácil y legible el acceso a los objetos. No obstante, este patrón puede resultar frágil en los siguientes escenarios:
+
+1. Al tener una función privada que se refiere a una función pública, no se puede anular la función pública ya que la función privada continuará refiriéndose a la implementación privada de la función, introduciendo así inconsistencia.
+2. Al tener un miembro público apuntando a una variable privada que intenta anular el miembro público por fuera del módulo, la otras funciones seguirán haciendo referencia al valor privado de la variable.
+
+Es importante tener presente que bajo este esquema, la parte privada del objeto esta en capacidad de suprimir la parte público de no ser bien manejado.
