@@ -350,3 +350,36 @@ El patrón de módulo revelador es una de la tres formas en la que se puede impl
 2. Al tener un miembro público apuntando a una variable privada que intenta anular el miembro público por fuera del módulo, la otras funciones seguirán haciendo referencia al valor privado de la variable.
 
 Es importante tener presente que bajo este esquema, la parte privada del objeto esta en capacidad de suprimir la parte público de no ser bien manejado.
+
+#### Patrón singleton
+El patrón singleton es utilizado cuando se necesita exactamente una instancia de una clase. Por ejemplo, cuando se precisa tener un objeto que contenga una configuración para un fin determinado. Para este casos, no es necesario crear un nuevo objeto cada vez que se requiera el objeto de configuración en algun lugar del sistema. En su lugar, se instancia el singleton como se muestra a continuación:
+
+````javascript
+let singleton = (function() {
+  let config;
+  
+  function initializeConfiguration(values) {
+    values = values || {};
+    this.randomNumber = Math.random();
+    this.number = values.number || 5;
+    this.size = values.size || 10;
+  }
+  
+  return {
+    getConfig: function(values) {
+      if (config === undefined)
+        config = new initializeConfiguration(values);
+        
+      return config;
+    }
+  };
+})();
+
+let configObject = singleton.getConfig({ "size": 8 }) // prints number 5, size: 0, randomNumber: {{ some random decimal value }}
+
+let configObject1 = singleton.getConfig({ "number": 8 }) // prints number 8, size: 10, randomNumber: {{ same random decimal value as in first log  }}
+```
+
+Algo importante a resaltar en este snippet, es que el número aleatorio y los valores que se pasan como parámetro de la función `getObject` son siempre los mismos. Por otra parte, el singleton solo debe tener un solo pundo de acceso para recuperar sus valores. Una de sus desventajas es que es un patrón díficil de probar ya que simular el comportamiento de una instancia singleton es complicado porque no hay control sobre su creación.
+
+
