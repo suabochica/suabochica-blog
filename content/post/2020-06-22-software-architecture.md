@@ -71,7 +71,7 @@ La programación basada en prototipos es un estilo de programación orientada a 
 
 JavaScript event loops
 -----------------------
-En JavaScript es común mencionar el término **callback function**. Un callback function, es una función que se envía como paramétro de otra función, y es ejecutsda después de que se active un evento. Recuerde que en JavaScript las funciones son ciudadanos de primera clase. Usualmente las callback function se subscriven a eventos como el clic de un mouse ó le presión de una tecla del teclado.
+En JavaScript es común mencionar el término **callback function**. Un callback function, es una función que se envía como paramétro de otra función, y es ejecutsda después de que se active un evento. Recuerde que en JavaScript las funciones son ciudadanos de primera clase. Usualmente las callback function se suscriben a eventos como el clic de un mouse ó le presión de una tecla del teclado.
 
 Un evento debe tener un listener adjunto para ser atendido, de lo contrario, sería un evento perdido. Cada vez que un evento se ejecuta, un mensaje es enviado a una fila de mensajes que son procesados sincronicamente, a través de un mecanismo FIFO (First in first out). Toda esta estructura es conocida como el **event loop** y la siguiente imagen ayuda a sintetizar dicha estructura.
 
@@ -382,4 +382,78 @@ let configObject1 = singleton.getConfig({ "number": 8 }) // prints number 8, siz
 
 Algo importante a resaltar en este snippet, es que el número aleatorio y los valores que se pasan como parámetro de la función `getObject` son siempre los mismos. Por otra parte, el singleton solo debe tener un solo pundo de acceso para recuperar sus valores. Una de sus desventajas es que es un patrón díficil de probar ya que simular el comportamiento de una instancia singleton es complicado porque no hay control sobre su creación.
 
+#### Patrón de observador
+El patrón de observador es una herramienta muy útil cuando hay un escenario en el que se precisa mejorar la comunicación entre partes dispares del sistema de forma optimizada. Promueve el acoplamiento flojo entre objetos.
 
+Hay varias versiones de este patrón, pero en su forma más básica hay dos partes principales: el sujeto y el observador.
+
+Un sujeto maneja las tres posibles operaciones relacionadas con un tema determinado al que se suscriben los observadores. Estas operaciones puntualmente son: la suscripción, dar de baja a la suscripción y la notificación de un evento público que ocurre sobre el tema en cuestión.
+
+Sin embargo, hay una variación llamada editor/suscriptor cuya principal diferencia es que se promueve un acoplamiento más flexible.
+
+En el patrón observador, el sujeto tiene las referencias a los observadores suscritos y llama los métodos desde los mismos objetos. Por otra parte, en el patrón editor/suscriptor se tienen canales que sirven como puente de comunicación entre las partes. El editor dispara un evento y ejecuta la función callback enviada para ese evento.
+
+A continuación se presenta un ejemplo corto del patrón editor/suscriptor. La implementación del patrón observador puede encontrarse fácilmente en línea.
+
+```javascript
+let publisherSubscriber = {};
+
+(function container {
+  let id = 0;
+  
+  container.subscribe = function(topic, callback) {
+    if (!(topic in container)) {
+      container[topic] = [];
+    }
+    
+    container[topic].push({
+      "id": ++id,
+      "callback": callback,
+    });
+    
+    return id;
+  }
+
+  container.unsubscribe = function(topic, id) {
+    let subscribers = [];
+    
+    for (let subscriber of container[topic]) {
+      if (subscriber.id !== id) {
+        subscribers.push(subscriber);
+      }
+    }
+    
+    container[topic] = subscribers;
+  }
+  
+  container.publish = function(topic, data) {
+    for (let subscriber of container[topic]) {
+      subscriber.callback(data);
+    }
+  }
+})(publisherSubscriber);
+
+let subscriptionId1 = publisherSubscriber.subscribe("mouseClicked", function(data) {
+  console.log("I am Bob's callback function for a mouse clicked event and this is my event")
+});
+
+let subscriptionId2 = publisherSubscriber.subscribe("mouseHovered", function(data) {
+  console.log("I am Bob's callback function for a mouse hovered event and this is my event")
+});
+
+let subscriptionId3 = publisherSubscriber.subscribe("mouseClicked", function(data) {
+  console.log("I am Alice's callback function for a mouse clicked event and this is my event")
+});
+
+publisherSubscriber.publish("mouseClicked", {"data": "data1"});
+publisherSubscriber.publish("mouseHovered", {"data": "data2"}); // output: there are 3 logs executed
+
+publisherSubscriber.unsubscribe("mouseClicked", subscriptionId3);
+
+publisherSubscriber.publish("mouseClicked", {"data": "data1"});
+publisherSubscriber.publish("mouseHovered", {"data": "data2"}); // output: there are 2 logs executed
+```
+
+Este patrón de diseño es útil en situaciones en dodne se necesitar realizar varias operaciones en un solo evento que se dispara. Imagine que hay un escenario en donde se requiere hacer múltiples llamadas AJAX a un servicio backend y luego hacer otra llamadas AJAX dependiendo del resultado. Una opción es anidar las llamadas AJAX exponiendose así al callback hell. Por otra parte el patrón editor/suscriptor ofrece una solución mucho más elegante.
+
+La desventaja de usar este patrón es su dificultad para probar varias partes del sistema. No existe una forma elegante de saber si las partes suscritas del sistema se están comportando como se espera.
