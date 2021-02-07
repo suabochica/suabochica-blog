@@ -457,3 +457,19 @@ publisherSubscriber.publish("mouseHovered", {"data": "data2"}); // output: there
 Este patrón de diseño es útil en situaciones en dodne se necesitar realizar varias operaciones en un solo evento que se dispara. Imagine que hay un escenario en donde se requiere hacer múltiples llamadas AJAX a un servicio backend y luego hacer otra llamadas AJAX dependiendo del resultado. Una opción es anidar las llamadas AJAX exponiendose así al callback hell. Por otra parte el patrón editor/suscriptor ofrece una solución mucho más elegante.
 
 La desventaja de usar este patrón es su dificultad para probar varias partes del sistema. No existe una forma elegante de saber si las partes suscritas del sistema se están comportando como se espera.
+
+#### Patrón mediador
+El patrón mediador resulta útil cuando se cuenta con sistemas desacoplados. Bajo un contexto en el que varias partes de un sistema requieren comunicarse y coordinarse, probablemente el una buena solución sería introducir un mediador.
+
+Un mediador es un objeto que se utiliza como punto central para la comunicación entre partes dispares de un sistema y maneja el flujo de trabajo entre ellas. Es importante resaltar que el mediador maneja el flujo de trabajo ya que existe una gran similitud con el patrón editor/suscriptor. La diferencia entre un mediador y un editor/suscriptor es que el el primero maneja el flujo de trabajo mientras que el segundo usa un tipo de comunicación disparar y olividar. El editor/suscriptor es un agregador de eventos, lo que significa que se encarga de activar y de informar a los suscriptores pertinentes qué eventos se activaron. Al agregador de eventos no le importa cuantas veces se activa un evento, algo que si es relevante para un patrón mediador.
+
+Un ejemplo de mediador es un tipo de interfaz asistente. Se va a suponer que se tienen un proceso de registro extenso para un sistema en el que se ha trabajado. A menudo, cuando se requiere mucha información del usuario, es una buena práctica dividirla en varios pasos. De esta forma, el código será más limpio y mantenible y el usuario no se verá abrumado por la cantidad de información que se solicita para finalizar el registro.
+
+Un mediador es un objeto que manejaría los pasos de registro, teniendo en cuenta los diferente flujos de trabajo que podrían ocurrir por el simple hecho de que cada usuario tiene un proceso de registro único.
+
+El beneficio obvio de este patrón de diseño es la mejora de la comunicación entre las partes de un sistema, que ahora se comunican a través del mediador.
+
+La desventaja es que ahora se ha introducido un punto de falla en el sistema, lo que significa que si el mediador falla, todo el sistema podría dejar de funcionar.
+
+```javascript
+```
