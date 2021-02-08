@@ -471,5 +471,44 @@ El beneficio obvio de este patrón de diseño es la mejora de la comunicación e
 
 La desventaja es que ahora se ha introducido un punto de falla en el sistema, lo que significa que si el mediador falla, todo el sistema podría dejar de funcionar.
 
+#### Patrón prototipo
+Como ya se mencionó, JavaScript no soporta clases de forma nativa. La herencia entre objetos es implementada usando programación basada en prototipos.
+
+Esto permite crear objectos que pueden servir como prototipo para otros objetos que se están creando. El objeto prototipo se utiliza como modelo para cada objeto que crea el constructor.
+
+A continuación se muestra un ejemplo sencillo para complementar el uso de este patrón:
+
 ```javascript
+const personPrototype = {
+  sayHi: function() {
+    console.log(`Hello, my name is ${this.name}, and I am ${this.age}`)
+  }
+  sayBye: function() {
+    console.log(`Bye bye!`)
+  }
+};
+
+function Person(name, age) {
+  name = name || "John Doe";
+  age = age || 26;
+  
+  function constructorFunction(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  
+  constructorFunction.protoype = personPrototype;
+  
+  let instance = new constructorFunction(name, age);
+  
+  return instance;
+}
+
+let person1 = Person();
+let person2 = Person("Bob", 38);
+
+person1.sayHi(); // prints: Hello, my name is John Doe, and I am 26
+person1.sayHi(); // prints: Hello, my name is Bob, and I am 38
 ```
+
+Observe como la herencia de prototipos también mejora el rendimiento porque ambos objetos contienen una referencia a las funciones que se implementan en el propio prototipo, en lugar de cada uno de los objetos.
