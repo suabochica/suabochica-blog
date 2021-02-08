@@ -354,7 +354,7 @@ Es importante tener presente que bajo este esquema, la parte privada del objeto 
 #### Patrón singleton
 El patrón singleton es utilizado cuando se necesita exactamente una instancia de una clase. Por ejemplo, cuando se precisa tener un objeto que contenga una configuración para un fin determinado. Para este casos, no es necesario crear un nuevo objeto cada vez que se requiera el objeto de configuración en algun lugar del sistema. En su lugar, se instancia el singleton como se muestra a continuación:
 
-````javascript
+```javascript
 let singleton = (function() {
   let config;
   
@@ -512,3 +512,35 @@ person1.sayHi(); // prints: Hello, my name is Bob, and I am 38
 ```
 
 Observe como la herencia de prototipos también mejora el rendimiento porque ambos objetos contienen una referencia a las funciones que se implementan en el propio prototipo, en lugar de cada uno de los objetos.
+
+#### Patrón comando
+El patrón comando es útil en los casos que pretenden desacoplar los objetos que ejecutan comandos de los objetos que los emiten. Imagine un escenario en el que la aplicación utiliza una gran cantidad de llamadas a un servicio API. Dichos servicios son cambiados y en consecuencia se tendría que modificar el código en cada una de las partes que hace el llamado al API que cambió.
+
+Este diagnóstico es una oportunidad para implementar una capa de abstracción que separe los objetos que llaman al servicio API de los objetos que les dicen cuando llamar al servicio. De esta forma se evitan modificaciones en todos los lugares donde se llama el servicio, y tan solo se modifican los objetos que están haciendo la llamada. 
+
+Como cualquier otro patrón, se debe identificar el contexto para tener garantías sobre la aplicación del mismo. Es necesario tener consciencia de la compemsación que se va a generar puesto que al agregar una capa de abstracción sobre las llamadas API, se reducirá el rendimiento de las mismas. No obstante, se ahorarrá mucho tiempo al momento de actualizar los objetos que ejecutan los comandos. El snippet de abajo es un ejemplo sencillo de como se implementa el patrón comando:
+
+```javascript
+const invoker = {
+  add: function(x, y) {
+    return x + y;
+  },
+  
+  substract: function(x, y) {
+    return x - y;
+  }
+}
+
+const manager = {
+  execute: function(name, args) {
+    if (name in invoker) {
+      return invoker[name].apply(invoker, [].slice.call(arguments, 1));
+    }
+    
+    return false;
+  }
+}
+
+console.log(manager.execute("add", 3, 5)); // prints 8
+console.log(manager.execute("substract", 5, 3)); // prints 2
+```
