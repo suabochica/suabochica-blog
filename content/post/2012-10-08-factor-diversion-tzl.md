@@ -4,7 +4,7 @@ description = "Analísis del factor diversion sobre The Legend Of Zelda: Spirit 
 date = 2012-08-10T02:13:50Z
 author = "Sergio Benítez"
 tags = [
-    "games",
+    "videogames",
 ]
 +++
 

@@ -1,5 +1,5 @@
 +++
-title = "Search and replace in spacemacs"
+title = "Buscar y reemplazar en multiples archivos"
 author = ["Sergio Benítez"]
 description = "Instalar paquetes en melpa dentro de spacemacs"
 date = 2020-12-30T00:00:00-05:00
@@ -10,8 +10,6 @@ tags = [
   "spacemacs",
 ]
 +++
-
-## Buscar y reemplazar en multiples archivos {#buscar-y-reemplazar-en-multiples-archivos}
 
 Una de las funcionalidades más usadas en los diferentes IDEs o editores de texto
 es la búsqueda y el remplazo de un texto específico en diferentes archivos.

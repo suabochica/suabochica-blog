@@ -4,7 +4,7 @@ date = 2012-09-11T02:13:50Z
 author = "Sergio L. Benítez D."
 description = "Análasis de la narrativa propuesta en la saga Diablo de Blizzard"
 tags = [
-    "games",
+    "videogames",
 ]
 +++
 

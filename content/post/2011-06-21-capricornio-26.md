@@ -4,8 +4,7 @@ description = "Proyecto mobiliario sobre licorera bogotana"
 date = 2011-06-21T02:13:50Z
 author = "Sergio Benítez, Miranda Garrido, Mariana Hoyos y Juan Sanchez"
 tags = [
-    "design",
-    "furniture",
+    "product-design",
 ]
 +++
 

@@ -4,7 +4,7 @@ date = 2013-09-10T02:13:50Z
 author = "Sergio L. Benítez D"
 description = "Trabajo de editorial y diagramación para estudiantes de la factultad de filosofía de la Universidad Javeriana "
 tags = [
-    "design",
+    "graphic-design",
     "editorial",
 ]
 +++

@@ -4,7 +4,7 @@ date = 2013-01-29T02:13:50Z
 author = "Sergio L. Benítez D., Carlos Celis, Leonardo Hidalgo, Ricardo Ladino y Catalina Saavedra"
 description = "Creación de una galera para el entendimiento de los conceptos técnicos relativos a los tipos móviles"
 tags = [
-    "design",
+    "graphic-design",
     "typography",
 ]
 +++
@@ -25,13 +25,12 @@ Como actividad lúdica se diseñó una galera con cada una de sus piezas en un m
 
 Una peculiaridad del diseño de los tipos es que en su cara principal el grabado de la letra debe estar invertido. Una vez establecidas las referencias se procede a lijar los bordes de la letra para dar forma a la rebaba, una inclinación que permite un desmolde con reducidas imperfecciones. En el ámbito profesional, el tipo móvil opera el cuerpo y la letra en una sola pieza. Bajo nuestra condición de novatos el cuerpo y la letra se fabricaron en dos piezas distintas.
 
-![Type Galley](../images/jpg/types_03.jpg)
+![Type Galey](../../images/tipos_moviles/03-types.jpg)
 
 > La galera: Cajon de madera de forma rectangular donde se guardan los signos tipográficos.
 
 Una véz situadas las piezas dentro de la galera, se pintó con óleo el ojo del tipo móvil para ejecutar la impresión peso-presión sobre el soporte que para este caso fue propalibro.
 
-![Type Paint](../../images/tipos_moviles/03-types.jpg)
 
 ![Type Paint](../../images/tipos_moviles/04-types.jpg)
 

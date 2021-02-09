@@ -5,7 +5,7 @@ author = "Sergio L. Benítez D."
 description = "Breve introdución de programación funcional en JavaScript."
 tags = [
     "javascript",
-    "functional programming",
+    "functional-programming",
 ]
 +++
 

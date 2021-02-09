@@ -4,7 +4,7 @@ date = 2014-06-12T02:13:50Z
 author = "Sergio L. Benítez D"
 description = "Recopilación del trabajo de identidad corporativa realizado para Software House Ltda."
 tags = [
-    "web design",
+    "web-design",
 ]
 +++
 

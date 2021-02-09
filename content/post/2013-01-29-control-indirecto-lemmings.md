@@ -4,7 +4,7 @@ date = 2013-01-29T02:13:50Z
 author = "Sergio L. Benítez D."
 description = "Análisis de los métodos de control indirecto utilizados en Lemmings"
 tags = [
-    "games",
+    "videogames",
 ]
 +++
 
