@@ -544,3 +544,24 @@ const manager = {
 console.log(manager.execute("add", 3, 5)); // prints 8
 console.log(manager.execute("substract", 5, 3)); // prints 2
 ```
+
+#### Patrón fachada
+El patrón fachada se utiliza para crear una capa de abstracción entre lo que se muestra publicamente y lo que se implementa detras de la cortina. Es apropiada para crear una interfaz sencilla sobre un objeto subyacente.
+
+El ejemplo explícito de este patrón son los selectores de las librerías para la manipulación del DOM como JQuery, Dojo o D3. Algo muy común en el uso de estas bibliotecas es que maneja funciones de selección muy poderosas de forma tan simple como:
+
+```javascript
+jQuery(".parent .child div.span");
+```
+
+Lo interesante de está línea de código es que detrás de esta forma tan sencilla hay una lógica compleja implementada por debajo del capo para lograr que la consulta funcione.
+
+Por otra parte, hay que tener consciencia del compromiso sobre rendimiento y simplicidad al usar librerías externas. Lo ideal es evitar complejidad adicional si el uso de la librería no es lo suficientemente beneficioso. No obstante, las bibliotecas mencionadas anteriormente son muy populares y el sacrificio de rendimiento por su uso vale la pena.
+
+### Siguientes pasos
+Los patrones de diseño son herramientas muy útiles para cualquier desarrollador y por ende es recomendable tener conocimiento sobre ellas. Comprender los detalles sobre los patrones de diseño resulta una ventaja importante durante el ciclo de vida de cualquier proyecto, ya que puede ahorrar tiempo de implementación. La actualización y el mantenimiento de sistemas escritos con ayuda de patrones de diseño que se ajusten a sus necesidades pueden generar un fruto invaluable.
+
+No obstante, muchos patrones fueron omitidos en esta publicación. Es por eso que se hace la invitación a consultar los siguientes recursos si se quiere profundizar en dichos patrones:
+
+- Design patterns: Elements of reusable object-oriented software by Gang of Four
+- Learning JavaScript design patterns by Addy Osmani

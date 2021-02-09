@@ -601,7 +601,7 @@ console.log(map(propName)(peope)) // ['Leonardo', 'Rafael', 'Miguel Angel', 'Don
 
  La propiedad asociativa es un principio matemático que demuestra que al agrupar valores cuando se hacen adiciones o multiplicaciones no se altera el resultado:
 
-```
+```js
 1 + 2 + 3 		===
 (1 + 2) + 3 	===
 1 + (2 + 3)

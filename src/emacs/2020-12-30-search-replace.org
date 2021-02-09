@@ -2,9 +2,12 @@
 #+DESCRIPTION: Instalar paquetes en melpa dentro de spacemacs
 #+AUTHOR: Sergio Benítez
 #+DATE:<2020-12-30 Wed> 
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
 
-* DONE Buscar y reemplazar en multiples archivos
-  CLOSED: [2020-12-31 Thu 12:18]
+* Buscar y reemplazar en multiples archivos
 
 Una de las funcionalidades más usadas en los diferentes IDEs o editores de texto
 es la búsqueda y el remplazo de un texto específico en diferentes archivos.
