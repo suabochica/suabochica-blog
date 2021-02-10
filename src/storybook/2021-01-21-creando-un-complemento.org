@@ -3,6 +3,11 @@
 #+AUTHOR: Sergio Benítez
 #+DATE:<2021-01-21 Thu> 
 #+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
 * Creando un complemento
 
 Una vez repasados los temas de escritura de historias y uso de complementos, el

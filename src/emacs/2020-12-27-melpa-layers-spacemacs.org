@@ -2,7 +2,7 @@
 #+DESCRIPTION: Instalar paquetes en melpa dentro de spacemacs
 #+AUTHOR: Sergio Benítez
 #+DATE:<2020-12-27 Tue>
-#+HUGO_BASE_DIR: /Users/sbenitez/Development/suabochica-blog/
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
 #+HUGO_SECTION: /post
 #+HUGO_WEIGHT: auto
 #+HUGO_AUTO_SET_LASTMOD: t

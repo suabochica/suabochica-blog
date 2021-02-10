@@ -3,6 +3,10 @@
 #+AUTHOR: Sergio Benítez
 #+DATE:<2021-01-08 Fri> 
 #+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
 
 Storybook es el lider sandbox para el desarrollo y la documentación de
 componentes de interfaz de usuario. En esta serie de publicaciones relativas a

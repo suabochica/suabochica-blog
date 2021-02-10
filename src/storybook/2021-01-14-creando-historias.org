@@ -3,8 +3,12 @@
 #+AUTHOR: Sergio Benítez
 #+DATE:<2021-01-14 Thu> 
 #+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
 
-Los secciones abordadas en este articulo, toman como referencia el proyecto
+Los secciones abordadas en este artículo, toman como referencia el proyecto
 alojado en el siguiente repositorio de github:
 
 - https://github.com/taylonr/storybook-getting-started

@@ -4,6 +4,10 @@ una aplicación y sus dependencias y así hacer un despliegue en una sola máqui
 #+AUTHOR: Sergio Benítez
 #+DATE:<2020-11-19 Thu> 
 #+STARTUP: content
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
 
 * Profundizando en arquitectura
   

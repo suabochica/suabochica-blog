@@ -3,6 +3,11 @@
 #+AUTHOR: Sergio Benítez
 #+DATE:<2021-01-18 Thu> 
 #+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
 * Usando complementos
 
 Tener la disposición de como su componente se va a ver dentro de la aplicación

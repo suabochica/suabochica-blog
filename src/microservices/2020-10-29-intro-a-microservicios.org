@@ -4,6 +4,10 @@ disponibles usan el patrón de diseño de microservicios
 #+AUTHOR: Sergio Benítez
 #+DATE:<2020-10-29 Thu> 
 #+STARTUP: content
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
 
 * La evolución de las aplicaciones
 

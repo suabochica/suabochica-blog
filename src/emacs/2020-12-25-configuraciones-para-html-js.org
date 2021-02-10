@@ -1,7 +1,11 @@
-#+TITLE: HTML and JavaScript tips
-#+DESCRIPTION: Instalar paquetes en melpa dentro de spacemacs
+#+TITLE: Consejos para configurar HTML y JavaScript
+#+DESCRIPTION: Configuración recomendada para trabajar con HTML y JavaScript
 #+AUTHOR: Sergio Benítez
-#+DATE:<2020-11-10 Tue> 
+#+DATE:<2020-12-25 Thu> 
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
 
 * Configuracíon de layers
 #+begin_src elisp
