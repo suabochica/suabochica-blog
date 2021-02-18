@@ -1,0 +1,27 @@
+#+TITLE: ¿Por qué usar React?
+#+DESCRIPTION: Serie que recopila una descripción general de React
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-02-18 Thu> 
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+Esta serie estará dividida por tres publicaciones:
+
+1. Por qué usar React?
+2. Compesasiones de usar React (Trade offs)
+3. Por qué /no/ usar React?
+
+El objetivo de esta serie es evaluar el panorama que ofrece React como herramienta para el desarrollo de aplicaciones web.
+
+* Historia
+  A continuación se muestra una línea de tiempo con la historia de React:
+  
+  #+CAPTION: React History
+  [[../images/react/01-react-big-pic-history.png]]
+
+  React ya lleva casi una década en el mercado y quizas el hecho más importante en su historia fue su liberación a código abierto, ya que este evento marco la pauta para un crecimiento en la comunidad que se vío reflejado en la implementación de los nuevos complementos como React Native y los nuevos features como React Hooks. Esta misma comunidad liderada por el equipo dedicado de Facebook esta en constante actividad para actualizar documentación y desarrollar mejoras sobre la librería.
+
+  
