@@ -24,4 +24,13 @@ El objetivo de esta serie es evaluar el panorama que ofrece React como herramien
 
   React ya lleva casi una década en el mercado y quizas el hecho más importante en su historia fue su liberación a código abierto, ya que este evento marco la pauta para un crecimiento en la comunidad que se vío reflejado en la implementación de los nuevos complementos como React Native y los nuevos features como React Hooks. Esta misma comunidad liderada por el equipo dedicado de Facebook esta en constante actividad para actualizar documentación y desarrollar mejoras sobre la librería.
 
-  
+* Por qué React?
+
+  Una de las principales dudas a resolver en esta serie es identificar el por qué usar React ante tantas alternativas que hay actualmente para el desarrollo de aplicaciones web. Le respuesta en detalle será desarrollada a lo largo de estás publicaciones. No obstante, se pueden anticipar seis razones importantes que soportan la elección de React:
+
+  1. Flexibilidad
+  2. Experiencia de desarrolladores
+  3. Inversión y compromiso corporativo
+  4. Soporte de la comunidad
+  5. Rendimiento
+  6. Fácil de probar
