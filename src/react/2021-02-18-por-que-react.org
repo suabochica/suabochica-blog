@@ -34,3 +34,25 @@ El objetivo de esta serie es evaluar el panorama que ofrece React como herramien
   4. Soporte de la comunidad
   5. Rendimiento
   6. Fácil de probar
+
+* Razón 1: Flexibilidad
+  Quizas la razón más convincente para seleccionar React es que una vez se aprende, se esta en capacidad de construir interfaces de usuario para una gran variedad de plataformas y casos de uso. React es notablemente flexible, ya que incorpora menos opciones que sus competidores. React es una librería, no un framework. Al ser una librería resulta ser una herramienta más flexible, ya que se adapta a diferentes contextos.
+
+  Cuando React fue creado, solo había un único caso de uso a solucioanr; la creación de componentes para aplicaciones web. Sin embargo, a medida de que su popularidad fue creciendo, su ecosistema se fue ampliando para abordar otros casos de usos como los que se enlistan a continuación:
+
+  - Sitios estáticos a tráves de Gatsby
+  - Desarrollo de aplicaciones móviles a través de React Native
+  - Desarrollo de aplicaciones de escritorio con ayuda de Electron
+  - Proyectos server-rendered a través del framework NextJS
+  - Desarrollo de aplicaciones en realidad virtual a través de React VR
+
+En resumen, la gran ventaja de react es:
+
+#+begin_notes
+Aprende React una vez, y escríbelo en todas parte.
+#+end_notes
+
+React es muy vérsatil ya que el motor de renderizado esta separado de React. Para hacer aplicaciones web, es necesario el uso de `react-dom` para renderizar los componentes HMTL. Para React Native, se usa el motor `react-native` para renderizar los componentes móviles. El mismo enfoque se tiene con React VR.
+
+Actualmente, hay mas de una docena de motores de renderizado para React: generación de PDFs, implementaciones sobre canvas y componentes en WebGL.
+
