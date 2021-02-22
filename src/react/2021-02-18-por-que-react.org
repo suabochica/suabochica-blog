@@ -56,3 +56,8 @@ React es muy vérsatil ya que el motor de renderizado esta separado de React. Pa
 
 Actualmente, hay mas de una docena de motores de renderizado para React: generación de PDFs, implementaciones sobre canvas y componentes en WebGL.
 
+En cuanto a server-side rendering, el motor ~react-dom~ provee una función llamada ~renderToString~ que renderiza el componente a una cadena de carácteres de HTML. Este hecho resulta útil cuando se pretende renderizar los componentes de React en el servidor, lo cual significa que se puede usar React para reemplazar una tecnología tradicional para la renderización en servidores. Librerías como NextJS nos facilitan este tipo de tareas.
+
+Ahora bien, ya que React es tan ligero y flexible, uno de sus principales usos es integrarlo en aplicaciones existentes. De hecho, esta es la razón principal para la cuál React fue diseñado. Facebook usó React para reemplazar lentamente su aplicación renderizada en el servidor implementada en PHP. Se puede empezar por porciones pequeñas de una página web, como la calificación en estrellas de un curso web y posteriormente extenderse a piezas más grandes como un bloque que aglomera toda la información de un curso web; título, duración, nivel, fecha de publicación y calificación. Este enfoque se puede aplicar hasta lograr finalmente la reconstrucción de toda la página, logrando así una migración de bajo riesgo.
+
+Por útlimo, React es soportado por la mayoría de los navegadores modernos. En consecuencia, se puede confiar en que su uso no implicaría configuraciones adicionales para poder ser utilizado en un cliente específico.
