@@ -61,3 +61,48 @@ En cuanto a server-side rendering, el motor ~react-dom~ provee una función llam
 Ahora bien, ya que React es tan ligero y flexible, uno de sus principales usos es integrarlo en aplicaciones existentes. De hecho, esta es la razón principal para la cuál React fue diseñado. Facebook usó React para reemplazar lentamente su aplicación renderizada en el servidor implementada en PHP. Se puede empezar por porciones pequeñas de una página web, como la calificación en estrellas de un curso web y posteriormente extenderse a piezas más grandes como un bloque que aglomera toda la información de un curso web; título, duración, nivel, fecha de publicación y calificación. Este enfoque se puede aplicar hasta lograr finalmente la reconstrucción de toda la página, logrando así una migración de bajo riesgo.
 
 Por útlimo, React es soportado por la mayoría de los navegadores modernos. En consecuencia, se puede confiar en que su uso no implicaría configuraciones adicionales para poder ser utilizado en un cliente específico.
+
+* Razón 2: Experiencia de desarrollo 
+  
+Uno de los efectos comunes con React, es que una vez se utiliza se querrá aplicar en todas partes. La retroalimentación rápida de la experiencia de desarrollo, combinado con el intuitivo API de la librería, establece una meta díficil de derrocar.
+
+El siguiente snippet es un ejemplo que ilustra las bases para comprender React:
+
+#+begin_src javascript
+import React from 'react';
+
+function HelloWorld(props) {
+  return <div> Hello {props.name}</div>;
+}
+#+end_src
+
+Básicamente es una función que retorna un código que parece HTML. Para usar componentes en React, el primer paso es importar la librería. El segundo paso es declarar el componente usando una función estándar de JavaScript. Esta función recibe variables a través de un objeto llamdo ~props~. Estos son todos los detalles a contemplar.
+
+Por otra parte, es posible declarar componentes en React usando la clases estándares de JavaScript, como se muestra a continuación:
+
+#+begin_src javascript
+import React from 'react';
+
+class HelloWorld extends React.Component {
+  render () {
+    return <div> Hello {props.name}</div>;
+  }
+}
+#+end_src
+
+La parte llamativa de ambos snippets, es el código que parece HTML, ya que no es normal encontrar una sintaxis HTML en archivos JavaScript, porque sencillamente no funcionaria. Este tipo de sintaxis es llamada JSX, y es un código que se compila a JavaScript de la siguiente manera:
+
+#+begin_src javascript
+<h1 color="red"> Heading here </h1>
+// is equal to
+React.createElement("h1", {color: "red"}, "Heading here");
+#+end_src
+
+El argumento esta en la función ~createElement~ de React que recibe los siguientes tres argumentos:
+
+1. El nombre de la etiqueta
+2. Un objeto que especifica los atributos a configurar
+3. El contenido que va dentro de la etiqueta
+
+En últimas, JSX se compila a código JavaScript. Se esta en libertad de escribir solo JavaScript, pero la mayoria de los desarrolladores React terminan familiarizandose con JSX porque resulta más fácil de leer y anidar.
+
