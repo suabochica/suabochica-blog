@@ -106,3 +106,21 @@ El argumento esta en la función ~createElement~ de React que recibe los siguien
 
 En últimas, JSX se compila a código JavaScript. Se esta en libertad de escribir solo JavaScript, pero la mayoria de los desarrolladores React terminan familiarizandose con JSX porque resulta más fácil de leer y anidar.
 
+Un dato llamativo es el enfoque que utiliza React llamado /HTML in JS/. Frameworks como Angular y Vue mejorar el poder de HTML inventando su propia sintaxis para operaciones simples como los bucles. Es común encontrar este tipo de sintaxis en estos frameworks:
+
+#+begin_src javascript
+<div *ngFor="let user of users">// Angular
+<div v-for="let user of users">// Vue
+{{#each user in users}} // Ember
+#+end_src
+
+Este enfoque es conocido como /JS in HTML/. React invierte los roles y para lograr operaciones de bucles nos ofrece algo como:
+
+#+begin_src javascript
+{users.map(createUser)} // Ember
+#+end_src
+
+Nuevamente, solo es necesario seguir usando JavaScript. Es por esta razón que la comunidad de React resalta con frecuencia que el uso de esta librería hace que los desarrolladors mejores sus habilidades en JavaScript.
+
+* Razón 3: Inversión corporativa
+
