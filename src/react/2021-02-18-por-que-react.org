@@ -124,3 +124,8 @@ Nuevamente, solo es necesario seguir usando JavaScript. Es por esta razón que l
 
 * Razón 3: Inversión corporativa
 
+Muchas empresas de renonmbre han realizado inversiones profundas en React y su ecosistema. React fue creado por Facebook, y por ende es una librería muy utilizada dentro de la empresa. Facebook esta muy comprometida con el mantenimiento y la innovación de React, y aunque es un proyecto de código abierto, cuatro de los seis sub proyectos con más compromisos de React son apoyados por empleados de tiempo completo de Facebook.
+
+Las actualizaciones de Facebook publicadas en React son administradas a través de un /codemod/. Un codemod es una herramienta de líneas de comando a la cual se puede apuntar desde su código base para automatizar los cambios introducidos a la librería. A través de esta línea de comandos se pueden actualizar automaticamente los componentes React viejos a la última especificación. A lo largo de los años, cuando se introducen cambios a la versión de React, el equipo de Facebook publica consistentemente el codemod respectivo con el fin de actualizar el proyecto a la versión más reciente. En consecuencia, la compatibilidad entre las versiones React es el reflejo del soporte y la responsabilidad qu tienen las empresas con la librería.
+
+El codemod existe porque Facebook lo necesita. Hoy en día existen más de 50.000 componentes React en producción. De cierto modo, esto es un benefico por usar React, ya que hay garantías de retrocompatibilidad entre versiones por que existe un equipo dedicado en mantener esta carácteristica. El resultado de está dinámica es una librería estable para el desarrollo de las aplicaciones web.
