@@ -129,3 +129,30 @@ Muchas empresas de renonmbre han realizado inversiones profundas en React y su e
 Las actualizaciones de Facebook publicadas en React son administradas a través de un /codemod/. Un codemod es una herramienta de líneas de comando a la cual se puede apuntar desde su código base para automatizar los cambios introducidos a la librería. A través de esta línea de comandos se pueden actualizar automaticamente los componentes React viejos a la última especificación. A lo largo de los años, cuando se introducen cambios a la versión de React, el equipo de Facebook publica consistentemente el codemod respectivo con el fin de actualizar el proyecto a la versión más reciente. En consecuencia, la compatibilidad entre las versiones React es el reflejo del soporte y la responsabilidad qu tienen las empresas con la librería.
 
 El codemod existe porque Facebook lo necesita. Hoy en día existen más de 50.000 componentes React en producción. De cierto modo, esto es un benefico por usar React, ya que hay garantías de retrocompatibilidad entre versiones por que existe un equipo dedicado en mantener esta carácteristica. El resultado de está dinámica es una librería estable para el desarrollo de las aplicaciones web.
+
+* Razón 4:Comunidad
+
+La comunidad de React es enorme y es una de las maś activas. Desde el 2013 la popularidad de React ha crecido tanto que hoy en día tiene más de 160k estrellas en su repositorio de GitHub, clasificandolo en el podio de los repositorios más populares en GitHub.
+  
+Los números de React son muy llamativos:
+
+- [[https://github.com/facebook/react][React]] tiene más de 160,000 estrellas en su repositorio de GitHub, con más de 1,300 contribuidores
+- En [[https:www.npmjs/package/react][npm]] registra millones de descargas por semana
+- En [[https://stackshare.io/tools/top][Stackshare]] se registra que más de 8000 compañias usan React y lo califica como la quinta herramienta más popular en open source.
+- [[https://www.reactiflux.com/][Reactiflux]] es una comunidad de chat con mas de 110,000 miembros dispuestos a dar soporte
+
+Estos datos son relevantes porque incrementa la probabilidad de que la respuesta a su caso puntual exista en internet. Es decir, un problema que este enfrentando, posiblemente ya haya sido resuelto por otro desarrollador.
+
+Otro hecho importante es que gracias a la flexibilidad de React varias compañias ha creado sus propias librerias de componentes React. Por nombrar algunos casos, se tiene UI Fabric de Microsoft para lograr aplicaciones visualmente parecidas a Office; Material UI para implementar las guías del Material Design de Google; En fin, la lista es larga y puede consultare en el repositoria GitHub [[https:github.com/enagx/awesome-react][awesome-react]].
+
+La inversión profunda de la comunidad ha logrado una variedad y madurez de proyectos basados en React como los que se enlistan a continuación:
+   
+   - React Router, para hacer enrutamientos
+   - Redux o Mobx, para manejos complejos de datos
+   - Jest, para pruebas automatizadas
+   - GraphQL, como alternativa a los llamados RESTful API desde el cliente
+   - NextJS, para configuraciones de renderizaciones en el lado del servidor
+
+Es importante resaltar que la lista sigue creciendo, y todo esto es gracias a una gran comunidad que día a día sigue manifestando su compromiso con el proyecto.
+  
+* Razón 5: Rendimiento
