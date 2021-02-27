@@ -156,3 +156,13 @@ La inversión profunda de la comunidad ha logrado una variedad y madurez de proy
 Es importante resaltar que la lista sigue creciendo, y todo esto es gracias a una gran comunidad que día a día sigue manifestando su compromiso con el proyecto.
   
 * Razón 5: Rendimiento
+
+Cuando React fue liberado, dió un golpe fuerte sobre la competencia en cuanto a rendimiento. El equipo de React reconoció que JavaScript es rápido y que el DOM hacía que pareciera lento. Identificaron que modificar el DOM es costoso ya que para reflejar nuevos estados, el redibujo de la página se hacia sobre una proción significante de la misma, aun asi cuando el cambio era menor. Por lo tanto, el equipo encontró una forma para actualizar el DOM de manera más eficiente que ayuda a mejorar el rendimiento de una aplicación web. Esta solución es conocida como el /DOM virtual/.
+
+Detraś de escenas cuando se cambian datos React inteligentemente descubre la forma más eficiente de actualizar el DOM, ya que realiza un monitoreo sobre el estado de cada componente. Cuando el estado de un componente cambia, React compara el estado del DOM existente con el estado de como debería verse el DOM con el cambio. Así determina una actualización menos costosa porque dicha comparación le ayuda a identificar con facilidad cuales son las actualizaciones puntuales que se deben renderizar.
+
+Este enfoque tiene varios beneficios. El primero es que ayuda a evitar basura de diseño cuando el navegador recacula la posición de todo el contenido de la página al momento de que un elemento del DOM cambia. El segundo es que ayuda a ahorrar consumo de bateria y procesamiento. Y por último habilita un modelo simple de programación, puesto que cuando los datos cambian, React actualiza eficientemente el DOM de manera automática.
+
+Actualmente, muchas liberias usan este mismo enfoque pero React sigue manteniendo tiempos competitivos y la comunidad considera que no son comunes las optimizaciones de rendimiento.
+
+Por último, el peso de ~react~ y ~react-dom~ equivale a ~35k. El tamaño de la librería es importante para el rendimiento, y en caso de que se considere este tamaño algo elevado, hay alternativas como Inferno o Preact en donde la librería es más ligera a cambio del descarte de unas funcionalidades que no se consideran escenciales para el desarrollo.
