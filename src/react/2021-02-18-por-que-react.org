@@ -166,3 +166,13 @@ Este enfoque tiene varios beneficios. El primero es que ayuda a evitar basura de
 Actualmente, muchas liberias usan este mismo enfoque pero React sigue manteniendo tiempos competitivos y la comunidad considera que no son comunes las optimizaciones de rendimiento.
 
 Por último, el peso de ~react~ y ~react-dom~ equivale a ~35k. El tamaño de la librería es importante para el rendimiento, y en caso de que se considere este tamaño algo elevado, hay alternativas como Inferno o Preact en donde la librería es más ligera a cambio del descarte de unas funcionalidades que no se consideran escenciales para el desarrollo.
+
+* Razón 6: Óptimo para pruebas
+
+Típicamente hacer pruebas en el frontend es difícil y es por esta razón que pocos equipos hacen un frontend comprensivo y fácil de probar. Aquí React resulta atractivo gracias a que su diseño es amigable con las pruebas automatizadas. 
+
+En las pruebas tradicionales de interfaces de usuario siempre hay molestías con la configuración de los ambientes de pruebas y hay que ser cuidadoso con la integración de los proyectos de código abierto que permitan hacer este tipo de comprobaciones. Con React, este paso es resuelto con el uso del paquete ~create-react-app~ ya que los ambientes de pruebas son configurados por defecto.
+
+Otra punto en las pruebas tradicionales de UI es la necesidad de un navegador. En cambio, con React se pueden ejecutar las pruebas de los componentes web en memoria a través de NodeJS. Esta característica también otorga un beneficio en rendimiento, ya que hacer pruebas UI sobre un navegador es un proceso lento, mientras que correrlas en memoria con ayuda de una línea de comandos es lo suficientemente rápido para ejecutar un conjunto grande de pruebas cada vez que se hagan modificaciones.
+
+Por último, la pruebas de integración tradicionales de UI suelen ser muy frágiles, en el sentido de que cualquier cambio puede desencadenar varios fallos. Con React se pueden escribir pruebas unitarias deterministicas de confianza ya que el componente web se prueba de manera aislada.
