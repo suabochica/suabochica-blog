@@ -26,7 +26,7 @@ El objetivo de esta serie es evaluar el panorama que ofrece React como herramien
 
 * Por qué React?
 
-  Una de las principales dudas a resolver en esta serie es identificar el por qué usar React ante tantas alternativas que hay actualmente para el desarrollo de aplicaciones web. Le respuesta en detalle será desarrollada a lo largo de estás publicaciones. No obstante, se pueden anticipar seis razones importantes que soportan la elección de React:
+Una de las principales dudas a resolver en esta serie es identificar el por qué usar React ante tantas alternativas que hay actualmente para el desarrollo de aplicaciones web. Le respuesta en detalle será desarrollada a lo largo de estás publicaciones. No obstante, se pueden anticipar seis razones importantes que soportan la elección de React:
 
   1. Flexibilidad
   2. Experiencia de desarrolladores
@@ -36,9 +36,10 @@ El objetivo de esta serie es evaluar el panorama que ofrece React como herramien
   6. Fácil de probar
 
 * Razón 1: Flexibilidad
-  Quizas la razón más convincente para seleccionar React es que una vez se aprende, se esta en capacidad de construir interfaces de usuario para una gran variedad de plataformas y casos de uso. React es notablemente flexible, ya que incorpora menos opciones que sus competidores. React es una librería, no un framework. Al ser una librería resulta ser una herramienta más flexible, ya que se adapta a diferentes contextos.
+  
+Quizas la razón más convincente para seleccionar React es que una vez se aprende, se esta en capacidad de construir interfaces de usuario para una gran variedad de plataformas y casos de uso. React es notablemente flexible, ya que incorpora menos opciones que sus competidores. React es una librería, no un framework. Al ser una librería resulta ser una herramienta más flexible, ya que se adapta a diferentes contextos.
 
-  Cuando React fue creado, solo había un único caso de uso a solucioanr; la creación de componentes para aplicaciones web. Sin embargo, a medida de que su popularidad fue creciendo, su ecosistema se fue ampliando para abordar otros casos de usos como los que se enlistan a continuación:
+Cuando React fue creado, solo había un único caso de uso a solucioanr; la creación de componentes para aplicaciones web. Sin embargo, a medida de que su popularidad fue creciendo, su ecosistema se fue ampliando para abordar otros casos de usos como los que se enlistan a continuación:
 
   - Sitios estáticos a tráves de Gatsby
   - Desarrollo de aplicaciones móviles a través de React Native
@@ -130,7 +131,7 @@ Las actualizaciones de Facebook publicadas en React son administradas a través 
 
 El codemod existe porque Facebook lo necesita. Hoy en día existen más de 50.000 componentes React en producción. De cierto modo, esto es un benefico por usar React, ya que hay garantías de retrocompatibilidad entre versiones por que existe un equipo dedicado en mantener esta carácteristica. El resultado de está dinámica es una librería estable para el desarrollo de las aplicaciones web.
 
-* Razón 4:Comunidad
+* Razón 4: Comunidad
 
 La comunidad de React es enorme y es una de las maś activas. Desde el 2013 la popularidad de React ha crecido tanto que hoy en día tiene más de 160k estrellas en su repositorio de GitHub, clasificandolo en el podio de los repositorios más populares en GitHub.
   
@@ -192,3 +193,15 @@ function HelloWorld(props) {
 #+end_src
 
 Actualmente hay muchas alternativas para automatizar pruebas en JavaScript. Dada la premisa de que React es puro JavaScript, cualquier framework para probar JavaScript sirve para probar React. No obstante, la más popular es Jest. Otra buena herramienta es React Testing Library, ya que permite ejecutar las pruebas sin necesidad de un navegador y se apoya sobre NodeJS para hacer correr las mismas en memoria.
+
+* Resumen
+
+En esta publicaciones se compartieron las principales razones por la cuales React es popular:
+
+- Flexibilidad
+- Experiencia de desarrollo
+- Soporte de comunidad
+- Rendimiento
+- Óptimo para pruebas
+
+En la siguiente publicación se va a revisar las compensaciones a las que se expone el uso de React
