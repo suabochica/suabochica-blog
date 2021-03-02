@@ -175,4 +175,20 @@ En las pruebas tradicionales de interfaces de usuario siempre hay molestías con
 
 Otra punto en las pruebas tradicionales de UI es la necesidad de un navegador. En cambio, con React se pueden ejecutar las pruebas de los componentes web en memoria a través de NodeJS. Esta característica también otorga un beneficio en rendimiento, ya que hacer pruebas UI sobre un navegador es un proceso lento, mientras que correrlas en memoria con ayuda de una línea de comandos es lo suficientemente rápido para ejecutar un conjunto grande de pruebas cada vez que se hagan modificaciones.
 
-Por último, la pruebas de integración tradicionales de UI suelen ser muy frágiles, en el sentido de que cualquier cambio puede desencadenar varios fallos. Con React se pueden escribir pruebas unitarias deterministicas de confianza ya que el componente web se prueba de manera aislada.
+Adicionalmente las pruebas de integración tradicionales de UI suelen ser muy frágiles, en el sentido de que cualquier cambio puede desencadenar varios fallos. Con React se pueden escribir pruebas unitarias deterministicas de confianza ya que el componente web se prueba de manera aislada.
+
+Por último, hacer pruebas UI tradicionales requiere tiempo y mantenimiento ya que se tiene que hacer una interacción cuidadosa con el DOM para probar el UI. En contraste, las pruebas en React se escriben rápidamente usando herramientas populares como Jest y Enzyme. Dichas herramientas también facilitan la actualización de las pruebas en la mayoria de los casos, con una sola pulsación de una tecla pra confirmar que la salida cambio tal y como se esperaba.
+
+Con React, la mayoria de los componentes pueden ser funciones puras, lo cual significa que dada una entrada, se produce la misma salida y por lo tanto no hay efectos secundarios. Probar este tipo de componentes resulta algo trivial. Por ejemplo, en la siguiente función si se pasa el parametro world como propos siempre se va a obtener la etiqueta ~<div> Hello world </div>~ como salida, haciendo que la función sea confiable, deterministica y sin efectos secundarios:
+
+#+begin_src javascript
+function HelloWorld(props) {
+  return (
+    <div>
+        Hello {props.message}
+    </div>
+  )
+}
+#+end_src
+
+Actualmente hay muchas alternativas para automatizar pruebas en JavaScript. Dada la premisa de que React es puro JavaScript, cualquier framework para probar JavaScript sirve para probar React. No obstante, la más popular es Jest. Otra buena herramienta es React Testing Library, ya que permite ejecutar las pruebas sin necesidad de un navegador y se apoya sobre NodeJS para hacer correr las mismas en memoria.
