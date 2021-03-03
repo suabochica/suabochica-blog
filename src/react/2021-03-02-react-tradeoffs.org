@@ -1,0 +1,49 @@
+#+TITLE: Compensaciones de React
+#+DESCRIPTION: Serie que recopila una descripción general de React
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-03-02 Tue> 
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+React es una excelente librería pero no se debe dejar sesgar por su popularidad. La comunidad ha identificado 6 compensaciones claves a las que el desarrollador se expone por usar React. Dichos puntos serán desarrollados a continuación.
+
+* Tradeoff 1: Frameworks vs. Librería
+
+Los competidores de React, como Angular o Vue se ofertan en el mercado como frameworks y no como librerías. Fundamentalmente, considerar que un framework es mejor que una libreria es un tema de compensaciones.
+
+A continuación se enlistan las ventajas de seguir un enfoque de framework:
+
+- Los frameworks contienen opiniones más claras sobre su uso, y por ende se puede gastar menos tiempo tratando de escoger entre muchas opciones. Definitivamente esta característica reduce la fatiga en la toma de decisiones.
+- Las opiniones claras sobre los usos de un framework también implican menos gastos en configuraciones.
+- Los frameworks pueden reforzar la coherencia entre los miembros de un equipo
+
+Por otro lado, el enfoque de librería de React también ofrece sus ventajas:
+
+- React es mucho más ligero que la mayoría de los frameworks
+- El peso bajo de React, permite que se pueda espolvorear sobre aplicaciones existentes. (e.g. El caso de Facebook que migró su aplicación PHP a React paulatinamente)
+- React lo obliga a eligir solo las cosas que necesita para su trabajo. Al dar ese poder de elección en definitiva se puede escoger las mejores tecnologías.
+- Actualmente, React cuenta con plantillas populares sobre las cuales se puede trabajar.
+
+Como React es una librería enfocada a componentes, sus funcionalidades son muy limitadas si se compara con un framework como Angular. En la siguiente tabla se especifica como suplir las funcionalidades que por defecto ya estan incuildas en el framework: 
+
+| Features        | React            | Angular     |
+|-----------------+------------------+-------------|
+| Components      | ✔                | ✔           |
+| Testing         | Jest             | ✔           |
+| HTTP library    | Axios            | ✔           |
+| Routing         | React Router     | ✔           |
+| i18n            | react-intl       | ✔           |
+| Animation       | react-motion     | ✔           |
+| Form validation | react-forms      | ✔           |
+| CLI             | create-react-app | angular-cli |
+
+Con React se puede halar solo los elementos que precisamos de la lista.
+  
+* Tradeoff 2: Conciso vs. Explícito
+* Tradeoff 3: Centrado a plantillas vs. Centrado a JavaScript
+* Tradeoff 4: Separación vs. Archivo único
+* Tradeoff 5: Estándar vs. No estándar
+* Tradeoff 6: Apoyo de comunidad vs. Apoyo corporativo
