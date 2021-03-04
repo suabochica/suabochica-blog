@@ -43,6 +43,44 @@ Como React es una librería enfocada a componentes, sus funcionalidades son muy 
 Con React se puede halar solo los elementos que precisamos de la lista.
   
 * Tradeoff 2: Conciso vs. Explícito
+
+React obliga a gastar algo de tiempo en ser más explicíto al momento de cablear una lógica de presentación. Esta característica ayuda a que se obtenga un mejor entendimiento sobre lo que el código esta haciendo. Un ejemplo concreto es el /two-way binding/ contra el /one-way binding/.
+
+Angular es popular por usar un enfoque de encuadernación bidireccional para sincronizar la actualización de datos con el evento que los dispara. El siguiente snippet es un ejemplo de como se regulizar datos en Angular.
+
+#+begin_src javascript
+let user = 'Cory';
+
+<input
+  type="text"
+  value={user}
+/>
+#+end_src
+
+Se puede observar que es un código corto, pero por debajo se están ejecutando diferentes procesos de manera automática para sincronizar los datos.
+
+En contraste, React usa un enfoque de encuadernación unidireccional. A continuación se muestra un código de ejemplo que sería el equivalente a la muestra anterior, pero bajo el contexto de React:
+
+#+begin_src javascript
+state = { user: 'Cory' };
+
+function handleChange(event) {
+  this.setState({
+    user. event.target.value
+  });
+}
+
+<input
+  type="text"
+  value={this.state.user}
+  onChange={this.handleChange}
+/>
+#+end_src
+
+Notesé que en esta versión se es mucho mas descriptivo. Aquí se declara explícitamente un manejador del evento ~change~ que se referencia en uno de los atributos de la etiqueta ~<input>~. Este trabajo extra, tiene sus beneficios. El primero es que le ofrece al desarrollador más control en la implementación por que no hay código que se este ejecutando por defecto. Al ser más explícito, es evidente el cambio del estado generado por la ocurrencia de un evento, dando un mejor entendimiento de la lógics y haciendo más sencillo el proceso de depuración.
+
+En resumen, esta es la compensación. Con React las implementaciones son más extensas pero el beneficio que generan es que resulta un código fácil de mantener, con mayor claridad, fiabilidad y rendimiento.
+
 * Tradeoff 3: Centrado a plantillas vs. Centrado a JavaScript
 * Tradeoff 4: Separación vs. Archivo único
 * Tradeoff 5: Estándar vs. No estándar
