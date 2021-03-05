@@ -82,6 +82,29 @@ Notesé que en esta versión se es mucho mas descriptivo. Aquí se declara expl�
 En resumen, esta es la compensación. Con React las implementaciones son más extensas pero el beneficio que generan es que resulta un código fácil de mantener, con mayor claridad, fiabilidad y rendimiento.
 
 * Tradeoff 3: Centrado a plantillas vs. Centrado a JavaScript
+
+En la publicación previa, se expusieron los enfoques "JS" en HTML y "HTML" en JS. El primer enfoque es el que usan frameworks como Angular en donde es preciso aprender su sintáxis única. Por otro lado, el enfoque de React motiva a aprender JavaScript. Para revisar esta compensación se comparte el siguiente ejemplo, en donde a través de una condición sobre el rol de usuario se establece si se muestra o no un encabezado. La versión Angular del ejemplo sería:
+
+#+begin_src javascript
+<h1 *ngIf="isAdmin">Hi Admin</h1>
+#+end_src
+
+Para Vue, el enfoque es similar, con la diferencia de que hay que usar su propia sintáxis:
+
+#+begin_src javascript
+<h1 v-if="isAdmin">Hi Admin</h1>
+#+end_src
+
+En el caso de React se usa el operador lógico de JavaScript ~&&~
+
+#+begin_src javascript
+{isAdmin && <h1>Hi Admin</h1>}
+#+end_src
+
+La parte que no es familiar, es el lado derecho del operador. No obstante, se debe tener presenta que la rendericacón del "Hi Admin" solo se presenta si la condicion ~isAdmin~ es verdadera. Al ser este enfoque JavaScript pleno, se puede obtener soporte de autocompletar y mensajes de error suministrados por el editor.
+
+Ahora consideremos un ejemplo con loops. La versión angular sería:
+
 * Tradeoff 4: Separación vs. Archivo único
 * Tradeoff 5: Estándar vs. No estándar
 * Tradeoff 6: Apoyo de comunidad vs. Apoyo corporativo
