@@ -103,7 +103,45 @@ En el caso de React se usa el operador lógico de JavaScript ~&&~
 
 La parte que no es familiar, es el lado derecho del operador. No obstante, se debe tener presenta que la rendericacón del "Hi Admin" solo se presenta si la condicion ~isAdmin~ es verdadera. Al ser este enfoque JavaScript pleno, se puede obtener soporte de autocompletar y mensajes de error suministrados por el editor.
 
-Ahora consideremos un ejemplo con loops. La versión angular sería:
+Ahora consideré un ejemplo con loops. La versión angular sería:
+
+#+begin_src javascript
+<h1 *ngfor="let user of users">{{user.name}}</h1>
+#+end_src
+
+Para Vue, el enfoque es similar, con el detalle que se menciono anteriormente:
+
+#+begin_src javascript
+<h1 v-for="user in users">{{user.name}}</h1>
+#+end_src
+
+En el caso de React se usa la función ~.map~ de JavaScript para iterar sobre los arreglos, y a través de una función lambda se accede a la propiedad ~name~ del item ~user~.
+
+#+begin_src javascript
+users.map(user => <div>{user.name}</div>)
+#+end_src
+
+Nuevamente, lo único diferente en la versión de React es su sintáxis del retrono de la función lambda envuelta en unas llaves. Se recuerda que el enfoque de React no es preferible por el hecho de que sea corto, si no por su característica de ser puro JavaScript.
+
+Por último se evalua un ejemplo con el evento de dar clic en un botón de borrar. La versión de angular es:
+
+#+begin_src javascript
+<button (click)="delete()">Delete</button>
+#+end_src
+
+Para Vue se tiene:
+
+#+begin_src javascript
+<button v-on:click="delete">Delete</button>
+#+end_src
+
+En el caso de React se declara un manejador ~onClick~ nativo de JavaScript en camleCase para identificar la sintáxis JSX y dentro de las llaves se hace el llamado a la función que manejará el clic. 
+
+#+begin_src javascript
+<button onClick={delete}>Delete</button>
+#+end_src
+
+Como conclusión de todos ejemplos, ya es notable el porque el API de React es mucho más pequeño en tamaño que sus competidores, puesto que usa JavaScript plano. Por otra parte, el uso de React motiva a los desarroladores a mejorar sus habilidades en JavaScript, haciendo mucho más intuitivo la transferencia de habilidades.
 
 * Tradeoff 4: Separación vs. Archivo único
 * Tradeoff 5: Estándar vs. No estándar
