@@ -161,4 +161,27 @@ En resumidas cuentas, en vez de tener tecnologías separadas con preocupaciones 
 Una analogía válida es pensar los componentes anidados de React como unas matriuscas. El concepto es acertado porque cada matriusca pueden contener a otra matriusca más pequeña en su interior. El modelo de componentes de React funciona de la misma forma. Componentes simples y reusables se pueden componer juntos para construir interfaces de usuario complejas. Una página puede ser considerada como una anidación de múltiples componentes React.
   
 * Tradeoff 5: Estándar vs. No estándar
+React es una de las muchas tecnologías no estandarizadas para crear componentes web. El estándar para componentes web ha existido durante años sin mucho uso todavía y por ende es valido preguntarse ¿por qué los desarrolladores no están construyendo aplicaciones con el estándar de los componentes web?. Antes de abordar esta pregunta, se va a revisar el estándar para componentes web. La siguiente imagen consolida el estándar en sus cuatro tecnologías principales:
+
+  #+CAPTION: Web Component Standard
+  [[../images/react/03-react-standard-web-components.png]]
+
+Ahora bien, ¿por qué los desarrolladores no fomentan el uso del estándar para los componentes web?. Básicamente es por los siguientes cuatro argumentos:
+
+1. El soporte ofrecido por los navegadores hacia el estándar es irregular, y por ende hay que recurrir a los polyfills para tener garantías sobre un entregable estable
+2. No hay nada nuevo en la propuesta del estándar para componentes web que librerías como React o Frameworks como Angular no aborden
+3. Las tecnologías en JavaScript están en continua innovación
+4. El estándar de componentes web, solo se limita a correr en el navegador. En proyectos como React, ya hay otro tipo de plataformas como los dispositivos móviles o realidad virtual.
+
+En consecuencia, no se obtiene ningún beneficio por usar el estándar. En la siguiente tabla se consolida un comparativo entre el equivalente del estándar web con la librería React:
+
+| Componentes Web          | React                                     |
+|--------------------------+-------------------------------------------|
+| Plantillas               | JSX, JS                                   |
+| Elementos personalizados | Declaración de componentes React          |
+| DOM de sombra            | Módulos CSS, CSS en JS ó estilos en línea |
+| Importaciones            | Un componente por archivo                 |
+
+Cómo se puede observar, el estándar web de componentes es muy limitado, y los desarrolladores han decidido inclinarse por las tecnologías que no son parte por el estándar gracias a su frecuente innovación y al soporte que tienen por la mayoría de los navegadores.
+
 * Tradeoff 6: Apoyo de comunidad vs. Apoyo corporativo
