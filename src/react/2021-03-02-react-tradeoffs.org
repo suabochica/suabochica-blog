@@ -143,6 +143,22 @@ En el caso de React se declara un manejador ~onClick~ nativo de JavaScript en ca
 
 Como conclusión de todos ejemplos, ya es notable el porque el API de React es mucho más pequeño en tamaño que sus competidores, puesto que usa JavaScript plano. Por otra parte, el uso de React motiva a los desarroladores a mejorar sus habilidades en JavaScript, haciendo mucho más intuitivo la transferencia de habilidades.
 
-* Tradeoff 4: Separación vs. Archivo único
+* Tradeoff 4: Plantilla separada vs. Archivo único
+
+Los patrones como el MVC, popularizado por separar el modelo, la vista y el controlador en diferentes archivos, es tradicionalmente reconocido en aplicaciones web por consolidar el modelo de los datos en un archivo JS, la vista en un HTML y el controlador para la interacción con el modelo en otro archivo JS.
+
+En contraste, con React cada componente tiene una preocupación autónoma. De este modo cada componente se sostiene por sí solo y se puede componer con otros componentes para crear interfaces de usuario complejas y ricas. Esto significa que el marcado HTML y la lógica son ubicados en el mismo archivo.
+
+Cuando React fue presentado en el 2013, la audiencia fue muy escéptica ya que el diseño de React iba en contra de lo que se habia consolidado como buena práctica en el desarrollo web al manejar las plantillas HTML y la lógica JavaScript en archivos separados. En la superficie la propuesta de React parecía estar violando el principio de separación de preocupaciones. No obstante, un árticulo publicado por Ben Alman bajo el nombre /Repensando las mejores prácticas establecidad/, empezó a aclarar la idea de la separación de preocupaciones fomentada por React. 
+
+La siguiente imagen muestra la visión de React del nuevo enfoque de separación de responsabilidades.
+
+  #+CAPTION: React History
+  [[../images/react/02-react-separation-of-concerns.png]]
+
+En resumidas cuentas, en vez de tener tecnologías separadas con preocupaciones entrelazadas, se tiene que cada componente (un botón, un acordión o un texto de entrada), es una preocupación por si sola. Con el tiempo la comunidad fue respaldando este enfoque, ya que por experiencia la separación de preocupaciones basada en tecnologías puede obstaculizar la depuración y relentiza la retroalimentación del desarrollo por el simple hecho de lograr que los archivos separados estén sincronizados. Hoy en día varios desarrolladores sustentan que la separación por componentes vale la pena.
+
+Una analogía válida es pensar los componentes anidados de React como unas matriuscas. El concepto es acertado porque cada matriusca pueden contener a otra matriusca más pequeña en su interior. El modelo de componentes de React funciona de la misma forma. Componentes simples y reusables se pueden componer juntos para construir interfaces de usuario complejas. Una página puede ser considerada como una anidación de múltiples componentes React.
+  
 * Tradeoff 5: Estándar vs. No estándar
 * Tradeoff 6: Apoyo de comunidad vs. Apoyo corporativo
