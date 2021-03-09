@@ -185,3 +185,10 @@ En consecuencia, no se obtiene ningún beneficio por usar el estándar. En la si
 Cómo se puede observar, el estándar web de componentes es muy limitado, y los desarrolladores han decidido inclinarse por las tecnologías que no son parte por el estándar gracias a su frecuente innovación y al soporte que tienen por la mayoría de los navegadores.
 
 * Tradeoff 6: Apoyo de comunidad vs. Apoyo corporativo
+
+La última compensación a considerar es el apoyo de comunidad contra el apoyo corporativo. Muchos proyectos de código abierto hechos con JavaScript son impulsados por comunidades. React es un proyecto de código abierto pero esta activamente mantenido por Facebook. Esto significa que React está orientado hacia las necesidades de Facebook. Por lo tanto, si sus aplicaciones son muy diferentes a lo que Facebook este construyendo, entonces descartar React sería viable. No obstante, tal y como se aludio anteriormente, el soporte corporativo puede tener los siguientes beneficios:
+
+El primero, es que Facebook tiene un equipo de desarrollo de tiempo completo dedicado al proyecto que está encargado de planificar las liberaciones, actualizar la documentación y proveer soporte sobre la marcha en plataformas como Github. Es segundo es que actualmente hay mas de mil contribuidores en el repositorio de Github, dejando en evidencia una comunidad activa y comprometida. El tercero, es que para nadie es un secreto que Facebook es una de las empresas más valoradas globalmente e incluso si Facebook dejará de dar soporte a React, el proyecto puede mantenerse sin la dedicación de un equipo de tiempo completo por un buen tiempo. Por último, Facebook a liberado más de 50,000 componentes en producción obligando a que esten proporcinando un soporte signigicativo al proyecto. 
+
+* Resumen
+
