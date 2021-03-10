@@ -192,3 +192,15 @@ El primero, es que Facebook tiene un equipo de desarrollo de tiempo completo ded
 
 * Resumen
 
+En la siguente tabla, se recopilan las compensaciones desarrolladas en este árticulo:
+
+| Otros                 | React                           |
+|-----------------------+---------------------------------|
+| Framework             | Librería                        |
+| Consiso               | Explícito                       |
+| Centrado a plantillas | Centrado a JS                   |
+| Plantillas separadas  | Componentes en un archivo único |
+| Estándar              | No Estándar                     |
+| Soporte de comunidad  | Soporte corporativos            |
+
+Es importante aclarar que con compensaciones no hay una respuesta correcta. Pero al menos ahora se tiene un entendimiento sobré lo que se va a obtener y lo que se va a enfrentar al momento de utilizar React.
