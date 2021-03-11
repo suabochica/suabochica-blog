@@ -1,0 +1,22 @@
+#+TITLE: Por qué no React?
+#+DESCRIPTION: Serie que recopila una descripción general de React
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-03-10 Wed> 
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+Con el propósito de abordar un panorama general sobre React, es momento de presentar los posibles problemas a los que se enfrete por haber elegido esta libreria.
+
+En esta publicación se van a compartir las preocupaciones comunes que se han manifestado en React por parte de la comunidad de desarroladores. Uno de los principales puntos en contra era su licencia patentada. No obstante, con la liberación de la versión 16 de React, el proyecto ahora usa el estandár MIT con una licencia de código abierto. Este es un testimonio de la inicativa que tiene la comunidad que soporta React para ir mejorando el proyecto.
+
+Por otra parte, la idea es identificar que algunas de las preocupaciones son validas y otras son simplemente conceptos erróneos o problemas que pueden mitigarse fácilmente.
+
+* Preocupación 1: HTML y JSX difieren
+* Preocupación 2: Paso de construcción es requerido
+* Preocupación 3: Conflictos entre versiones
+* Preocupación 4: Recursos desactualizados
+* Preocupación 5: Fatiga de toma de deciciones
+* Resumen
