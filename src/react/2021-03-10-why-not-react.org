@@ -15,6 +15,36 @@ En esta publicación se van a compartir las preocupaciones comunes que se han ma
 Por otra parte, la idea es identificar que algunas de las preocupaciones son validas y otras son simplemente conceptos erróneos o problemas que pueden mitigarse fácilmente.
 
 * Preocupación 1: HTML y JSX difieren
+
+Repasemos el contexto de como la sintáxis opcional JSX se compila en JavaScript:
+
+#+begin_src javascript
+<h1 color="red"> Heading here </h1>
+// is equal to
+React.createElement("h1", {color: "red"}, "Heading here");
+#+end_src
+
+Cabe resaltar que el uso de JSX es opcional, pero gracias a su similitud con HTML, y su legibilidad, ha sido fuertemente aceptada por la comunidad. El JavaScript pleno que corresponde a la última parte del ejemplo es lo que realmente se envía al navegador.
+
+Ahora bien, la sintáxis JSX es 99% lo mismo a HTML pero difieren en cosas muy puntuales que son agrupadas en la siguiente tabla:
+
+| HTML                 | JSX                      |
+|----------------------+--------------------------|
+| for                  | htmlFor                  |
+| class                | className                |
+| <style color="blue"> | <style={{color:'blue'}}> |
+| <!-- Comment -->     | {/* Comment */}          |
+
+Como se puede observar, aprender estás diferencias es trivial, ya que la lista de diferencias es muy corta y fácil de asimilar.
+
+Una preocupación frecuente con los primeros pasos que se dan en React es cuando los proyectos cuentan con un buen número de archivos HTML, ya que eso significaría que se deben convertir muchos archivos al formato JSX. Actualemente, React ofrece las siguientes formas para manejar esta transición:
+
+- Usar la función buscar y reemplazar del editor
+- Usar un compilador en línea
+- Usar el paquete ~htmltojsx~ en npm
+
+La elección es parte del desarrollador, pero en últimas si es necesario hacer la conversión a JSX lo cual en definitiva es una molestía.
+  
 * Preocupación 2: Paso de construcción es requerido
 * Preocupación 3: Conflictos entre versiones
 * Preocupación 4: Recursos desactualizados
