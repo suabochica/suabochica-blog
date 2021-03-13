@@ -46,6 +46,15 @@ Una preocupación frecuente con los primeros pasos que se dan en React es cuando
 La elección es parte del desarrollador, pero en últimas si es necesario hacer la conversión a JSX lo cual en definitiva es una molestía.
   
 * Preocupación 2: Paso de construcción es requerido
+
+Esta preocupación esta muy relacionada con la anterior, ya que como se menciono antes, para al usar la sintáxis JSX React requiere de un paso de construcción que compile el JSX en llamados JavaScript planos que el navegador pueda comprender.
+
+En la práctica esto es trivial para el desarrollo de las aplicaciones web modernas, ya que exigen un paso de construcción para ejecutar tareas de minificación y unificación de archivos que reduzcan el uso de ancho de banda. Tareas de traspilación para que el código que use las funcionalidades modernas de JavaScript pueda ser interpretado en la mayoría de los navegadores, y por último, aplicar linters y correr pruebas automatizadas sobre el código de la aplicación web.
+
+En consecuencia, compilar el código JSX es una labor que se puede realizar de manera automática en este paso de construcción. Por otra parte, los traspiladores más famosos como los son, Babel y TypeScript, están en campacidad de compilar la sintáxis JSX por nosotros.
+
+Por último, el paquete Create React App es un generador de proyectos que le ahorra al desarrollador todos los pasos de configuración necesarios para crear una aplicación web moderna con tan solo correr un comando. Al correr este comando accedemos a un paso de construcción por defecto que administra varias tareas, entre ellas la compilación automática de JSX.
+
 * Preocupación 3: Conflictos entre versiones
 * Preocupación 4: Recursos desactualizados
 * Preocupación 5: Fatiga de toma de deciciones
