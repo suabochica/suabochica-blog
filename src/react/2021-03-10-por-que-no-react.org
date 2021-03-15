@@ -56,6 +56,21 @@ En consecuencia, compilar el código JSX es una labor que se puede realizar de m
 Por último, el paquete Create React App es un generador de proyectos que le ahorra al desarrollador todos los pasos de configuración necesarios para crear una aplicación web moderna con tan solo correr un comando. Al correr este comando accedemos a un paso de construcción por defecto que administra varias tareas, entre ellas la compilación automática de JSX.
 
 * Preocupación 3: Conflictos entre versiones
+
+Como se mencionó anterior mente React con React DOM pesan al rededor de 35Kb al ser minificado y comprimido con gzip. Este tamaño es razonable pero hay algunas desventajas que se presentan en tiempo de ejecución. Por ejemplo, no se pueden correr dos versiones de React al mismo tiempo en la misma página. Por ende, los todos los componentes web deben respetar la misma versión es su respectiva página.
+
+Si se compara con la construcción estandarizada de componentes web, no es necesario enfrentarse a conflictos entre versiones porque este enfoque no precisa de tiempos de ejecución ya que el componente se construye directamente en el navegador. No obstante, en la publicación pasada se agruparon los argumentos para seguir favoreciondo el uso de React sobre el estándar web.
+
+Por otra parte, hay herramientas interesantes a considerar como Svelte o Skate, que ofrecen todas las funcionalidades para un desarrollo de componentes web sin depender de un framework y incluyen el tiempo de ejecución en cada componente, evitando así potenciales conflictos entre versiones.
+
+Finalmente, dado que React es una librería que puede complementarse con otras herramientas para lograr propósitos puntuales, como por ejemplo React Router, se requiere hacer una validación de la compatibilidad de veriones entre ambas tecnologías.
+
+A contincuación se comparten tres consejos para evitar conflictos entre versiones:
+
+1. Establecer el estándar sobre una versión
+2. Actualice React cuando actualice librerías relacionadas
+3. Maneje la actualización de versioines a nivel de equipo
+
 * Preocupación 4: Recursos desactualizados
 * Preocupación 5: Fatiga de toma de deciciones
 * Resumen
