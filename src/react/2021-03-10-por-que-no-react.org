@@ -72,5 +72,36 @@ A contincuación se comparten tres consejos para evitar conflictos entre version
 3. Maneje la actualización de versioines a nivel de equipo
 
 * Preocupación 4: Recursos desactualizados
+
+Otro tema a lidiar con React es la revisión de contenidos desactualizados en búsquedas web. React tiene una comunidad muy grande y fue liberado como código abierto en 2013. Al hacer una búsqueda de /react example/ en Google, se obtienen más de 300 millones de resultados. En StackOverflow hay más de 189k hilos asociados a la etiqueta React. Esta bien tener muchos recusros pero hay un riesgo alto y es la consulta de contenidos depreciados.
+
+Desde la versión del 2013 hasta el día de hoy se han presentado varios cambios dentro de React, y por ende algunos patrones y algunas funcionalidades ya han sido reemplazados. Un ejemplo puntual es el siguiente:
+
+#+begin_src javascript
+// Viejo
+import {render} from 'react';
+#+end_src
+
+#+begin_src javascript
+// Nuevo
+import {render} from 'react-dom';
+#+end_src
+
+Se recuerda, que hoy en día React tiene soporte en diferentes plataformas, como ReactNative o ReactVR, por lo tanto es conveniente importar la función render de la librería adecuada. Otro ejemplo es la creación de clases:
+
+#+begin_src javascript
+// Viejo
+React.createClass
+#+end_src
+
+#+begin_src javascript
+// Nuevo
+var crc = require('create-react-class');
+#+end_src
+
+En las últimas versiones, para seguir usando el estilo ~createClass~ es necesario importar el paquete ~'create-react-class'~. El último ejemplo de estaś transiciones esta relacionado con los mixins y su reemplazo llamado hooks.
+
+La moraleja esta en siempre revisar la documentación oficial de React para estar al tanto de las funcionalidades y los patrones que se han venido actualizando.
+
 * Preocupación 5: Fatiga de toma de deciciones
 * Resumen
