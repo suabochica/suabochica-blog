@@ -45,7 +45,7 @@ Una preocupación frecuente con los primeros pasos que se dan en React es cuando
 
 La elección es parte del desarrollador, pero en últimas si es necesario hacer la conversión a JSX lo cual en definitiva es una molestía.
   
-* Preocupación 2: Paso de construcción es requerido
+* Preocupación 2: Paso de compilación es requerido
 
 Esta preocupación esta muy relacionada con la anterior, ya que como se menciono antes, para al usar la sintáxis JSX React requiere de un paso de construcción que compile el JSX en llamados JavaScript planos que el navegador pueda comprender.
 
@@ -228,3 +228,5 @@ En resumidas cuenta se tiene:
 Definitivamente, la cantidad de opciones que se tiene para aforntar problemas puntuales con React es algo intimidante. Por lo tanto, se motiva a revisar estás recomendaciones como un punto de partidad para que usted establezca su propio criterio.
 
 * Resumen
+
+En este módulo, se consideraron las preocupaciones comunes que se escuchan por trabajar con React: JSX difiere de HTML pero hay varias herramientas que permiten convertir de una sintáxis a otra. El paso de compilación requerido para JSX ya es algo trivial puesto que el paso de compilación va a ser necesario para otro tipo de tareas, como por ejemplo la minificación de arcivos. Los conflictos potenciales entre las versiones de React se sobrellevan con actualizaciones sencillas a través de codemods cuando sea necesario. Las viejas funcionalidades en búsquedas web promueven el uso efectivo de documentaciones oficiales para evitar confusiones. Y por último esta la fatiga en toma de decisiones, una preocupación empírica cuya recomendación es comenzar de lo sencillo a lo complejo para ir construyendo un criterio propio.
