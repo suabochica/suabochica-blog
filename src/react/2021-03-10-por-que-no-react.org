@@ -104,4 +104,127 @@ En las últimas versiones, para seguir usando el estilo ~createClass~ es necesar
 La moraleja esta en siempre revisar la documentación oficial de React para estar al tanto de las funcionalidades y los patrones que se han venido actualizando.
 
 * Preocupación 5: Fatiga de toma de deciciones
+
+La última preocupación a abordar es la fatiga en la toma de decisiones que expone React. Al ser una librería tan ligera y flexible el desarrollo se abre a un campo en donde existen muchas alternativas para hacer las mismas cosas.
+
+Los primeros pasos en React pueden resultar intimidantes. Para asimilar esta inducción una recomendación es definir el desarrollo en función de estas cinco decisiones claves:
+
+1. Ambiente de desarrollo
+2. Clases o funciones
+3. Tipos
+4. Estado
+5. Estilismo
+
+Tiempo para desarrollar cada una de estas decisiones.
+
+Primero está el ambiente de desarollo. Actualmente, GitHub cuenta con más de [[https:javascriptstuff.com/react-starter-projects][100 proyectos]] para crear entornos de desarrollo con React. En consecuencia, puede ser una ardua tarea revisar la mayoria de estos generadores de proyecto en React para identificar cuál se debe usar. La recomendación es usar ~create-react-app~ puesto que es el entorno de desarrollo oficial apoyado por Facebook. Este geneardor es una plataforma madura para crear aplicaciones React y ofrece las siguientes caracteristicas:
+
+- Pruebas automatizadas
+- Transpilación
+- Linting
+- Empaquetación (Bundling)
+- Compilación automatizada
+
+Algunos desarrolladores optan por construir su propio ambiente React. No está de más intentar hacer esta configuración.
+
+La segunda decisión es si se declaran los componentes a través de clases o funciones. A continuación se muestran dos snippets con dichas aproximaciones:
+
+#+begin_src javascript
+  // Class
+  class Greeting extends React.Component {
+    render() {
+      return <h1>Hello</h1>
+    }
+  }
+#+end_src
+
+#+begin_src javascript
+  // Function
+  function Greeting {
+    render() {
+      return <h1>Hello</h1>
+    }
+  }
+#+end_src
+
+Ambos endoques cumplen el mismo objetivo, pero hoy en día los desarrolladores de React han optado por usar los componentes como funciones, ya que su sintáxis es mas concisa y tiende a evitar bugs.
+
+La tercera decisión es el manejo de tipos con las siguientes alternativas: PropTypes, TypeScript ó Flow. A continuación se revisa la propuesta de PropTypes con un componente simple llamado ~Greeting~:
+
+#+begin_src javascript
+import React from "react";
+import PropTypes from "prop-types";
+
+// Function
+function Greeting(props) {
+  render() {
+    return (<h1>Hello {props.name}</h1>)
+  }
+}
+
+Greeting.propTypes = {
+  name: PropTypes.string
+};
+#+end_src
+
+Para este ejemplo las propiedades del componente están declaradas al final. Se resalta que con PropTypes los tipos son validados solo en tiempo de ejecución y durante el desarrollo.
+
+La segunta opción es TypeScript y se versión es la siguiente:
+
+#+begin_src javascript
+import * as React from "react";
+
+interface Props {
+  name: string;
+}
+// Function
+function Greeting(props: Props) {
+  render() {
+    return (<h1>Hello {props.name}</h1>)
+  }
+}
+#+end_src
+
+En esta versión se usa una funcionalidad de TypeScript llamada ~interface~ para establecer las propiedades del componente y dentro de la definición del componente se aclara que el argumento ~prop~ es de typo ~Props~. A diferencia de PropTypes, con TypeScript las validaciones son hechas en tiempo de compilación, lo que significa que los errores serán identificados más temprano.
+
+La tercera opción es Flow, un proyecto de Facebook para agregar validaciones de tipos estáticos a JavaScript. A diferencia de TypeScript, Flow utiliza anotaciones sobre el código JavaScript para inferir los tipos del mismo. El siguiente ejemplo es la versión del ~Greeting~ component con Flow: 
+
+#+begin_src javascript
+// @flow
+import React from "react";
+
+type Props {
+  name: string;
+}
+// Function
+function Greeting(props: Props) {
+  render() {
+    return (<h1>Hello {props.name}</h1>)
+  }
+}
+
+El punto más relevante en este snippet es la anotación al principio de cada archivo para habilitar la validación por parte de Flow. La declaración de los props y su especificación del tipo en el argumento que recibe la función del componente es similar a la versión de TypeScript. Ahora bien, Flow corre en un proceso diferente y por ende los tipos son validados cuando se corre dicho proceso.
+
+Para un primer acercamiento a React, PropTypes es recomendable ya que su aprendizaje es trivial y no requiere de configuraciones adicionales. Si el desarrollador esta familiarizado con TypeScript, la mejor opción es optar por dicha propuesta, resaltando que ~create-react-app~ ya tiene una configuración por defecto para suministra soporte a TypeScript. Hoy en día, TypeScript es la decisión más popular entre los desarrolladores.
+
+La cuarta decisión es el manejo de estado, cuyo contexto suele apoyarse en librerías externas a React. Se resalta que al hablar de estado se hace referencia a los datos de la aplicación web. Para el manejo de estado se tienen las siguientes alternativas: React plano, Flux, Redux y MobX.
+
+React plano funciona muy bien, por lo cuál el uso de una librería externa es algo opcional. La diferencia entre React plano y las librerías externas es el enfoque, ya que React plano administra el estado a través de componentes mientras que Redux o Flux lo hacen a través de la centralización del mismo conun almacenamiento inmutable. Actualemente, la opción más popular entre las librerias es Redux.
+
+Por último, esta la propuesta de MobX que resulta más ligera ya que su enfoque esta basado en administrar el estado a través de observables como estructuras de datos.
+
+La última decisión es la de estilismo que muchos consideran como absurda ya que actualmente hay más de 50 alternativas para afrontar el problema. No obstante, se recalca que React funciona espectacularmente con el tradicional CSS y también con uno de los preprocesadores más populares como lo es SASS. En ese orden de ideas, la recomendación es usar el enfoque que usted ya conozca.
+
+En resumidas cuenta se tiene:
+
+| Decisión               | Recomendación           |
+|------------------------+-------------------------|
+| Ambiente de desarrollo | create-react-app        |
+| Clases o funciones     | Funciones               |
+| Tipos                  | PropTypes ó TypeScript  |
+| Estado                 | React plano             |
+| Estilismo              | Lo que usted ya conozca |
+
+Definitivamente, la cantidad de opciones que se tiene para aforntar problemas puntuales con React es algo intimidante. Por lo tanto, se motiva a revisar estás recomendaciones como un punto de partidad para que usted establezca su propio criterio.
+
 * Resumen
