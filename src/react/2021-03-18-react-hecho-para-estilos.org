@@ -1,0 +1,22 @@
+#+TITLE: React esta hecho para manejar estilos
+#+DESCRIPTION: Serie que recopila una descripción general de React
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-03-18 Thu> 
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+En previas publicaciones se compartió que una de las preocupaciones que se enfrenta por trabajar con React es la fatiga en la toma de decisiones sobre temas puntuales. Uno de esos temas es el manejo de estilos dentro de la aplicación web con React.
+
+En esta serie de árticulos se van a exponer las diferentes estrategias que se presentan para conectar los estilos CSS con los componentes React. Los temas principales a abordar son:
+
+- El estado del manejo de estilos en React
+- El catálogo de las estategias más comunes para usar estilos en React
+- Comparación de las técnicas de estilo con escenarios reales
+- Configuración de proyectos para CSS en React
+
+El objetivo de estas lecturas es brindar la capacidad de escoger y usar una técnica de estilo que se ajuste a sus necesidades en proyectos React.
+
+Es recomendable tener conocimientos básicos en React y CSS para sacar el mejor provecho a los contenidos que se van a compartir en estás líneas.
