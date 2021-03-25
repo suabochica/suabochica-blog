@@ -8,7 +8,7 @@
 #+HUGO_WEIGHT: auto
 #+HUGO_AUTO_SET_LASTMOD: t
 
-En previas publicaciones se compartió que una de las preocupaciones que se enfrenta por trabajar con React es la fatiga en la toma de decisiones sobre temas puntuales. Uno de esos temas es el manejo de estilos dentro de la aplicación web con React.
+En previas publicaciones se compartió que una de las preocupaciones que un desarrollador enfrenta por trabajar con React es la fatiga en la toma de decisiones sobre temas puntuales. Uno de esos temas es el manejo de estilos dentro de la aplicación web con React.
 
 En esta serie de árticulos se van a exponer las diferentes estrategias que se presentan para conectar los estilos CSS con los componentes React. Los temas principales a abordar son:
 
@@ -20,3 +20,42 @@ En esta serie de árticulos se van a exponer las diferentes estrategias que se p
 El objetivo de estas lecturas es brindar la capacidad de escoger y usar una técnica de estilo que se ajuste a sus necesidades en proyectos React.
 
 Es recomendable tener conocimientos básicos en React y CSS para sacar el mejor provecho a los contenidos que se van a compartir en estás líneas.
+
+Antes de comenzar, es importante repasar las tecnologías protagonistas de esta serie. React es una librería para hacer interfaces de usuario (UI). CSS es una tecnología de los navegadores para definir las visuales de los elementos en una interfaz de usuario. Al momento de combinar ambas tecnologías se obtiene como resultado el enfoque de dar estilos a componentes React.
+
+Los contenidos de estas publicaciones van a exponer como interactuan ambas tecnologías. Para empezar, se atacrán las tecnologías por separado. Se recuerda que React permite hacer componentes declarativos. Este enfoque facilita el entendimiento del UI y el estado del UI:
+
+#+begin_src javascript
+<MyInterface>
+#+end_src
+
+Otro de los beneficios de los componentes declarativos es que su composición para formar UI con jerarquías más complejas resulta intuitiva.
+
+#+begin_src javascript
+<MyInterface />
+  <InputField />
+  <SubmitButton />
+#+end_src
+
+Ahora bien, ¿para qué se usa CSS?. Las hojas de estilos en cascada es la tecnología por defecto para definir el /look and feel/ de la web. Es una tecnología nativa del navegador y es una solución ubicua para el diseño en los clientes web.
+
+#+begin_src css
+  .my-style {
+    display: awesome;
+  }
+#+end_src
+
+Tiempo de ver como lucirián estás tecnología en conjunto. En otras palabras, CSS permite definir el /look and feel/ de los componentes React.
+
+#+begin_src css
+<MyInterface className="my-style" />
+#+end_src
+
+No obstante, hay muchas formas de combinar React y CSS para cumplir con un mismo resultado. Los enfoques se pueden reducir a:
+
+- Estilos en línea
+- Librerías CSS-in-JS
+- Hojas de estilo CSS
+- Módulos CSS
+
+Este conjunto de implementaciones cubre lo que hoy en día es el espectro tradicional para establecer estilos en componentes React. La estrategia que utilice va a depender de su estilo de desarrollo y el contexto del mismo. Para ello, se exploraran algunos diferenciadores principales para cada enfoque, y se compartiran guías que serán relevantes en la toma de decisiones para consolidar los estilos en un componente React.
