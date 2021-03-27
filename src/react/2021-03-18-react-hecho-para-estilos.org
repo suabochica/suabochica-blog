@@ -59,3 +59,15 @@ No obstante, hay muchas formas de combinar React y CSS para cumplir con un mismo
 - Módulos CSS
 
 Este conjunto de implementaciones cubre lo que hoy en día es el espectro tradicional para establecer estilos en componentes React. La estrategia que utilice va a depender de su estilo de desarrollo y el contexto del mismo. Para ello, se exploraran algunos diferenciadores principales para cada enfoque, y se compartiran guías que serán relevantes en la toma de decisiones para consolidar los estilos en un componente React.
+
+* Motivación para usar estilos
+
+En algún momento como desarrolladores se llega a considerar que la parte visual de una aplicación no es tan importante como la funcionalidad de una aplicación. Si una aplicación funciona, pero no se ve bien, al menos sigue funcionando. Si una aplicación no funciona pero se ve bien, es probable que sea de poca utilidad. Por lo tanto estas son las principales razones por las cuales es valioso tener una aplicación con buenos estilos:
+
+- Usabilidad, ya que unos estilos apropiados pueden mejorar y complementar las funcionalidades de la aplicación.
+- Satisfacción de usuario al momento de ser fácil de interactuar.
+- Atractivo para nuevos usuario que disfruten el uso de la aplicación
+- Marca, al establecer una coherencia visual con los diferentes entregable de la aplicación que se reflenjen como un factor diferenciador.
+
+* La influencia de React en estilos
+
