@@ -71,3 +71,15 @@ En algún momento como desarrolladores se llega a considerar que la parte visual
 
 * La influencia de React en estilos
 
+Dado por hecho la necesidad de dar estilos a la aplicación, es momento de volver a los diferentes enfoques de estilo que se tienen dentro del ecosistema de React. Si se establece una línea de tiempo entre la combinación de React con CSS, la primera alternativa que se encuentra es la tradicional hoja de estilos de CSS. No obstante, la comunidad React empezó a cuestionar el estado actual de las hojas de estilos tradicionales de CSS y con ellas llegaron propuestas como los estilos en línea. Su argumento consiste en que se debe pensar en el problema y no es conveniente usar una solución prescrita. Las pautas de esta nueva propuesta fueron expuestas por Christopher 
+Chedeau en su charla /React: CSS in JS/. Allí el comparte siete problemas que su equipo de trabajo en Facebook afrontó al momento de estilizar React con CSS vanilla:
+
+1. Namespace global
+2. Dependencias
+3. Eliminación de código muerto
+4. Minificación
+5. Compartir constantes
+6. Resolución de deterministica
+7. Aislamiento
+
+
