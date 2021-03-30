@@ -71,8 +71,7 @@ En algún momento como desarrolladores se llega a considerar que la parte visual
 
 * La influencia de React en estilos
 
-Dado por hecho la necesidad de dar estilos a la aplicación, es momento de volver a los diferentes enfoques de estilo que se tienen dentro del ecosistema de React. Si se establece una línea de tiempo entre la combinación de React con CSS, la primera alternativa que se encuentra es la tradicional hoja de estilos de CSS. No obstante, la comunidad React empezó a cuestionar el estado actual de las hojas de estilos tradicionales de CSS y con ellas llegaron propuestas como los estilos en línea. Su argumento consiste en que se debe pensar en el problema y no es conveniente usar una solución prescrita. Las pautas de esta nueva propuesta fueron expuestas por Christopher 
-Chedeau en su charla /React: CSS in JS/. Allí el comparte siete problemas que su equipo de trabajo en Facebook afrontó al momento de estilizar React con CSS vanilla:
+Dado por hecho la necesidad de dar estilos a la aplicación, es momento de volver a los diferentes enfoques de estilo que se tienen dentro del ecosistema de React. Si se establece una línea de tiempo entre la combinación de React con CSS, la primera alternativa que se encuentra es la tradicional hoja de estilos de CSS. No obstante, la comunidad React empezó a cuestionar el estado actual de las hojas de estilos tradicionales de CSS y con ellas llegaron propuestas como los estilos en línea. Su argumento consiste en que se debe pensar en el problema y no es conveniente usar una solución prescrita. Las pautas de esta nueva propuesta fueron expuestas por Christopher Chedeau en su charla /React: CSS in JS/. Allí el comparte siete problemas que su equipo de trabajo en Facebook afrontó al momento de estilizar React con CSS vanilla:
 
 1. Namespace global
 2. Dependencias
@@ -101,3 +100,25 @@ En segunda instancia, CSS no cuenta con una funcionalidad nativa que le permita 
 #+end_src
 
 Las dependencias no son descritas explícitamente, y la respuesta por parte de Facebook fue crear la función ~className~ para empaquetar el uso de cualquier selector CSS dentro de React. Por diseño esta propuesta se convirtió en la una forma de generar un uso correcto de los nombres de clases en CSS bajo el contexto de React. Del mismo modo, este enfoque permite distinguir cuales son los estilos relevantes dentro de un componente.
+
+Al no tener un mapeo específico entre el código de la aplicación y los estilos usados, no es posible borrar con confianza estilos nuevos al final de la compilación de las hojas de estilo con el propósito de optimizar rendimiento:
+
+#+begin_src css
+  .who-knows {}
+  .what-can {}
+  .safely {}
+  .be-removed {}
+...
+#+end_src
+
+La solución sugerida por Facebook fue recurrir nuevamente la función ~className~ como una guía para identificar que selectores CSS están siendo utilizados y asi remover sin riesgo alguno aquellos que no están siendo utilizados.
+
+En un esfuerzo por comprimir el tamaño de las cargas útiles de una hoja de estilo en los clientes, se cuenta con la alternativa de la minificación. Esta técnica es posible en CSS vainilla hasta cierto punto. Oportunamente el uso de la función ~className~ facilita procesos de minificación efectivos, ya que dicha función esta siendo usada en todas las referencias de los selectores y por ende nuevos nombres cortos para selectores pueden ser generados para diferentes necesidades.
+
+#+begin_src css
+  .selector-names {}
+  .of-storied-past {}
+  .and-great-lineage {}
+...
+#+end_src
+ 
