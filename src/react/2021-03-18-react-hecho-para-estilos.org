@@ -82,4 +82,22 @@ Chedeau en su charla /React: CSS in JS/. Allí el comparte siete problemas que s
 6. Resolución de deterministica
 7. Aislamiento
 
+En CSS todo es global por defecto, por lo tanto es común que se presente este escenario:
 
+#+begin_src css
+  .my-selector {}
+  .etc {}
+  .my-selector {
+    /* sobreescrituras accidentales */
+  }
+#+end_src
+
+En consecuencia, es complicado encapsular estilos puntuales para una interfaz de usuario en particular. Facebook creó una extensión personalizada del lenguage CSS para manejar selectores locales y públicos, pero no tuvo mayor impacto.
+
+En segunda instancia, CSS no cuenta con una funcionalidad nativa que le permita al desarrollador describir que estilos dependen de una hoja de estilos determinada:
+
+#+begin_src html
+<div className="selector-from-somewhere"/>
+#+end_src
+
+Las dependencias no son descritas explícitamente, y la respuesta por parte de Facebook fue crear la función ~className~ para empaquetar el uso de cualquier selector CSS dentro de React. Por diseño esta propuesta se convirtió en la una forma de generar un uso correcto de los nombres de clases en CSS bajo el contexto de React. Del mismo modo, este enfoque permite distinguir cuales son los estilos relevantes dentro de un componente.
