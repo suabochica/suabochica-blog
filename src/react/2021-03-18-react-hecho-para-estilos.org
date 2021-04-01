@@ -121,4 +121,44 @@ En un esfuerzo por comprimir el tamaño de las cargas útiles de una hoja de est
   .and-great-lineage {}
 ...
 #+end_src
- 
+
+En cierto modo es difícil compartir variables entre JavaScript y CSS y por ende el medio más utilizado son los comentarios tal y como ilustra el siguiente snippet:
+
+#+begin_src css
+  .selector-names {
+    animation-duration: 400ms; /* samse as JS */
+  }
+#+end_src
+
+Para atender este escenario Facebook creo funciones propias para hace variable desde una fuente de datos única disponbile tanto para JavaScript como para CSS.
+
+Al hablar de resoluciones no determinísticas, se da como contexto que dada una misma entrada la salida puede ser diferente, obtenientos un proceso impredicible. CSS está construido para que todos sus selectores estén en un namespace global y a través de la cascasa se determina cual es el selector de mayor specifidad.  
+
+#+begin_src javascript
+const link = document.createElement('link');
+link.rel = 'stylesheet';
+link.href = 'some-new-stylesheet.css';
+document.head.appendChild(link);
+#+end_src
+
+Si se separaran las hojas de estilos que son generadas y cargadas asíncronamente en la página, los estilos pueden cambiar. Para Facebook este comportamiento no tiene una solución sencilla.
+
+Es fácil escribir selectores en el namespace global que modifican el /look and feel/ de la iterfaz de usuario del componente y en ocasiones este aspecto puede resultar conveniente, pero en últimas se esta violando cualquier contrato de API público que el componente pueda tener. 
+
+#+begin_src css
+  .some-component > div > a {
+    text-decoration: none;
+  }
+#+end_src
+
+De ser así, el cliente externo empezará a depender de los manejos internos que estan definidos en el componente. Nuevamente, este problema no tiene una solución sencilla en el CSS tradicional y por ende se señalan tres posibilidades:
+
+- Hacks
+- Utilidades
+- Lenguajes
+
+Estas posibilidades llegaron a crear un propuesta estable sobre repensar el enfoque de los estilos CSS en una aplicación web, evitando una separación de tecnologías (HTML/CSS/JS) y motivando una separación de responsabilidades por componentes UI.
+
+Ninguna solución es perfecta para todas las situaciones y por esta razón hoy en día se puede ver la combinación de varias de estas soluciones aplicadas en el desarrollo web.  
+
+En la siguiente publicación se va a revisar el catálogo de las estategias más comunes para usar estilos en React.
