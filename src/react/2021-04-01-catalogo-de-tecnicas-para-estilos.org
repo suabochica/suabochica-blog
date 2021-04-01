@@ -1,0 +1,70 @@
+#+TITLE: Catálogo de técnicas para estilos en React
+#+DESCRIPTION: Serie que recopila el estado de arte del manejo de estilos en React
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-04-01 Thu> 
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+En esta publicación se van a revisar las cuatro técnicas más populares para manejar estilos en React:
+
+1. Estilos en línea
+2. CSS-en-JS
+3. Hojas de estilos CSS
+4. Módulos CSS
+
+El objetivo es identificar las fortalezas y debilidades que cada una de las técnicas y perfilar en que escenarios es conveniente aplicar cada una de ellas.
+
+*  Estilos en línea
+
+Cuando se trabaja con una teconolgía para crear componentes UI como React, resulta útil tener la capacidad de encapsular los estilos junto con la lógica (JS) y el marcado (HTML). Esta aproximación es una de las fuerzas impulsoras en torno al resurgimiento y la aceptación de los estilos en línea en React.
+
+Esta técnica, no es nueva, y en su momento se considero como una mala práctica, pero bajo el contexto de componentes web su oferta se hace llamativa.
+
+La sintáxis resulta familiar, ya que se usa el atributo ~styles~ en el marcado, más precisamente en la sintáxis JSX:
+
+
+#+begin_src jsx
+const styles = {
+  color: 'white',
+  background: 'blue,
+  padding: '0,5rem 1rem',
+  borderRadius: '2px',
+}
+
+<button style={styles}> Click me </button>
+#+end_src
+
+Como se puede observar, el valor de la variable ~styles~ es un objeto JavaScript, en vez de una cadena de caractéres como se espera en el HTML tradicional.
+
+Por otra parte los atributos del objeto JavaScript son corresponden a las propiedades en CSS con la diferencia de que son definidos en /camelCase/, en vez del /dash-case/ de CSS.
+
+Al ser todo JavaScript, ahora se dispone de la flexibilidad de especificar los estilos basados en JavaScript en donde se quiera; en un objeto literal en la propiedad ~style~, referenciar los estilos en un objeto vinculado a una variable en algún otro lugar o incluso generar estilos con funciones JavaScript.
+
+A continuación se presentan las ventajas que ofrecen los estilos en línea:
+
+- Encapsulación
+- Compartir código
+- Aislamiento
+- Dependencias explícitas
+- No hay uso de bibliotecas externas
+
+Ahora bien, estos son los puntos en contra del uso a los estilos en línea:
+
+- La lecutra es cascada de CSS anula estilos externos
+- No se pueden usar media queries directamente
+- No se pueden usar pseudo selectores
+- No se pueden usar animaciones con keyframes
+
+En consecuencia, es necesario optar alternativas para atender estás funcionalidades puntuales.
+
+En consclusión estos son los síntomas que determinan si resulta viable el uso de los estilos en línea:
+
+- El desarrollo es centrado en JavaScript
+- Simplicidad
+- Los estilos son co-localizados
+- No hay dependencias de bibliotecas externas
+
+* CSS-en-JS

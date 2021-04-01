@@ -1,5 +1,5 @@
 #+TITLE: React esta hecho para manejar estilos
-#+DESCRIPTION: Serie que recopila una descripción general de React
+#+DESCRIPTION: Serie que recopila el estado de arte del manejo de estilos en React
 #+AUTHOR: Sergio Benítez
 #+DATE:<2021-03-18 Thu> 
 #+STARTUP: fold
@@ -25,13 +25,13 @@ Antes de comenzar, es importante repasar las tecnologías protagonistas de esta 
 
 Los contenidos de estas publicaciones van a exponer como interactuan ambas tecnologías. Para empezar, se atacrán las tecnologías por separado. Se recuerda que React permite hacer componentes declarativos. Este enfoque facilita el entendimiento del UI y el estado del UI:
 
-#+begin_src javascript
+#+begin_src jsx
 <MyInterface>
 #+end_src
 
 Otro de los beneficios de los componentes declarativos es que su composición para formar UI con jerarquías más complejas resulta intuitiva.
 
-#+begin_src javascript
+#+begin_src jsx
 <MyInterface />
   <InputField />
   <SubmitButton />
