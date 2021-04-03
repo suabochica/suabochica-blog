@@ -17,7 +17,7 @@ En esta publicación se van a revisar las cuatro técnicas más populares para m
 
 El objetivo es identificar las fortalezas y debilidades que cada una de las técnicas y perfilar en que escenarios es conveniente aplicar cada una de ellas.
 
-*  Estilos en línea
+* Estilos en línea
 
 Cuando se trabaja con una teconolgía para crear componentes UI como React, resulta útil tener la capacidad de encapsular los estilos junto con la lógica (JS) y el marcado (HTML). Esta aproximación es una de las fuerzas impulsoras en torno al resurgimiento y la aceptación de los estilos en línea en React.
 
@@ -29,7 +29,7 @@ La sintáxis resulta familiar, ya que se usa el atributo ~styles~ en el marcado,
 #+begin_src jsx
 const styles = {
   color: 'white',
-  background: 'blue,
+  background: 'blue',
   padding: '0,5rem 1rem',
   borderRadius: '2px',
 }
@@ -68,3 +68,93 @@ En consclusión estos son los síntomas que determinan si resulta viable el uso 
 - No hay dependencias de bibliotecas externas
 
 * CSS-en-JS
+
+Las opciones de CSS-en-JS manifiestan fortalezas similares a los estilos en línea, y la razón por la cual se clasifican de manera diferente es por la presencia de una biblioteca de estilos que soporte estilos basados en JavaScript e incluyan funcionalidades propias de CSS. Esta es una lista de las librerías más populares del enfoque CSS-en-JS:
+
+- styled-components
+- emotion
+- aphrodite
+- glamor
+- ... muchas más
+
+A diferencia de los estilos en línea, las bibliotecas CSS-en-JS se encargan de generar la hoja de estilos CSS y lo inyectan en la página en tiempo de ejecución. Por otra parte, habilita muchas de las funcionalidades que se esperan utilizar en CSS como media queries o animaciones con keyframes.
+
+Es tiempo de dar un vistazo a la biblioteca ~styled-components~ para entrar en detalle a la oferta de esta técnica. Uno de sus puntos a favor es que permite crear estilos con la sintáxis CSS a través de ~tagged template literals~. Su propósito es crear componentes React vinculados a esto estilos por medio del objeto ~styled~ del respectivo paquete. Tenga en cuenta el siguiente ejemplo:
+
+#+begin_src jsx
+import styled from 'styled-components'
+
+const Button = styled.button`
+  color: white;
+  background: blue;
+  padding: 0,5rem 1rem;
+  borderRadius: 2px;
+`
+function MyComponent() {
+  return (
+    <Button>Already styled</Button>
+  )
+}
+#+end_src
+
+Aquí es importante resaltar que el objeto ~styled~ tiene adjunto todos los tipos elementos disponbiles en HTML. Es por esta razón que se puede acceder al ~styled.button~ para dar estilos al elemento botón. Otros elementos que se pueden acceder son ~.div~, ~.header~, ~.input~ por mencionar algunos. De este modo al usar ~styled-component~ en el diseño del componente React, los estilos ya estaran adjuntos.
+
+Como se menciono anterior mente esta biblioteca permite hacer uso de media queries, pseudo selectores y animación con keyframes:
+
+#+begin_src jsx
+import styled, { keyframes } from 'styled-components'
+
+const jitter = keyframes`
+  0% { transition: scaleY(0,9); }
+  100% { transition: scaleY(1); }
+`
+
+const Button = styled.button`
+  animation: ${jitter} 350ms ease-out infinite;
+  color: white;
+  background: blue;
+  padding: 0,5rem 1rem;
+  borderRadius: 2px;
+
+  &:hover {
+    outline: 2px solid white;
+  }
+
+  @media (min-width: 800px) {
+    padding: 1rem 2rem;
+  }
+  
+`
+...
+#+end_src
+
+Dado que se depende de una biblioteca, también hay patrones para necesidades comunes, tales como los estilos dinámicos. Si se dependiende del valor de un prop, se puede aplicar un estilo diferente de acuerdo a dicho valor. 
+
+#+begin_src jsx
+import styled from 'styled-components'
+
+const Button = styled.button`
+  color: white;
+  background: ${props => props.secondary ? 'gray' : 'blue' };
+`
+#+end_src
+
+A continuación se presentan las ventajas que ofrecen las bibliotecas CSS-en-JS:
+
+- Uso de media quieries
+- Uso de pseudo selectores
+- Animaciones con keyframes
+- Estilos y código co-localizados
+
+Las desventajas son:
+
+- Fatiga en la toma de decisiones para escoger una de estás librerías
+- Anulaciones por cascada
+
+En consclusión estos son los síntomas que determinan si resulta viable el uso de libreriías CSS-en-JS:
+
+- Los estilos son co-localizados
+- Requiere de todo el poder de CSS
+
+* Hojas de estilos CSS
+
