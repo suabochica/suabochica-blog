@@ -158,3 +158,26 @@ En consclusión estos son los síntomas que determinan si resulta viable el uso 
 
 * Hojas de estilos CSS
 
+No hay mucho que presentar con esta técnica ya que es la forma tradicional de utilizar las hojas de estilos de CSS:
+
+#+begin_src html
+<link rel="stylesheet" href="/css/mystyles.css"/>
+#+end_src
+
+Con este enfoque se dispone de todas las capacidades de CSS y representa muy pocos cambios de la mayoría de los flujos de trabajo tradicionales. No obstante, como se disuction anteriormente, la técnica expone los 7 problemas que señalo Christopher Chedeau en su charla /React: CSS in JS/.
+
+De dichos problemas, el mas relevante es el namespace global. Si se sigue este enfoque la recomendación es usar una notación como BEM (Bloque, Elemento y Modificador) para mitigar dicho inconveneniente.
+
+Por lo tanto, esto son los puntos a favor de utilizar esta estrategia:
+
+- No hay que aprender una nueva sintáxis
+- Todo es CSS
+- Se aprovecha la experiencia de la comunidad
+
+En consecuencia, esta técnica resulta conveniente cuando:
+
+- Se pretende aprvechar el status quo de CSS
+- No se tienen procesos nuevos para estilos
+- El equipo de trabajo se siente cómo con el CSS tradicional
+
+
