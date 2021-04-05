@@ -180,4 +180,86 @@ En consecuencia, esta técnica resulta conveniente cuando:
 - No se tienen procesos nuevos para estilos
 - El equipo de trabajo se siente cómo con el CSS tradicional
 
+* Módulos CSS
 
+Los módulos CSS son una variación de las hojas de estilos tradicionales. Sesiente como el manejo de una hoja de estilos tradicional ya que los estilos se escriben en un archivo ~.css~, pero hay una diferencia esencial y es que la hojas de estilos es un módulo.
+
+#+begin_src css
+/* components-styles.module.css */
+.button {
+  color: white;
+  background: blue;
+  padding: 0.5rem 1rem;
+  border-radius: 2px;
+}
+
+/* Este código pasa por un Module Bundler */
+
+/* import * as css from './component-styles.module.css'
+console.log(CSS) // { button: 'button-3dajc' }
+*/
+
+#+end_src
+
+Esta técnica requiere de un paso de construcción hecho por una herramienta llamada /module bundler/ (e.g. webpack) la cual genera un objeto exportable. Dicho objeto se importa en donde se pretenda usar perimtiendo definir explicitamente las dependencias de los estilos:
+
+#+begin_src jsx
+import React from 'react';
+import * as css from './component-styles.module.scss';
+
+function myComponent(){
+  return <button>className={css.button}Click me</button>
+}
+#+end_src
+
+Los selectores del objeto exportable estarań disponbiles en este ámbito y serán referenciados cuando se usen en la propiedad ~className~ del componente React.
+
+El otro factor diferenciador de esta técnica de módulos es que los nombres de los selectores CSS serán úncios luego del paso de construcción al agregar un hash como sufijo, previniendo así colisiones en el namespace global:
+
+#+begin_src css
+/* src */
+.button {
+  color: white;
+  background: blue;
+  padding: 0.5rem 1rem;
+  border-radius: 2px;
+}
+
+/* compiled */
+.button---5x98a {
+  color: white;
+  background: blue;
+  padding: 0.5rem 1rem;
+  border-radius: 2px;
+}
+#+end_src
+
+Estas son las ventajas de utilizar módulos CSS:
+
+- Se dispone de todo el poder de CSS
+- Aislamiento a través de un sistema de módulos
+- Las dependencias son explícitas
+
+Estas son las desventajas de utilizar módulos CSS:
+
+- No se pueden compartir constantes
+
+En consecuencia la recomendación es usar esta ténica cuando se presenten los siguientes síntomas:
+
+- Autoría en las hojas de estilos CSS para una mejor organización de estilos
+- Administración de problemas CSS
+
+* Conclusión
+
+Estas son las técnicas mas populares para dar estilos en componentes React.
+Se recalca que para un mayor dominio de las mismas es recomendable hacer implementaciones puntuales para empezar a identificar las diferencias entre cada una de ellas.
+
+Todas las técnicas cumplen un resultado similar, pero su contexto de aplicación difiere en autorías, fortalezas y debilidades con las cuales el desarrollador deberá lidiar.
+
+Por último, al presentar las técnicas estos escenarios empezaron a ser relevantes:
+
+- Estilos estáticos
+- Estilos dinámicos
+- Anulación de estilos
+
+Cada una participa de manera especifica con dicho contexto.
