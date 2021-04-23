@@ -1,0 +1,15 @@
+#+TITLE: Configuraciones potenciales de CSS en React
+#+DESCRIPTION: Serie que recopila el estado de arte del manejo de estilos en React
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-04-23 Thu> 
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+Dar estilos a los componentes React es divertido. Es tiempo de revisar las  herramientas que habilitan las diferentes configuraciones que son requeridas a nivel de proyecto.
+
+Las cadenas modernas de heramientas para crear aplicaciones React a menudo no precisan configuraciones extensivas de CSS por defecto. Por ejemplo, ~create-react-app~ que ha sido el paquete que se ha venido utilizando en los proyectos para evaluar las diferentes estrategias para agregar estilos en components React, soporta toda la autoría CSS que se ha revisado hasta ahora. Inclusive, su configuración atiende muchos más detalles de los que se han contemplado por ahora. Por ejemplo, prepocesamiento de SASS y prefijos automaticos post-procesamiento.
+
+En resumen, no es frecuente tener que lidiar con configuraciones CSS en los proyectos React.
