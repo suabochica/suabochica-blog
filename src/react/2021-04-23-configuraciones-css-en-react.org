@@ -12,4 +12,16 @@ Dar estilos a los componentes React es divertido. Es tiempo de revisar las  herr
 
 Las cadenas modernas de heramientas para crear aplicaciones React a menudo no precisan configuraciones extensivas de CSS por defecto. Por ejemplo, ~create-react-app~ que ha sido el paquete que se ha venido utilizando en los proyectos para evaluar las diferentes estrategias para agregar estilos en components React, soporta toda la autoría CSS que se ha revisado hasta ahora. Inclusive, su configuración atiende muchos más detalles de los que se han contemplado por ahora. Por ejemplo, prepocesamiento de SASS y prefijos automaticos post-procesamiento.
 
-En resumen, no es frecuente tener que lidiar con configuraciones CSS en los proyectos React.
+En resumen, no es frecuente tener que lidiar con configuraciones CSS en los proyectos React. Sin embargo, al enfrentarse a casos como por ejemplo agregar un preprocesador PostCSS es necesario realizar configuraciones adicionales ya que es una funcionalidad que no esta incluida en la oferta del ~create-react-app~. Para ello, podemos acudir a las herramientas subyacentes de estructuración de proyectos:
+
+- Webpack
+- Rollup
+- Parce
+
+Cada una de estas herramientas son paquetes de módulos. Un paquete de módulos es instrumento que toma archivos JavaScript, CSS y potencialmente otros tipos de archivos asegurando de que sean cargables y procesables  para luego empaquetarlos en un archivo de aplicación listo para el navegador.
+
+Ahora bién ¿qué es un módulo? para un paquete de módulos, cada bit de código luce como un módulo. Ya sea JavaScript, una hoja de estilos, una imagen, entre otros.
+
+Para este caso puntual se va a crear un proyecto React corriendo con PostCSS. PostCSS is un procesador de CSS que agrega habilidades a CSS. Una de las habilidades es la anidación de selectores. Estos ejemplos pueden ser de gran ayuda para la próxima vez que se necesite echar un vistazo bajo el capo y ajustar la configuración CSS de un proyecto React.
+
+* Webpack
