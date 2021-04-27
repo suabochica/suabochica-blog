@@ -25,3 +25,129 @@ Ahora bién ¿qué es un módulo? para un paquete de módulos, cada bit de códi
 Para este caso puntual se va a crear un proyecto React corriendo con PostCSS. PostCSS is un procesador de CSS que agrega habilidades a CSS. Una de las habilidades es la anidación de selectores. Estos ejemplos pueden ser de gran ayuda para la próxima vez que se necesite echar un vistazo bajo el capo y ajustar la configuración CSS de un proyecto React.
 
 * Webpack
+
+Webpack es quizas la herammienta más común entre los agrupadores de módulos, y es utilizada por ~create-react-app~. En sí, estas herramientas son muy flexibles pero requieren una significativa cantidad de configuración.
+
+La mejor forma de entender las configuraciones de estas herramientas es revisando el archivo ~package.json~:
+
+#+begin_src json
+  "scripts": {
+      "build": "webpack",
+      "start": "sirv public",
+  },
+  "devDependencies": {
+      "@babel/core": "^7.9.0",
+      "@babel/preset-react": "^7.9.4",
+      "babel-loader": "^8.1.0",
+      "css-loader": "^3.5.3",
+      "postcss-loader": "^3.0.0",
+      "postcss-nesting": "^7.0.1",
+      "react": "^16.13.1",
+      "react-dom": "^16.13.1",
+      "sirv-cli": "^0.4.5",
+      "style-loader": "^1.2.0",
+      "webpack": "^4.43.0",
+      "webpack-cli": "^3.3.11"
+  }
+#+end_src
+
+A continuación se explican cada uno de los paquetes que hacen parte del ~devDependencies~ del archivo ~package.json~
+
+- ~webpack~: paquete que contiene la funcionalidad para el module bundling.
+- ~webpack-cli~: paquete que permite correr el module bundling desde una lína de comandos.
+- TODO:
+
+Un detalle importante es la propiedad ~scripts~ para ejecutar comandos con propositos puntuales:
+
+- ~"build": "webpack"~:  script que ejecuta webpack y genera el ~bundle.js~
+- ~"start": "sirv public"~: script que levanta un servidor local a través del paquete ~sirv~
+
+Toda configuración en webpack parte desde el archivo ~webpack.config.js~, cuyo contenido para este caso se muestra a continuación:
+
+#+begin_src js
+// webpack.config.js
+const path = require("path");
+
+module.exports = {
+  mode: "development",
+  entry: "./src/index.js",
+  output: {
+    path: path.resolve(__dirname, "public"),
+    filename: "bundle.js",
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+        },
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader", "postcss-loader"],
+      },
+    ],
+  },
+};
+#+end_src
+
+Como se puede observar, el archivo de configuración es un único módulo de exportación. Dentro de este objeto se define como webpack debe actuar. Al ser un module bundler, webpack tomará módulos fuente y los empaqueta en conjunto dentro de un ~app bundle~. Para ello hay unas propiedades importantes a tomar en cuenta:
+
+- ~entry~: propiedad que determina el punto de entrada a la aplicación
+- ~output~: propiedad que determina el punto de salida del ~app bundle~
+- TODO:
+
+* Rollup
+
+#+begin_src json
+  "scripts": {
+    "build": "rollup --config",
+    "start": "sirv public",
+  },
+  "devDependencies": {
+      "@babel/core": "^7.9.0",
+      "@babel/preset-react": "^7.9.4",
+      "babel-loader": "^8.1.0",
+      "css-loader": "^3.5.3",
+      "postcss-loader": "^3.0.0",
+      "postcss-nesting": "^7.0.1",
+      "react": "^16.13.1",
+      "react-dom": "^16.13.1",
+      "sirv-cli": "^0.4.5",
+      "style-loader": "^1.2.0",
+      "webpack": "^4.43.0",
+      "webpack-cli": "^3.3.11"
+  }
+#+end_src
+  
+#+begin_src js
+// rollup.config.js
+import babel from "@rollup/plugin-babel";
+import commonjs from "@rollup/plugin-commonjs";
+import postcss from "rollup-plugin-postcss";
+import replace from "@rollup/plugin-replace";
+import resolve from "@rollup/plugin-node-resolve";
+
+import * as path from "path";
+
+export default {
+  input: "src/index.js",
+  output: {
+    file: path.resolve(__dirname, path.join("public", "bundle.js")),
+  },
+  plugins: [
+    babel({
+      babelHelpers: "bundled",
+      exclude: "node_modules/**",
+    }),
+    commonjs(),
+    postcss(),
+    replace({
+      "process.env.NODE_ENV": JSON.stringify("production"),
+    }),
+    resolve(),
+  ],
+};
+#+end_src
