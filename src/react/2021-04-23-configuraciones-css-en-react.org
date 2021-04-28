@@ -51,16 +51,56 @@ La mejor forma de entender las configuraciones de estas herramientas es revisand
   }
 #+end_src
 
-A continuación se explican cada uno de los paquetes que hacen parte del ~devDependencies~ del archivo ~package.json~
+A continuación se explican cada uno de los paquetes que hacen parte del ~devDependencies~ del archivo ~package.json~. Por ahora se empezará con los paquetes relativos a webpack en sí y un paquete que habilita un servidor web local:
 
+- ~sirv-cli~: paquete que permite crear un servidor web para publicar los activos estaticos en un directorio público
 - ~webpack~: paquete que contiene la funcionalidad para el module bundling.
 - ~webpack-cli~: paquete que permite correr el module bundling desde una lína de comandos.
-- TODO:
 
-Un detalle importante es la propiedad ~scripts~ para ejecutar comandos con propositos puntuales:
+Un detalle importante es la propiedad ~scripts~ para ejecutar comandos con propósitos puntuales:
 
 - ~"build": "webpack"~:  script que ejecuta webpack y genera el ~bundle.js~
 - ~"start": "sirv public"~: script que levanta un servidor local a través del paquete ~sirv~
+
+Si se ejecuta el comando ~npm run build~ con una configuración básica de puntos de entrada y salida, se recibirá un mensaje de error que demanda el uso de un /loader/ para poder manejar determinado tipo de archivo. Los loaders son los bits mágicos dentro del contexto de webpack y se resalta que existen varios de ellos para atender un tipo de archivo puntual, como por ejemplo archivos JavaScript o CSS. Para este caso vamos a instalar los siguientes loaders:
+
+- ~babel-loader~
+- ~css-loader~
+- ~postcss-loader~
+- ~style-loader~
+
+Ahora bien, para que un loader funcione a cabalidad es preciso configurar las herramientas que invocan. La siguiente es la lista de dependencias para ~babel-loader~:
+
+- ~@babel/core~: Paquete para soportar funcionalidades extra de JavaScript.
+- ~@babel/preset-react~: Extensión del core de babel para tener soporte sobre React JSX.
+
+Por último, se define un archivo ~babel.config.js~ con el siguiente contenido:
+
+#+begin_src js
+// babel.config.js
+module.exports = {
+  presets: ["@babel/preset-react"],
+};
+#+end_src
+
+Finalmente, babel esta listo.
+
+Este ciclo de configuración se aplica nuevamente para postcss. Se empieza con las dependencias:
+
+- ~postcss-nesting~: Plugin que soporta la anidación de selectores
+
+Se procede con un archivo de configuración ~postcss.config.js~
+
+#+begin_src js
+// postcss.config.js
+module.exports = {
+  plugins: {
+    'postcss-nesting': {}
+  }
+};
+#+end_src
+
+Y con esto, postcss está listo.
 
 Toda configuración en webpack parte desde el archivo ~webpack.config.js~, cuyo contenido para este caso se muestra a continuación:
 
@@ -93,12 +133,20 @@ module.exports = {
 };
 #+end_src
 
-Como se puede observar, el archivo de configuración es un único módulo de exportación. Dentro de este objeto se define como webpack debe actuar. Al ser un module bundler, webpack tomará módulos fuente y los empaqueta en conjunto dentro de un ~app bundle~. Para ello hay unas propiedades importantes a tomar en cuenta:
+Como se puede observar, el archivo de configuración es un único módulo de exportación. Dentro de este objeto se define como webpack debe actuar.
+
+Al ser un module bundler, webpack tomará módulos fuente y los empaqueta en conjunto dentro de un ~app bundle~. Para ello hay unas propiedades importantes a tomar en cuenta:
 
 - ~entry~: propiedad que determina el punto de entrada a la aplicación
 - ~output~: propiedad que determina el punto de salida del ~app bundle~
-- TODO:
+- ~module.rules~: propiedad que determina la relación entre los tipos de archivo y los loaders.
 
+Se señala que un tipo de archivo puede tener varios loaders asociados, como es el caso de los archivos CSS en esta configuración. Aquí, el orden en como se suministran los loaders es releavante, puesto que se leen de derecha a izquierda. En dicha secuencia la salida del loader previo se perfila como la entrada del siguiente loader.
+
+Es así como se procesan las funcionalidades adicionales PostCSS en CSS. Primero se evaluan las caracteristicas de PostCSS con su respectivo loader. Este resultado es la entrada para el ~css-loader~ que administrará las referencias a archivos CSS dentro del proyecto JavaScript, y por último el ~style-loader~ recibe dicho resultado para hacer la inserción de los estilos en la etiqueta ~<style>~ de la página al momento de ejecutar la aplicación.
+
+Al correr nuevamente ~npm run build~ se generara un archivo ~public/bundle.js~. Para poder visualizar la aplicación se ejecuta el script ~start~ y así el resultado estará disponible.
+  
 * Rollup
 
 #+begin_src json
