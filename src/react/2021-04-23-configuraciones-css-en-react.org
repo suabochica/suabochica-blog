@@ -219,3 +219,40 @@ Como se puede evidenciar en el archivo ~rollup.config.js~, los complementos de R
 Para un correcto funcionamiento de Babel y PostCSS se replican los archvios ~babel.config.js~ y ~postcss.config.js~ que se revisaron en la sección de Webpack.
 
 Al correr ~npm run build~, Rollup generará un archivo ~public/bundle.js~. Para poder visualizar la aplicación se ejecuta el script ~start~ que habilitará un servidor web vía ~sirv-cli. Con esto se exploraron los conceptos básicos para hacer una configuración básica de un proyecto React con PostCSS.
+
+* Parcel
+
+Parcel esta diseñado para ser un bundler todo en uno. Hace muchos procesos fuera de la caja y requiere menos pasos de configuración. Considerando las configuraciones previas en Webpack y Rollup, la propuesta de Parcel puede ser encantadora.
+
+En primera instancia, así luce el archivo ~package.json~ con Parcel:
+
+#+begin_src json
+  "scripts": {
+      "start": "parcel public/index.html -p 5000",
+  },
+  "devDependencies": {
+      "parcel-bundler": "^1.12.4",
+      "postcss-nesting": "^7.0.1",
+      "react": "^16.13.1",
+      "react-dom": "^16.13.1",
+  }
+#+end_src
+
+Es un archivo con menos dependencias a lo que se reviso previamente. El paquete ~parcel-bundler~ contiene todo el core de este empaquetador de módulosy un cliente de línea de interfaz para la ejecución de comandos. Algo interesante de esta propuesta es el script ~start~. A diferencia de Webpack y Rollup, en donde el punto de entrada de la aplicación era un archivo JavaScript, en Parcel se define el punto de entrada en un archivo HTML, como muestra el contenido del script ~start~. Dentro de este mismo script se especifica el puerto sobre el que se va a hospedar la aplicación indicando que Parcel por si mismo ofrece la posibilidad de levantar un servidor web. En resumen, Parcel ademas de empaquetar los módulos también esta en capacidad de ofrecer un servidor web de desarrollo para hospedar la aplicación.
+
+Ahora bien, retomando el hecho de que el punto de entrada de la aplicación es un archivo HTML, se debe hacer un pequeño ajuste sobre el consumo del archivo bundle compilado. En vez de especificar el archivo ~bundle.js~ generado por las herramientas anteriores, se define la ruta ~../src/index.js~. De esta forma el archivo HTML termina siendo un puente para llegar al archivo de entrada JavaScript.
+
+Por otra parte, el soporte a la sintáxis JSX ya está implicita en parcel, es por esta razón que no se precisa de la instalación de los paquetes preestablecidos de Babel y por ende un archvio ~babel.config.js~ no es necesario. 
+En cuanto al procesamiento de PostCSS, Parcel también asume esa responsabilidad pero requiere que se especifique que plugnos de PostCSS se van a usar, es por esta razón que en el ~packcage.json~ esta presente el paquete ~postcss-nesting~. De manera complementaria, se crea un archivo ~parcel.config.js~ con el siguiente contenido:
+
+#+begin_src js
+module.exports = {
+  plugins: {
+    'postcss-nesting': {}
+  }
+}
+#+end_src
+
+En con esto ya estaría lista nuestra aplicación. Si se ejecuta el comando ~npm run start~ el archivo empaquetado es interpretado por Parcel y se carga un servidor web para consultar el resultado.
+
+Para configuraciones sencillas, de proyecto pequeños, Parcel es una buena opción.
