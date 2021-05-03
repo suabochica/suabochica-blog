@@ -1,0 +1,23 @@
+#+TITLE: React Hooks
+#+DESCRIPTION: Serie que pretende explicar la funcionalidad de Reack Hooks
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-05-02 Sun> 
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+React Hooks representa un enorme paso hacia adelante hacia la construcción de aplicaciones plenamente funcionales con un uso mínimo de componentes de clase.
+
+El manejo de estado y los eventos de ciclo de vida de un componente React requieren menos código y ganan legibilidad con el uso de los Hooks. Los Hooks respetan la forma en la que JavaScript fue diseñado para ser programado, y por ende se pueden implementar Hooks personalizados.
+
+Los temas a revisar en esta serie son:
+
+- React Hooks básicos incorporados
+- React Hooks avanzados
+- Comparación entre Hooks y componentes de clase
+
+El propósito de estas publicaciones es lograr un entendimiento pleno de como usar los React Hooks para crear aplicaciones con solo componentes funcionales.
+
+Para tener garantías del objetivo, es pre requisito tener conocimientos previos y sentirse cómo con las construcción de aplicaciones web con React. 

@@ -253,6 +253,9 @@ module.exports = {
 }
 #+end_src
 
+#+RESULTS:
+: undefined
+
 En con esto ya estaría lista nuestra aplicación. Si se ejecuta el comando ~npm run start~ el archivo empaquetado es interpretado por Parcel y se carga un servidor web para consultar el resultado.
 
 Para configuraciones sencillas, de proyecto pequeños, Parcel es una buena opción.
