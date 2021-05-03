@@ -1,5 +1,5 @@
-baseurl = "http://suabochica.local"
-title = "Sua Bochica"
+baseurl = "https://suabochica.com"
+title = "suabochica"
 theme = "m10c"
 paginate = 12
 
