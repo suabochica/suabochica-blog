@@ -21,3 +21,42 @@ Los temas a revisar en esta serie son:
 El propósito de estas publicaciones es lograr un entendimiento pleno de como usar los React Hooks para crear aplicaciones con solo componentes funcionales.
 
 Para tener garantías del objetivo, es pre requisito tener conocimientos previos y sentirse cómo con las construcción de aplicaciones web con React. 
+
+* ¿Qué son los React Hooks?
+
+React Hooks agrega la habilidad de administrar el estado de React y la interfaz de usuario con los eventos del ciclo de vida de React en componentes funcionales, apoyándose en un estilo declarativo.
+
+Quizas, el mayor aporte de React Hooks es la creación de componentes en una forma sencilla y de menor complejidad.
+
+Básicamente los React Hooks son una vía para adjuntar lógica reutilizable en un componente existente. Antes de Hooks, la forma común de adjuntar lógica externa a un componente era usando las propiedades en la función ~render~ ó a través del patrón de componentes de orden superior. Lo íncomodo de este enfoque es que con frecuencia era necesario restructurar el código para atender una dependencia externa, haciendo engorroso y díficil de seguir el desarrollo.
+
+La propuesta de React Hooks es una solución a este problema creando un mecanismo para extraer código que se pueda reutilizar entre componentes sin necesidad the introducir anidación en el árbol de componentes.
+
+Siendo espécificos, los React Hooks son funciones JavaScript que le permiten al desarrollador usar el estado y los métodos del ciclo de vida dentro de los componentes React funcionales. En consecuencia, ahora se pueden construir aplicaciones React sin usar las clases de JavaScript. Ya no habrán más preocupaciones por lidiar con la palabra clave ~this~.
+
+La siguiente tabla recopila el antes y el después del manejo de lógica retulizable en React:
+
+| Antes de hooks                | Después de hooks                                                                 |
+|-------------------------------+----------------------------------------------------------------------------------|
+| Propiedades del render        | Adjunta lógica reutilizable en un componente existente                           |
+| Componentes de orden superior | Usa el estado y los métodos de ciclos de vida dentro de un comoponente funcional |
+| Código más complego           | Construye le 100% de la aplicación con componentes funcionales                   |
+
+Los tres React Hooks más populares son:
+
+- useState
+- useRef
+- useEffect
+
+Tiempo de dar un vistazo mas profundo a cada uno de ellos:
+
+* useState
+
+En los últimos años del mundo de la programación front-end, no importa el framework o la librería que se este utilizando, la siguiente declaración a sido una tendencia:
+
+#+begin_quote
+El estado ayuda a construir aplicaciones web de alto rendimiento
+#+end_quote
+
+La idea de estado consiste en que cada vez que se ve algo nuevo en la pantalla, sea rastreado como un estado nuevo. Para aterrizar este concepto se presenta el siguiente ejemplo:
+
