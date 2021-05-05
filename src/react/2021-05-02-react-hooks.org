@@ -60,3 +60,7 @@ El estado ayuda a construir aplicaciones web de alto rendimiento
 
 La idea de estado consiste en que cada vez que se ve algo nuevo en la pantalla, sea rastreado como un estado nuevo. Para aterrizar este concepto se presenta el siguiente ejemplo:
 
+#+CAPTION: Two way data-binding
+  [[../images/react/react-hooks/01-two-way-data-binding.png]]
+
+Esta  imagen ilustra los elementos relevantes para hacer un manejo de estado con la digitación de un correo electrónicio dentro de una etiqueta ~<Input/>~ que representa una caja de texto. Este elmento de entrada interactua con un modelo de datos en donde esencialmente se va a almacenar lo que el usuairo esta escribiendo en el navegador. Cada caracter digitado va a actualizar el almacenamiento y posterior a dicha actualización en el modelo de datos la salida de este evento estará registrada en una etiqueta ~<Label>~. El almacenamiento de datos es conocido como /estado/.
