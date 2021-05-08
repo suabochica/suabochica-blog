@@ -63,4 +63,41 @@ La idea de estado consiste en que cada vez que se ve algo nuevo en la pantalla, 
 #+CAPTION: Two way data-binding
   [[../images/react/react-hooks/01-two-way-data-binding.png]]
 
-Esta  imagen ilustra los elementos relevantes para hacer un manejo de estado con la digitación de un correo electrónicio dentro de una etiqueta ~<Input/>~ que representa una caja de texto. Este elmento de entrada interactua con un modelo de datos en donde esencialmente se va a almacenar lo que el usuairo esta escribiendo en el navegador. Cada caracter digitado va a actualizar el almacenamiento y posterior a dicha actualización en el modelo de datos la salida de este evento estará registrada en una etiqueta ~<Label>~. El almacenamiento de datos es conocido como /estado/.
+Esta  imagen ilustra los elementos relevantes para hacer un manejo de estado con la digitación de un correo electrónicio dentro de una etiqueta ~<Input/>~ que representa una caja de texto. Este elmento de entrada interactua con un modelo de datos en donde esencialmente se va a almacenar lo que el usuairo esta escribiendo en el navegador. Cada caracter digitado actualizará el almacenamiento y posterior a dicha actualización en el modelo de datos la salida de este evento estará registrada en una etiqueta ~<Label>~. El almacenamiento de datos es conocido como /estado/.
+
+A continuación se comparte una primera implementación del escenario descrito anteriormente. El plan es enganchar un campo de entrada de texto y cada vez que el valor cambie, como cuando un usuario escribe un carácter, se salvará el nuevo valor del campo de entrada como estado de React para posteriormente imprimir la salida de ese valor como una etiqueta debajo del campo de texto:
+
+#+begin_src jsx
+import React from "react";
+
+const InputElement = () => {
+  const results = useState("");
+  const inputText = results[0];
+  const setInputText = results[1];
+
+  return <input
+    onChange={(event) => {}}
+    placeholder="Enter some text"
+  />;
+};
+
+export default InputElement;
+#+end_src
+
+Al consultar este código en el navegador, se observa un campo de entrada de texto con su respectivo placeholder. Se recuerda que los campos de entrada de HTML soportan el eventon ~onChange~ al cual se le puede asignar una función que será llamada cada vez que un usuario oprima una tecla. A dicha función se le pasa un evento como argumento y por ahora no va a retornar nada.
+
+Tiempo de usar el primer hook. Se recuerda que los React Hooks son componibles lo que significa que se crean dentro del componente funcional tal y como se muestran en las primeras líneas del componente en el código anterior. 
+
+using destructuring:
+
+#+begin_src jsx
+import React from "react";
+
+const InputElement = () => {
+  const { inputText, setInputText } = useState("");
+
+  return <input placeholder="Enter some text" />;
+};
+
+export default InputElement;
+#+end_src
