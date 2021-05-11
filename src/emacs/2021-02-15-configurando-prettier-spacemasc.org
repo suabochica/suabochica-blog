@@ -8,11 +8,11 @@
 #+HUGO_AUTO_SET_LASTMOD: t
 * ¿Qué es Prettier?
 
-  Prettier es un formateador de código obstinado que admite muchos leguajes de programación y se integra con la mayoría de los editores. Se puede instalar a través de ~npm~ o ~yarn~ y la recomendación es hacer una instalación global en el sistema para que su editor lo integre correctamente e incluso se pueda aplicar el formato automaticamente mientras guarda los archivos.
+Prettier es un formateador de código obstinado que admite muchos leguajes de programación y se integra con la mayoría de los editores. Se puede instalar a través de ~npm~ o ~yarn~ y la recomendación es hacer una instalación global en el sistema para que su editor lo integre correctamente e incluso se pueda aplicar el formato automaticamente mientras guarda los archivos.
 
 * ¿Cómo configurar Prettier?
 
-  Para empezar, asegúrese de que prettier está instalado globalmente en el sistema ejecutando el siguiente comando:
+Para empezar, asegúrese de que prettier está instalado globalmente en el sistema ejecutando el siguiente comando:
 
   #+begin_src 
 npm i -g prettier
@@ -26,7 +26,7 @@ git checkout develop
 git pull origin develop
  #+end_src
 
- Agregué el layer ~prettier~ en la función ~defun dotspacemacs/layers~ bajo la sección ~dotspacemacs-configuration-layers~ en el archivo de configuración de spacemacs. Para acceder a este archivo teclee la combinación ~SPC f e d~. A continuación se muestra el snippet que debé agregarse en la configuración:
+Agregué el layer ~prettier~ en la función ~defun dotspacemacs/layers~ bajo la sección ~dotspacemacs-configuration-layers~ en el archivo de configuración de spacemacs. Para acceder a este archivo teclee la combinación ~SPC f e d~. A continuación se muestra el snippet que debé agregarse en la configuración:
  
  #+begin_src lisp
 (defun dotspacemacs/layers ()
@@ -50,11 +50,11 @@ git pull origin develop
      ...)
  #+end_src 
 
- Con estas instrucciones los archivos ~.js~ pueden ser formateados con prettier dentro de spacemacs.
+Con estas instrucciones los archivos ~.js~ pueden ser formateados con prettier dentro de spacemacs.
 
- Para que spacemacs ejecute prettier sobre los archivos ~.js~ al momento de salvar los archivos es necesario crear un ~js2-mode-hook~. Se usa ~js2-mode-hook~ como ejemplo ya que este es el modo principal en el que se abren los archivos javascript.
+Para que spacemacs ejecute prettier sobre los archivos ~.js~ al momento de salvar los archivos es necesario crear un ~js2-mode-hook~. Se usa ~js2-mode-hook~ como ejemplo ya que este es el modo principal en el que se abren los archivos javascript.
 
- Para saber la lista de modos en los que esta trabajando spacemacs, puede usar el comando ~describe-mode~. El comando se activa con la combinación ~SPC h d m~.
+Para saber la lista de modos en los que esta trabajando spacemacs, puede usar el comando ~describe-mode~. El comando se activa con la combinación ~SPC h d m~.
 
 Con ayuda del ~before-save-hook~ se establece el formateo automático del archivo `.js` antes de que se guarde un buffer en su archivo. El siguiente snippet debe ser agregado en la funcón ~defun dotspacemacs/user-config~ del archivo de configuración de spacemacs:
  
