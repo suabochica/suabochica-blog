@@ -1,10 +1,14 @@
 +++
 title = "Configurando Prettier en Spacemacs"
 author = ["Sergio Benítez"]
-description = "En esta publicación se comparte como configurar prettier para spacemacs y también como ejecutar un formato automatico mientras se salvan los archivos"
+description = "En esta publicación se comparte como configurar prettier para spacemacs y también como ejecutar un formato automático mientras se salvan los archivos"
 date = 2021-02-15T00:00:00-05:00
 lastmod = 2021-05-10T21:31:58-05:00
 draft = false
+tags = [
+  "emacs",
+  "spacemacs",
+]
 +++
 
 ## ¿Qué es Prettier? {#qué-es-prettier}

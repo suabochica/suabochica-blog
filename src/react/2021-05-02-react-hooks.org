@@ -63,12 +63,12 @@ La idea de estado consiste en que cada vez que se ve algo nuevo en la pantalla, 
 #+CAPTION: Two way data-binding
   [[../images/react/react-hooks/01-two-way-data-binding.png]]
 
-Esta  imagen ilustra los elementos relevantes para hacer un manejo de estado con la digitación de un correo electrónicio dentro de una etiqueta ~<Input/>~ que representa una caja de texto. Este elmento de entrada interactua con un modelo de datos en donde esencialmente se va a almacenar lo que el usuairo esta escribiendo en el navegador. Cada caracter digitado actualizará el almacenamiento y posterior a dicha actualización en el modelo de datos la salida de este evento estará registrada en una etiqueta ~<Label>~. El almacenamiento de datos es conocido como /estado/.
+Esta  imagen ilustra los elementos relevantes para hacer un manejo de estado con la digitación de un correo electrónicio dentro de una etiqueta ~<Input/>~ que representa una caja de texto. Este elemento de entrada interactua con un modelo de datos en donde se va a almacenar lo que el usuairo esta escribiendo en el navegador. Cada caracter digitado actualizará el almacenamiento y posterior a dicha actualización en el modelo de datos la salida de este evento estará registrada en una etiqueta ~<Label>~. El almacenamiento de datos es conocido como /estado/.
 
 A continuación se comparte una primera implementación del escenario descrito anteriormente. El plan es enganchar un campo de entrada de texto y cada vez que el valor cambie, como cuando un usuario escribe un carácter, se salvará el nuevo valor del campo de entrada como estado de React para posteriormente imprimir la salida de ese valor como una etiqueta debajo del campo de texto:
 
 #+begin_src jsx
-import React from "react";
+import React, { useState } from "react";
 
 const InputElement = () => {
   const results = useState("");
@@ -78,26 +78,71 @@ const InputElement = () => {
   return <input
     onChange={(event) => {}}
     placeholder="Enter some text"
-  />;
+  />
 };
 
 export default InputElement;
 #+end_src
 
-Al consultar este código en el navegador, se observa un campo de entrada de texto con su respectivo placeholder. Se recuerda que los campos de entrada de HTML soportan el eventon ~onChange~ al cual se le puede asignar una función que será llamada cada vez que un usuario oprima una tecla. A dicha función se le pasa un evento como argumento y por ahora no va a retornar nada.
+Al consultar este código en el navegador, se observa un campo de entrada de texto con su respectivo placeholder. Se recuerda que los campos de entrada de HTML soportan el evento ~onChange~ al cual se le puede asignar una función que será llamada cada vez que un usuario oprima una tecla. A dicha función se le pasa un evento como argumento y por ahora no va a retornar nada.
 
-Tiempo de usar el primer hook. Se recuerda que los React Hooks son componibles lo que significa que se crean dentro del componente funcional tal y como se muestran en las primeras líneas del componente en el código anterior. 
+Tiempo de usar el primer hook. Se recuerda que los React Hooks son componibles lo que significa que se crean dentro del componente funcional tal y como se muestran en las primeras líneas del componente en el código anterior.
 
-using destructuring:
+~useState~ es un React Hook que esta incluido dentro del paquete de la libreria React y es el que se usa para administrar estado en un componente funcional. Es por esta razón que se importa en la primera línea del snippet y al ser llamada se le pasa un valor inicial del estado sobre el cual se hará seguimiento. ~useState~ retornará un arreglo de dos valores con las versiones previas y actuales del estado. El primer valor, llamdo ~inputText~ es una referencia al estado mismo, que para este caso es el modelo de datos. El segundo valor del arreglo, con el nombre ~setInputText~ es una función que se llama para actualizar el modelo de datos.
+
+Se puede usar destructuración sobre el ~useState~ para hacer más explícito el código, tal y como se muestra a continuación:
 
 #+begin_src jsx
-import React from "react";
+import React, { useState } from "react";
 
 const InputElement = () => {
-  const { inputText, setInputText } = useState("");
+  const [ inputText, setInputText ] = useState("");
 
-  return <input placeholder="Enter some text" />;
+  return <input
+    placeholder="Enter some text"
+    onChange{(event) => {}}
+  />
 };
 
 export default InputElement;
 #+end_src
+
+Esta es la forma típica de hacer uso del hook ~useState~. Retomando la funcionalidad del componente, por ahora se tiene que el campo de texto de entrada esta asociado al evento ~onChange~ para capturar el texto escrito por el usuario. La función ~setInputText~ al ser llamada actualiza el estado y dicho cambio se ve reflejado en la variable de lectura definida como ~inputText~. Es siguiente paso es muy predecible, ya que consiste en asociar estos tres elementos, llamand la función ~setInputText~ dentro del evento ~onChange~ que se le esta pasando al campo de texto, como señala el siguiente snippet:
+
+#+begin_src jsx
+import React, { useState } from "react";
+
+const InputElement = () => {
+  const [ inputText, setInputText ] = useState("");
+
+  return <input
+    placeholder="Enter some text"
+    onChange{(event) => {setInputText(event.target.value)}}
+  />
+};
+
+export default InputElement;
+#+end_src
+
+Para complementar la propuesta del diagrama de de enlace de datos bidireccional se debe imprimir el valor de la variable ~inputText~ actualizado, como se ilustra a continuación:
+
+#+begin_src jsx
+import React, { useState } from "react";
+
+const InputElement = () => {
+  const [ inputText, setInputText ] = useState("");
+
+  return <div>
+    <input
+      placeholder="Enter some text"
+      onChange{(event) => {setInputText(event.target.value)}}
+    />
+    <br/>
+    {inputText}
+  </div>
+};
+
+export default InputElement;
+#+end_src
+
+TODO: Imprimir el historia de la variable ~inputText~
