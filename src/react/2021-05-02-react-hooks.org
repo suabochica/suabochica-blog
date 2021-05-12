@@ -50,7 +50,7 @@ Los tres React Hooks más populares son:
 
 Tiempo de dar un vistazo mas profundo a cada uno de ellos:
 
-* useState
+* ~useState~
 
 En los últimos años del mundo de la programación front-end, no importa el framework o la librería que se este utilizando, la siguiente declaración a sido una tendencia:
 
@@ -145,4 +145,43 @@ const InputElement = () => {
 export default InputElement;
 #+end_src
 
-TODO: Imprimir el historia de la variable ~inputText~
+Ahora bien, para un mejor entendimiento de como fuciona el estado en React, se va a agregar un detalle en la implementación actual para imprimir el historial de la variable ~inputText~.
+
+Para lograr este objetivo se sigue un esquema parecido al del evento ~onChange~ en el valor ~inputText~. Primero, se crea un nuevo estado que se inicializa con un arreglo vacío. Posteriormente, cada vez que se ejecute el evento ~onChange~ se va registrar dicha actualización en la variable ~historyList~. Para ello, se utiliza en _spread operator_ y se agrega al arreglo ~historyList~ el valor introducido por el usuario en el campo de texto. Por último se renderiza el valor del ~historyList~ en una lista con ayuda de la función ~.map~. El siguiente código conoslida la descripción previa:
+
+#+begin_src jsx
+import React, { useState } from "react";
+
+const InputElement = () => {
+  const [ inputText, setInputText ] = useState("");
+  const [ historyList, setHistoryList ] = useState([]);
+
+  return <div>
+    <input
+      placeholder="Enter some text"
+      onChange{(event) => {
+        setInputText(event.target.value)
+        setHistoryList([...historyList, event.target.value])
+      }}
+    />
+    <br/>
+    {inputText}
+    </hr><br/>
+    {historyList.map(record => {
+      return <li>record</li>
+    })}
+  </div>
+};
+
+export default InputElement;
+#+end_src
+
+Es importante aclarar una práctica sugerida con el uso del Hook ~useState~. Una alternativa a esta aproximación es el uso de un solo ~useState~ que se encargara de administrar el estado del ~inputText~ y el ~historyList~ a través de un objeto JavaScript. No obstante este enfoque complica la legibilidad del código y no ofrece ninguna ganancia. La recomendación del equipo React es usar multiple llamados a ~useState~
+
+Con este ejemplo se obtiene un entendimiento sólido sobre como usar React Hooks en general, ya que todos los Hooks funcionan bajo las siguientes premisas:
+
+- Solo están disponibles en componentes funcionales.
+- Por convención usan el prefijo ~use~.
+- Todos contribuyen a los eventos de ciclo de vida y la administración del estado en un componente React.
+ 
+* ~useEffect~
