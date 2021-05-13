@@ -184,4 +184,102 @@ Con este ejemplo se obtiene un entendimiento sólido sobre como usar React Hooks
 - Por convención usan el prefijo ~use~.
 - Todos contribuyen a los eventos de ciclo de vida y la administración del estado en un componente React.
  
-* ~useEffect~
+* ~useRef~
+  
+TODO: Definición de useRef
+
+TODO: Explicar el ejemplo del hover
+
+#+begin_src jsx
+import React from "react";
+
+const ImageChangeOnMouseOver = () => {
+  return (
+    <div>
+      <img src="/static/speakers/bw/speaker01.jsp" alt="" />
+      &nbsp;
+      &nbsp;
+      <img src="/static/speakers/bw/speaker02.jsp" alt="" />
+    </div>
+  );
+};
+
+export default ImageChangeOnMouseOver;
+#+end_src
+
+Para habilitar el efecto del hover sobre una image, se va a crear un componente con el nombre ~ImageToogleOnMouseOver~ al cual se delegará el uso de ~useEffect~ y utilizará dos propiedades: ~primaryImg~ y ~secondaryImg~. Cada imagen atenderá el estado por defecto y el estado del hover respectivamente. A continuación se muestran los cambios sobre la primera versión del código.
+
+#+begin_src jsx
+import React from "react";
+import ImageToggleOnMouseOver from "../src/ImageToggleOnMouseOver";
+
+const ImageChangeOnMouseOver = () => {
+  return (
+    <div>
+      <ImageToggleOnMouseOver
+        primaryImg="/static/speakers/bw/speaker-01.jpg"
+        secondaryImg="/static/speakers/color/speaker-01.jpg"
+        alt=""
+      />
+      &nbsp;
+      &nbsp;
+      <ImageToggleOnMouseOver
+        primaryImg="/static/speakers/bw/speaker-02.jpg"
+        secondaryImg="/static/speakers/color/speaker-02.jpg"
+        alt=""
+      />
+    </div>
+  );
+};
+
+export default ImageChangeOnMouseOver;
+#+end_src
+
+El componente ~ImageToggleOnMouseOver~ tendría la siguiente estructura:
+
+#+begin_src jsx
+import React, { useRef } from "react";
+
+const ImageToggleOnMouseOver = ({ primaryImg, secondaryImg }) => {
+  return (
+    <img
+      src={primaryImg}
+      alt=""
+    />
+  );
+};
+
+export default ImageChangeOnMouseOver;
+#+end_src
+
+Ahora es momento de manejar los eventos ~onMouseOver~ y ~onMouseOut~:
+
+#+begin_src jsx
+import React, { useRef } from "react";
+
+const ImageToggleOnMouseOver = ({ primaryImg, secondaryImg }) => {
+  const imageRef = useRef(null);
+
+  return (
+    <img
+      onMouseOver={() => {
+        imageRef.current.src = secondaryImg;
+      }}
+      onMouseOut={() => {
+        imageRef.current.src = primaryImg;
+      }}
+      src={primaryImg}
+      alt=""
+      ref={imageRef}
+    />
+  );
+};
+
+export default ImageChangeOnMouseOver;
+#+end_src
+
+TODO: Modificar proyecto de react hooks
+TODO: Conclusiones sobre useRef
+  
+
+  
