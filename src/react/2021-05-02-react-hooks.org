@@ -186,9 +186,19 @@ Con este ejemplo se obtiene un entendimiento sólido sobre como usar React Hooks
  
 * ~useRef~
   
-TODO: Definición de useRef
+  - Note taken on [2021-05-14 Fri 18:18] \\
+    note test
+Una definición para el ~useRef~ hook es:
 
-TODO: Explicar el ejemplo del hover
+#+begin_quote
+Mecanismo que se utiliza principalmente para permitir el acceso directo a un elemento en el DOM
+#+end_quote
+
+Es común usar los hooks ~useState~ y ~useRef~ para hacer cambios sobre lo que el usario esta viendo en la aplicación React. En casos muy esquivos bajo el contexto de React, es necesario implementar un acceso directo sobre un elemento HTML, aunque la recomendación sea evitarlo.
+
+Para comprender el funcionamiento del ~useRef~ un escenario apropiado es un programa que cambie una imagen a blanco y negro por una imagen a color cuando se pase el cursor por encima de la imagen, y por supuesto la imagen vuelva a blanco y negro cuando el cursor ya no este por encima de la imagen. Este escenario sugiere un acceso directo sobre un elemento HTML: la imagen.
+
+Para empezar, se va a crear el archivo ~/pages/ImageChangeOnMouseOver~, bajo el contexto de una aplicación estructurada con NextJS con el siguiente contenido:
 
 #+begin_src jsx
 import React from "react";
@@ -207,7 +217,9 @@ const ImageChangeOnMouseOver = () => {
 export default ImageChangeOnMouseOver;
 #+end_src
 
-Para habilitar el efecto del hover sobre una image, se va a crear un componente con el nombre ~ImageToogleOnMouseOver~ al cual se delegará el uso de ~useEffect~ y utilizará dos propiedades: ~primaryImg~ y ~secondaryImg~. Cada imagen atenderá el estado por defecto y el estado del hover respectivamente. A continuación se muestran los cambios sobre la primera versión del código.
+Esta primera versión renderizará dos imágenes en el navegador a blanco y negro. Por ahora este contenido es estático y no hay acciones asociadas al evento de pasar el cursor sobre la imagen. Se resalta que las imágenes son contenidos estáticos y es una convención almacenarlas en la ruta ~public/static~ como se indica en el código anterior.
+
+Para habilitar el efecto del hover sobre una imagen, se va a crear un componente con el nombre ~ImageToogleOnMouseOver~ al cual se delegará el uso de ~useRef~ y utilizará dos propiedades: ~primaryImg~ y ~secondaryImg~. Cada imagen atenderá el estado por defecto y el estado del hover respectivamente. En ese orden de ideas, esta sería la actualización sobre el archivo ~pages/ImageChangeOnMouseOver.js~
 
 #+begin_src jsx
 import React from "react";
@@ -235,6 +247,7 @@ const ImageChangeOnMouseOver = () => {
 export default ImageChangeOnMouseOver;
 #+end_src
 
+TODO: Complementar parrafo
 El componente ~ImageToggleOnMouseOver~ tendría la siguiente estructura:
 
 #+begin_src jsx
@@ -252,6 +265,7 @@ const ImageToggleOnMouseOver = ({ primaryImg, secondaryImg }) => {
 export default ImageChangeOnMouseOver;
 #+end_src
 
+TODO: Complementar parrafo
 Ahora es momento de manejar los eventos ~onMouseOver~ y ~onMouseOut~:
 
 #+begin_src jsx
