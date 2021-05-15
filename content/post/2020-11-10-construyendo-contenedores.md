@@ -1,14 +1,16 @@
-#+TITLE: Building the containers with docker
-#+DESCRIPTION: Usa docker para construir contenedores de imágenes para empacar una aplicación y sus dependencias y así hacer un despliegue en una sola máquina
-#+AUTHOR: Sergio Benítez
-#+DATE:<2020-11-10 Tue> 
-#+STARTUP: content
-#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
-#+HUGO_SECTION: /post
-#+HUGO_WEIGHT: auto
-#+HUGO_AUTO_SET_LASTMOD: t
++++
+title = "Construyendo contenedores con docker"
+author = ["Sergio Benítez"]
+description = "Usa docker para construir contenedores de imágenes para empacar una aplicación y sus dependencias y así hacer un despliegue en una sola máquina"
+date = 2020-11-10T00:00:00-05:00
+lastmod = 2021-05-15T18:21:05-05:00
+draft = false
+tags = [
+    "microservicios",
+]
++++
 
-* Por qué docker
+## Por qué docker {#por-qué-docker}
 
 Luego de tener un conocimiento sólido sobre el diseño de aplicaciones modernas
 a través del patrón de diseño de microservicios, el siguiente paso es desplegar
@@ -31,51 +33,58 @@ aplicación autocontenida y la ejecuta. Los contenedores son la misma cosa,
 pero para sus servidores. La tecnología de contenedores esta construida para la
 mayoría de los sistemas operativos, pero no es precisamente fácil de usar desde
 el primer momento. Para ello, es necesario una herramienta como docker, ya que
-provee un API con las último en la tecnología de contenedores y facilita la 
-/creación/, /distribución/ y la /ejecución/ de contenedores de imágenes en los
+provee un API con las último en la tecnología de contenedores y facilita la
+_creación_, _distribución_ y la _ejecución_ de contenedores de imágenes en los
 servidores.
 
-** Tutorial básico de docker
-1. Clonar: se pueden clonar imágenes en repositorios de GitHub, los cuales
+
+### Tutorial básico de docker {#tutorial-básico-de-docker}
+
+1.  Clonar: se pueden clonar imágenes en repositorios de GitHub, los cuales
+
 contienen todo lo necesario para construir la imagen y correrla como un
 contenedor. Los siguientes comandos permiten clonar un respositorio de  prueba
 suministrado por docker:
 
-#+begin_src bash
-docker run --name repo alpine/git clone \ 
+```bash
+docker run --name repo alpine/git clone \
 https://github.com/docker/gettign-started.git
 
 docker cp repo:/git/getting-started/ .
-#+end_src
+```
 
-2. Build: Ahora, es tiempo de construir la imagen. Una imagen de docker es un
+1.  Build: Ahora, es tiempo de construir la imagen. Una imagen de docker es un
+
 sistema privado de archivos para tu contenedor. El provee todos los archivos y
 el código que el contenedor precisa.
 
-#+begin_src bash
+```bash
 cd getting-started
 
 docker build -t docker101tutorial .
-#+end_src
+```
 
-3. Run: Ejecute su primer contenedor. Inicie el contenedor basado en la imagen
+1.  Run: Ejecute su primer contenedor. Inicie el contenedor basado en la imagen
+
 que se construyó en el paso previo. Al ejecutar el contenedor se lanza la
 aplicación con recursos privados, asegurados y aislados del resto de tu máquina.
 
-#+begin_src bash
+```bash
 docker run -d -p 80:80 --name docker-tutorial docker101tutorial
-#+end_src
+```
 
-4. Share: Por último, salve y comparta su imagen en Docker Hub con el fin de que
+1.  Share: Por último, salve y comparta su imagen en Docker Hub con el fin de que
+
 otros usuarios puedan descargarla y ejecutarla en cualquier máquina.
 
-#+begin_src bash
+```bash
 docker tag docker101tutorial username/docker101tutorial
 
 docker push username/docker101tutorial
-#+end_src
+```
 
-* Revisión general de docker
+
+## Revisión general de docker {#revisión-general-de-docker}
 
 Docker és una herramienta open source que hace fácil la creación, distribución y
 y ejecución de aplicaciones. Lo hace empaquetando las aplicaciones como un
@@ -92,67 +101,70 @@ de una máquina virual como el aislamiento entre las aplicaciones que se están
 ejecutando en una misma máquina. Por ende, no hay preocupaciones por conflictos
 de dependencias entre aplicaciones.
 
-* Instalando aplicaciones con herramientas nativas del sistema operativo
+
+## Instalando aplicaciones con herramientas nativas del sistema operativo {#instalando-aplicaciones-con-herramientas-nativas-del-sistema-operativo}
 
 Luego de conectase  al GCS, se va a dar un vistazo a como administrar
 aplicaciones sin docker. Para empezar se crea una máquina virtual de Ubuntu para
 jugar con ella usando el gcloud.
 
-#+begin_src bash
+```bash
 $ gcloud config set project [PROJECT_ID]
 $ gcloud compute instances create ubuntu --image-project ubuntu-os-cloud --image ubuntu-1604-xenial-v20160429
-#+end_src
+```
 
 Al crear la máquina virtual, se usa el commando ssh de gcloud para establecer la
 conxexión con dicha máquina:
 
-#+begin_src bash
+```bash
 $ gcloud compute ssh ubuntu
-#+end_src
+```
 
-Para validar la conexión a la máquina virtual, en el shell debe aparecer la 
-siguiente información al inicio de cada línea: ~username@ubuntu:~$~.
+Para validar la conexión a la máquina virtual, en el shell debe aparecer la
+siguiente información al inicio de cada línea: `username@ubuntu:~$`.
 
 Ahora, con ayuda de un administrador de paquetes nativos se va a instalar NGINX
 y todas sus dependencias:
 
-#+begin_src bash
+```bash
 $ sudo apt-get update
 $ sudo apt-get install nginx
-#+end_src
+```
 
-La instalación de NGINX se valida con el comando ~nginx -v~ y la consola
-imprimirá una salida como esta: ~nginx version: nginx/1.10.3 (Ubuntu)~.
-Complementariamente, para saber si NGINX está corriendo, se usa el comando 
-~systemctl~.
+La instalación de NGINX se valida con el comando `nginx -v` y la consola
+imprimirá una salida como esta: `nginx version: nginx/1.10.3 (Ubuntu)`.
+Complementariamente, para saber si NGINX está corriendo, se usa el comando
+`systemctl`.
 
-#+begin_src bash
+```bash
 $ sudo systemctl status nginx
-#+end_src
+```
 
 Este comando imprime los logs relacionados al estado de NGINX, y así se podrá
 saber si esta siendo ejecutado. Por último, se prueba si NIGNX esta disponible
-localmente con ayuda del ~curl~:
+localmente con ayuda del `curl`:
 
-#+begin_src bash
+```bash
 $ curl http://127.0.0.0
-#+end_src
+```
 
 ¡Perfecto! los sistemas operativos modernos hacen muy fácil instalar, iniciar y
 ejecutar aplicaciones.
 
-* Problema: ¿Cómo instalar dos versiones?
+
+## Problema: ¿Cómo instalar dos versiones? {#problema-cómo-instalar-dos-versiones}
+
 Ahora se tratará de instalar dos versiones de NGINX en la máquina virtual. Si se
 instala nuevamente usando el administrador de paquetes nativo se obtiene un
 mensaje diciendo que NGINX ya está instalado con su última versión.
 
-Al usar el comando ~systemctl~ se observa que solo esta corriendo una instancia
-de NGINX y para confirmar dicho ustado se usa el comando ~ps~ en conjunto con
-~grep~ como se muestra a continuación:
+Al usar el comando `systemctl` se observa que solo esta corriendo una instancia
+de NGINX y para confirmar dicho ustado se usa el comando `ps` en conjunto con
+`grep` como se muestra a continuación:
 
-#+begin_src bash
+```bash
 $ sudo ps aux | grep nginx
-#+end_src
+```
 
 En está salida se indica que solo hay un proceso NGINX corriendo con su
 respectivo worker. Por lo tanto, solo hay una instancia principal de la
@@ -161,11 +173,11 @@ aplicación que se esta ejecutando.
 Para lograr crear dos instancias de NGINX en la misma máquina virual usando las
 herramientas nativas del sistema operativo es necesario modificar los scripts de
 inicialización. Para el caso puntual de NGINX, los cambios irián en el archivo
-~/etc/init/nginx.conf~.
+`/etc/init/nginx.conf`.
 
 Adicionalmente, se requiere administrar los puertos, ya que las dos instancias
 no pueden enlazarse al mismo puerto. En resumen, hay mucha complejidad para
-hacer las configuraciones con las herramientas nativas del sistema operativo y 
+hacer las configuraciones con las herramientas nativas del sistema operativo y
 lograr correr dos instancias de NGINX con versiones diferentes en la misma
 máquina virtual.
 
@@ -175,7 +187,8 @@ que para lograr el propósito de correr dos instancias de una misma aplicación
 con versiones diferentes en una máquina virtual hay que reconsiderar el enfoque.
 Este nuevo enfoque son los contenedores.
 
-* Revisión general del contendor
+
+## Revisión general del contendor {#revisión-general-del-contendor}
 
 Los contenedores fueron desarrollados para solucionar los problemas con la
 instalación y ejecución de software a través de diferentes sistemas operativos.
@@ -184,29 +197,30 @@ Ya se ha visto los problemas de instalar y ejecutar aplicaciones sobre una únic
 máquina. Ahora, imaginesé instalar NGINX en multiples máquinas y a través de
 diferentes sistemas operativos. Eso sería una pesadilla.
 
-Con contenedores se obtienen paquetes autocontenidos /independientes/ que evitan
+Con contenedores se obtienen paquetes autocontenidos _independientes_ que evitan
 conflictos con las versiones. Eso es parte del atractivo de los contenedores de
 imágenes. Ellos son fáciles de distribuir porque se encargan de todas sus
 dependencias por si mismos.
 
-Adicionalmente, los contendores ofrecen /aislamiento/ sobre varios procesos.
+Adicionalmente, los contendores ofrecen _aislamiento_ sobre varios procesos.
 En secciones previas, se habló de aislamiento a nivel de sistema de archivos,
 pero también existen otros tipos de aislamiento, como por ejemplo el aislamiento
- de red. El aislamiento de red significa que cada instancia tendrá su propia 
+ de red. El aislamiento de red significa que cada instancia tendrá su propia
 dirección IP, y por ende cada máquina tendrá disponible el puerto 80, que es el
 puerto por defecto utilizado por NGINX, ahorrando así los problemas de lidiar
-con la configuración de los scripts de inicialización. 
+con la configuración de los scripts de inicialización.
 
-Algo importante para considerar, es que mientras se corran dos máquinas 
+Algo importante para considerar, es que mientras se corran dos máquinas
 virtuales en un computador, se tendrán dos sistemas operativos completamente
-separados, y multiples contenedores se ejecutaran sobre el mismo sistema 
+separados, y multiples contenedores se ejecutaran sobre el mismo sistema
 operativo, debido a que los contenedores son una construcción lógica usada
 dentro del sistema operativo. Esto hace que los contenedores sean ligeros y sean
 fáciles de prender o apagar.
 
-* Instalando imágenes con docker
 
-Tiempo para ver porque docker realmente resplandece al demostrar lo sencillo 
+## Instalando imágenes con docker {#instalando-imágenes-con-docker}
+
+Tiempo para ver porque docker realmente resplandece al demostrar lo sencillo
 que resulta tener multiples versiones de NGINX ejecutandose en la misma máquina.
 Es aquí donde docker agrega valor, ya que permite ejecutar aplicaciones auto
 contentidas con sus propias versiones y con paqutes que incluyen sus propias
@@ -215,31 +229,31 @@ docker permite dicho escenario al crear dos contendores con las respectivas
 versiones.
 
 Además, docker abstrae el administrador de paquetes del sistema operativo. Si es
-un contenedor con Red Hat se utiliza ~RPM~ y de ser Debian se usa ~apt-get~.
+un contenedor con Red Hat se utiliza `RPM` y de ser Debian se usa `apt-get`.
 Esto se logra con aprendizaje sobre la línea de comandos de docker.
 
 Para empezar, se instala docker con el siguiente comando:
-  
-#+begin_src bash
+
+```bash
 sudo apt-get install docker.io
-#+end_src
+```
 
 Una vez instalado, ya se esta listo para trabajar con imágenes de docker. Se
 puede consultar la disponibilidad de las imágenes de docker con el siguiente
 comando:
 
-#+begin_src bash
+```bash
 sudo docker images
-#+end_src
+```
 
 Por el momento, no se verá ningún resultado ya que no hay ninguna imagen
 instalada en el sistema. Con el siguiente comando se instalará una imagen de
 NGINX con la misma versión se instaló a traves del administrador de paquetes
 nativo del sistema operativo.
 
-#+begin_src bash
+```bash
 sudo docker pull nginx:1.10.0
-#+end_src
+```
 
 Este comando tomará algo de tiempo para descargar la imagen del repositorio,
 puesto que se esta halando NGINX con todas sus dependencias para que la imagen
@@ -247,63 +261,64 @@ pueda ser autónoma. Los repositorios se desarrollarán más adelante, por ahora
 el enfoque está en la imágenes de docker.
 
 Al correr nuevamente el comando para consultar las imágenes de docker se obtiene
-un resultado, la imagen de NGINX. La versión del NGINX instalado con docker se 
+un resultado, la imagen de NGINX. La versión del NGINX instalado con docker se
 puede corroborar con el siguiente comando:
 
-#+begin_src bash
+```bash
 sudo dpkg -l | grep nginx
-#+end_src
+```
 
 Notesé que ahora hay dos paqutes de nginx instalados, uno con el administrador
 de paquetes del sistema operativo y otro con docker, ambos con la misma versión.
 
-* Corriendo imágenes con docker
+
+## Corriendo imágenes con docker {#corriendo-imágenes-con-docker}
 
 Ya se sabe que se pueden instalar multiples instancias de NGINX via docker. Pero
 , ¿se pueden ejecutar? Se realizará la prueba respectiva.
 
 Primero, se usa el siguiente comando para correr la primera instancia de NGINX:
 
-#+begin_src bash
+```bash
 $ sudo docker run -d nginx:1.10.0
-#+end_src
+```
 
 Para verificar la lista de los procesos docker que se están ejcutando
 actualmente se pone en marcha el siguiente comando:
 
-#+begin_src bash
+```bash
 $ sudo docker ps
-#+end_src
+```
 
 Ahora, se va a correr otra instancia de NGINX con una versión diferente.
 
-#+begin_src bash
+```bash
 $ sudo docker run -d nginx:1.9.3
-#+end_src
+```
 
-Dado que esta versión no se ha descargado previamente, el comando ~docker run~
+Dado que esta versión no se ha descargado previamente, el comando `docker run`
 traerá automaticamente la imagen correspondiente de la versión 1.9.3 de NGINX.
 Se puede repetir este proceso para n instancias que se requieran. Por tanto,
 se ejecutará nuevamente otra instancia.
 
-#+begin_src bash
+```bash
 $ sudo docker run -d nginx:1.10.0
-#+end_src
+```
 
 Al verificar la lista de procesos que se están corriendo actualmente en docker,
 se obtiene la siguiente salida:
 
-#+begin_src bash
-CONTAINER ID        IMAGE               COMMAND                  CREATED        
-96fef877f851        nginx:1.10.0        "nginx -g 'daemon of…"   5 seconds ago 
-03349cc81243        nginx:1.9.3         "nginx -g 'daemon of…"   13 seconds ago 
+```bash
+CONTAINER ID        IMAGE               COMMAND                  CREATED
+96fef877f851        nginx:1.10.0        "nginx -g 'daemon of…"   5 seconds ago
+03349cc81243        nginx:1.9.3         "nginx -g 'daemon of…"   13 seconds ago
 1012cf1911d0        nginx:1.10.0        "nginx -g 'daemon of…"   25 seconds ago
-#+end_src
+```
 
-Con el siguiente comando, se consiguen los procesos actuales de NGINX 
+Con el siguiente comando, se consiguen los procesos actuales de NGINX
 que están siendo ejecutados en el sistema operativo:
 
-#+begin_src bash
+```bash
 $ sudo ps aux | grep nginx
 root     11382  0.0  0.1  31684  5152 ?        Ss   13:06   0:00 nginx: master process nginx -g daemon off;
 syslog   11422  0.0  0.0  32068  2952 ?        S    13:06   0:00 nginx: worker process
@@ -312,58 +327,60 @@ syslog   11643  0.0  0.0  31876  2816 ?        S    13:06   0:00 nginx: worker p
 root     11759  0.0  0.1  31684  5072 ?        Ss   13:06   0:00 nginx: master process nginx -g daemon off;
 syslog   11795  0.0  0.0  32068  2888 ?        S    13:06   0:00 nginx: worker process
 sergio_+ 11906  0.0  0.0  12948   972 pts/0    S+   13:10   0:00 grep --color=auto nginx
-#+end_src
+```
 
 Nótese que en esta salida, hay tres procesos maestros de NGINX corriendo. Docker
 hace esto muy fácil, ya que no hay que intervenir sobre scripts de
-inicialización o configuración, especificar puertos y otros procesos tediosos 
+inicialización o configuración, especificar puertos y otros procesos tediosos
 para correr multiples instancias al mismo tiempo.
 
-* Hablando con las instancias de docker
-  
+
+## Hablando con las instancias de docker {#hablando-con-las-instancias-de-docker}
+
 Antes de establecer una comunicación con las instancias de docker, es necesario
 saber que contendores están siendo ejecutados con el comando que se reviso
 anteriormente.
 
-#+begin_src bash
+```bash
 $ sudo docker ps
-#+end_src
+```
 
 De esta salida, se puede usar el identificador del contenedor para establecer el
-destinatario de la comunicación. Con ayuda del comando ~inspect~ de docker se
+destinatario de la comunicación. Con ayuda del comando `inspect` de docker se
 obtiene información relevante al contenedor que se está ejecutando.
 
-#+begin_src bash
+```bash
 $ sudo docker inspect 96fef877f851
-#+end_src
+```
 
 En la log de salida se puede ver la dirección IP del contenedor. Con ayuda de
 curl se puede golpear la instancia NGINX que esta corriendo dentro del
 contenedor.
 
-#+begin_src bash
+```bash
 $ curl http://172.17.0.4
-#+end_src
+```
 
 Asi se comunica con una instancia en particular. Ahora que se terminó
 la inspección de las instancias, es tiempo de limpiar los procesos de docker.
-Una instancia de docker puede detenerse con el comando ~stop~, el cuál recibe
+Una instancia de docker puede detenerse con el comando `stop`, el cuál recibe
 como argumento el identificador del contenedor, de manera similar a como se uso
-el comando ~inspect~:
+el comando `inspect`:
 
-#+begin_src bash
+```bash
 $ sudo docker stop 96fef877f851
-#+end_src
+```
 
-Para remover el contenedor de docker del sistema, se usa el comando ~rm~:
+Para remover el contenedor de docker del sistema, se usa el comando `rm`:
 
-#+begin_src bash
+```bash
 $ sudo docker rm 96fef877f851
-#+end_src
+```
 
 Este comando también borrará todos los archivos asociados al contenedor.
 
-* Creando imágenes de docker propias
+
+## Creando imágenes de docker propias {#creando-imágenes-de-docker-propias}
 
 Hasta ahora se han construido y ejecutado imágenes de docker ya hechas de NIGNX.
 Es tiempo de aprender a construir imágenes propias de docker. Como buena
@@ -373,11 +390,11 @@ ello, si se usa docker para empacar la aplicación como una imagen contenedora, 
 para lograrlo, se usa un Dockerfile.
 
 Los Dockerfiles son documentos de texto que contienen todos los pasos necesarios
-para construir una imagen desde la línea de comandos. Al usar el comando ~build~
-de docker, el Dockerfile automatiza el proceso mediante la ejecución de las 
+para construir una imagen desde la línea de comandos. Al usar el comando `build`
+de docker, el Dockerfile automatiza el proceso mediante la ejecución de las
 instrucciones en líneas de comando y asi construir la imagen resultante.
 
-Es importante preservar el nombre ~Dockerfile~, ya que es una convención que usa
+Es importante preservar el nombre `Dockerfile`, ya que es una convención que usa
 docker para ejecutar las instrucciones definidas en el archivo.
 
 El comando que usa docker para crear la imagen, también crea un contexto
@@ -388,166 +405,168 @@ Para imágenes nuevas, la buena practica es iniciar con un directorio vacío,
 acompañado del Dockerfile. Porsteriormente, se agregan los archivos necesarios
 en el directorio para construir la imagen de docker.
 
-El siguiente texto, es un ejemplo de un Dockerfile para la imagen ~hello~:
+El siguiente texto, es un ejemplo de un Dockerfile para la imagen `hello`:
 
-#+begin_src bash
+```bash
 # Dockerfile
 FROM alpine:3.1
 MANTAINER Sergio Benitez <sl.benitezd@gmail.com>
 ADD hello /usr/bin/hello
 ENTRYPOINT ["hello"]
-#+end_src
+```
 
 Cada línea en un Dockerfile comienza con un comando. Para este caso puntual se
-usan cuatro comandos: ~FROM~, ~MANTAINER~, ~ADD~ y ~ENTRYPOINT~.  El Dockerfile,
-también tiene sintáxis para comentarios, usando el carácter numeral `#`.
+usan cuatro comandos: `FROM`, `MANTAINER`, `ADD` y `ENTRYPOINT`.  El Dockerfile,
+también tiene sintáxis para comentarios, usando el carácter numeral \`#\`.
 
-El comando ~FROM~ le dice a docker cuál es la imagen base sobre la que se va a 
-construir la imagen nueva. Generalmente se usa Alpine Linux, ya que es pequeña, 
-tiene un administrador de paquetes y permite depurar los contenedores en 
+El comando `FROM` le dice a docker cuál es la imagen base sobre la que se va a
+construir la imagen nueva. Generalmente se usa Alpine Linux, ya que es pequeña,
+tiene un administrador de paquetes y permite depurar los contenedores en
 producción. En consecuencia, es la imagen base que se usa por defecto para las
-imágenes oficiales de docker. 
+imágenes oficiales de docker.
 
-El comando ~MANTAINER~ indica el author y la persona que hace el mantenimiento 
+El comando `MANTAINER` indica el author y la persona que hace el mantenimiento
 de la imagen.
 
-El comando ~ADD~ toma un archivo o directorio de la máquina anfitriona y la
+El comando `ADD` toma un archivo o directorio de la máquina anfitriona y la
 agrega al sistema de archivos del contendor en la ubicación especificada. Para
-este caso se esta copiando el binario ~hello~ del pipeline de integración 
-continua en el contenedor de la imangen. 
+este caso se esta copiando el binario `hello` del pipeline de integración
+continua en el contenedor de la imangen.
 
-Por último, el comando ~ENTRYPOINT~ que permitar correr el contenedor como un
+Por último, el comando `ENTRYPOINT` que permitar correr el contenedor como un
 ejecutable, por lo que cuando el contenedor se inicia, va a ejecutar la
 aplicación hello.
 
 Hay muchos más comandos para utilizar en el Dockerfile, por ahora, estos son
 suficiente.
 
-* Creando una imagen
 
-  
+## Creando una imagen {#creando-una-imagen}
+
 Docker también puede ser utilizado para construir ambientes. Primero se
 construye la aplicación tal y como se ha visto en las sesiones pasadas. En ese
 orden de ideas, se va a hacer un nuevo directorio para almacenar el código fuente
 de la aplicación.
 
-#+begin_src bash
+```bash
 $ mkdir -p $GOPATH/src/github.com/kelseyhightower
-#+end_src
+```
 
 Ahora, se accede al nuevo directorio y se clona la aplicación de ejemplo desde
 github. Esta aplicación es un monolíto.
 
-#+begin_src bash
+```bash
 $ cd $GOPATH/src/github.com/kelseyhightower
 $ git clone https://github.com/kelseyhightower/app.git
-#+end_src
+```
 
 Con el código fuente en su lugar, es tiempo de construir el binario de la
 aplicación. Para ello se navega hasta la aplicación y se ejecuta el comando
-~build~ de go:
+`build` de go:
 
-
-#+begin_src bash
+```bash
 $ cd app/monolith
 $ go build -tags netgo --ldflags '-extldflags "-lm -lstdc++ -static"'
-#+end_src
+```
 
 Ya con el binario generado, se puede proceder a la cración del contenedor de la
 aplicación. Se da un vistazo al Dockerfile de la aplicación, para tener algo
 de contexto:
 
-#+begin_src bash
+```bash
 $ cat Dockerfile
 FROM alpine:3.1
 MANTAINER Kelsey Hightower <kelsey.hightower@gmail.com>
 ADD hello /usr/bin/monolith
 ENTRYPOINT ["monolith"]
-#+end_src
+```
 
-El comando ~ADD~ del Dockerfile esta copiando el binario que se generó
-anteriormente con el comando ~build~ de go. El comando ~ENTRYPOINT~ declara el 
-punto de entrada para el contenedor, que para este caso será la aplicación 
-~monolith~.
+El comando `ADD` del Dockerfile esta copiando el binario que se generó
+anteriormente con el comando `build` de go. El comando `ENTRYPOINT` declara el
+punto de entrada para el contenedor, que para este caso será la aplicación
+`monolith`.
 
 Con el Dockerfile y el binario del monolíto en su lugar, es tiempo de crear la
-imagen de docker del monolíto. Para ello, se usa el comando ~build~ de docker
+imagen de docker del monolíto. Para ello, se usa el comando `build` de docker
 para actualizar el contexto en el demononio de docker que es ejecutado con dicho
-comando. El comando ~build~ va a reproducir una imange de la aplicación
-~monolith~. 
+comando. El comando `build` va a reproducir una imange de la aplicación
+`monolith`.
 
-#+begin_src bash
+```bash
 $ docker build -t monolith:1.0.0
-#+end_src
+```
 
-Cuando la construcción de la imagen este completa, se usa el comando ~images~ de
+Cuando la construcción de la imagen este completa, se usa el comando `images` de
 docker para ver la imangen del monolíto.
 
-#+begin_src bash
+```bash
 $ docker images monolith:1.0.0
-#+end_src
+```
 
-Para asegurarse de que la imagen del monolíto esta funcionando de manera 
-esperada, se usa el comando ~run~ de docker para crear el contender de la imagen
-. 
+Para asegurarse de que la imagen del monolíto esta funcionando de manera
+esperada, se usa el comando `run` de docker para crear el contender de la imagen
+.
 
-#+begin_src bash
+```bash
 $ sudo docker run -d monolith:1.0.0
-#+end_src
+```
 
-Con en contenedor del monolíto en ejecución, se usa el comando ~inspect~ de 
+Con en contenedor del monolíto en ejecución, se usa el comando `inspect` de
 docker para recuperar la dirección IP sobre la que se esta cargando el servidor
 web de la aplicación.
 
-#+begin_src bash
+```bash
 $ docker inspect monolith:1.0.0
 ...
    "IPAddress": 172.18.0.2
-#+end_src
+```
 
-Por último, usamos ~curl~ sobre la IP del paso previo para probar si el
+Por último, usamos `curl` sobre la IP del paso previo para probar si el
 contennedor esta funcionado como se espera.
 
-#+begin_src bash
+```bash
 $ curl 172.18.0.2
 {"message": "Hello"}
-#+end_src
+```
 
 ¡Funciona!. Como se pudo observar, construir imágenes es muy fácil cuando se
-usan Dockerfiles y el comando ~build~ de docker.
+usan Dockerfiles y el comando `build` de docker.
 
-* Creando otros contenedores
+
+## Creando otros contenedores {#creando-otros-contenedores}
 
 Para complementar el ejercicio se van a crear imágenes de docker para los
-microservicios restantes: ~auth~ y ~hello~.
+microservicios restantes: `auth` y `hello`.
 
-Para construir la aplicación ~auth~ se ejecutan los siguientes comandos:
+Para construir la aplicación `auth` se ejecutan los siguientes comandos:
 
-#+begin_src bash
+```bash
 cd $GOPATH/src/github.com/udacity/ud615/app
 cd auth
 go build --tags netgo --ldflags '-extldflags "-lm - lstdc++ -static"'
 sudo docker build -t auth:1.0.0 .
 CID2=$(sudo docker run -d auth:1.0.0)
-#+end_src
+```
 
-Similarmente, se construye la aplicación ~hello~
+Similarmente, se construye la aplicación `hello`
 
-#+begin_src bash
+```bash
 cd $GOPATH/src/github.com/udacity/ud615/app
 cd hello
 go build --tags netgo --ldflags '-extldflags "-lm - lstdc++ -static"'
 sudo docker build -t hello:1.0.0 .
 CID3=$(sudo docker run -d hello:1.0.0)
-#+end_src
+```
 
-Para ver los contenedores que se están ejecutando usamos el comando ~ps~:
+Para ver los contenedores que se están ejecutando usamos el comando `ps`:
 
-#+begin_src bash
+```bash
 sudo docker ps -a
-#+end_src
+```
 
-* Registros públicos vs privados
+
+## Registros públicos vs privados {#registros-públicos-vs-privados}
+
 Una vez se tiene la aplicación empaquetada se procede a copiarla en un servidor
 y luego ejecutarla. Esta propuesta es válida para un conjunto pequeño de
 máquinas. Si se escala la magnitud de la aplicación a cientos de máquinas es
@@ -558,71 +577,75 @@ hub.
 
 Por defecto, todas las imágenes empujadas a docker hub son públicas, y por ende
 cualquier persona puede utilizarlas. No obstante, existe la opción de hacer que
-las imágenes sean privadas y limitar el acceso a ellas. Docker hub ofrece la 
+las imágenes sean privadas y limitar el acceso a ellas. Docker hub ofrece la
 flexibilidad para compartir imagenes públicas y privadas.
 
 Un caso muy frecuente de un uso mixto de permisos en las imágenes es cuando las
-compañias desarrollan proyectos de código abierto que comparten al mundo, pero 
+compañias desarrollan proyectos de código abierto que comparten al mundo, pero
 guardan su salsa secreta para sí mismos.
 
-** Alternativas a docker hub 
-- Quay
-- Google Cloud Registry
 
-* Empujando imágenes
+### Alternativas a docker hub {#alternativas-a-docker-hub}
+
+-   Quay
+-   Google Cloud Registry
+
+
+## Empujando imágenes {#empujando-imágenes}
 
 Como se abordo anteriormente, docker no solo ayuda a construir imágenes, también
 ofrece una plataforma para compartirlas. Para lograr este objetivo, es necesario
 un huésped para las imágenes en un registro de contenedores remoto como Docker
-Hub. 
+Hub.
 
 Por defecto todas las imágenes de docker van hacia Docker Hub el cual asume que
 se tiene su propio repositorio a través de un nombre de usuario perteneciente a
 una cuenta creada en la plataforma. Por lo tanto, se debe agregar el nombre de
-usuario a la imagen de docker a través del comando ~tag~ de docker:
+usuario a la imagen de docker a través del comando `tag` de docker:
 
-#+begin_src bash
+```bash
 $ docker tag -h
 Usage: docker tag [OPTIONS] IMAGE[:TAG] [REGISTRYHOST/] [USERNAME/] NAME[:TAG]
-#+end_src
+```
 
-Como se puede ver en la salida de la opción ~h~, el comando demanda una 
-combinación de imagen con etiqueta, un nombre de usuario y un repositorio. El 
+Como se puede ver en la salida de la opción `h`, el comando demanda una
+combinación de imagen con etiqueta, un nombre de usuario y un repositorio. El
 comando resultante sería:
 
-#+begin_src bash
+```bash
 $ docker tag monolith:1.0.0 kelseyhightower/monolith:1.0.0
-#+end_src
+```
 
-Al validar nuevamente con el comando ~images~ se observa que en la salida se
-asigna un valor a la columna ~TAG~. En este registro también se observa que el
-nombre de la imagen tiene el mismo identificador que la imagen ~monolith~.
+Al validar nuevamente con el comando `images` se observa que en la salida se
+asigna un valor a la columna `TAG`. En este registro también se observa que el
+nombre de la imagen tiene el mismo identificador que la imagen `monolith`.
 
-#+begin_src bash
+```bash
 $ docker images
 
 REPOSITORY                     TAG     IMAGE ID        CREATED          SIZE
 monolith                       1.0.0   04d702954792    9 minutes ago    .37 MB
 kelseyhightower/monolith       1.0.0   04d702954792    9 minutes ago    .37 MB
-#+end_src
+```
 
 Ahora ya se está listo para empujar el contenedor de imagen a Docker Hub. Para
-ello, es necesario iniciar sesión con el comando ~login~
+ello, es necesario iniciar sesión con el comando `login`
 
-#+begin_src bash
+```bash
 $ docker login
-#+end_src
+```
 
-Posteriormente, se ejecuta el comando ~push~ como se muestra a continuación:
+Posteriormente, se ejecuta el comando `push` como se muestra a continuación:
 
-#+begin_src bash
+```bash
 $ docker push kelseyhightower/monolith:1.0.0
-#+end_src
+```
 
 De este modo se logra hospedar una imagen de docker en un repositorio para
 compartirlo con otras personas.
 
-* Outro
+
+## Outro {#outro}
 
 Ya se sabe como empaquetar aplicaciones en imágenes de docker distribuir los
 paquetes, y ejecutarlos es diferentes rangos de máquinas. Este hecho, desbloquea
@@ -633,8 +656,8 @@ usuarios felices.
 
 No obstante, este es el primer paso. Hasta ahora se ha trabajdo en una única
 máquina. La demanda de usuarios en los días actuales no es soportada por una
-única máquina. La pregunta es ¿Es posible coordinar, distribuir y administrar 
-contenedores a esa escala?. En un nivel más fundamental, se deberían correr 
+única máquina. La pregunta es ¿Es posible coordinar, distribuir y administrar
+contenedores a esa escala?. En un nivel más fundamental, se deberían correr
 contenedores específicos sobre máquinas puntuales.
 
 Algo importante a considerar es las aplicaciones se pueden ejecutar por si
