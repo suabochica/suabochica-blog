@@ -219,7 +219,7 @@ export default ImageChangeOnMouseOver;
 
 Esta primera versión renderizará dos imágenes en el navegador a blanco y negro. Por ahora este contenido es estático y no hay acciones asociadas al evento de pasar el cursor sobre la imagen. Se resalta que las imágenes son contenidos estáticos y es una convención almacenarlas en la ruta ~public/static~ como se indica en el código anterior.
 
-Para habilitar el efecto del hover sobre una imagen, se va a crear un componente con el nombre ~ImageToogleOnMouseOver~ al cual se delegará el uso de ~useRef~ y utilizará dos propiedades: ~primaryImg~ y ~secondaryImg~. Cada imagen atenderá el estado por defecto y el estado del hover respectivamente. En ese orden de ideas, esta sería la actualización sobre el archivo ~pages/ImageChangeOnMouseOver.js~
+Para habilitar el efecto del hover sobre una imagen, se va a crear un componente con el nombre ~ImageToggleOnMouseOver~ al cual se delegará el uso de ~useRef~ y utilizará dos propiedades: ~primaryImg~ y ~secondaryImg~. Cada imagen atenderá el estado por defecto y el estado del hover respectivamente. En ese orden de ideas, esta sería la actualización sobre el archivo ~pages/ImageChangeOnMouseOver.js~
 
 #+begin_src jsx
 import React from "react";
@@ -247,8 +247,7 @@ const ImageChangeOnMouseOver = () => {
 export default ImageChangeOnMouseOver;
 #+end_src
 
-TODO: Complementar parrafo
-El componente ~ImageToggleOnMouseOver~ tendría la siguiente estructura:
+Bajo la estructura de carpetas de NextJS, la convención es incluir el nuevo compnente en la siguiente ruta: ~src/ImageToggleOnMouseOver.js~. La idea es inicial es hacer este componente funcional lo más simple posible y por ahora el primer objetivo es renderizar la imagen a blanco y negro. La primera versión del ~ImageToggleOnMouseOver~ tendría la siguiente contenido:
 
 #+begin_src jsx
 import React, { useRef } from "react";
@@ -265,8 +264,11 @@ const ImageToggleOnMouseOver = ({ primaryImg, secondaryImg }) => {
 export default ImageChangeOnMouseOver;
 #+end_src
 
-TODO: Complementar parrafo
-Ahora es momento de manejar los eventos ~onMouseOver~ y ~onMouseOut~:
+Al revisar estos cambios en el navegador, el resultado visual es exactemente el mismo, dos imágenes en blanco y negro, con la diferencia de que ahora se esta utilizando un componente funcional de por medio.
+
+Ahora es momento de manejar los eventos ~onMouseOver~ y ~onMouseOut~ sobre la imagen a través de los atributos de eventos. De esta manera, cuando determinado evento sea activado, se implementará la instrucción de cambiar el atributo ~src~ con la ruta de la imagen. Bajo este contexto el hook ~useRef~ entra en acción.
+
+La forma en como ~useRef~ funciona es a través de la declaración de una constante, para este caso puntual ~imageRef~, la cual será asignada al atributo ~ref~. Con dicha asignación se habilita el acceso a la propiedad ~.current~ para obtener todos los atributos de la imagen, como por ejemplo el atributo ~src~ con la ruta de la imagen. Al tener acceso a este atributo, es posible sobreescribir el valor de la ruta de la imagen. El último paso es asociar la ruta con la imagen a color al evento ~onMouseOver~ y la ruta con la imagen a blanco y negro al evento ~onMouseOut~. A continuación se ilustra esta descripción en código:
 
 #+begin_src jsx
 import React, { useRef } from "react";
@@ -292,8 +294,10 @@ const ImageToggleOnMouseOver = ({ primaryImg, secondaryImg }) => {
 export default ImageChangeOnMouseOver;
 #+end_src
 
-TODO: Modificar proyecto de react hooks
-TODO: Conclusiones sobre useRef
-  
+Al abrir el navegador, se observa que las imágenes cambian de blanco y negro a color cuando el cursor del ratón se posiciona sobre alguna de ellas.
 
-  
+Esto es el hook ~useRef~ en pocas palabras. Un mecanismo para acceder a las propiedades de un elemento DOM y adicionar tareas especificas sobre dicho elemento.
+
+Un característica llamativa de los hooks es que se pueden combinar, tal y como se explicará a continuación en un ejemplo que plantea un caso de uso para usar ~useRef~ en conjunto con ~useEffect~. El ejemplo también servirá para dar explorar el hook ~useEffect~.
+
+* ~useEffect~ 

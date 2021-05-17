@@ -310,17 +310,17 @@ enviados nos están alterados.
 
 ## Como funciona JWT {#como-funciona-jwt}
 
-![img](../images/microservices/01-how_jwt_works.png "El cliente envía una solicitud de log in")
+![img](../../images/microservices/01-how_jwt_works.png "El cliente envía una solicitud de log in")
 
-![img](../images/microservices/02-how_jwt_works.png "El servidor crea un JWT")
+![img](../../images/microservices/02-how_jwt_works.png "El servidor crea un JWT")
 
-![img](../images/microservices/03-how_jwt_works.png "El servidor retorna el JWT al cliente")
+![img](../../images/microservices/03-how_jwt_works.png "El servidor retorna el JWT al cliente")
 
-![img](../images/microservices/04-how_jwt_works.png "El cliente envía una copia del JWT cuando hace una petición")
+![img](../../images/microservices/04-how_jwt_works.png "El cliente envía una copia del JWT cuando hace una petición")
 
-![img](../images/microservices/05-how_jwt_works.png "El servidor valida la firma del JWT")
+![img](../../images/microservices/05-how_jwt_works.png "El servidor valida la firma del JWT")
 
-![img](../images/microservices/06-how_jwt_works.png "El servidor envía la respuesta al cliente")
+![img](../../images/microservices/06-how_jwt_works.png "El servidor envía la respuesta al cliente")
 
 ## Recapitulación {#recapitualción}
 
