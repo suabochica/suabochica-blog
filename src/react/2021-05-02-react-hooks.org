@@ -301,3 +301,29 @@ Esto es el hook ~useRef~ en pocas palabras. Un mecanismo para acceder a las prop
 Un característica llamativa de los hooks es que se pueden combinar, tal y como se explicará a continuación en un ejemplo que plantea un caso de uso para usar ~useRef~ en conjunto con ~useEffect~. El ejemplo también servirá para dar explorar el hook ~useEffect~.
 
 * ~useEffect~ 
+** TODO Similar to componentDidMount, componentDidUpdate and componentWillUnmount
+** TODO Comparison table between class and functional components
+** TODO Note about useLayoutEffect
+** TODO Side effects definition
+** TODO useEffect Syntax
+
+#+begin_src jsx
+import React, { useEffect } from "react";
+
+const Syntax = () => {
+  const [ checkBoxValue, setCheckBoxValue ] = useState(false);
+
+  useEffect(() => {
+    console.log('in useEffect');
+    return () => {
+      console.log('in useEffect clean up');
+    }
+  }, [checkBoxValue]);
+
+  return (<div></div>);
+};
+
+export default Syntax;
+#+end_src
+
+** TODO Explain exercise
