@@ -301,9 +301,29 @@ Esto es el hook ~useRef~ en pocas palabras. Un mecanismo para acceder a las prop
 Un característica llamativa de los hooks es que se pueden combinar, tal y como se explicará a continuación en un ejemplo que plantea un caso de uso para usar ~useRef~ en conjunto con ~useEffect~. El ejemplo también servirá para dar explorar el hook ~useEffect~.
 
 * ~useEffect~ 
-** TODO Similar to componentDidMount, componentDidUpdate and componentWillUnmount
-** TODO Comparison table between class and functional components
-** TODO Note about useLayoutEffect
+
+El uso del hook ~useEffect~ en componentes funcionales es similar a las funciones de ciclos de vida ~componentDidMount~, ~componentDidUpdate~ y ~componentWillUnmount~ en un componente de clase React.
+
+Luego de que un componente es renderizado y el DOM esta listo para actualizaciones, bajo el contexto de un componente de clase la función ~componentDidMount~ es llamada. Para un componente funcional, la función que se pasa como primer argumento del ~useEffect~ es ejecutada.
+
+Si el componente se actualiza, como por ejemplo un cambio en su estado, dentro del contexto de componentes de clase la función ~componentDidUpdate~ es llamada mientras que para un componente funcional la misma función ~useEffect~ es ejecutada con algunas condiciones espécificas que se revisarán más adelante.
+
+Justo antes de que el componente se desmonte, en un componente de clase la función ~componentWillUnmount~ es llamada y para el caso de un componente funcional la función que se retorne en el primer argumento del ~useEffect~ será llamada.
+
+Hay unas diferencias sútiles entre los métodos de un componente de clase y como funciona el ~useEffect~. Ambos son llamados después de que el componente sea renderizado, pero puede ser un poco complicado cuando se hacen referenecias a elementos del DOM de manera directa y también cuando se define un estado de forma asíncrona.
+
+#+begin_quote
+Incluso, hay otro hook popular llamado ~useLayoutEffect~ que resulta similar a las funciones ~componentDidMount~ y ~componentDidUnmount~ de un componente de clase. Su propósito es asegurar que el código escrito en un componente funcional funcione como se espera con componente funcionales.
+#+end_quote
+
+La siguiente tabla es un comparativo entre estos dos tipos de componentes bajo el contexto de React:
+
+| Componente de clase React      | Componente funcional React                 |
+|--------------------------------+--------------------------------------------|
+| ~componentDidMount() {...}~    | ~useEffect(() => {...})~                   |
+| ~componentDidUpdate() {...}~   | ~useEffect(() => {...})~                   |
+| ~componentWillUnmount() {...}~ | ~useEffect(() => {... return () => {...})~ |
+
 ** TODO Side effects definition
 ** TODO useEffect Syntax
 
