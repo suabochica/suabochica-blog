@@ -324,8 +324,17 @@ La siguiente tabla es un comparativo entre estos dos tipos de componentes bajo e
 | ~componentDidUpdate() {...}~   | ~useEffect(() => {...})~                   |
 | ~componentWillUnmount() {...}~ | ~useEffect(() => {... return () => {...})~ |
 
-** TODO Side effects definition
-** TODO useEffect Syntax
+Otra forma de ver ~useEffect~ es la de un mecanismo para agregar _efectos secundarios_ a un componente funcional, hecho que antes de React Hooks no era posible.
+
+La gente suele referirse a los efectos secundarios en componentes funcionales como algo contradictorio, ya que por lo general el propósito es que el componente funcional sea puro y libre de efectos secundarios. Es decir, que si el componente se llama con el mismo parametro una y otra vez, el mismo resultado se va a obtener sobre cada uno de estos llamados.
+
+Por definición ~useEffect~ introduce efectos secundarios en el componente funcional, específicamente luego de que el componente ha sido renderizad, en los escenarios que se consolidaron en la última tabla.
+
+En consecuencia, asociar los efectos secundarios como algo contradictorio es una premisa que se puede refutar. Por ejemplo, si se quieren agregar oyentes a los elementos DOM renderizados en un componente funcional, ~useEffect~ es la herramienta apropiada para abordar dicho escenario. Por su puesto cuando el componente desaparece, es responsabilidad del desarrollador remover los oyentes para evitar una fuga potencial de recursos en la aplicación web.
+
+Se puede decir que esta descripción corresponde a un componente funcional puro, ya que así como se agregan oyentes, también se remueven de acuerdo al ciclo de vida del componente. No obstante, se resalta que una función pura garantiza el mismo resultado dado los parámentros de entrada, y el hecho de que se remuevan los oyentes no significa que siempre se vaya a obtener la misma salida.
+
+Por último, se presenta la sintaxis de un componente funcional que utilizar ~useEffect~:
 
 #+begin_src jsx
 import React, { useEffect } from "react";
@@ -346,4 +355,10 @@ const Syntax = () => {
 export default Syntax;
 #+end_src
 
-** TODO Explain exercise
+El primer parámetro debe ser una función. Para este ejemplo se tiene una función lambda que imprime el mensaje ~in useEffect~ en la consola y retorna otra función que como se explico anteriormente, será llamada cuando el componente se desmonte. Esta función imprimirá el mensaje ~in useEffect clean up~.
+
+El segundo parámetro de ~useEffect~ es un arreglo con las dependencias del componente funcional. Si se ignora, entonces la función del primer parámetro sera ejecutada cuando el componente se renderize por primera vez y posteriormente en cada actualización subsecuente del componente. Si el arreglo es vacío, entonces la función asociada en el primer argumento del ~useEffect~ solo será llamada en el primer renderizado del componente.
+
+Si se quiere que el componente sea renderizado basado en ciertas condiciones, los valores para cumplir dichas restricciones deben se parte de este arreglo. Para el ejemplo anterior, la condición aplicada es sobre la variable ~checkBoxValue~ que representa un booleano y hace parte del estado del componente. Esto significa que si el valor de ~checkBoxValue~ cambia, la función ~useEffect~ será llamada. 
+
+* Usando ~useEffect~, ~useRef~ y ~useState~ para dar color con un efecto de scroll
