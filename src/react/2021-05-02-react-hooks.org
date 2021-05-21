@@ -362,3 +362,76 @@ El segundo parámetro de ~useEffect~ es un arreglo con las dependencias del comp
 Si se quiere que el componente sea renderizado basado en ciertas condiciones, los valores para cumplir dichas restricciones deben se parte de este arreglo. Para el ejemplo anterior, la condición aplicada es sobre la variable ~checkBoxValue~ que representa un booleano y hace parte del estado del componente. Esto significa que si el valor de ~checkBoxValue~ cambia, la función ~useEffect~ será llamada. 
 
 * Usando ~useEffect~, ~useRef~ y ~useState~ para dar color con un efecto de scroll
+
+** DONE Comparación co el ejercicio previo y descripción
+   CLOSED: [2021-05-21 Fri 08:53]
+Trayendo a coalición el ejemplo previo de las imágenes que cambian de blanco y negro a color cuando el cursor del ratón se posiciona sobre una de ellas, y viceversa cuando el cursor esta por fuera del rectángulo de la imagen, se va a realizar una modificación sobre el evento que da color a la imagen para revisar un caso que combina los hooks revisados hasta el momento: ~useState~, ~useRef~ y ~useEffect~.
+
+Esta modificación consiste en que el evento para dar color sobre la imagen es la interacción de la barra de desplazamiento del navegador. Si la imagen esta dentro de la vista completa del navegador, se mostrará la imagen a color. De lo contrario la imagen quedara a blanco y negro. La interacción co la barra de desplazamiento determinará el calculo para colorear las imágenes.
+
+** PROGRESS Crear el archivo ImageToggleOnScroll
+   
+#+begin_src jsx
+import React, { useState, useRef, useEffect } from "react";
+
+const ImageToggleOnScroll = ({ primaryImg, secondaryImg }) => {
+  const imageRef = useRef(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", scrollHandler)
+
+    return () => {
+      window.removeEventListener("scroll", scrollHandler)
+    };
+  }, []);
+
+  const isInView = () => {
+    const rect = imageRef.current.getBoundingClientRect();
+
+    return rect.top >= 0 && rect.bottom <= window.innerHeight;
+  };
+
+  const scrollHandler = () => {
+    setInView(isInView());
+  };
+
+  return (
+    <img
+      src={isInView ? secondaryImg : primaryImg}
+      alt=""
+      ref={imageRef}
+    />
+  );
+};
+
+export default ImageChangeOnMouseOver;
+#+end_src
+** TODO Crear el archivo ImageChangeOnScroll
+
+#+begin_src jsx
+import React from "react";
+import ImageToggleOnScroll from "../src/ImageToggleOnScroll";
+
+const ImageChangeOnScroll = () => {
+  return (
+    <div>
+      {[01, 02, 03, 04].map((speakerId) => {
+        return (
+          <div key={speakerId}>
+            <ImageToggleOnScroll
+              primaryImg="/static/speakers/bw/speaker-${speakerId}.jpg"
+              secondaryImg="/static/speakers/color/speaker-${speakerId}.jpg"
+              alt=""
+            />
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+export default ImageChangeOnScroll;
+#+end_src
+
+** TODO Bug con la primera imagen
