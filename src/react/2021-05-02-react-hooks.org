@@ -1,7 +1,7 @@
 #+TITLE: React Hooks
 #+DESCRIPTION: Serie que pretende explicar la funcionalidad de Reack Hooks
 #+AUTHOR: Sergio Benítez
-#+DATE:<2021-05-02 Sun> 
+#+DATE:<2021-05-02 Sun>
 #+STARTUP: fold
 #+HUGO_BASE_DIR: ~/Development/suabochica-blog/
 #+HUGO_SECTION: /post
@@ -20,7 +20,7 @@ Los temas a revisar en esta serie son:
 
 El propósito de estas publicaciones es lograr un entendimiento pleno de como usar los React Hooks para crear aplicaciones con solo componentes funcionales.
 
-Para tener garantías del objetivo, es pre requisito tener conocimientos previos y sentirse cómo con las construcción de aplicaciones web con React. 
+Para tener garantías del objetivo, es pre requisito tener conocimientos previos y sentirse cómo con las construcción de aplicaciones web con React.
 
 * ¿Qué son los React Hooks?
 
@@ -183,9 +183,9 @@ Con este ejemplo se obtiene un entendimiento sólido sobre como usar React Hooks
 - Solo están disponibles en componentes funcionales.
 - Por convención usan el prefijo ~use~.
 - Todos contribuyen a los eventos de ciclo de vida y la administración del estado en un componente React.
- 
+
 * ~useRef~
-  
+
   - Note taken on [2021-05-14 Fri 18:18] \\
     note test
 Una definición para el ~useRef~ hook es:
@@ -300,7 +300,7 @@ Esto es el hook ~useRef~ en pocas palabras. Un mecanismo para acceder a las prop
 
 Un característica llamativa de los hooks es que se pueden combinar, tal y como se explicará a continuación en un ejemplo que plantea un caso de uso para usar ~useRef~ en conjunto con ~useEffect~. El ejemplo también servirá para dar explorar el hook ~useEffect~.
 
-* ~useEffect~ 
+* ~useEffect~
 
 El uso del hook ~useEffect~ en componentes funcionales es similar a las funciones de ciclos de vida ~componentDidMount~, ~componentDidUpdate~ y ~componentWillUnmount~ en un componente de clase React.
 
@@ -359,7 +359,7 @@ El primer parámetro debe ser una función. Para este ejemplo se tiene una funci
 
 El segundo parámetro de ~useEffect~ es un arreglo con las dependencias del componente funcional. Si se ignora, entonces la función del primer parámetro sera ejecutada cuando el componente se renderize por primera vez y posteriormente en cada actualización subsecuente del componente. Si el arreglo es vacío, entonces la función asociada en el primer argumento del ~useEffect~ solo será llamada en el primer renderizado del componente.
 
-Si se quiere que el componente sea renderizado basado en ciertas condiciones, los valores para cumplir dichas restricciones deben se parte de este arreglo. Para el ejemplo anterior, la condición aplicada es sobre la variable ~checkBoxValue~ que representa un booleano y hace parte del estado del componente. Esto significa que si el valor de ~checkBoxValue~ cambia, la función ~useEffect~ será llamada. 
+Si se quiere que el componente sea renderizado basado en ciertas condiciones, los valores para cumplir dichas restricciones deben se parte de este arreglo. Para el ejemplo anterior, la condición aplicada es sobre la variable ~checkBoxValue~ que representa un booleano y hace parte del estado del componente. Esto significa que si el valor de ~checkBoxValue~ cambia, la función ~useEffect~ será llamada.
 
 * Usando ~useEffect~, ~useRef~ y ~useState~ para dar color con un efecto de scroll
 
@@ -377,7 +377,7 @@ Se va a iniciar la implementación con base al contenido del archivo ~ImageToggl
 - Definir un ~useState~ para validar si la image se encuentra en la vista del navegador
 - Definir un ~useEffect~ para atender la activación del evento ~scroll~
 
-A contnuación se muestra un snippet con las modificaciones aplicadas:   
+A contnuación se muestra un snippet con las modificaciones aplicadas:
 
 #+begin_src jsx
 import React, { useState, useRef, useEffect } from "react";
@@ -424,7 +424,10 @@ El tercer punto es la administración del evento ~scroll~ en el ~useEffect~. la 
 
 Por último, en la maquetación del componente dentro del atributo ~src~ se usa una sintaxis de condición ternaria para definir que imagen renderizar dentro del componente. La imagen a color si se encuentra dentro de la vista completa del navegador o la image a blanco y negro si la imagen esta por fuera de la vista del navegador.
 
-** TODO Crear el archivo ImageChangeOnScroll
+** DONE Crear el archivo ImageChangeOnScroll
+   CLOSED: [2021-05-23 Sun 17:14]
+
+El siguiente paso es consumir el componente ~ImageToggleOnScroll~. Para ello se va a crear un archivo ~ImageChangeOnScroll~ con el siguiente contedio.
 
 #+begin_src jsx
 import React from "react";
@@ -451,4 +454,10 @@ const ImageChangeOnScroll = () => {
 export default ImageChangeOnScroll;
 #+end_src
 
-** TODO Bug con la primera imagen
+En primera instancia, esta página debe importar el componente ~ImageToggleOnScroll~ para poder utilizarlo. Para renderizar varias imágenes se va a hacer un ~.map~ sobre un arreglo con los identificadores de las imágenes y con ayuda de los strings literales se va a consumir la ruta de la imagen de manera recursiva.
+
+Por otra parte, se observa que en el uso del componente ~<ImageToggleOnScroll>~ se suministran las rutas de las imágenes dependiendo el caso con los atributos ~primaryImg~ y ~secondaryImg~.
+
+** DONE Bug con la primera imagen
+   CLOSED: [2021-05-23 Sun 17:14]
+Actualmente tenemos un comportamiento por mejorar en el estado de la aplicativo. Al momento de renderizar las imagenes por primera vez en el navegador, todas las imágenes se muestran en su versión blanco y negro. El resultado esperado es que las imágenes que se encuentran dentro de la vista completa del navegador este en su versión a color. Los siguientes cambios ayudarán a cumplir con este objetivo:
