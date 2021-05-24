@@ -328,7 +328,7 @@ Otra forma de ver ~useEffect~ es la de un mecanismo para agregar _efectos secund
 
 La gente suele referirse a los efectos secundarios en componentes funcionales como algo contradictorio, ya que por lo general el propósito es que el componente funcional sea puro y libre de efectos secundarios. Es decir, que si el componente se llama con el mismo parametro una y otra vez, el mismo resultado se va a obtener sobre cada uno de estos llamados.
 
-Por definición ~useEffect~ introduce efectos secundarios en el componente funcional, específicamente luego de que el componente ha sido renderizad, en los escenarios que se consolidaron en la última tabla.
+Por definición ~useEffect~ introduce efectos secundarios en el componente funcional, específicamente luego de que el componente ha sido renderizado, en los escenarios que se consolidaron en la última tabla.
 
 En consecuencia, asociar los efectos secundarios como algo contradictorio es una premisa que se puede refutar. Por ejemplo, si se quieren agregar oyentes a los elementos DOM renderizados en un componente funcional, ~useEffect~ es la herramienta apropiada para abordar dicho escenario. Por su puesto cuando el componente desaparece, es responsabilidad del desarrollador remover los oyentes para evitar una fuga potencial de recursos en la aplicación web.
 
@@ -460,4 +460,93 @@ Por otra parte, se observa que en el uso del componente ~<ImageToggleOnScroll>~ 
 
 ** DONE Bug con la primera imagen
    CLOSED: [2021-05-23 Sun 17:14]
-Actualmente tenemos un comportamiento por mejorar en el estado de la aplicativo. Al momento de renderizar las imagenes por primera vez en el navegador, todas las imágenes se muestran en su versión blanco y negro. El resultado esperado es que las imágenes que se encuentran dentro de la vista completa del navegador este en su versión a color. Los siguientes cambios ayudarán a cumplir con este objetivo:
+Actualmente tenemos un comportamiento por mejorar en el estado de la aplicativo. Al momento de renderizar las imágenes por primera vez en el navegador, todas las imágenes se muestran en su versión blanco y negro. El resultado esperado es que las imágenes que se encuentran dentro de la vista completa del navegador este en su versión a color. Los siguientes cambios ayudarán a cumplir con este objetivo:
+
+#+begin_src jsx
+import React, { useState, useRef, useEffect } from "react";
+
+const ImageToggleOnScroll = ({ primaryImg, secondaryImg }) => {
+  const imageRef = useRef(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    setInView(isInView());
+    window.addEventListener("scroll", scrollHandler)
+
+    return () => {
+      window.removeEventListener("scroll", scrollHandler)
+    };
+  }, []);
+
+  const isInView = () => {
+    const rect = imageRef.current.getBoundingClientRect();
+
+    return rect.top >= 0 && rect.bottom <= window.innerHeight;
+  };
+
+  const scrollHandler = () => {
+    setInView(isInView());
+  };
+
+  return (
+    <img
+      src={inView ? secondaryImg : primaryImg}
+      alt=""
+      ref={imageRef}
+    />
+  );
+};
+
+export default ImageChangeOnMouseOver;
+#+end_src
+
+Se recuerda que estos cambios se realizan sobre el archivo ~ImageToggleOnScroll~. En esta primera aproximación lo único que se agrego fue el llamado de la función ~setInView()~ dentro del ~useEffect~ una vez el componente se haya renderizado por primera vez. Al probar esta modificación en el navegador tenemos el resultados esperado, las imágenes que están en la vista completa del navegador están con su versión a color.
+
+No obstante si se revisa de manera detallada hay un comportamiento sutilmente disruptivo cuando se recarga la página del navegador. Básicamente en menos de un segundo la imagen se renderiza en su versión a blanco y negro y en un instante se muestra la versión a color. Para evitar este comportamiento, en el siguiente snippet se ilustra una solución:
+
+#+begin_src jsx
+import React, { useState, useRef, useEffect } from "react";
+
+const ImageToggleOnScroll = ({ primaryImg, secondaryImg }) => {
+  const imageRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(false);
+    setInView(isInView());
+    window.addEventListener("scroll", scrollHandler)
+
+    return () => {
+      window.removeEventListener("scroll", scrollHandler)
+    };
+  }, []);
+
+  const isInView = () => {
+    const rect = imageRef.current.getBoundingClientRect();
+
+    return rect.top >= 0 && rect.bottom <= window.innerHeight;
+  };
+
+  const scrollHandler = () => {
+    setInView(isInView());
+  };
+
+  return (
+    <img
+      src={
+        isLoading ? "path_to_loader" 
+          : inView ? secondaryImg : primaryImg
+      }
+      alt=""
+      ref={imageRef}
+    />
+  );
+};
+
+export default ImageChangeOnMouseOver;
+#+end_src
+
+Se puede observar la creación de un nuevo estado llamado ~isLoading~ para determinar en que parte del ciclo de vida del componente se encuentra la ejecución. Por defecto se inicializa en ~true~. Luego, dentro de la función ~useEffect~ se hace el llamado de ~seIsLoading(false)~ para determinar cuando el componente ya fue renderizado.
+
+Por último, en el JSX del componente dentro del atributo ~src~ se agrega la condición ~isLoading~ que de ser cierta, entonces muestra un loader, de lo contrario aplica la condición ~inView~ que determina que versión de la imagen se va a renderizar. 
