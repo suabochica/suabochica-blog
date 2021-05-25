@@ -550,3 +550,53 @@ export default ImageChangeOnMouseOver;
 Se puede observar la creación de un nuevo estado llamado ~isLoading~ para determinar en que parte del ciclo de vida del componente se encuentra la ejecución. Por defecto se inicializa en ~true~. Luego, dentro de la función ~useEffect~ se hace el llamado de ~seIsLoading(false)~ para determinar cuando el componente ya fue renderizado.
 
 Por último, en el JSX del componente dentro del atributo ~src~ se agrega la condición ~isLoading~ que de ser cierta, entonces muestra un loader, de lo contrario aplica la condición ~inView~ que determina que versión de la imagen se va a renderizar. 
+
+* Agregando un efecto secundario al componente Scroller
+
+** TODO Explicar la estructura del useEffect y el parametro []
+
+** PROGRESS Modificar el archvio ImageChangeOnScroll para agregar el efecto secundario de mostrar el identificador del expositor en el título cuando el cursor está sobre la imagen
+   
+#+begin_src jsx
+import React, {useState, useEffect} from "react";
+import ImageToggleOnScroll from "../src/ImageToggleOnScroll";
+
+const ImageChangeOnScroll = () => {
+  const [currentSpeakerId, setCurrentSpeakerId] = useState(0);
+  const [mouseEventCounter, setMouseEventCountr] = useState(0);
+
+  useEffect(() => {
+    window.document.title = `SpeakerId: ${currentSpeakerId}`;
+    console.log(`useEffect: setting title to ${currentSpeakerId}`);
+  });
+
+  return (
+    <div>
+      <span>mouseEventCounter: ${mouseEventCounter}</span>
+      {[01, 02, 03, 04].map((speakerId) => {
+        return (
+          <div key={speakerId}
+            onMouseOver={() => {
+              setCurrentSpeakerId(speakerId);
+              setMouseEventCountr(mouseEventCounter++);
+            }
+          }>
+            <ImageToggleOnScroll
+              primaryImg="/static/speakers/bw/speaker-${speakerId}.jpg"
+              secondaryImg="/static/speakers/color/speaker-${speakerId}.jpg"
+              alt=""
+            />
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+export default ImageChangeOnScroll;
+#+end_src
+
+** TODO Explicar el contador del evento del ratón
+
+** TODO Señalar el problema de optimización asociado al evento del botón
+
