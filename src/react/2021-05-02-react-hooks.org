@@ -553,10 +553,20 @@ Por último, en el JSX del componente dentro del atributo ~src~ se agrega la con
 
 * Agregando un efecto secundario al componente Scroller
 
-** TODO Explicar la estructura del useEffect y el parametro []
+** DONE Explicar la estructura del useEffect y el parametro []
+   CLOSED: [2021-05-26 Wed 09:03]
+
+
+Para el estado actual de la paǵina que da color a las imágenes en función a la barra de desplazamiento se usó el hook ~useEffect~ tomando ventaja del conocimiento previo de que la función que se pasa como primer parámetro de ~useEffect~ es ejecutada despues de que el componente haya sido completamente renderizado por primera vez. Al poner un arreglo vació ~[]~ como segundo parámetro de ~useEffect~ se establece que la instrucción de ejecutar la función que se pasa como primer parámetro solo cuando el comoponente es renderizado y no sobre actualizaciones subsecuentes.
+
+#+begin_notes
+El detalle de pasar un como dependencia un arreglo vació como segundo parámetro del ~useEffect~ es a menudo utilizado para optimizar la ejecución del componente.
+#+end_notes
 
 ** PROGRESS Modificar el archvio ImageChangeOnScroll para agregar el efecto secundario de mostrar el identificador del expositor en el título cuando el cursor está sobre la imagen
-   
+
+Para ahondar en el contexto del segundo parámetro del ~useEffect~ se expone el siguiente ejemplo: Dentro del componente ~ImageChangeOnScroll~, que actualmente es el encargado de mostrar las imágenes de los expositores, se va a atender el evento del ~MouseOver~ sobre cada imagen del expositor para estrablecer el título de la ventana del navegador con el identificador de la imagen asociada a determinado expositor. El siguiente código atiende este nuevo efecto secundario:   
+
 #+begin_src jsx
 import React, {useState, useEffect} from "react";
 import ImageToggleOnScroll from "../src/ImageToggleOnScroll";
