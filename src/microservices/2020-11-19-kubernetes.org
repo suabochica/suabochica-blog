@@ -11,98 +11,33 @@ una aplicación y sus dependencias y así hacer un despliegue en una sola máqui
 
 * Profundizando en arquitectura
   
-Hasta ahora solo se ha demostrado el trabajo de docker en una única máquina.
-Para escalar la infraestructura es necerio pensar en crecimiento externo. 
+Hasta ahora solo se ha demostrado el trabajo de docker en una única máquina Para escalar la infraestructura es necesario pensar en crecimiento externo. 
 
-Los contenedores están jugando un rol importante para el desarrollo de
-aplicaciones y el despliegue de las mismas. En el historial de grandes sistemas
-en centros de datos se han usado máquinas de metal puro que luego de ser
-compradas suelen tener tres años de vida útil para posteriormente depreciarse.
-Este ciclo se viene repitiendo una y otra vez. Estás máquinas viejas pueden ser
-pensadas como mascotas, pero lo que realmente se quiere es tener un ganado. Bajo
-este contexto el hecho de perder una vaca, no significa que se vaya a perder la
-producción de leche. Eventualmente se puede conseguir otra vaca. Este es el tipo
-de modelo al que las infraestructuras se están proyectando, en vez de tener una
-máquinas con características especificas que al ser afectada pueda causar un 
-falló total de la aplicación.
+Los contenedores están jugando un rol importante para el desarrollo de aplicaciones y el despliegue de las mismas. En el historial de grandes sistemas en centros de datos se han usado máquinas de metal puro que luego de ser compradas suelen tener tres años de vida útil para posteriormente depreciarse. Este ciclo se viene repitiendo una y otra vez. Estás máquinas viejas pueden ser pensadas como mascotas, pero lo que realmente se quiere es tener un ganado. Bajo este contexto el hecho de perder una vaca, no significa que se vaya a perder la producción de leche. Eventualmente se puede conseguir otra vaca. Este es el tipo de modelo al que las infraestructuras se están proyectando, en vez de tener una máquinas con características especificas que al ser afectada pueda causar un falló total de la aplicación.
 
-La transición de máquinas específicas a rebaños de máquinas, es algo que puede
-realizarse con máquinas virtuales, pero dichas máquinas no están diseñadas para
-ser usadas en periodos cortos de tiempo. Adicionalmente, eliminar una maquina
-virtual es un proceso dispendioso. Por otro lado, los contenedores son rápidos
-de crear y destruir dando como resultado un montaje eficiente de infraestructura
-. Cabe resaltar que la informática tiende hacia tiempos de inicio y parada aún
-más rápidos. Si se lleva este concepto al límite, es posible crear un contenedor
-con una simple petición y apagarlo con otra. Esta versatilidad esta abriendo
-cabidad al concepto de /serverless computing/ y ya hay algunos frameworks que 
-promueven el uso de este concepto.
+La transición de máquinas específicas a rebaños de máquinas, es algo que puede realizarse con máquinas virtuales, pero dichas máquinas no están diseñadas para ser usadas en periodos cortos de tiempo. Adicionalmente, eliminar una maquina virtual es un proceso dispendioso. Por otro lado, los contenedores son rápidos de crear y destruir dando como resultado un montaje eficiente de infraestructura. Cabe resaltar que la informática tiende hacia tiempos de inicio y parada aún más rápidos. Si se lleva este concepto al límite, es posible crear un contenedor con una simple petición y apagarlo con otra. Esta versatilidad esta abriendo cabidad al concepto de /serverless computing/ y ya hay algunos frameworks que promueven el uso de este concepto.
 
-Ahora, evidentemente hay varios retos a sobrellevar con la escritura de
-aplicaciones contenerizadas. El primer inconveniente es que las orgranizaciones
-mantienen sus viejas prácticas y por lo tanto sus monólitos. Ya hay una cultura
-organizacional establecida al rededor del monolito, y la transición al uso de
-micro servicios es un proceso gradual que debe cultivarse en el trabajo interno
-de los equipos de desarrollo. Con este nuevo enfoque, se va a tener personas de
-cualquier parte del mundo generando aportes al desarrollo de software y eso 
-requiere procesos de validación y auditoria al momento de revisar que cambios de
-código van a publicarse en la aplicación. Eso implica que la creación de 
-software va ser una especie de formulario. Este formulario es a veces llamado la
-ley de Conway, la cual dice que las organizaciones diseñan sistemas que imitan 
-sus propias estructuras de comunicación. En otras palabras, una empresa no puede
-producir microservicos si es una organización con producción en cascada. Por lo
-tanto, se pueden perder los benecficios del patrón de microservicos por esquemas
-de la organización. 
+Ahora, evidentemente hay varios retos a sobrellevar con la escritura de aplicaciones contenerizadas. El primer inconveniente es que las orgranizaciones mantienen sus viejas prácticas y por lo tanto sus monólitos. Ya hay una cultura organizacional establecida al rededor del monolito, y la transición al uso de micro servicios es un proceso gradual que debe cultivarse en el trabajo interno de los equipos de desarrollo. Con este nuevo enfoque, se va a tener personas de cualquier parte del mundo generando aportes al desarrollo de software y eso requiere procesos de validación y auditoria al momento de revisar que cambios de código van a publicarse en la aplicación. Eso implica que la creación de  software va ser una especie de formulario. Este formulario es a veces llamado la /ley de Conway/, la cual dice que las organizaciones diseñan sistemas que imitan sus propias estructuras de comunicación. En otras palabras, una empresa no puede producir microservicos si es una organización con producción en cascada. Por lo tanto, se pueden perder los benecficios del patrón de microservicos por esquemas de la organización. 
 
-El segundo inconveniente con la implementación aplicaciones en contenedores son
-los obstáculos técnicos. Este patrón requiere de procesos automatizados bien 
-ejecutados, El movimiento de piezas hace que los sistemas estén en capacidad de
-hacer descubrimientos dinámicos que luego se deben monitoriar. Una pregunta 
-válida es si los desarrolladores deberián escribir estos sistemas de 
-automatización por cuenta propia, y la respuesta es no. Estas implementaciones
-requieren de mucho trabajo y por ende es mejor encontrar un sistema que funcione
-y deje la puerta abierta al cambio para infraestructuras venideras, como 
-Kubernetes. 
+El segundo inconveniente con la implementación aplicaciones en contenedores son los obstáculos técnicos. Este patrón requiere de procesos automatizados bien ejecutados, El movimiento de piezas hace que los sistemas estén en capacidad de hacer descubrimientos dinámicos que luego se deben monitoriar. Una pregunta  válida es si los desarrolladores deberián escribir estos sistemas de automatización por cuenta propia, y la respuesta es no. Estas implementaciones requieren de mucho trabajo y por ende es mejor encontrar un sistema que funcione y deje la puerta abierta al cambio para infraestructuras venideras, como /Kubernetes/. 
 
 * Como me enteré the Kubernetes (a.k.a k8)
 
-Uno de los retos a los cuales muchas personas se someten en el mercado de la
-informática, es escoger entre una gran variedad de teconologías para hacer
-tareas puntuales. Está búsequeda puede llegar a ser abrumadora, ya que también 
-determina que aprendizajes se deben ejecutar. Para atender esta elección, es
-conveniente guiarse de alguién con más experiencia y respaldar la decisión con 
-el aporte y el estado de la comunidad detrás de la tecnología. 
+Uno de los retos a los cuales muchas personas se someten en el mercado de la informática, es escoger entre una gran variedad de teconologías para hacer tareas puntuales. Está búsequeda puede llegar a ser abrumadora, ya que también determina que aprendizajes se deben ejecutar. Para atender esta elección, es conveniente guiarse de alguién con más experiencia y respaldar la decisión con el aporte y el estado de la comunidad detrás de la tecnología. 
   
-Para el manejo de aplicaciones una de las mejores herramientas es Kubernetes.
-Kubernetes es una herramienta que observa a los contenedores en un nivel
-superior. La abstracción sobre la que opera Kubernetes puede llegar a tener
-mucho sentido.
+Para el manejo de aplicaciones una de las mejores herramientas es Kubernetes. Kubernetes es una herramienta que observa a los contenedores en un nivel superior. La abstracción sobre la que opera Kubernetes puede llegar a tener mucho sentido.
 
 * Qué es Kubernetes
 
-Docker hace que el despliegue y la ejecución de los contenedores sea sencillo.
-El próximo paso lógico es usar docker en todas las máquinas y buscar una forma
-para integrarlas. El empaquetamiento de contenedores corresponde al 5% del
-problema. Los inconvenientes reales vienen cuando se trabaja las configuraciones
-de las aplicaciones, los descubrimientos de servicios, la administración de 
-actualizaciones y el monitoreo de las máquinas.
+Docker hace que el despliegue y la ejecución de los contenedores sea sencillo. El próximo paso lógico es usar docker en todas las máquinas y buscar una forma para integrarlas. El empaquetamiento de contenedores corresponde al 5% del problema. Los inconvenientes reales vienen cuando se trabaja las configuraciones de las aplicaciones, los descubrimientos de servicios, la administración de actualizaciones y el monitoreo de las máquinas.
 
-Todas estas carácteristicas se construyen sobre docker, y la recomendación es
-tomar ventaja de una plataforma como Kubernetes que se encargue de manejar toda 
-esta complejidad de infraestructura.
+Todas estas carácteristicas se construyen sobre docker, y la recomendación es tomar ventaja de una plataforma como Kubernetes que se encargue de manejar toda esta complejidad de infraestructura.
 
-Kubernetes provee un nuevo conjunto de abstracciones que van más allá de las 
-bases del despliegue de contenedores, y habilita a que el desarrollador se
-enfoque en el panorama general.
+Kubernetes provee un nuevo conjunto de abstracciones que van más allá de las bases del despliegue de contenedores, y habilita a que el desarrollador se enfoque en el panorama general.
 
-Anteriormente el punto a tratar era el despliegue de aplicaciones en máquinas 
-individuales, lo cual funciona en flujos de trabajo limitados. Kubernetes
-permite abstraer las máquinas individuales de una forma que el grupo de máquinas
-se trate como una única máquina ĺógica. La aplicación se convierte en un
-ciudadano de primera clase que habilita su administración a través del uso de
-abstracciones de alto nivel.
+Anteriormente el punto a tratar era el despliegue de aplicaciones en máquinas individuales, lo cual funciona en flujos de trabajo limitados. Kubernetes permite abstraer las máquinas individuales de una forma que el grupo de máquinas se trate como una única máquina ĺógica. La aplicación se convierte en un ciudadano de primera clase que habilita su administración a través del uso de abstracciones de alto nivel.
 
-En Kubernetes se puede describir un conjunto de aplicaciones y como deerian
-interactuar entre ellas. Así es como Kubernetes resuelve toda esta complejidad.
+En Kubernetes se puede describir un conjunto de aplicaciones y como deberian interactuar entre ellas. Así es como Kubernetes resuelve toda esta complejidad.
 
 * Configurando Kubernetes
   
@@ -123,17 +58,11 @@ cd kubernetes
 
 ** Aprovisiona un clúster de Kubernetes con GKE mediante gcloud
 
-Kubernetes se puede configurar con muchas opciones y complementos, pero puede
-llevar mucho tiempo arrancar desde cero. En esta sección, iniciará Kubernetes
-con Google Container Engine (GKE).
+Kubernetes se puede configurar con muchas opciones y complementos, pero puede llevar mucho tiempo arrancar desde cero. En esta sección, iniciará Kubernetes con Google Container Engine (GKE).
 
-GKE es un Kubernetes alojado por Google. Los clústeres de GKE se pueden
-personalizar y admiten diferentes tipos de máquinas, cantidad de nodos y
-configuraciones de red.
+GKE es un Kubernetes alojado por Google. Los clústeres de GKE se pueden personalizar y admiten diferentes tipos de máquinas, cantidad de nodos y configuraciones de red.
 
-Utilice el siguiente comando para crear su clúster y utilizarlo durante el resto
-de esta sección.
-
+Utilice el siguiente comando para crear su clúster y utilizarlo durante el resto de esta sección.
 
 #+begin_src bash
 gcloud container clusters create k0 --zone us-central1-a

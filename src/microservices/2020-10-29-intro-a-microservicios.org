@@ -275,59 +275,37 @@ Si todo sale como se espera, se obtiene la respuesta ~{"message":"Hello"}~, con 
 La comlejidad adicional solo crece con el número de servicios que este utilizando la aplicación. Este problema es exactamente lo que impulsa la adopción de contenedores de aplicaciones y con ayuda de plataformas de administración como Kubernetes, se atienen el tema de coordinación entre los servicios.
 
 ** Soluciones ofrecidas por MSA
-Es importante tener en cuenta los escenarios sobre los cuales una arquitectura
-de microservicios ofrece soluciones. Para los monolitos, hacer un cambio en una
-parte del código implica una recompilación de todo el binario. Al tener piezas
-independientes de código, podemos enviar los binarios por separado. Esto
-significa que los servicios son unidades de funcionalidad que pueden ser
-reemplazadas o actualizadas separadamente del resto del sistema, obteniendo así
-componentes estrechamente acoplados.
+Es importante tener en cuenta los escenarios sobre los cuales una arquitectura de microservicios ofrece soluciones. Para los monolitos, hacer un cambio en una parte del código implica una recompilación de todo el binario. Al tener piezas independientes de código, podemos enviar los binarios por separado. Esto significa que los servicios son unidades de funcionalidad que pueden ser reemplazadas o actualizadas separadamente del resto del sistema, obteniendo así componentes estrechamente acoplados.
 
-Otra solución de los MSA, es el mantenimiento, ya que trabajamos con componentes
-de escala independiente. Cada servicio es tan pequeño y esto incrementa las
-posibilidades de que sea más fácil de entender. Por otra parte, se fomenta el
-desarrollo de un código base robusto y estable que deberiía ser fácil de
-mantener.
+Otra solución de los MSA, es el mantenimiento, ya que se trabaja con componentes de escala independiente. Cada servicio es tan pequeño y esto incrementa las posibilidades de que sea más fácil de entender. Por otra parte, se fomenta el desarrollo de un código base robusto y estable que debería ser fácil de mantener.
 
 * JWT
-Json Web Tokens (JWT), es un método compacto y auto contenido para transferir
-datos de manera segura como objetos JSON. Es un estándar útil, porque envía 
-información que puede verificada y validada con una firma digital.
+Json Web Tokens (JWT), es un método compacto y auto contenido para transferir datos de manera segura como objetos JSON. Es un estándar útil, porque envía  información que puede verificada y validada con una firma digital.
 
-Los JWTs son medios compactos de almacenamiento de datos faciles de descodificar
-o codificar en la mayoria de los lenguajes.
+Los JWTs son medios compactos de almacenamiento de datos faciles de descodificar o codificar en la mayoria de los lenguajes.
 
-Por último, JWT es ideal para autenticación e intercambio de información gracias
-a su tamaño y al hecho de que pueden ser firmados. Esto nos permite auditar la
-identidad de quienes envían la información y tener garantías sobre que los datos
-enviados nos están alterados.
+Por último, JWT es ideal para autenticación e intercambio de información gracias a su tamaño y al hecho de que pueden ser firmados. Esto nos permite auditar la identidad de quienes envían la información y tener garantías sobre que los datos enviados nos están alterados.
 
 * Cómo funciona JWT
   
 #+CAPTION: El cliente envía una solicitud de log in
-[[../images/microservices/01-how_jwt_works.png]]
+[[../../images/microservices/01-how_jwt_works.png]]
 #+CAPTION: El servidor crea un JWT
-[[../images/microservices/02-how_jwt_works.png]]
+[[../../images/microservices/02-how_jwt_works.png]]
 #+CAPTION: El servidor retorna el JWT al cliente
-[[../images/microservices/03-how_jwt_works.png]]
+[[../../images/microservices/03-how_jwt_works.png]]
 #+CAPTION: El cliente envía una copia del JWT cuando hace una petición
-[[../images/microservices/04-how_jwt_works.png]]
+[[../../images/microservices/04-how_jwt_works.png]]
 #+CAPTION: El servidor valida la firma del JWT
-[[../images/microservices/05-how_jwt_works.png]]
+[[../../images/microservices/05-how_jwt_works.png]]
 #+CAPTION: El servidor envía la respuesta al cliente
-[[../images/microservices/06-how_jwt_works.png]]
+[[../../images/microservices/06-how_jwt_works.png]]
 
 * Recapitulación
 En esta publicasión se desarrolló la siguiente idea: Entendimiento del
 diseño de las aplicaciones modernas, incluyendo el patrón de diseño de los
 microservicios.
 
-Se puede observar como las aplicaciones modernas están empujando los limites de
-las herramientas de automatización actuales. En vez de tener un gran binario, 
-ahora estas aplicaciones estan compuestas por muchas partes que son más 
-pequeñas, más fáciles de escribir y desplegar.
+Se puede observar como las aplicaciones modernas están empujando los limites de las herramientas de automatización actuales. En vez de tener un gran binario, ahora estas aplicaciones estan compuestas por muchas partes que son más pequeñas, más fáciles de escribir y desplegar.
 
-Esta nueva propuesta nos obliga a revisar las herramientas y la infrasestructura
-que se está utilizando para apoyar estas aplicaciones modernas. En consecuencia,
-es necesario optar por nuevas herramientas de automatización como Docker y
-Kubernetes.
+Esta nueva propuesta obliga a revisar las herramientas y la infrasestructura que se está utilizando para apoyar estas aplicaciones modernas. En consecuencia, es necesario optar por nuevas herramientas de automatización como Docker y Kubernetes.
