@@ -2,7 +2,7 @@
 title = "Introducción a micro servicios"
 author = ["Sergio Benítez"]
 description = "Usa docker para construir contenedores de imágenes para empacar una aplicación y sus dependencias y así hacer un despliegue en una sola máquina"
-date = 2020-11-10T00:00:00-05:00
+date = 2020-10-29T00:00:00-05:00
 lastmod = 2021-05-15T18:21:05-05:00
 draft = false
 tags = [

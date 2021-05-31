@@ -1,10 +1,13 @@
 +++
-title = "Building the containers with docker"
+title = "Kubernetes"
 author = ["Sergio Benítez"]
 description = "Usa docker para construir contenedores de imágenes para empacar"
 date = 2020-11-19T00:00:00-05:00
 lastmod = 2021-05-30T21:11:26-05:00
 draft = false
+tags = [
+    "microservicios",
+]
 +++
 
 una aplicación y sus dependencias y así hacer un despliegue en una sola máquina
