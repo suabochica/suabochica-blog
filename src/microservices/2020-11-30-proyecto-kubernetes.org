@@ -10,24 +10,13 @@
 
 * Intro
 
-Es tiempo de ir más lejos con el apredizaje de Kubernetes. Ya se repasaron los
-conceptos, y solo falta revisar como gerenciar Kubernetes con aplicativos reales.
+Es tiempo de ir más lejos con el apredizaje de Kubernetes. Ya se repasaron los conceptos, y solo falta revisar como gerenciar Kubernetes con aplicativos reales.
 
-Generalmente las aplicaciones reales exigen almacenamiento persistente,
-búsquedas TLS e implementaciones más avanzadas. Hasta el momento, Kubernetes ha
-parecido una mejor forma de ejecutar comandos Docker. Por ejemplo, con los
-comandos de ~kubectl~ se logra desplegar contenedores, y hacerlos disponibles
-por fuera del cluster.
+Generalmente las aplicaciones reales exigen almacenamiento persistente, búsquedas TLS e implementaciones más avanzadas. Hasta el momento, Kubernetes ha parecido una mejor forma de ejecutar comandos Docker. Por ejemplo, con los comandos de ~kubectl~ se logra desplegar contenedores, y hacerlos disponibles por fuera del cluster.
 
-En casos avanzados, es ideal declarar el estado desado de las infraestructuras y
-eso implica correr configuraciones en Kubernetes. Las configuraciones en k8s,
-permiten administrar los secretos, y determinar el flujo para actualizar los
-aplicativos.
+En casos avanzados, es ideal declarar el estado desado de las infraestructuras y eso implica correr configuraciones en Kubernetes. Las configuraciones en k8s, permiten administrar los secretos, y determinar el flujo para actualizar los aplicativos.
 
-Ahora, ¿qué siginifica el estado deseado?. Practicamente sería crear un conjunto
-de instrucciones hacia Kubernetes, y tras bastidores, la herramienta hará todo
-el trabajo, como la implementación de contenedores y la creación de
-balanceadores de carga.
+Ahora, ¿qué siginifica el estado deseado?. Practicamente sería crear un conjunto de instrucciones hacia Kubernetes, y tras bastidores, la herramienta hará todo el trabajo, como la implementación de contenedores y la creación de balanceadores de carga.
 
 Se prosigue con el uso de k8s en casos más avanzados.
 

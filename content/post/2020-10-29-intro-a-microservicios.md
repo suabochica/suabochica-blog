@@ -12,53 +12,20 @@ tags = [
 
 ## La evolución de las aplicaciones {#la-evolución-de-las-aplicaciones}
 
-Antes de desarrollar a fondo el concepto de microservicios, debemos estar 
-seguros de por que los microservicios están diseñados de cierta forma. Para ello,
-vamos a apoyarnos en la interpretación de Adrian Cockcroft, *cloud architect*
-en Netflix, sobre la evolución de las aplicaciones.
+Antes de desarrollar a fondo el concepto de microservicios, debemos estar  seguros de por que los microservicios están diseñados de cierta forma. Para ello, vamos a apoyarnos en la interpretación de Adrian Cockcroft, *cloud architect* en Netflix, sobre la evolución de las aplicaciones.
 
-Adrian comparte su visión sobre el desarrollo de aplicaciones en la última
-decada, partiendo de que algunos años atrás era común encontrar
-proyectos con mas the 5 millones de lineas de código, en donde el proceso
-de **build** tardaba tiempos considerables y el **release** se hacia con poca 
-frecuencia.
+Adrian comparte su visión sobre el desarrollo de aplicaciones en la última decada, partiendo de que algunos años atrás era común encontrar proyectos con mas the 5 millones de lineas de código, en donde el proceso de **build** tardaba tiempos considerables y el **release** se hacia con poca frecuencia.
 
-Lo que empezó a pasar más recientemente fue que ese monolito empezó a
-romperse en pequeñas partes de software. Parte de los microservicios es hacer
-estos pequeños trozos de software. Este cambio, logra que los tiempos de los
-builds pasen de horas a segundos. Por otra parte, dichos builds son empaquetados
-en un contenedor cuyo despliegue solo tomara algunos segundos, logrando así que
-los realeases se ejecuten con mayor frecuencia.
+Lo que empezó a pasar más recientemente fue que ese monolito empezó a romperse en pequeñas partes de software. Parte de los microservicios es hacer estos pequeños trozos de software. Este cambio, logra que los tiempos de los builds pasen de horas a segundos. Por otra parte, dichos builds son empaquetados en un contenedor cuyo despliegue solo tomara algunos segundos, logrando así que los realeases se ejecuten con mayor frecuencia.
 
-En definitiva, uno de los objetivos de los microservicios es incrementar la
-velocidad de desarrollo.
+En definitiva, uno de los objetivos de los microservicios es incrementar la velocidad de desarrollo.
 
-Imagine un escenario en donde cientos de personas están construyendo una aplicación 
-monolito, y una parte del equipo encuentra que algo esta fallando y luego en la 
-etapa de pruebas encuentran que dicho fallo está retrasando el release por una 
-semana, esto hace que el trabajo de las 99 personas no sea publicado en 
-producción en el tiempo esperado. Siguiendo la misma línea, se decide seguir 
-adelante con el release y posteriormente en producción se identifica que el 
-falló explotó, obligando así el retroceso a una version previa, lo cual en
-tiempo se traduce a otra semana más. En conclusion, tener demasiadas personas
-contribuyendo a un único gran proyecto, expone el riesgo de que un caso
-especifíco bloquée una gran cantidad de trabajo, obligando así a crear puntos
-de revisión para coordinar la entrega del trabajo.
+Imagine un escenario en donde cientos de personas están construyendo una aplicación  monolito, y una parte del equipo encuentra que algo esta fallando y luego en la  etapa de pruebas encuentran que dicho fallo está retrasando el release por una semana, esto hace que el trabajo de las 99 personas no sea publicado en 
+producción en el tiempo esperado. Siguiendo la misma línea, se decide seguir  adelante con el release y posteriormente en producción se identifica que el falló explotó, obligando así el retroceso a una version previa, lo cual en tiempo se traduce a otra semana más. En conclusion, tener demasiadas personas contribuyendo a un único gran proyecto, expone el riesgo de que un caso especifíco bloquée una gran cantidad de trabajo, obligando así a crear puntos de revisión para coordinar la entrega del trabajo.
 
-Por tanto, quebrar este monolito en microservicios básicamente es liberar al
-equipo de trabajo para que se desenvuelvan a su propia velocidad. Uno de los
-mayores beneficios ofrecidos por los microservicios es que no es necesario
-coordinar la entrega de trabajo. El propósito es dejar que cada uno liberé su
-código bajo su propio ciclo. Para ello es necesario que las interfaces sean
-estables y que cada pieza de código que se despliega es independiente de otra.
-No se debe pedir permiso para publicar los cambios, pero si es necesario
-comunicar los cambios que van a ser publicados.
+Por tanto, quebrar este monolito en microservicios básicamente es liberar al equipo de trabajo para que se desenvuelvan a su propia velocidad. Uno de los mayores beneficios ofrecidos por los microservicios es que no es necesario coordinar la entrega de trabajo. El propósito es dejar que cada uno liberé su código bajo su propio ciclo. Para ello es necesario que las interfaces sean estables y que cada pieza de código que se despliega es independiente de otra. No se debe pedir permiso para publicar los cambios, pero si es necesario comunicar los cambios que van a ser publicados.
 
-Por otra parte, la infraestructura de los microservicios necesita de
-automatización para que sea efectiva. Es aquí donde las tareas operacionales
-son relevantes. 
-
-
+Por otra parte, la infraestructura de los microservicios necesita de automatización para que sea efectiva. Es aquí donde las tareas operacionales son relevantes. 
 
 ## Microservicios {#micorservicios}
 
@@ -188,24 +155,13 @@ desplegables de Software-as-a-Service (SaaS). El concepto resalta tres
 importantes cirterios a tener en cuenta en el diseño de aplicaciones
 modernas:
 
--   **Portabilidad**: Eliminar elementos que varían entre los ambientes de ejecución,
+-   **Portabilidad**: Eliminar elementos que varían entre los ambientes de ejecución, tales como dependencias o configuraciones.
 
-tales como dependencias o configuraciones.
+-   **Continuamente desplegable**: Generalmente las aplicaciones que usan los 12 facotres son desplegadas en plataformas cloud (e.g. GCP ó Amazon), y se enfocan en mantener los ambientes de desarrollo y producción uniformes. Esto significa que se puede configurar herramientas para implementar actualizaciones de código rápidamente.
 
--   **Continuamente desplegable**: Generalmente las aplicaciones que usan los 12
+-   **Escalabilidad**: Las aplicaciones deben atender las demandas de los usuarios, mientras se usan las herramientas y las prácticas que se emplean desde un principio.
 
-facotres son desplegadas en plataformas cloud (e.g. GCP ó Amazon), y se enfocan
-en mantener los ambientes de desarrollo y producción uniformes. Esto significa
-que se puede configurar herramientas para implementar actualizaciones de código
-rápidamente.
-
--   **Escalabilidad**: Las aplicaciones deben atender las demandas de los usuarios,
-
-mientras se usan las herramientas y las prácticas que se emplean desde un
-principio.
-
-El patrón de diseño de microservicios siguen la mayoría de estos factores. Ahora
-es tiempo de utilizar Docker y Kubernetes para atender estas pautas
+El patrón de diseño de microservicios siguen la mayoría de estos factores. Ahora es tiempo de utilizar Docker y Kubernetes para atender estas pautas
 
 ### Referencias {#referencias}
 
