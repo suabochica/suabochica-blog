@@ -3,11 +3,8 @@ title = "Kubernetes"
 author = ["Sergio Benítez"]
 description = "Usa docker para construir contenedores de imágenes para empacar"
 date = 2020-11-19T00:00:00-05:00
-lastmod = 2021-05-30T21:11:26-05:00
+lastmod = 2021-05-31T21:23:50-05:00
 draft = false
-tags = [
-    "microservicios",
-]
 +++
 
 una aplicación y sus dependencias y así hacer un despliegue en una sola máquina
@@ -282,11 +279,11 @@ Las sondas de vivacidad (liveness en inglés) indican que un contenedor está vi
 
 Una referencia visual puede ser la siguiente. En este ejemplo se muestra un pod con un contender `app v1` y un demonio de kubernetes llamado _kubelet_. Kubelet es responsable de la salud del pod, y va a ejecutar el control de vida. Para este caso el contenedor es muerto y se utiliza el color rojo del para indicar dicho estado.
 
-../![](../images/microservices/03-kubernetes-mhc-dead.png)
+{{< figure src="../../images/microservices/03-kubernetes-mhc-dead.png" caption="Figure 2: MHC de un pod muerto" >}}
 
 Un periodo de tiempo establecido por el usuario indica la frecuencia con la que kubelet emite sondas para corroborar el estado del contenedor. Para este caso, el contenedor responde que esta muerto y la acción a ejecutar por Kubelet es el reinicio del contenedor, y posteriormente ejecutará en control de salud nuevamente.
 
-../![](../images/microservices/02-kubernetes-mhc-alive.png)
+{{< figure src="../../images/microservices/02-kubernetes-mhc-alive.png" caption="Figure 3: MHC de un pod vivo" >}}
 
 Para esta oportunidad, todo esta funcionando como se espera, y el estado del contenedor esta perfecto, como lo determina el color azul.
 
@@ -400,7 +397,7 @@ $ kubeclt create secret generic tls-certs --form-file=tls/
 
 La siguiente imagen describe cuál es el rol de los secretos:
 
-{{< figure src="../images/microservices/04-kubernetes-secrets-and-configmaps.png" caption="Figure 4: Secretos y mapas de configuración" >}}
+{{< figure src="../../images/microservices/04-kubernetes-secrets-and-configmaps.png" caption="Figure 4: Secretos y mapas de configuración" >}}
 
 Al crear el secreto, el pod kubernetes master es conciente de su existencia. Al momento de correr un pod con un secreto adjunto, primero se crea el pod y luego se monta el secreto como un volumen dentro del pod. De esta manera los creadores del pod tienen garantías de que sus configuraciones están en el pod antes de que el contenedor se inicie.
 
@@ -516,7 +513,7 @@ Por otra parte, el nivel de acceso que los servicios suministran a los pods depe
 
 La siguiente imagen, es un resumen del contexto sobre el cual los servicios se desenvuelven.
 
-../![](../images/microservices/05-kubernetes-services.png)
+{{< figure src="../../images/microservices/05-kubernetes-services.png" caption="Figure 5: Servicios" >}}
 
 
 ## Creando servicios {#creando-servicios}
