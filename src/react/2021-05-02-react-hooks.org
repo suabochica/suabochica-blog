@@ -613,10 +613,14 @@ El segundo detalle esta dentro del retorno del componente. Aquí se agrego el ev
 
 ** DONE Explicar el contador del evento del ratón
    CLOSED: [2021-06-01 Tue 09:30]
-El estado ~[mouseEventCounter, setMouseEventCounter] = useState(0)~ es otro efecto secundario que se incluye para tener un registro de las veces que se activa el evento ~onMouseOver~.
+El estado ~[mouseEventCounter, setMouseEventCounter] = useState(0)~ es otro efecto secundario que se incluye para tener un registro de las veces que se activa el evento ~onMouseOver~. Dicho conteo se esta registrando en la parte superior del navegador dentro de una etiqueta ~<span>~.
 
 Por último, el detalle más relevante es el uso de la función ~useEffect~ para actualizar el título de la ventana del navegador, aprovechando la ventaja de los momentos del ciclo de vida de un componente funcional que expone este hook. Aquí explicitamente se asigna el título del documento al valor del ~currentSpeakerId~ y con ayuda de un log se deja un registro del valor actual de dicha variable.
 
 Adicionalmente, para este caso la función ~useEffect~ no recibe un segundo parámetro, indicando así que la función ~useEffect~ se va a llamar cada vez que se presente un cambio en el componente.
 
-** TODO Señalar el problema de optimización asociado al evento del botón
+** DONE Señalar el problema de optimización asociado al evento del botón
+   CLOSED: [2021-06-02 Wed 09:01]
+Al realizar las pruebas en el navegador se puede observar el comportamiento esperado en la actualización del título de la ventana del navegador con el identificador de la imagen cuando el usuario posiciona el cursor sobre la imagen de algún expositor. No obstante hay un comportamiento que se evidencia dentro de la consola del navegador que puede ser considerado un bug.
+
+Cuando se posiciona el cursor sobre una imagen, se deja un registro en la consoloa. Si el cursor se posiciona por fuera de la imagen y se vuelve a colocar sobre la imagen inicial se vuelve a tener un registro en la consola, lo que significa que el título de la ventana del navegador se actualizó dos veces con el mismo identificador de la imagen. El escenario ideal sería evitar el segundo llamado a la actualización del título de la ventana cuando el identificador previo coincide con el identificador actual. A continuación se tiene una propuesta para optimizar este comportamiento:
