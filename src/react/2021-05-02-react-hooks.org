@@ -623,4 +623,53 @@ Adicionalmente, para este caso la función ~useEffect~ no recibe un segundo par�
    CLOSED: [2021-06-02 Wed 09:01]
 Al realizar las pruebas en el navegador se puede observar el comportamiento esperado en la actualización del título de la ventana del navegador con el identificador de la imagen cuando el usuario posiciona el cursor sobre la imagen de algún expositor. No obstante hay un comportamiento que se evidencia dentro de la consola del navegador que puede ser considerado un bug.
 
-Cuando se posiciona el cursor sobre una imagen, se deja un registro en la consoloa. Si el cursor se posiciona por fuera de la imagen y se vuelve a colocar sobre la imagen inicial se vuelve a tener un registro en la consola, lo que significa que el título de la ventana del navegador se actualizó dos veces con el mismo identificador de la imagen. El escenario ideal sería evitar el segundo llamado a la actualización del título de la ventana cuando el identificador previo coincide con el identificador actual. A continuación se tiene una propuesta para optimizar este comportamiento:
+Cuando se posiciona el cursor sobre una imagen, se deja un registro en la consoloa. Si el cursor se posiciona por fuera de la imagen y se vuelve a colocar sobre la imagen inicial se vuelve a tener un registro en la consola del llamado al ~useEffect~, lo que significa que el título de la ventana del navegador se actualizó dos veces con el mismo identificador de la imagen. El escenario ideal sería evitar el segundo llamado a la actualización del título de la ventana cuando el identificador previo coincide con el identificador actual. A continuación se tiene una propuesta para optimizar este comportamiento:
+
+#+begin_src jsx
+import React, {useState, useEffect} from "react";
+import ImageToggleOnScroll from "../src/ImageToggleOnScroll";
+
+const ImageChangeOnScroll = () => {
+  const [currentSpeakerId, setCurrentSpeakerId] = useState(0);
+  const [mouseEventCounter, setMouseEventCounter] = useState(0);
+
+  useEffect(() => {
+    window.document.title = `SpeakerId: ${currentSpeakerId}`;
+    console.log(`useEffect: setting title to ${currentSpeakerId}`);
+  }, [currentSpeakerId]);
+
+  return (
+    <div>
+      <span>mouseEventCounter: ${mouseEventCounter}</span>
+      {[01, 02, 03, 04].map((speakerId) => {
+        return (
+          <div key={speakerId}
+            onMouseOver={() => {
+              setCurrentSpeakerId(speakerId);
+              setMouseEventCounter(mouseEventCounter++);
+            }
+          }>
+            <ImageToggleOnScroll
+              primaryImg="/static/speakers/bw/speaker-${speakerId}.jpg"
+              secondaryImg="/static/speakers/color/speaker-${speakerId}.jpg"
+              alt=""
+            />
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+export default ImageChangeOnScroll;
+#+end_src
+
+El único cambio en este código corresponde al segundo parámetro del ~useEffect~. Se agregó el siguiente valor ~[currentSpeakerId]~ en el arreglo de dependencia. Ahora al probar en el navegador se tiene el resultado esperado con el comportamiento de posicionar el cursor sobre una imagen, ubicarlo por fuera de la misma y volverlo a colocar sobre la imagen previa. Si se revisa la consola del navegador, ya no hay registro del llamado a ~useEffect~. No obstante si se posiciona el cursor sobre otra imagen, el llamado si se ejecuta.
+
+En pocas palabras esta es la optimización, usar el arreglo de dependencias para evitar que el llamado de ~useEffect~ no se realice de no ser necesario.
+
+Por otra parte, una pregunta valida es porque se decidió mostrar un contador de los eventos del ratón en la pagína web. La razón es que dicho contador suministra información de que comportamiento esta generando el evento. Si el contador se hubiera omitido, probablemente nunca se hubiera identificado el problema de optimización descrito anteriormente.
+
+* Conclusiones
+
+En esta publicación se explicaron los hooks más usados en el mundo de React. ~useState~ es para rastrear el estado de manera fácil sobre detalles puntuales. ~useEffect~ ofrece una forma limpia para configurar funcionalidades dentro del ciclo de vida de un componente funcional en react, como por ejemplo, el estado. Y por último ~useRef~ suministra el control que en ocaciones se precisa sobre elementos del DOM.
