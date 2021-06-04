@@ -1,5 +1,5 @@
 #+TITLE: React Hooks
-#+DESCRIPTION: Serie que pretende explicar la funcionalidad de Reack Hooks
+#+DESCRIPTION: Serie que pretende explicar la funcionalidad de React Hooks
 #+AUTHOR: Sergio Benítez
 #+DATE:<2021-05-02 Sun>
 #+STARTUP: fold

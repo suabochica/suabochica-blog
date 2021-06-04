@@ -1,0 +1,20 @@
+#+TITLE: More React Hooks
+#+DESCRIPTION: Serie que pretende explicar la funcionalidad de React Hooks
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-06-03 Thu>
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+En esta publicación se va a profundizar en el uso de hooks más genércos suministrados por React. Dichos hooks son:
+
+- ~useContext~
+- ~useReducer~
+- ~useCallback~
+- ~useMemo~
+
+La oferta de hooks puede llegar a ser abrumadora y es válido questionar ¿cuál es el propósito de los mismos?. Usar hooks es una forma de crear funcionalidades bajo una perspectiva declarativa. Ahora bien ¿hay alguna nueva funcionalidad en los react hooks? La respuesta es no. Básicamente los hooks son equivalentes a los componentes de clase de React en el sentido de que se pueden obtener los mismos resultados con estilos de programación diferentes. Otra pregunta frecuente es ¿react hooks llego para quedarse? y esta es una pregunta subjetiva ya que su respuesta dependerá de las intenciones y el contexto del equipo de desarrollo. Los que si es cierto es que los hooks cada vez tienen mayor aceptación dentro de la comunidad react, entonces es recomendable tener conocimientos previos sobre ellos. Por último ¿Están muertos los componentes de clase de react? las respuesta es no. Cómo la mayoría de las transiciones entre nuevas funcionalidades, hay unos nuevos patrones por asimilar pero esto no significa que se vayan a reemplazar. Por otra parte, los react hooks pueden coexistir con los componentes de clase, y por lo tanto los componentes de clase seguirán vigentes en los proyectos react. Siguiendo con esta línea tampoco es necesario actualizar los componentes de clase a react hooks ya que no hay nada malo con las clases de javascript y tampoco diferencias en rendimiento. De hecho la recomendación del equipo de desarrolladores de react es que no es necesario hacer una reescritura. Hooks simplemente es una alternativa a la creación de funcionalidades en react bajo un paradigma declarativo que hace que su implementación sea más sencilla y legible.
+
+* Usos básicos de los hooks y sus reglas
