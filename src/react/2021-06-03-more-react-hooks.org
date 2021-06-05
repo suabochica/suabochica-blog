@@ -18,3 +18,93 @@ En esta publicación se va a profundizar en el uso de hooks más genércos sumin
 La oferta de hooks puede llegar a ser abrumadora y es válido questionar ¿cuál es el propósito de los mismos?. Usar hooks es una forma de crear funcionalidades bajo una perspectiva declarativa. Ahora bien ¿hay alguna nueva funcionalidad en los react hooks? La respuesta es no. Básicamente los hooks son equivalentes a los componentes de clase de React en el sentido de que se pueden obtener los mismos resultados con estilos de programación diferentes. Otra pregunta frecuente es ¿react hooks llego para quedarse? y esta es una pregunta subjetiva ya que su respuesta dependerá de las intenciones y el contexto del equipo de desarrollo. Los que si es cierto es que los hooks cada vez tienen mayor aceptación dentro de la comunidad react, entonces es recomendable tener conocimientos previos sobre ellos. Por último ¿Están muertos los componentes de clase de react? las respuesta es no. Cómo la mayoría de las transiciones entre nuevas funcionalidades, hay unos nuevos patrones por asimilar pero esto no significa que se vayan a reemplazar. Por otra parte, los react hooks pueden coexistir con los componentes de clase, y por lo tanto los componentes de clase seguirán vigentes en los proyectos react. Siguiendo con esta línea tampoco es necesario actualizar los componentes de clase a react hooks ya que no hay nada malo con las clases de javascript y tampoco diferencias en rendimiento. De hecho la recomendación del equipo de desarrolladores de react es que no es necesario hacer una reescritura. Hooks simplemente es una alternativa a la creación de funcionalidades en react bajo un paradigma declarativo que hace que su implementación sea más sencilla y legible.
 
 * Usos básicos de los hooks y sus reglas
+
+Para el uso de hooks básicamente se tienen dos reglas:
+
+1. Los react hooks solo pueden ser llamados por componentes funcionales de react.
+2. Los react hooks se llaman en un nivel alto del componente funcional, y no pueden ser anidados dentro de funciones, condiciones o bucles.
+
+La razón del porque los hooks no pueden anidarse se debe a que la biblioteca react siempre tiene presente los llamados a los mismos esperando el mismo orden cada vez que los evaluan durante la renderización del componente. Eso le permite a react preservar correctamente el estado de los hooks entre multiples llamados ~useState~ y ~useEffect~.
+
+Para tener garantías sobre el cumplimiento de estas reglas hay un complemento designado para trabajar con ESLint, una herramienta de linter que permite identificar y reportar problemas en su código javascript. Dicho plugin es ~eslint-plugin-react-hooks~. Este complemento no atrapará todos los problemas pero sí la mayoría de ellos.
+
+Para hacer uso de este linter, toca hacer las siguientes configuraciones: En el archivo ~package.json~ se debe instalar el plugin tal y como se muestra acontinuación:
+
+#+begin_src json
+  {
+    "devDependencies": {
+      "eslint": "^7.22.0",
+      "eslint-plugin-react": "^7.23.1",
+      "eslint-plugin-react-hooks": "^4.2.0",
+      "prettier": "^2.2.1",
+    }
+  }
+#+end_src
+
+Luego, hay que crear un archivo ~eslintrc.json~ y pegar el siguiente contenido:
+
+#+begin_src json
+  {
+    "parserOptions": {
+      "ecmaVerison": 2020,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+       },
+    },
+    "plugins": ["react-hooks"],
+    "rules": {
+      "react-hooks/rules-of-hooks": "error"
+    }
+  }
+#+end_src
+
+Con estas configuraciones el linter ya estará en condiciones de reportar los errores asociados a los incumplimientos de las reglas de los hooks. Si se obtiene un archivo ~index.js~ con el siguiente contenido:
+
+#+begin_src js
+  import React {useEffect, useState} from "react";
+
+  const InputElement = () => {
+    const random_bool = Math.random() >= 0.5;
+
+    if (random_bool === true) {
+      const [isLoading, setIsLoading] = useState(true);
+    } else {
+      const [isLoading, setIsLoading] = useState(false);
+    }
+
+    useEffect(() => {
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 2000)
+    });
+
+    return isLoading ? <div>Loading...</div> : <input placeholder="Enter some text">
+  };
+
+export default InputElement;
+#+end_src
+
+El linter reporta un error asociado a que los hooks no pueden definirse dentro de una condición. La versión apropiada de esta implementación es la siguiente:
+
+#+begin_src js
+  import React {useEffect, useState} from "react";
+
+  const InputElement = () => {
+    const random_bool = Math.random() >= 0.5;
+
+    const [isLoading, setIsLoading] = useState(random_bool === true);
+
+    useEffect(() => {
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 2000)
+    });
+
+    return isLoading ? <div>Loading...</div> : <input placeholder="Enter some text">
+  };
+
+export default InputElement;
+#+end_src
+
+* Aplicación react de conferencias
