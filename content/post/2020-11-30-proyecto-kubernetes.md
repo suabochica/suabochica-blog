@@ -35,7 +35,7 @@ Está administración de nodos se le delega e los despliegues, ya que con una se
 
 En el ejemplo de la siguiente imagen, se muestra un despliegue con tres replicas. Una de ellas está caida y la misma configuración estará en capacidad de iniciar un nuevo pod y encontrar un lugar para él. En este caso, el pod se inicia en el segundo nodo, comportamiento que resulta bastante útil.
 
-{{< figure src="../../images/microservices/01-project-deployments.png" caption="Figure 1: El cliente envía una solicitud de log in" >}}
+{{< figure src="../../images/microservices/01-project_deployments.png" caption="Figure 1: El cliente envía una solicitud de log in" >}}
 
 Es tiempo de combinar todo lo que se ha aprendido hasta ahora de pods y servicios y romper un aplicación monolito en pequeños servicios usando despliegues.
 
@@ -194,7 +194,7 @@ Por debajo, los despliegues crean un conjunto de replicas para manejar la creaci
 
 Esta característica de los despliegues hace que el escalamiento hacia arriba y hacia abajo sea igual de facil para uno, dos o n nodos. En la siguiente imagen se muestra como el despliegue de `auth` se amplia por tres replicas:
 
-{{< figure src="../../images/microservices/02-project-scaling.png" caption="Figure 2: El cliente envía una solicitud de log in" >}}
+{{< figure src="../../images/microservices/02-project_scaling.png" caption="Figure 2: El cliente envía una solicitud de log in" >}}
 
 
 ## Despliegues de escalamiento {#despliegues-de-escalamiento}
@@ -298,17 +298,17 @@ En vez de eso, se puede utilizar `kubeclt rollout`, el cual funcionará de la si
 
 Retomando el mapa de un despliegue con tres replicas de un pod, tal y como se muestra en la siguiente imagen, se decide actualizar los pods a una nueva versión disparando el comando `kubeclt rollout`.
 
-{{< figure src="../../images/microservices/03-project-update1.png" caption="Figure 3: rolling update step 1" >}}
+{{< figure src="../../images/microservices/03-project_update1.png" caption="Figure 3: rolling update step 1" >}}
 
 Como se observa en la imagen, un nuevo pod se publica y entonces el servicio empieza a enrutar el tráfico hacia este nuevo pod, con la versión actualizada. Esto significa que en determinado momento, se van a tener dos pods, uno con la primera versión y otro con la segunda, y el tráfico será dirigido hacia ambos.
 
 Posteriormente, el tráfico hacia el pod viejo es detenido, y por último se deshace de él por completo. Las líneas amarillas en las imágenes representan el tráfico entre el servicio y el pod. En la siguiente imagen se consolida la descripción realziada.
 
-{{< figure src="../../images/microservices/03-project-update2.png" caption="Figure 4: rolling update step 2" >}}
+{{< figure src="../../images/microservices/03-project_update2.png" caption="Figure 4: rolling update step 2" >}}
 
 En este punto, el ciclo continua a través de todas las replicas hasta tener todos los pods en la segunda versión, como ilustra la siguiente imagen.
 
-{{< figure src="../../images/microservices/03-project-update3.png" caption="Figure 5: rolling update step 3" >}}
+{{< figure src="../../images/microservices/03-project_update3.png" caption="Figure 5: rolling update step 3" >}}
 
 Al final, todos los pods en el servicio, contaran con la segunda versión, luego de haber terminado la actualización.
 
