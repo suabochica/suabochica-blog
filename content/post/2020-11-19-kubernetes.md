@@ -5,6 +5,9 @@ description = "Usa docker para construir contenedores de imágenes para empacar"
 date = 2020-11-19T00:00:00-05:00
 lastmod = 2021-05-31T21:23:50-05:00
 draft = false
+tags = [
+    "microservicios",
+]
 +++
 
 una aplicación y sus dependencias y así hacer un despliegue en una sola máquina

@@ -1,18 +1,20 @@
-#+TITLE: Poryecto Kubernetes
-#+DESCRIPTION: Uso de Kubernetes en aplicaciones reales
-#+AUTHOR: Sergio Benítez
-#+DATE:<2020-11-30 Mon> 
-#+STARTUP: content
-#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
-#+HUGO_SECTION: /post
-#+HUGO_WEIGHT: auto
-#+HUGO_AUTO_SET_LASTMOD: t
++++
+title = "Poryecto Kubernetes"
+author = ["Sergio Benítez"]
+description = "Uso de Kubernetes en aplicaciones reales"
+date = 2020-11-30T00:00:00-05:00
+lastmod = 2021-06-06T22:49:19-05:00
+draft = false
+tags = [
+    "microservicios",
+]
++++
 
-* Intro
+## Intro {#intro}
 
 Es tiempo de ir más lejos con el apredizaje de Kubernetes. Ya se repasaron los conceptos, y solo falta revisar como gerenciar Kubernetes con aplicativos reales.
 
-Generalmente las aplicaciones reales exigen almacenamiento persistente, búsquedas TLS e implementaciones más avanzadas. Hasta el momento, Kubernetes ha parecido una mejor forma de ejecutar comandos Docker. Por ejemplo, con los comandos de ~kubectl~ se logra desplegar contenedores, y hacerlos disponibles por fuera del cluster.
+Generalmente las aplicaciones reales exigen almacenamiento persistente, búsquedas TLS e implementaciones más avanzadas. Hasta el momento, Kubernetes ha parecido una mejor forma de ejecutar comandos Docker. Por ejemplo, con los comandos de `kubectl` se logra desplegar contenedores, y hacerlos disponibles por fuera del cluster.
 
 En casos avanzados, es ideal declarar el estado desado de las infraestructuras y eso implica correr configuraciones en Kubernetes. Las configuraciones en k8s, permiten administrar los secretos, y determinar el flujo para actualizar los aplicativos.
 
@@ -20,7 +22,8 @@ Ahora, ¿qué siginifica el estado deseado?. Practicamente sería crear un conju
 
 Se prosigue con el uso de k8s en casos más avanzados.
 
-* Revisión general de un despliegue
+
+## Revisión general de un despliegue {#revisión-general-de-un-despliegue}
 
 El objetivo con Docker y Kubernetes es estar en capacidad de escalar y manejar contenedores en producción, y es aquí donde los despliegues empiezan a tener el protragonismo.
 
@@ -32,18 +35,18 @@ Está administración de nodos se le delega e los despliegues, ya que con una se
 
 En el ejemplo de la siguiente imagen, se muestra un despliegue con tres replicas. Una de ellas está caida y la misma configuración estará en capacidad de iniciar un nuevo pod y encontrar un lugar para él. En este caso, el pod se inicia en el segundo nodo, comportamiento que resulta bastante útil.
 
-#+CAPTION: El cliente envía una solicitud de log in
-[[../../images/microservices/01-project-deployments.png]]
+{{< figure src="../../images/microservices/01-project-deployments.png" caption="Figure 1: El cliente envía una solicitud de log in" >}}
 
 Es tiempo de combinar todo lo que se ha aprendido hasta ahora de pods y servicios y romper un aplicación monolito en pequeños servicios usando despliegues.
 
-* Creando despliegues
 
-Es momento de crear despliegues, uno por cada servicio: ~auth~, ~frontend~ y ~hello~. Se van a definir servicios internos para los despliegues de ~auth~ y ~hello~ y un servicio externo para el despliegue del ~frontend~.
+## Creando despliegues {#creando-despliegues}
 
-Es recomendable empezar con revisar los contenidos de los archivos de configuración. Para este caso puntual vamos a revisar el archivo ~auth.yalm~
+Es momento de crear despliegues, uno por cada servicio: `auth`, `frontend` y `hello`. Se van a definir servicios internos para los despliegues de `auth` y `hello` y un servicio externo para el despliegue del `frontend`.
 
-#+begin_src bash
+Es recomendable empezar con revisar los contenidos de los archivos de configuración. Para este caso puntual vamos a revisar el archivo `auth.yalm`
+
+```bash
 $ cat deployments/auth.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -87,20 +90,20 @@ spec:
               scheme: HTTP
             initialDelaySeconds: 5
             timeoutSeconds: 1
-#+end_src
+```
 
 En esta salida se obtiene información útil como el número de replicas, las etiquetas que se van a usar y la versión de la imagen de docker sobre la cual se va a generar el contenedor. Se resalta que dicha configurarción se puede editar cuando se requiera necesario.
 
 Para crear el despliegue del servicio se usa el siguiente comando:
 
-#+begin_src bash
+```bash
 $ kubectl create -f deployments/auth.yaml
 deployment.apps/auth created
-#+end_src
+```
 
-Al igual que cualquier otro objeto kubernetes, se puede usar el comando ~describe~ para obtener más información sobre el despliegue del servicio:
+Al igual que cualquier otro objeto kubernetes, se puede usar el comando `describe` para obtener más información sobre el despliegue del servicio:
 
-#+begin_src bash
+```bash
 $ kubectl describe deployments auth
 Name:                   auth
 Namespace:              default
@@ -139,18 +142,18 @@ Events:
   Type    Reason             Age   From                   Message
   ----    ------             ----  ----                   -------
   Normal  ScalingReplicaSet  99s   deployment-controller  Scaled up replica set auth-784c79df7f to 1
-#+end_src
+```
 
-Con esta configurarción, ya se está en capacidad de crear el servicio de ~auth~, siguiendo un proceso similar al que se descrbió anteriormente:
+Con esta configurarción, ya se está en capacidad de crear el servicio de `auth`, siguiendo un proceso similar al que se descrbió anteriormente:
 
-#+begin_src bash
+```bash
 $ kubectl create -f services/auth.yaml
 services.apps/auth created
-#+end_src
+```
 
 Se repiten estos pasos con cada uno de los servicios:
 
-#+begin_src bash
+```bash
 $ kubectl create -f deployments/hello.yaml
 deployment.apps/hello created
 
@@ -165,78 +168,79 @@ deployment.apps/frontend created
 
 $ kubectl create -f services/frontend.yaml
 services.apps/frontend created
-#+end_src
+```
 
 Para el caso del servicio frontend, es necesario configurar NGINX tal y como se reviso previamente, a través del ~configmap.
 
-Con dicha configuración, se esta listo para interectuar con el servicio ~frontend~ agarrando la dirección IP externa y usando ~curl~ para golpearla.
+Con dicha configuración, se esta listo para interectuar con el servicio `frontend` agarrando la dirección IP externa y usando `curl` para golpearla.
 
-#+begin_src bash
+```bash
 $ kubectl get services frontend
 NAME       TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)         AGE
 frontend   LoadBalancer   10.3.241.59   35.188.198.204   443:31017/TCP   5m47s
 
 $ curl -k https://35.188.198.204
 {"message": "hello"}
-#+end_src
+```
 
 Y esto es todo, ahora se tiene una aplicación de multiservicios desplegada usando k8s. Estas habilidades permitirán desplegar applicaciones más complicadas sobre k8s, usando colecciones de despliegues y servicios.
 
-* Revisión generar de escalamiento
 
-El escalamiento es hecho con la actualización del valor en la propuedad replicas de nuestro manifiesto de despliegue. Esta es considerada una buena práctica, ya que a pesar de tener métodos imperativos con ~kubectl scale~ no hay estado guardado en ninguna parte.
+## Revisión generar de escalamiento {#revisión-generar-de-escalamiento}
+
+El escalamiento es hecho con la actualización del valor en la propuedad replicas de nuestro manifiesto de despliegue. Esta es considerada una buena práctica, ya que a pesar de tener métodos imperativos con `kubectl scale` no hay estado guardado en ninguna parte.
 
 Por debajo, los despliegues crean un conjunto de replicas para manejar la creación, supresión y actulización de pods. Los despliegues administran por cuenta propia los conjuntos de replicas y por ende no se debe preocuparse por ellos.
 
-Esta característica de los despliegues hace que el escalamiento hacia arriba y hacia abajo sea igual de facil para uno, dos o n nodos. En la siguiente imagen se muestra como el despliegue de ~auth~ se amplia por tres replicas:
+Esta característica de los despliegues hace que el escalamiento hacia arriba y hacia abajo sea igual de facil para uno, dos o n nodos. En la siguiente imagen se muestra como el despliegue de `auth` se amplia por tres replicas:
 
-#+CAPTION: El cliente envía una solicitud de log in
-[[../../images/microservices/02-project-scaling.png]]
+{{< figure src="../../images/microservices/02-project-scaling.png" caption="Figure 2: El cliente envía una solicitud de log in" >}}
 
-* Despliegues de escalamiento
+
+## Despliegues de escalamiento {#despliegues-de-escalamiento}
 
 Es importante tener presente que cada despliegue es mapeado hacia un conjunto de replicas activo. El siguiente comando permite visualizar el conjunto actual de replicas que se están ejecutando:
 
-#+begin_src bash
+```bash
 $ kubectl get replicasets
 NAME                DESIRED   CURRENT   READY   AGE
 auth-784c79df7f     1         1         1       3h38m
 frontend-868c46fc   1         1         0       3h31m
 hello-67dfcd5745    1         1         1       3h32m
 nginx-26dfcd5745    1         1         1       3h32m
-#+end_src
+```
 
-Los conjuntos de replicas son escalados hacia los despliegues por cada servicio y este proceso se puede hacer de manera independiente. Como se menciono anteriormente, la verdadera fortaleza de k8s viene cuando se trabaja de manera declarativa, en vez de usar comandos imperativos de ~kubctl~.
+Los conjuntos de replicas son escalados hacia los despliegues por cada servicio y este proceso se puede hacer de manera independiente. Como se menciono anteriormente, la verdadera fortaleza de k8s viene cuando se trabaja de manera declarativa, en vez de usar comandos imperativos de `kubctl`.
 
-Si se quiere ver cuantos pods de ~hello~ se estan corriendo, se ejecuta el siguiente comando:
+Si se quiere ver cuantos pods de `hello` se estan corriendo, se ejecuta el siguiente comando:
 
-#+begin_src bash
+```bash
 $ kubectl get pods -l "app=hello,track=stable"
 NAME
 hello-67dfcd5745
-#+end_src
+```
 
-Para escalar el despliegue ~hello~ con tres replicas, se debe actualizar la propiedad ~replicas: 3~ en el archivo ~deployments/hello.yaml~. Para aplicar los cambios se corre el siguiente comando:
+Para escalar el despliegue `hello` con tres replicas, se debe actualizar la propiedad `replicas: 3` en el archivo `deployments/hello.yaml`. Para aplicar los cambios se corre el siguiente comando:
 
-#+begin_src bash
+```bash
 $ kubectl apply -f deployments/hello.yaml
 deployment "hello" configured
-#+end_src
+```
 
-Se ejecuta nuevamente el ~replicasets~ y se verán los cambios:
+Se ejecuta nuevamente el `replicasets` y se verán los cambios:
 
-#+begin_src bash
+```bash
 $ kubectl get replicasets
 NAME                DESIRED   CURRENT   READY   AGE
 auth-784c79df7f     1         1         1       3h38m
 frontend-868c46fc   1         1         0       3h31m
 hello-67dfcd5745    3         3         3       3h32m
 nginx-26dfcd5745    1         1         1       3h32m
-#+end_src
+```
 
-El valor ~DESIRED~ para indicar el número deseado de replicas fue actualizado. Al correr el comando ~kubectl get pods~ también se observa el cambio:
+El valor `DESIRED` para indicar el número deseado de replicas fue actualizado. Al correr el comando `kubectl get pods` también se observa el cambio:
 
-#+begin_src bash
+```bash
 $ kubectl get pods
 NAME                      READY   STATUS              RESTARTS   AGE
 auth-784c79df7f-jwdgp     1/1     Running             0          3h52m
@@ -247,11 +251,11 @@ hello-67dfcd5745-7fszt    1/1     Running             0          3h45m
 nginx-87dfcd5745-7fszt    1/1     Running             0          3h45m
 monolith                  1/1     Running             0          3h45m
 secure-monolith           1/1     Running             0          3h45m
-#+end_src
+```
 
-Similarmente, el comando describe sobre ~hello~ es consistente con el resultado:
+Similarmente, el comando describe sobre `hello` es consistente con el resultado:
 
-#+begin_src bash
+```bash
 $ kubectl describe deployments hello
 Replicas:               3 desired | 3 updated | 3 total | 3 available | 0 unavailable
 StrategyType:           RollingUpdate
@@ -281,40 +285,39 @@ Conditions:
 OldReplicaSets:  <none>
 NewReplicaSet:   hello-67dfcd5745 (3/3 replicas created)
 Events:          <none>
-#+end_src
+```
 
-En este punto se tienen múltiples copias del servicio ~hello~ corriendo en k8s y se tiene un solo servicio frontend que esta de intermediario sobre el tráfico hacia los tres pods. Esto perimite compartir la carga y escalar los contenedores en k8s.
+En este punto se tienen múltiples copias del servicio `hello` corriendo en k8s y se tiene un solo servicio frontend que esta de intermediario sobre el tráfico hacia los tres pods. Esto perimite compartir la carga y escalar los contenedores en k8s.
 
-* Descripción general de actualizaciones
+
+## Descripción general de actualizaciones {#descripción-general-de-actualizaciones}
 
 El último escenario que hace falta abordar, es el de las actualizaciones a nuevas actualizaciones de la aplicación. Obviamente, las actualizaciones de los contenedores deben proteger los datos y pueden ser nuevos cambios en el frontend para los usuarios. No obstante, sería arriesgado implementar todos los cambios al mismo tiempo.
 
-En vez de eso, se puede utilizar ~kubeclt rollout~, el cual funcionará de la siguiente manera.
+En vez de eso, se puede utilizar `kubeclt rollout`, el cual funcionará de la siguiente manera.
 
-Retomando el mapa de un despliegue con tres replicas de un pod, tal y como se muestra en la siguiente imagen, se decide actualizar los pods a una nueva versión disparando el comando ~kubeclt rollout~.
+Retomando el mapa de un despliegue con tres replicas de un pod, tal y como se muestra en la siguiente imagen, se decide actualizar los pods a una nueva versión disparando el comando `kubeclt rollout`.
 
-#+CAPTION: rolling update step 1
-[[../../images/microservices/03-project-update1.png]]
+{{< figure src="../../images/microservices/03-project-update1.png" caption="Figure 3: rolling update step 1" >}}
 
 Como se observa en la imagen, un nuevo pod se publica y entonces el servicio empieza a enrutar el tráfico hacia este nuevo pod, con la versión actualizada. Esto significa que en determinado momento, se van a tener dos pods, uno con la primera versión y otro con la segunda, y el tráfico será dirigido hacia ambos.
 
 Posteriormente, el tráfico hacia el pod viejo es detenido, y por último se deshace de él por completo. Las líneas amarillas en las imágenes representan el tráfico entre el servicio y el pod. En la siguiente imagen se consolida la descripción realziada.
 
-#+CAPTION: rolling update step 2
-[[../../images/microservices/03-project-update2.png]]
+{{< figure src="../../images/microservices/03-project-update2.png" caption="Figure 4: rolling update step 2" >}}
 
-En este punto, el ciclo continua a través de todas las replicas hasta tener todos los pods en la segunda versión, como ilustra la siguiente imagen. 
+En este punto, el ciclo continua a través de todas las replicas hasta tener todos los pods en la segunda versión, como ilustra la siguiente imagen.
 
-#+CAPTION: rolling update step 3
-[[../../images/microservices/03-project-update3.png]]
+{{< figure src="../../images/microservices/03-project-update3.png" caption="Figure 5: rolling update step 3" >}}
 
 Al final, todos los pods en el servicio, contaran con la segunda versión, luego de haber terminado la actualización.
 
-* Actualizaciones continuas
 
-Kubernetes hace fácil la implementación de actualizaciones en las aplicaciones al modificar y administrar los despliegues. Nuevamente se va a modificar el archivo ~deployments/auth.yalm~ para usar la versión ~2.0.0~ de la imagen en el contenedor, tal y como se muestra a continuación:
+## Actualizaciones continuas {#actualizaciones-continuas}
 
-#+begin_src bash
+Kubernetes hace fácil la implementación de actualizaciones en las aplicaciones al modificar y administrar los despliegues. Nuevamente se va a modificar el archivo `deployments/auth.yalm` para usar la versión `2.0.0` de la imagen en el contenedor, tal y como se muestra a continuación:
+
+```bash
 $ vim deployments/auth.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -358,18 +361,18 @@ spec:
               scheme: HTTP
             initialDelaySeconds: 5
             timeoutSeconds: 1
-#+end_src
+```
 
 Para aplicar la actualización se ejecuta el siguiente comando:
 
-#+begin_src bash
+```bash
 $ kubectl apply -f deployments/auth.yaml
 deployment "auth" configured
-#+end_src
+```
 
-Para hacer seguimiento sobre el progreso de la actualización se usa el comando ~kubectl describe~:
+Para hacer seguimiento sobre el progreso de la actualización se usa el comando `kubectl describe`:
 
-#+begin_src bash
+```bash
 $ kubectl describe deployments auth
 Name:                   auth
 Namespace:              default
@@ -408,15 +411,15 @@ Events:
   Type    Reason             Age   From                   Message
   ----    ------             ----  ----                   -------
   Normal  ScalingReplicaSet  10s   deployment-controller  Scaled up replica set auth-56746f6f6 to 1
-#+end_src
+```
 
-Para revisar la estrategia de actualizaciones, se localiza la información en ~RollingUpdateStrategy: 1 max unavailable, 1 max surge~. Como se puede observar, hay garantías sobre el número de pods que están siempre dispondibles.
+Para revisar la estrategia de actualizaciones, se localiza la información en `RollingUpdateStrategy: 1 max unavailable, 1 max surge`. Como se puede observar, hay garantías sobre el número de pods que están siempre dispondibles.
 
-En la propiedad ~NewReplicaSet: auth-56746f6f6 (1/1 replicas created)~ se asegura que el contenedor ~auth~ esta corriendo en su última verisión.
+En la propiedad `NewReplicaSet: auth-56746f6f6 (1/1 replicas created)` se asegura que el contenedor `auth` esta corriendo en su última verisión.
 
-Una vez la implementación de la actualización está completa, se pueden ver los pods que se están corriendo sobre el servicio ~auth~ con el comando ~kubeclt get pods~.
+Una vez la implementación de la actualización está completa, se pueden ver los pods que se están corriendo sobre el servicio `auth` con el comando `kubeclt get pods`.
 
-#+begin_src bash
+```bash
 $ kubectl get pods
 NAME                      READY   STATUS              RESTARTS   AGE
 auth-784c79df7f-jwdgp     1/1     Running             0          2m
@@ -427,13 +430,13 @@ hello-67dfcd5745-7fszt    1/1     Running             0          3h45m
 nginx-87dfcd5745-7fszt    1/1     Running             0          3h45m
 monolith                  1/1     Running             0          3h45m
 secure-monolith           1/1     Running             0          3h45m
-#+end_src
+```
 
-El indicador para saber si la nueva versión esta siendo utilizada es el tiempo registrado en la columna ~AGE~. Este valor determina el tiempo que lleva corriendo ese pod, y al ser un periodo corto, nos da guías para identificar que la última version fue levantada hace dos minutos. Por defecto, el contendor nuevo reemplaza los previos.
+El indicador para saber si la nueva versión esta siendo utilizada es el tiempo registrado en la columna `AGE`. Este valor determina el tiempo que lleva corriendo ese pod, y al ser un periodo corto, nos da guías para identificar que la última version fue levantada hace dos minutos. Por defecto, el contendor nuevo reemplaza los previos.
 
-La prueba definitiva para saber si el pod esta corriendo es usar el ~kubectl describe~ con el nombre específico del pod:
+La prueba definitiva para saber si el pod esta corriendo es usar el `kubectl describe` con el nombre específico del pod:
 
-#+begin_src bash
+```bash
 $ kubectl describe pods auth-784c79df7f-jwdgp
 Priority:     0
 Node:         gke-k0-default-pool-c1896f1f-wh9h/10.128.0.7
@@ -492,14 +495,14 @@ Events:
   Normal  Pulled     14m   kubelet            Successfully pulled image "udacity/example-auth:2.0.0"
   Normal  Created    14m   kubelet            Created container auth
   Normal  Started    14m   kubelet            Started container auth
-#+end_src
+```
+
+En la propiedad `Image: udacity/example-auth:2.0.0` se puede validar la versión de la imagen del contenedor que se esta corriendo en el pod.
+
+Nuevamente, las actualizaciones en k8s conservan un enfoque declarativo limpio que hace sencillo implementar cambios dentro de los pods. Es cuestion de organizar unos cuantos comandos del `kubctl`.
 
 
-En la propiedad ~Image: udacity/example-auth:2.0.0~ se puede validar la versión de la imagen del contenedor que se esta corriendo en el pod.
-
-Nuevamente, las actualizaciones en k8s conservan un enfoque declarativo limpio que hace sencillo implementar cambios dentro de los pods. Es cuestion de organizar unos cuantos comandos del ~kubctl~.
-
-* Outro
+## Outro {#outro}
 
 Esta última publicación se explicaron los temas de escalamiento y actualización de clusteres en la nube. Al usar estas funcionalidades de k8s, las aplicaciones en la nube son más elásticas y finalmente pueden ser llamadas listas para producción.
 
