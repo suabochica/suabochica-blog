@@ -108,3 +108,7 @@ export default InputElement;
 #+end_src
 
 * Aplicación react de conferencias
+
+Para explicar los hooks mencionados en la introducción de esta publicación se va a tener como contexto una aplicación que suministra los contenidos de una conferencia. Dicha aplicación constará con dos páginas, un /home/ para especificar una descripción de la conferencia y una sección /speakers/ con la información relevante a los expositores de la conferencia.
+
+Por otra parte, se reutilizará la validación de un campo de texto para suministrar un correo electrónico, y asó poder enviar un correo con las últimas actualizaciones de la conferencia. El siguiente repositorio almacena las diferentes versiones de la aplicación de conferencias contruida en react.
