@@ -1,8 +1,7 @@
 #+TITLE: Kubernetes
-#+DESCRIPTION: Usa docker para construir contenedores de imágenes para empacar
-una aplicación y sus dependencias y así hacer un despliegue en una sola máquina
+#+DESCRIPTION: Usa docker para construir contenedores de imágenes para empacar una aplicación y sus dependencias y así hacer un despliegue en una sola máquina
 #+AUTHOR: Sergio Benítez
-#+DATE:<2020-11-19 Thu> 
+#+DATE:<2020-11-19 Thu>
 #+STARTUP: content
 #+HUGO_BASE_DIR: ~/Development/suabochica-blog/
 #+HUGO_SECTION: /post
@@ -10,21 +9,21 @@ una aplicación y sus dependencias y así hacer un despliegue en una sola máqui
 #+HUGO_AUTO_SET_LASTMOD: t
 
 * Profundizando en arquitectura
-  
-Hasta ahora solo se ha demostrado el trabajo de docker en una única máquina Para escalar la infraestructura es necesario pensar en crecimiento externo. 
+
+Hasta ahora solo se ha demostrado el trabajo de docker en una única máquina Para escalar la infraestructura es necesario pensar en crecimiento externo.
 
 Los contenedores están jugando un rol importante para el desarrollo de aplicaciones y el despliegue de las mismas. En el historial de grandes sistemas en centros de datos se han usado máquinas de metal puro que luego de ser compradas suelen tener tres años de vida útil para posteriormente depreciarse. Este ciclo se viene repitiendo una y otra vez. Estás máquinas viejas pueden ser pensadas como mascotas, pero lo que realmente se quiere es tener un ganado. Bajo este contexto el hecho de perder una vaca, no significa que se vaya a perder la producción de leche. Eventualmente se puede conseguir otra vaca. Este es el tipo de modelo al que las infraestructuras se están proyectando, en vez de tener una máquinas con características especificas que al ser afectada pueda causar un falló total de la aplicación.
 
 La transición de máquinas específicas a rebaños de máquinas, es algo que puede realizarse con máquinas virtuales, pero dichas máquinas no están diseñadas para ser usadas en periodos cortos de tiempo. Adicionalmente, eliminar una maquina virtual es un proceso dispendioso. Por otro lado, los contenedores son rápidos de crear y destruir dando como resultado un montaje eficiente de infraestructura. Cabe resaltar que la informática tiende hacia tiempos de inicio y parada aún más rápidos. Si se lleva este concepto al límite, es posible crear un contenedor con una simple petición y apagarlo con otra. Esta versatilidad esta abriendo cabidad al concepto de /serverless computing/ y ya hay algunos frameworks que promueven el uso de este concepto.
 
-Ahora, evidentemente hay varios retos a sobrellevar con la escritura de aplicaciones contenerizadas. El primer inconveniente es que las orgranizaciones mantienen sus viejas prácticas y por lo tanto sus monólitos. Ya hay una cultura organizacional establecida al rededor del monolito, y la transición al uso de micro servicios es un proceso gradual que debe cultivarse en el trabajo interno de los equipos de desarrollo. Con este nuevo enfoque, se va a tener personas de cualquier parte del mundo generando aportes al desarrollo de software y eso requiere procesos de validación y auditoria al momento de revisar que cambios de código van a publicarse en la aplicación. Eso implica que la creación de  software va ser una especie de formulario. Este formulario es a veces llamado la /ley de Conway/, la cual dice que las organizaciones diseñan sistemas que imitan sus propias estructuras de comunicación. En otras palabras, una empresa no puede producir microservicos si es una organización con producción en cascada. Por lo tanto, se pueden perder los benecficios del patrón de microservicos por esquemas de la organización. 
+Ahora, evidentemente hay varios retos a sobrellevar con la escritura de aplicaciones contenerizadas. El primer inconveniente es que las orgranizaciones mantienen sus viejas prácticas y por lo tanto sus monólitos. Ya hay una cultura organizacional establecida al rededor del monolito, y la transición al uso de micro servicios es un proceso gradual que debe cultivarse en el trabajo interno de los equipos de desarrollo. Con este nuevo enfoque, se va a tener personas de cualquier parte del mundo generando aportes al desarrollo de software y eso requiere procesos de validación y auditoria al momento de revisar que cambios de código van a publicarse en la aplicación. Eso implica que la creación de  software va ser una especie de formulario. Este formulario es a veces llamado la /ley de Conway/, la cual dice que las organizaciones diseñan sistemas que imitan sus propias estructuras de comunicación. En otras palabras, una empresa no puede producir microservicos si es una organización con producción en cascada. Por lo tanto, se pueden perder los benecficios del patrón de microservicos por esquemas de la organización.
 
-El segundo inconveniente con la implementación aplicaciones en contenedores son los obstáculos técnicos. Este patrón requiere de procesos automatizados bien ejecutados, El movimiento de piezas hace que los sistemas estén en capacidad de hacer descubrimientos dinámicos que luego se deben monitoriar. Una pregunta  válida es si los desarrolladores deberián escribir estos sistemas de automatización por cuenta propia, y la respuesta es no. Estas implementaciones requieren de mucho trabajo y por ende es mejor encontrar un sistema que funcione y deje la puerta abierta al cambio para infraestructuras venideras, como /Kubernetes/. 
+El segundo inconveniente con la implementación aplicaciones en contenedores son los obstáculos técnicos. Este patrón requiere de procesos automatizados bien ejecutados, El movimiento de piezas hace que los sistemas estén en capacidad de hacer descubrimientos dinámicos que luego se deben monitoriar. Una pregunta  válida es si los desarrolladores deberián escribir estos sistemas de automatización por cuenta propia, y la respuesta es no. Estas implementaciones requieren de mucho trabajo y por ende es mejor encontrar un sistema que funcione y deje la puerta abierta al cambio para infraestructuras venideras, como /Kubernetes/.
 
 * Como me enteré the Kubernetes (a.k.a k8)
 
-Uno de los retos a los cuales muchas personas se someten en el mercado de la informática, es escoger entre una gran variedad de teconologías para hacer tareas puntuales. Está búsequeda puede llegar a ser abrumadora, ya que también determina que aprendizajes se deben ejecutar. Para atender esta elección, es conveniente guiarse de alguién con más experiencia y respaldar la decisión con el aporte y el estado de la comunidad detrás de la tecnología. 
-  
+Uno de los retos a los cuales muchas personas se someten en el mercado de la informática, es escoger entre una gran variedad de teconologías para hacer tareas puntuales. Está búsequeda puede llegar a ser abrumadora, ya que también determina que aprendizajes se deben ejecutar. Para atender esta elección, es conveniente guiarse de alguién con más experiencia y respaldar la decisión con el aporte y el estado de la comunidad detrás de la tecnología.
+
 Para el manejo de aplicaciones una de las mejores herramientas es Kubernetes. Kubernetes es una herramienta que observa a los contenedores en un nivel superior. La abstracción sobre la que opera Kubernetes puede llegar a tener mucho sentido.
 
 * Qué es Kubernetes
@@ -40,7 +39,7 @@ Anteriormente el punto a tratar era el despliegue de aplicaciones en máquinas i
 En Kubernetes se puede describir un conjunto de aplicaciones y como deberian interactuar entre ellas. Así es como Kubernetes resuelve toda esta complejidad.
 
 * Configurando Kubernetes
-  
+
 Use el siguiente directorio de proyecto:
 
 #+begin_src bash
@@ -69,7 +68,7 @@ gcloud container clusters create k0 --zone us-central1-a
 #+end_src
 
 * Pequeña demostración de Kubernetes
-  
+
 La forma más sencilla de comenzar con Kubernetes es usando el comando ~kubectl~. Para correr una única instancia del contenedor de NGINX se ejecuta el siguiente comando:
 
 #+begin_src bash
@@ -79,7 +78,7 @@ pod/nginx created
 
 Como se puede observar, el mensaje de salida indica que el pod NGINX ha sido creado. Más adelante se desarrollará el concepto de pod, pero por ahora es suficiente saber que los pods son los contenedores desplegables en kubernetes.
 
-Para revisar el contenedor de NGINX que se acaba de crear se esta ejecutando, se usa el siguiente comando. 
+Para revisar el contenedor de NGINX que se acaba de crear se esta ejecutando, se usa el siguiente comando.
 
 #+begin_src bash
 kubectl get pods
@@ -108,7 +107,7 @@ nginx        ClusterIP   10.3.240.40                443/TCP   31h
 
 En la salida se observa la IP pública que se puede utilizar para golpear el contenedor NGINX remotamente.
 
-Kubernetes soporta una flujo de trabajo sencillo fuera del la caja usando los comandos ~run~ y ~expose~ de ~kubectl~. Con este breve tour por Kubernetes, es tiempo de profundizar en cada uno de los componentes y las abstracciones. 
+Kubernetes soporta una flujo de trabajo sencillo fuera del la caja usando los comandos ~run~ y ~expose~ de ~kubectl~. Con este breve tour por Kubernetes, es tiempo de profundizar en cada uno de los componentes y las abstracciones.
 
 ** Hoja de trucos para kubernetes
 
@@ -237,13 +236,13 @@ La bandera ~-f~ de este comando es usada para habilitar una corriente con los lo
 $ kubectl logs -f monolith
 #+end_src
 
-El comando ~exec~ se usa para ejecutar una vista interactiva dentro del modelo de pod. 
+El comando ~exec~ se usa para ejecutar una vista interactiva dentro del modelo de pod.
 
 #+begin_src bash
 $ kubectl exec monolith --stdin --tty -c monolith /bin/sh
 #+end_src
 
-Este comando resulta útil cuando se perecise solucionar problemas que se presentan dentro del contenedor. Por ejemplo, una vez dentro del shell del contenedor del monolito, se puede probar la conexión externa a través del comando ~ping~. 
+Este comando resulta útil cuando se perecise solucionar problemas que se presentan dentro del contenedor. Por ejemplo, una vez dentro del shell del contenedor del monolito, se puede probar la conexión externa a través del comando ~ping~.
 
 #+begin_src bash
 $ ping -c 3 google.com
@@ -272,16 +271,16 @@ Una referencia visual puede ser la siguiente. En este ejemplo se muestra un pod 
 #+CAPTION: MHC de un pod muerto
 [[../../images/microservices/03-kubernetes-mhc-dead.png]]
 
-Un periodo de tiempo establecido por el usuario indica la frecuencia con la que kubelet emite sondas para corroborar el estado del contenedor. Para este caso, el contenedor responde que esta muerto y la acción a ejecutar por Kubelet es el reinicio del contenedor, y posteriormente ejecutará en control de salud nuevamente. 
+Un periodo de tiempo establecido por el usuario indica la frecuencia con la que kubelet emite sondas para corroborar el estado del contenedor. Para este caso, el contenedor responde que esta muerto y la acción a ejecutar por Kubelet es el reinicio del contenedor, y posteriormente ejecutará en control de salud nuevamente.
 
 #+CAPTION: MHC de un pod vivo
 [[../../images/microservices/02-kubernetes-mhc-alive.png]]
 
 Para esta oportunidad, todo esta funcionando como se espera, y el estado del contenedor esta perfecto, como lo determina el color azul.
 
-Esto es a grandes rasgos un monitoreo de pods sobre controles de salud. 
+Esto es a grandes rasgos un monitoreo de pods sobre controles de salud.
 
-** MHC archivos y comandos 
+** MHC archivos y comandos
 
 Para complementar el monitoreo de controles de salud, es valido hacer las
 siguientes preguntas:
@@ -294,7 +293,7 @@ Las respuesta a estas preguntas se encuentran en el archivo
 ~healthy-monolith.yaml~ y en el comando ~kubeclt describe pods healthy-monolith~.
 
 A continuación se muestra el contenido del archivo ~healthy-monolith.yaml~.
- 
+
 #+begin_src bash
 $ cat pods/healthy-monolith.yaml
 apiVersion: v1
@@ -334,7 +333,7 @@ spec:
 #+end_src
 
 En este archivo se encuentra la respuesta de como se crea la prueba de
-preparación. Se observa que hay información relevante al ~readinessProbe~ en 
+preparación. Se observa que hay información relevante al ~readinessProbe~ en
 donde se especifíca que el retraso inicial para enviar la sonda al puerto 81
 a través del protocolo HTTP es de 5 segundos. Por otra parte, la respuesta del
 servidor, sea exitosa ó fallida, se envía 1 segundo después.
@@ -416,7 +415,7 @@ $ kubectl create secret generic tls-certs --from-file=tls/
 #+end_src
 
 Kubectl creará una clave para cada archivo en el directorio tls bajo el depósito secreto ~tls-certs~. Utilice el comando ~kubectl describe~ para verificarlos:
-  
+
 #+begin_src bash
 $ kubectl describe secrets tls-certs
 #+end_src
@@ -469,7 +468,7 @@ $ kubectl port-forward secure-monolith 10443:443
 
 Aquí es importante resaltar que el puerto 443 es por donde el contenedor NGINX esta escuchando las peticiones.
 
-Por último, se usa el comando ~curl~ para probar el endpoint HTTP en una tercera terminal: 
+Por último, se usa el comando ~curl~ para probar el endpoint HTTP en una tercera terminal:
 
 #+begin_src bash
 $ curl --cacert tls/ca.pem https://127.0.0.1:10443
@@ -488,7 +487,7 @@ El comando ~kubectl port-forward~ es grandioso para porbar pods directamente. No
 * Revisión general de servicios
 
 Como se vió anteriormente, los pods pueden ser reiniciados por multiples razones, como por ejemplo un fallo en un control de vitalidad, controles de preparación, entre otros.
-  
+
 Este escenario hace válida la siguiente pregunta: ¿Qué sucedería si se quisiera comunicar con un conjunto de pods que al reiniciarse pueden tener un dirección IP diferente? La respuesta esta en los servicios.
 
 En vez de confiar en las direcciones IP de los pod, Kubernetes provee los servicios como un punto final para los pods. Los pods expuestos por los servicios están basados en un conjunto de etiquetas. Si los pods tienen las etiquetas correctas, ellos serán automaticamente recogidos y expuestos por los servicios.
@@ -528,7 +527,7 @@ spec:
 
 Dos cosas por resaltar en esta salida. Primero, la sección ~selector~ la cual es utilzada para encotrar y exponer automaticamente cualquier pod con esas etiquetas ~app: "monolith"~ y ~secure: enabled~.
 
-Segundo, en la sección ~ports~ hay una nueva propiedad ~nodePort: 31000~ el cual indica que por el puerto 31000 se destinará al tráfico externo y el puerto 443 es para NIGNX. 
+Segundo, en la sección ~ports~ hay una nueva propiedad ~nodePort: 31000~ el cual indica que por el puerto 31000 se destinará al tráfico externo y el puerto 443 es para NIGNX.
 
 Con el siguiente comando se crea el servicio kubernetes:
 
@@ -537,7 +536,7 @@ $ kubectl create -f services/monolith.yaml
 
 You have exposed your service on an external port on allnodes in your cluste. If you want to expose this service to the extenal internet, you may need to set up firewall rules for the service port tcp:31000 to serve traffic
 
-service "monolith" created 
+service "monolith" created
 #+end_src
 
 Este mensaje indica que se esta usando el puerto 31000 para exponer el servicio. Eso significa que es posible tener colisiones de puertos si alguna otra aplicación intenta enlazarse a ese puerto en uno de los servidores.
@@ -600,7 +599,7 @@ pod "secure-monolith" labeled
 #+end_src
 
 Se corre el comando ~describe~ para ver si la etiqueta fue añadida:
- 
+
 #+begin_src bash
 $ kubectl describe pods secure-monolith | grep Labels
 Labels: app=monolith,secure=enabled
@@ -624,5 +623,4 @@ $ curl -k https://104.197.223:31000
 
 Al igual que Docker, Kubernetes hace que sea fácil correr y hacer introespección en las aplicaciones. Esto es lo que se llama automatización. En esta guía se revisarion varias de la primitivas de despliegue que Kubernetes ofrece a los desarrolladores. En este punto, se debe ser consciente del poder de abstracción de alto nivel que ofrece Kubernetes lo cual permite tener más enfoque sobre la aplicación y no sobre la administración de despliegues.
 
-Sin embargo, estas son tan solo las bases. Es momento de retirar la ruedas de entrenamiento y aprender no solo a escalar la aplicación de manera automática, sino también, realizar actualizaciones continuas sin tiempos de inactividad y como trabajar con información delicada. 
-  
+Sin embargo, estas son tan solo las bases. Es momento de retirar la ruedas de entrenamiento y aprender no solo a escalar la aplicación de manera automática, sino también, realizar actualizaciones continuas sin tiempos de inactividad y como trabajar con información delicada.

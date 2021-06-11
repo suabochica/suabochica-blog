@@ -1,5 +1,5 @@
 +++
-title = "Poryecto Kubernetes"
+title = "Proyecto Kubernetes"
 author = ["Sergio Benítez"]
 description = "Uso de Kubernetes en aplicaciones reales"
 date = 2020-11-30T00:00:00-05:00

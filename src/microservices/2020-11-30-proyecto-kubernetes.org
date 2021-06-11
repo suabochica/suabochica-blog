@@ -1,7 +1,7 @@
-#+TITLE: Poryecto Kubernetes
+#+TITLE: Proyecto Kubernetes
 #+DESCRIPTION: Uso de Kubernetes en aplicaciones reales
 #+AUTHOR: Sergio Benítez
-#+DATE:<2020-11-30 Mon> 
+#+DATE:<2020-11-30 Mon>
 #+STARTUP: content
 #+HUGO_BASE_DIR: ~/Development/suabochica-blog/
 #+HUGO_SECTION: /post
@@ -303,7 +303,7 @@ Posteriormente, el tráfico hacia el pod viejo es detenido, y por último se des
 #+CAPTION: rolling update step 2
 [[../../images/microservices/03-project_update2.png]]
 
-En este punto, el ciclo continua a través de todas las replicas hasta tener todos los pods en la segunda versión, como ilustra la siguiente imagen. 
+En este punto, el ciclo continua a través de todas las replicas hasta tener todos los pods en la segunda versión, como ilustra la siguiente imagen.
 
 #+CAPTION: rolling update step 3
 [[../../images/microservices/03-project_update3.png]]
