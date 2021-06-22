@@ -124,7 +124,7 @@ const InputElement = () => {
 export default InputElement;
 #+end_src
 
-Para complementar la propuesta del diagrama de de enlace de datos bidireccional se debe imprimir el valor de la variable ~inputText~ actualizado, como se ilustra a continuación:
+Para complementar la propuesta del diagrama con un enlace de datos bidireccional se debe imprimir el valor de la variable ~inputText~ actualizado, como se ilustra a continuación:
 
 #+begin_src jsx
 import React, { useState } from "react";
@@ -261,7 +261,7 @@ const ImageToggleOnMouseOver = ({ primaryImg, secondaryImg }) => {
   );
 };
 
-export default ImageChangeOnMouseOver;
+export default ImageToggleOnMouseOver;
 #+end_src
 
 Al revisar estos cambios en el navegador, el resultado visual es exactemente el mismo, dos imágenes en blanco y negro, con la diferencia de que ahora se esta utilizando un componente funcional de por medio.
@@ -291,7 +291,7 @@ const ImageToggleOnMouseOver = ({ primaryImg, secondaryImg }) => {
   );
 };
 
-export default ImageChangeOnMouseOver;
+export default ImageToggleOnMouseOver;
 #+end_src
 
 Al abrir el navegador, se observa que las imágenes cambian de blanco y negro a color cuando el cursor del ratón se posiciona sobre alguna de ellas.

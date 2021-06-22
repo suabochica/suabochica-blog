@@ -121,3 +121,41 @@ Las siguientes imágenes corresponden a la interfaz gráfica de la aplicación y
 ** TODO Add diagram image
 
 * ~useContext~
+Con la liberación de la versión 16.8 de React el equipo de desarrollo incluyó un API de contexto cuyo propósito es habilitar el acceso a datos y funciones desde cualquier lugar de la aplicación de manera sencilla y directa. Antes de este API, para lograr dicho acceso a datos y funciones era necesario hacer un hack en JavaScript o pasar propiedades a través de los componentes de un lado a otro generando árboles de componentes complejos.
+
+El API de contexto se desarrollo en vía contraria al patrón de diseño conocido como perforación de propiedades y los componentes de orden superior, ya que ambos enfoques motivan el uso de herencia de clases como una forma de pasar los datos entre componentes. El API de contexto es un hook que hace trivial el acceso a un contexto en cualquiera de los componentes funcionales sin actos antinaturales. Para ello, se crean etiquetas empaquetadoras en los eventos de renderización que literalmente no tienen nada que hacer cuando el UI se vuelve obsoleto.
+
+Para desarolladores que han trabajado con mixins, el uso del hook ~useContext~ resulta familiar, ya que permite agregar información a una clase a través de un canal lateral.
+
+Un caso de uso apropiado para el ~useContext~ es cuando la aplicación implica almacenar información de configuración, para así tenerla disponible en cualquier componente funcional de la misma.
+
+En el ejemplo de la aplicación que recopila información de una conferencia, aún esta pendiente la asignación del día sábado o domingo para cada uno de los oradores. Este hecho es relevante para que los asistentes brinden una retroalimentación sobre sus interéses y puedan consolidar su cronograma.
+
+A continuación se muestra como se expone un contexto en React:
+
+#+begin_src js
+// src/App.js
+import React from "react";
+import Home from "./Home";
+import Speakers from "./Home";
+
+export const ConfigContext = React.createContext();
+
+const pageToShow = pageName => {
+  if (pageName === "Home") return <Home/>;
+  if (pageName === "Speakers") return <Speakers/>;
+  return <div>Not Found</div>
+}
+
+const configValue = {
+  showSpeakersSpeakingDay: true
+};
+
+const App = ({ pageName }) => {
+  return (
+    <ConfigContext.Provider value={configValue}>
+      <div>{pageToShow(pageName)</div>
+    </ConfigContext.Provider>
+  );
+}
+#+end_src
