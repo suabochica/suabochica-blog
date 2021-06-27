@@ -149,7 +149,7 @@ const pageToShow = pageName => {
 
 const configValue = {
   showSignMeUp: true
-  showSpeakersSpeakingDay: true
+  showSpeakersSpeakingDays: true
 };
 
 const App = ({ pageName }) => {
@@ -161,4 +161,50 @@ const App = ({ pageName }) => {
 }
 #+end_src
 
-De este snippet, las siguientes líneas son las relevantes: la exportación de la variable ~ConfigContext~ que se asigna al método de ~React.createContext~. La variable ~configValue~ en donde se van a almacenar las configuraciones que se quieren compartir en el contexto. Para este caso puntual, ~showSignMeUp~ para mostrar o no el formulario de inicio de sesión, y el ~showSpeakersSpeakingDay~ para mostrar o no los filtros sobre el día de presentación de los oradores. Por último, actualizamos nuestro render haciendo el llamado a la etiqueta ~<ConfigContext.Provider>~ con el atributo ~value={configValue}~.
+De este snippet, las siguientes líneas son las relevantes: la exportación de la variable ~ConfigContext~ que se asigna al método de ~React.createContext~. La variable ~configValue~ en donde se van a almacenar las configuraciones que se quieren compartir en el contexto. Para este caso puntual, ~showSignMeUp~ para mostrar o no el formulario de inicio de sesión, y el ~showSpeakersSpeakingDays~ para mostrar o no los filtros sobre el día de presentación de los oradores. Por último, actualizamos nuestro render haciendo el llamado a la etiqueta ~<ConfigContext.Provider>~ con el atributo ~value={configValue}~.
+
+Para empezar se va a mostrar el consumo de la variable de configuración ~showSpeakersSpeakingDays~. Para ello es necesario realizar los siguientes cambios sobre el archivo ~Speakers.js~:
+
+#+begin_src js
+// src/Speakers.js
+import React, { useContext, useEffect, useState } from "react";
+
+import { Header } from "../src/Header";
+import { Menu } from "../src/Menu";
+import { ConfigContext } from "./App";
+import SpeakerData from "./SpeakerData";
+import SpeakerDetail from "./SpeakerDetail";
+
+const Speakers = ({}) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [speakerList, setSpeakerList] = useState(true);
+  const [speakingSaturday, setSpeakingSaturday] = useState(true);
+  const [speakingSunday, setSpeakingSunday] = useState(true);
+  const context = useContext(ConfigContext);
+
+  useEffect(() => {/*...code to handle the filter over speakers and his day*/})
+
+  // Handlers
+  const handleChangeSaturday = () => { /*...*/ }
+  const handleChangeSunday = () => { /*...*/ }
+  const handleHeartFavorite = () => { /*...*/ }
+
+  return (
+    <div>
+      <Header />
+      <Menu />
+      <div className="container">
+        <div className="checkboxes">
+          {context.showSpeakersSpeakingDays === false ? null : (
+            <div className="day-checkbox">Saturday Speakers</div>
+            <div className="day-checkbox">Sunday Speakers</div>
+          )}
+        </div>
+        <div>{{/* JSX code to show the Speakers Card */}}</div>
+      </div>
+    </div>
+  );
+}
+#+end_src
+
+Las cosas importantes en este código son: el ~import~ del hook ~useContext~ desde ~react~. el ~import~ de la variable ~ConfigContext~ desde el archvio ~"./App"~ . La definición de la variable ~context~ asignada al hook ~useContext(ConfigContext)~. Notesé que en este llamado se pasa como parámetro la variable ~ConfigContext~. Por último, en el render el componente se agrega la condición ~context.showSpeakersSpeakingDays  === false~ sobre el JSX que renderiza los checkboxes para filtrar los días. En caso de que el valor de esta variable sea ~false~ se retorna ~null~ y por ende no se renderizan los checkboxes, de lo contrario si se muestran. Ya que el valor actual de la configuración ~showSpeakersSpeakingDays~ es ~true~ en el archivo ~./App.js~ los checkboxes son renderizados. Si se actualiza dicho valor a ~false~ se puede observar que los checkboxes no se muestran.
