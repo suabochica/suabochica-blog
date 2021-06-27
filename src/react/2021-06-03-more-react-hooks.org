@@ -148,6 +148,7 @@ const pageToShow = pageName => {
 }
 
 const configValue = {
+  showSignMeUp: true
   showSpeakersSpeakingDay: true
 };
 
@@ -159,3 +160,5 @@ const App = ({ pageName }) => {
   );
 }
 #+end_src
+
+De este snippet, las siguientes líneas son las relevantes: la exportación de la variable ~ConfigContext~ que se asigna al método de ~React.createContext~. La variable ~configValue~ en donde se van a almacenar las configuraciones que se quieren compartir en el contexto. Para este caso puntual, ~showSignMeUp~ para mostrar o no el formulario de inicio de sesión, y el ~showSpeakersSpeakingDay~ para mostrar o no los filtros sobre el día de presentación de los oradores. Por último, actualizamos nuestro render haciendo el llamado a la etiqueta ~<ConfigContext.Provider>~ con el atributo ~value={configValue}~.
