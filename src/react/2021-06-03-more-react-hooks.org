@@ -208,3 +208,52 @@ const Speakers = ({}) => {
 #+end_src
 
 Las cosas importantes en este código son: el ~import~ del hook ~useContext~ desde ~react~. el ~import~ de la variable ~ConfigContext~ desde el archvio ~"./App"~ . La definición de la variable ~context~ asignada al hook ~useContext(ConfigContext)~. Notesé que en este llamado se pasa como parámetro la variable ~ConfigContext~. Por último, en el render el componente se agrega la condición ~context.showSpeakersSpeakingDays  === false~ sobre el JSX que renderiza los checkboxes para filtrar los días. En caso de que el valor de esta variable sea ~false~ se retorna ~null~ y por ende no se renderizan los checkboxes, de lo contrario si se muestran. Ya que el valor actual de la configuración ~showSpeakersSpeakingDays~ es ~true~ en el archivo ~./App.js~ los checkboxes son renderizados. Si se actualiza dicho valor a ~false~ se puede observar que los checkboxes no se muestran.
+
+Ahora se va a seguir el mismo proceso pero esta vez la evaluación se va a realizar sobre el valor de la variable de configuracion ~showSignMeUp~. Para ello se actualiza el contenido del archivo ~SignMeUp.js~ de la siguiente manera: 
+
+#+begin_src js
+// src/SignMeUp.js
+
+import React, { useState, useContext } from 'react';
+import { ConfigContext } from './App';
+
+const SignMeUp = ({ signupCallback }) => {
+  const [email, setEmail] = useState('');
+  const context = useContext(ConfigContext);
+
+  return context.showSignMeUp === false ? null : (
+    <div className="container">
+      <div>
+        <div className="content">
+          <input
+            placeholder="Enter Email"
+            type="email"
+            name="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
+          &nbsp;
+          <button
+            disabled={!email.includes('@')}
+            onClick={() => {
+              signupCallback(email);
+              setEmail('');
+              alert('signup confirmed');
+            }}
+            className="btn"
+            type="submit"
+          >
+            Get Updates
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SignMeUp;
+#+end_src
+
+Los pasos para consumir el valor de la variable ~context.showSignMeUp~ son los mismos que se indicaron para el caso de ~context.showSpeakersSpeakingDays~. Si el valor de esta variable es ~false~ no se va a renderizar el formulario para iniciar sesión. De lo contrario, si se va a mostrar el JSX correspondiente.
