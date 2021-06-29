@@ -177,7 +177,7 @@ import SpeakerDetail from "./SpeakerDetail";
 
 const Speakers = ({}) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [speakerList, setSpeakerList] = useState(true);
+  const [speakerList, setSpeakerList] = useState([]);
   const [speakingSaturday, setSpeakingSaturday] = useState(true);
   const [speakingSunday, setSpeakingSunday] = useState(true);
   const context = useContext(ConfigContext);
@@ -209,7 +209,7 @@ const Speakers = ({}) => {
 
 Las cosas importantes en este código son: el ~import~ del hook ~useContext~ desde ~react~. el ~import~ de la variable ~ConfigContext~ desde el archvio ~"./App"~ . La definición de la variable ~context~ asignada al hook ~useContext(ConfigContext)~. Notesé que en este llamado se pasa como parámetro la variable ~ConfigContext~. Por último, en el render el componente se agrega la condición ~context.showSpeakersSpeakingDays  === false~ sobre el JSX que renderiza los checkboxes para filtrar los días. En caso de que el valor de esta variable sea ~false~ se retorna ~null~ y por ende no se renderizan los checkboxes, de lo contrario si se muestran. Ya que el valor actual de la configuración ~showSpeakersSpeakingDays~ es ~true~ en el archivo ~./App.js~ los checkboxes son renderizados. Si se actualiza dicho valor a ~false~ se puede observar que los checkboxes no se muestran.
 
-Ahora se va a seguir el mismo proceso pero esta vez la evaluación se va a realizar sobre el valor de la variable de configuracion ~showSignMeUp~. Para ello se actualiza el contenido del archivo ~SignMeUp.js~ de la siguiente manera: 
+Ahora se va a seguir el mismo proceso pero esta vez la evaluación se va a realizar sobre el valor de la variable de configuracion ~showSignMeUp~. Para ello se actualiza el contenido del archivo ~SignMeUp.js~ de la siguiente manera:
 
 #+begin_src js
 // src/SignMeUp.js
@@ -257,3 +257,46 @@ export default SignMeUp;
 #+end_src
 
 Los pasos para consumir el valor de la variable ~context.showSignMeUp~ son los mismos que se indicaron para el caso de ~context.showSpeakersSpeakingDays~. Si el valor de esta variable es ~false~ no se va a renderizar el formulario para iniciar sesión. De lo contrario, si se va a mostrar el JSX correspondiente.
+
+* ~useReducer~
+
+A lo largo de esta serie se han promovido el uso de los /reducers/ sin necesidad de mencionarlos. El hecho de que el hook tenga /reduce/ en el nombre hace pensar en reducciones, acciones, despachos, thunks, componentes de orden superior y básicamente escenarios complejos de programación para muchos ingenieros.
+
+Por otra parte, se ha evidenciando lo poderoso que es el hook ~useState~ para la administración de estados en la aplicación. Un hecho introductorio de ~useReducer~ es que el ~useState~ esta construido sobre el. Es decir, ~useState~ es el es caso más común y sencillo del ~useReducer~. Antes de desarrollar esta declaración, se comparte la siguiente definición de lo que un reductor significa en el contexto de una aplicación React:
+
+#+begin_notes
+Un reductor es una función simple que recibe como parámetros un estado previo, una acción y retorna un nuevo estado:
+#+end_notes
+
+#+begin_src
+(prevState, action) => newState
+#+end_src
+
+Para empezar a revisar las equivalencias entre ~useState~ y ~useReducer~ se actualizará la definición de las variables ~[speakerList, setSpeakerList]~ para usar el ~useReducer~ en vez de ~useState~ tal y como se muestra a continuación:
+
+#+begin_src js
+  // src/Speakers.js
+  import React, { useContext, useEffect, useReducer } from "react";
+
+  import /*...*/
+
+  const Speakers = ({}) => {
+    const [isLoading, setIsLoading] = useState(true);
+    // const [speakerList, setSpeakerList] = useState([]);
+    const [speakerList, setSpeakerList] = useReducer((state, action) => action, []);
+    const [speakingSaturday, setSpeakingSaturday] = useState(true);
+    const [speakingSunday, setSpeakingSunday] = useState(true);
+    const context = useContext(ConfigContext);
+
+    useEffect(() => {/*...code to handle the filter over speakers and his day*/})
+
+    // Handlers
+    const handleChangeSaturday = () => { /*...*/ }
+    const handleChangeSunday = () => { /*...*/ }
+    const handleHeartFavorite = () => { /*...*/ }
+
+    return (
+      {{/* JSX code of the component */}}
+    );
+  }
+#+end_src
