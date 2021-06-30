@@ -275,20 +275,76 @@ Un reductor es una función simple que recibe como parámetros un estado previo,
 Para empezar a revisar las equivalencias entre ~useState~ y ~useReducer~ se actualizará la definición de las variables ~[speakerList, setSpeakerList]~ para usar el ~useReducer~ en vez de ~useState~ tal y como se muestra a continuación:
 
 #+begin_src js
+// src/Speakers.js
+import React, { useContext, useEffect, useReducer } from "react";
+
+import /*...*/
+
+const Speakers = ({}) => {
+  const [isLoading, setIsLoading] = useState(true);
+  // const [speakerList, setSpeakerList] = useState([]);
+  const [speakerList, setSpeakerList] = useReducer((state, action) => action, []);
+  const [speakingSaturday, setSpeakingSaturday] = useState(true);
+  const [speakingSunday, setSpeakingSunday] = useState(true);
+  const context = useContext(ConfigContext);
+
+  useEffect(() => {/*...code to handle the filter over speakers and his day*/})
+
+  // Handlers
+  const handleChangeSaturday = () => { /*...*/ }
+  const handleChangeSunday = () => { /*...*/ }
+  const handleHeartFavorite = () => { /*...*/ }
+
+  return (
+    {{/* JSX code of the component */}}
+  );
+}
+#+end_src
+
+Con este sútil cambio se obtiene la misma funcionalidad de antes, salvo que ahora se define el estado de la lista de expositores a través del ~useReducer~. Nótese que el primer parámetro que se le pasa al hook es el reductor estándar y el segundo parámetro es el estado y su valor inicial.
+
+Evidentemente la sintáxis de ~useState~ es más corta. No obstante, con ~useReducer~ se pueden lograr tareas más complejas gracias a su capacidad de ser extensible. Acutalmente el reductor solo tiene un truco, y es definir el estado a un solo valor. Con un reductor se puede definir estado a múltiples valores, y es bajo este contexto donde tienen relevancia las palabras claves de despacho y acción. Para ello se va a actualizar nuestro código previo, para que su contenido ilustre el uso de dichas palabras clave:
+
+#+begin_src js
   // src/Speakers.js
   import React, { useContext, useEffect, useReducer } from "react";
 
   import /*...*/
 
   const Speakers = ({}) => {
+    function speakersReducer(state, action) {
+      switch (action.type) {
+        case "setSpeakerList":
+          return action.data
+        default
+          return state;
+      }
+    }
+
     const [isLoading, setIsLoading] = useState(true);
-    // const [speakerList, setSpeakerList] = useState([]);
-    const [speakerList, setSpeakerList] = useReducer((state, action) => action, []);
+    const [speakerList, dispatch] = useReducer(speakersReducer, []);
     const [speakingSaturday, setSpeakingSaturday] = useState(true);
     const [speakingSunday, setSpeakingSunday] = useState(true);
     const context = useContext(ConfigContext);
 
-    useEffect(() => {/*...code to handle the filter over speakers and his day*/})
+    useEffect(() => {
+      setIsLoading(true);
+      new Promise(function(resolve) {
+        setTimeout(function() {
+          resolve();
+        }, 1000);
+      }).then(() => {
+        setIsLoading(false);
+        const speakerListServerFilter = SpeakerData.filter(({ sat, sun}) => {
+          return (speakingSaturday && sat) || (speakingSunday && sun);
+        });
+        // setSpeakerList(speakerListServerFilter);
+        dispatch({
+          type: "setSpeakerList",
+          data: speakerListServerFilter
+        });
+      });
+    });
 
     // Handlers
     const handleChangeSaturday = () => { /*...*/ }
@@ -300,3 +356,5 @@ Para empezar a revisar las equivalencias entre ~useState~ y ~useReducer~ se actu
     );
   }
 #+end_src
+
+El primer cambio es renombrar nuestro recutor estándar ~(state, action) => action~ a ~speakersReducer~.
