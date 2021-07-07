@@ -303,7 +303,7 @@ const Speakers = ({}) => {
 
 Con este sútil cambio se obtiene la misma funcionalidad de antes, salvo que ahora se define el estado de la lista de expositores a través del ~useReducer~. Nótese que el primer parámetro que se le pasa al hook es el reductor estándar y el segundo parámetro es el estado y su valor inicial.
 
-Evidentemente la sintáxis de ~useState~ es más corta. No obstante, con ~useReducer~ se pueden lograr tareas más complejas gracias a su capacidad de ser extensible. Acutalmente el reductor solo tiene un truco, y es definir el estado a un solo valor. Con un reductor se puede definir estado a múltiples valores, y es bajo este contexto donde tienen relevancia las palabras claves de despacho y acción. Para ello se va a actualizar nuestro código previo, para que su contenido ilustre el uso de dichas palabras clave:
+Evidentemente la sintáxis de ~useState~ es más corta. No obstante, con ~useReducer~ se pueden lograr tareas más complejas gracias a su capacidad de ser extensible. Acutalmente el reductor solo tiene un truco, y es definir el estado a un solo valor. Con un reductor se puede definir estado a múltiples valores, y es bajo este contexto donde tienen relevancia las palabras claves de despacho y acción. Para ello se va a actualizar el código previo, para que su contenido ilustre el uso de dichas palabras clave:
 
 #+begin_src js
   // src/Speakers.js
@@ -357,4 +357,8 @@ Evidentemente la sintáxis de ~useState~ es más corta. No obstante, con ~useRed
   }
 #+end_src
 
-El primer cambio es renombrar nuestro recutor estándar ~(state, action) => action~ a ~speakersReducer~.
+El primer cambio es renombrar el reductor estándar ~(state, action) => action~ a ~speakersReducer~. Dentro de esta función se usa la sintáxis ~switch/case~ sobre el valor ~action.type~ para indicar que lógica ejecutar de acuerdo a la acción que se este evaluando. Esta función se pasa como parámetro del ~useReducer~ junto con un arreglo vacío. Por último, en la función ~useEffect~ se reemplaza el ~setSpeakerList(speakerListServerFilter)~ por la función ~dispatch~ que recibe como argumento un objeto con dos propiedades; ~type~ para indicar el tipo de la acción y ~data~ para recibir el valor de la variable ~speakerListServerFilter~.
+
+Ahora bien, es importante reconocer que un reductor con solo una acción probablemente no vale la pena, y de ser así es mejor optar por el ~useState~. No obstante, para la aplicación de la conferencia, hay dos acciones más que se pueden agregar al reductor: definir el expositor como favorito o removerlo como favorito a través del clic sobre el icono del corazón en la tarjeta del expositor. En ese orden de ideas, la función ~handleHeartFavorite~ debe ser actualizada para despachar dichas acciones y la función ~speakersReducer~ tendrá dos acciones más por atender. El siguiente snippet muestra los cambios citados previamente:
+
+* TODO: Add code snippet
