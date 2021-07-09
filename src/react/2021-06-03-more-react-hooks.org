@@ -434,4 +434,180 @@ const Speakers = ({}) => {
 
 Se observa, que el código comentado corresponde a la versión en como se definía un expositor favorito con la función ~setSpeakerList~ del ~useState~. Este código fue reemplazado por el método ~dispatch~ que recibe como argumento un objeto con el tipo de la acción dependiendo del valor que este definido en el parámetro ~favoriteValue~ y como dato adjunto se pasa el ~sessionId~. Al probar estos cambios se puede comprobar que el funcionamiento para definir un expositor favorito es apropiado, con la diferencia de que ahora esta siendo manejado a través de un reductor.
 
-* ~useCallback~ y ~useMemo~
+* ~useCallback~
+
+Los hooks de ~useCallback~ y ~useMemo~ se utilizan bajo el contexto de memorización y su diferencia radica en:
+
+- ~useCallback~ memoriza funciones
+- ~useMemo~ memoriza valores
+
+Ahora bien, una pregunta válida es qué és memorización?
+
+#+begin_quote
+En computación, memorización es una técnica de optimización utilizada para acelerar programas de computador a través del almacenamiento de resultados de llamados costosos a funciones para retornar el resultado en caché cada vez que se tengan los mismos parámetros de entrada.
+#+end_quote
+
+Tiempo de utilizar el ~useCallback~ en la aplicación React de conferencias. Actualmente se tiene un escenario ideal para aplicar el uso del hook ~useCallback~. Cada vez que el usuario da clic sobre el ícono del corazón para definir un expositor favorito, el componente React esta renderizando toda la información de los expositores, desde las imágenes hasta el estado del corazón para indicar si es un expositor favorito. Para validar este comportamiento basta con agregar un ~console.log~ en el archivo ~SpeakerDetail.js~, tal y como se muestra a continuación:
+
+#+begin_src js
+// src/SpeakerDetail.js
+import ImageToggleOnMouseOver from "./ImageToggleOnScroll"
+
+const SpeakerDetail = ({
+  id,
+  firstName,
+  lastName,
+  favorite,
+  bio,
+  onHeartFavoriteHandler
+}) => {
+  console.log(`SpeakerDetail: ${id} ${firstName} ${lastName} ${favorite}`);
+  return (
+    {{/* JSX code of the component */}}
+  );
+};
+#+end_src
+
+Con este log en consola, se abre el navegador y se identifica que cada vez que el usuario da clic sobre el ícono del corazón, se esta renderizando toda la información asociada a cada uno de los expositores. El problema radica en el llamado de la función ~onHeartFavoriteHandler={handleHeartFavorite}~ ya que cada vez que se llama el componente ~SpeakerDetail~ se esta pasando la función que administra el clic sobre el corazón. En esta versión de la aplicación, React desconoce si la función ha presentado algún cambio y por ende renderiza todo el componente por si acaso. Para evitar este comportamiento, se usa el hook ~useCallback~ sobre la función ~handleHeartFavorite~ para hacerla disponible en un caché. El siguiente código ilustra el consumo del hook en el archivo ~Speakers.js~:
+  
+#+begin_src js
+// src/Speakers.js
+
+import React, { useContext, useEffect, useReducer, useCallback } from "react";
+
+import /*...*/
+import speakersReducer from "./speakersReducer"
+
+const Speakers = ({}) => {
+
+  useEffect(() => { /*...*/ })
+
+  // Handlers
+  const handleChangeSaturday = () => { /*...*/ }
+  const handleChangeSunday = () => { /*...*/ }
+  const handleHeartFavorite = useCallback((event, favoriteValue) => {
+    event.preventDefault();
+
+    dispatch({
+      type: favoriteValue === true? "favoriteSpeaker" : "unfavoriteSpeaker",
+      sessionId: sessionId,
+    });
+  }, []);
+
+  return (
+    {{/* JSX code of the component */}}
+  );
+};
+#+end_src
+
+Ahora solo falta indicarle a React que el retorno de la página ~SpeakerDetail~ también debe ser memorizada con ayuda de la función ~React.memo~ tal y como muestra el siguiente snippet:
+
+#+begin_src js
+// src/SpeakerDetail.js
+import ImageToggleOnMouseOver from "./ImageToggleOnScroll"
+
+const SpeakerDetail = React.memo(({
+  id,
+  firstName,
+  lastName,
+  favorite,
+  bio,
+  onHeartFavoriteHandler
+}) => {
+  console.log(`SpeakerDetail: ${id} ${firstName} ${lastName} ${favorite}`);
+  return (
+    {{/* JSX code of the component */}}
+  );
+});
+#+end_src
+
+Con esta modificación el componente ~SpeakerDetail~ esta siendo empaquetado dentro del llamado ~React.memo~ y ahora se esta retornando una versión en caché del componente cada vez que es llamado. Si se prueba nuevamente en el navegador, se observa que en la consola del mismo ahora solo se registra el cambio de estado del ícono del corazón tan solo para el expositor que es relevante a dicho cambio. Es decir, solo se renderiza la información del expositor sobre el cual se activa el evento para definir si es favorito o no. 
+
+Los hooks de ~useCallback~ y ~useMemo~ se utilizan bajo el contexto de memorización y su diferencia radica en:
+
+- ~useCallback~ memoriza funciones
+- ~useMemo~ memoriza valores
+
+Ahora bien, una pregunta válida es qué és memorización?
+
+#+begin_quote
+En computación, memorización es una técnica de optimización utilizada para acelerar programas de computador a través del almacenamiento de resultados de llamados costosos a funciones para retornar el resultado en caché cada vez que se tengan los mismos parámetros de entrada.
+#+end_quote
+
+Tiempo de utilizar el ~useCallback~ en la aplicación React de conferencias. Actualmente se tiene un escenario ideal para aplicar el uso del hook ~useCallback~. Cada vez que el usuario da clic sobre el ícono del corazón para definir un expositor favorito, el componente React esta renderizando toda la información de los expositores, desde las imágenes hasta el estado del corazón para indicar si es un expositor favorito. Para validar este comportamiento basta con agregar un ~console.log~ en el archivo ~SpeakerDetail.js~, tal y como se muestra a continuación:
+
+#+begin_src js
+// src/SpeakerDetail.js
+import ImageToggleOnMouseOver from "./ImageToggleOnScroll"
+
+const SpeakerDetail = ({
+  id,
+  firstName,
+  lastName,
+  favorite,
+  bio,
+  onHeartFavoriteHandler
+}) => {
+  console.log(`SpeakerDetail: ${id} ${firstName} ${lastName} ${favorite}`);
+  return (
+    {{/* JSX code of the component */}}
+  );
+};
+#+end_src
+
+Con este log en consola, se abre el navegador y se identifica que cada vez que el usuario da clic sobre el ícono del corazón, se esta renderizando toda la información asociada a cada uno de los expositores. El problema radica en el llamado de la función ~onHeartFavoriteHandler={handleHeartFavorite}~ ya que cada vez que se llama el componente ~SpeakerDetail~ se esta pasando la función que administra el clic sobre el corazón. En esta versión de la aplicación, React desconoce si la función ha presentado algún cambio y por ende renderiza todo el componente por si acaso. Para evitar este comportamiento, se usa el hook ~useCallback~ sobre la función ~handleHeartFavorite~ para hacerla disponible en un caché. El siguiente código ilustra el consumo del hook en el archivo ~Speakers.js~:
+  
+#+begin_src js
+// src/Speakers.js
+
+import React, { useContext, useEffect, useReducer, useCallback } from "react";
+
+import /*...*/
+import speakersReducer from "./speakersReducer"
+
+const Speakers = ({}) => {
+
+  useEffect(() => { /*...*/ })
+
+  // Handlers
+  const handleChangeSaturday = () => { /*...*/ }
+  const handleChangeSunday = () => { /*...*/ }
+  const handleHeartFavorite = useCallback((event, favoriteValue) => {
+    event.preventDefault();
+
+    dispatch({
+      type: favoriteValue === true? "favoriteSpeaker" : "unfavoriteSpeaker",
+      sessionId: sessionId,
+    });
+  }, []);
+
+  return (
+    {{/* JSX code of the component */}}
+  );
+};
+#+end_src
+
+Ahora solo falta indicarle a React que el retorno de la página ~SpeakerDetail~ también debe ser memorizada con ayuda de la función ~React.memo~ tal y como muestra el siguiente snippet:
+
+#+begin_src js
+// src/SpeakerDetail.js
+import ImageToggleOnMouseOver from "./ImageToggleOnScroll"
+
+const SpeakerDetail = React.memo(({
+  id,
+  firstName,
+  lastName,
+  favorite,
+  bio,
+  onHeartFavoriteHandler
+}) => {
+  console.log(`SpeakerDetail: ${id} ${firstName} ${lastName} ${favorite}`);
+  return (
+    {{/* JSX code of the component */}}
+  );
+});
+#+end_src
+
+Con esta modificación el componente ~SpeakerDetail~ esta siendo empaquetado dentro del llamado ~React.memo~ y ahora se esta retornando una versión en caché del componente cada vez que es llamado. Si se prueba nuevamente en el navegador, se observa que en la consola del mismo ahora solo se registra el cambio de estado del ícono del corazón tan solo para el expositor que es relevante a dicho cambio. Es decir, solo se renderiza la información del expositor sobre el cual se activa el evento para definir si es favorito o no. 
+
+* ~useMemo~
