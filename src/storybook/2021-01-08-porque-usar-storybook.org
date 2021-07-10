@@ -1,8 +1,8 @@
 #+TITLE: ¿Por qué usar Storybook?
 #+DESCRIPTION: Serie que recopila los beneficios de usar Storybook
 #+AUTHOR: Sergio Benítez
-#+DATE:<2021-01-08 Fri> 
-#+STARTUP: fold
+#+DATE:<2021-01-08 Fri>
+#+STARTUP: content
 #+HUGO_BASE_DIR: ~/Development/suabochica-blog/
 #+HUGO_SECTION: /post
 #+HUGO_WEIGHT: auto
@@ -26,7 +26,7 @@ Los temas a abordar son:
 - Uso y escritura de complementos (add-ons)
 
 Uno de los requisitos para trabajar con Storybook es tener conocimentos en HTML,
-CSS y  JavaScript y es recommendable tener bases en alguno de los frameworks web
+CSS y JavaScript y es recomendable tener bases en alguno de los frameworks web
 más populares: React, Angular o Vue.
 
 * ¿Por qué usar Storybook?
@@ -70,7 +70,7 @@ un empleo adecuado de la documentación.
 
 Cabe resaltar que Storybook es solo una herramienta en la que usted obtiene lo
 que haya decidio poner.
-  
+
 * ¿Qué és Storybook?
 
 Mucha gente describe Storybook una guía de estilos viviente ó una biblioteca de
@@ -83,7 +83,7 @@ Storybook es una herramienta open source para desarrollar componentes UI en
 aislamiento para los frameworks UI más populares: React, Vue and Angular.
 #+end_notes
 
-Esta definición se puede complementar con lo siguiente: 
+Esta definición se puede complementar con lo siguiente:
 
 #+begin_notes
 Storybook es un sandbox para construir componentes UI en aislamiento, para que
@@ -104,7 +104,7 @@ La otra característica a subrayar de Storybook es que es agnóstico a los
 frameworks UI. La mayoría de los frameworks son soportados por Storybook y en el
 desarrollo de esta serie se utilizará React. En definitiva, Storybook es una
 herramienta flexible que se adpata a cualquier framework.
-  
+
 * ¿Cómo funciona Storybook?
 
 Para identificar como funciona Storybook primero se va a revisar su interfaz
@@ -141,7 +141,7 @@ en el formulario de Knobs actualizarán inmediatamente los contenidos en la vist
 de la historia, dando así un adelanto de los alcances de Storybook. Esto es
 posible gracias a la estructura en cómo esta formado el componente, el cual
 espera unos parámetros que equivalen a los campos definidos en el formulario de
-Knobs. 
+Knobs.
 
 Storybook es simplemente una aplicación secundaria que usa los componentes de un
 sitio web.
@@ -210,7 +210,7 @@ En conclusión estas son las razones por la cuales se debería usar Storybook:
   malos entendidos.
 - Es fácil experimentar con los diferentes estados de un componente.
 - Se tiene una repercusión directa sobre la implementación de la aplicación.
-  
+
 * ¿Cómo aprovechar al máximo Storybook?
 
 La mejor forma de aprovechar Storybook es utilizando. Hoy en día, empresas como
@@ -218,6 +218,6 @@ Airbnb y Lonely Planet comparten su biblioteca de componentes UI a través de
 Storybook. Estos son ejemplos de los alcances de Storybook. Estar pendiente a
 sus actualizaciones y revisar con frecuencia el sitio we oficial son prácticas
 recomendables para utilizar Storybook.
-  
+
 * Referencias
-  - [[https://app.pluralsight.com/library/courses/4118347c-c328-43a6-b03d-c55efc5366da][Storybook getting started]] 
+  - [[https://app.pluralsight.com/library/courses/4118347c-c328-43a6-b03d-c55efc5366da][Storybook getting started]]
