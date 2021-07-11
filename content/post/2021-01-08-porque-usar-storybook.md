@@ -1,0 +1,119 @@
++++
+title = "¿Por qué usar Storybook?"
+author = ["Sergio Benítez"]
+description = "Serie que recopila los beneficios de usar Storybook"
+date = 2021-01-08T00:00:00-05:00
+lastmod = 2021-07-11T17:58:05-05:00
+draft = false
+tags = [
+  "storybook",
+]
++++
+
+Storybook es el lider sandbox para el desarrollo y la documentación de componentes de interfaz de usuario. En esta serie de publicaciones relativas a Storybook se va a explicar el por qué se debería usar la herramienta y cómo se usa.
+
+<div class="notes">
+  <div></div>
+
+En el desarrollo de software, sandbox es un entorno de prueba que aisla los cambios de código no probados y la experimentación absoluta sobre un entorno de producción
+
+</div>
+
+Los temas a abordar son:
+
+-   Instalación de Storybook
+-   Branding con Storybook
+-   Escritura de historias
+-   Uso y escritura de complementos (add-ons)
+
+Uno de los requisitos para trabajar con Storybook es tener conocimentos en HTML, CSS y JavaScript y es recomendable tener bases en alguno de los frameworks web más populares: React, Angular o Vue.
+
+
+## ¿Por qué usar Storybook? {#por-qué-usar-storybook}
+
+Una de las razones por la cual es recomendable Storybook es por su flexibilidad en cuanto audiencia.
+
+Si usted es desarrollador y trabaja en la creación de componentes UI en un framework UI común como React, Storybook le ayudará a _maximizar su eficiencia_ en la creación de estos componentes. Por otra parte, Storybook le ofrecerá una _búsqueda rápida_ sobre los componentes que ya existen, encontrando en poco tiempo el componente que desea usar. Una vez encontrado el componente, Storybook le suministrará una _documentación_ de como usarlo. Esta documentación va más allá de la syntáxis a usar, ya que puede proveer guías en la forma de cuando y porque un componente específico debe ser utilizado. Por último, Storybook contiene distintas formas para hacer _pruebas fáciles_ sobre varios componentes.
+
+Si usted es diseñador, también va a obtener varios beneficios con el uso de Storybook, como por ejemplo el _prototipado rápido_. El uso de herramientas de diseño como Sketch para la creación de la interfaz gráfica de usuario (GUI), aisla al desarrollador. El hecho de tener un sandbox dentro de Storybook, facilita la participación de ambos roles, llegando a acuerdos entre las partes en tiempos cortos. Por otro lado, a veces resulta díficil verificar que el componente diseñado por el diseñador, fue creado de forma precisa por el desarrollador, probablemente porque el diseñador no esta realizando una frecuente validación sobre el componente. El sandbox de Storybook, habilita una ambiente que hace fácil y rápido la ejecución _pruebas de calidad_ sobre los componentes como diseñador. Ahora bien, el uso de documentación que se mencionó previamente también es un bien para este rol, ya que en este espacio se puede entregar información específica del componente, tales como los usos correctos e incorrectos del mismo.
+
+Finalmente, para roles administrativos, Storybook también proveé servicios. Si el objetivo es _incrementar la comunicación y colaboración_ del equipo, Storybook es una herramienta que puede fomentar dichos comportamientos ya que funciona como un punto de encuentro entre desarrolladores y diseñadores. Además, al ser una fuente de documentación, la herramienta puede conducir a un _incremento de productividad_. Al tener nuevos miembros en el equipo, la capacitación sobre los componentes existentes, tanto en uso y comportamientso puedo acelerarse con un empleo adecuado de la documentación.
+
+Cabe resaltar que Storybook es solo una herramienta en la que usted obtiene lo que haya decidio poner.
+
+
+## ¿Qué és Storybook? {#qué-és-storybook}
+
+Mucha gente describe Storybook una guía de estilos viviente ó una biblioteca de componentes. No obstante, esta definición no és tan justa con Storybook ya que no és suficientemente compresiva con todo lo que ofrece la herramienta. La defición oficial en el sitio we de Storybook es:
+
+<div class="notes">
+  <div></div>
+
+Storybook es una herramienta open source para desarrollar componentes UI en aislamiento para los frameworks UI más populares: React, Vue and Angular.
+
+</div>
+
+Esta definición se puede complementar con lo siguiente:
+
+<div class="notes">
+  <div></div>
+
+Storybook es un sandbox para construir componentes UI en aislamiento, para que el desarrollador pueda crear estados difíciles de alcanzar y casos extremos.
+
+</div>
+
+Lo que se puede reslatar de ambas descripciones que que Storybook es una herramienta. La salida de dicha herramienta es algo que se puede llamar una guía o una biblioteca de componentes. Incluso, podría ser la cara de un sistema de diseño.
+
+<div class="notes">
+  <div></div>
+
+Nota: Storybook no es un sistema de diseño por si mismo, pero es usado para ayudar a consilidar uno.
+
+</div>
+
+La otra característica a subrayar de Storybook es que es agnóstico a los frameworks UI. La mayoría de los frameworks son soportados por Storybook y en el desarrollo de esta serie se utilizará React. En definitiva, Storybook es una herramienta flexible que se adpata a cualquier framework.
+
+
+## ¿Cómo funciona Storybook? {#cómo-funciona-storybook}
+
+Para identificar como funciona Storybook primero se va a revisar su interfaz gráfica:
+
+{{< figure src="../images/storybook/01-storybook-interface.png" caption="Figure 1: Storybook GUI" >}}
+
+En la barra lateral de la GUI, se tiene la lista de todas las historias. Dicha barra funciona como un explorador de archivos y su propósito es organizar y habilitar el acceso a los cotenidos dentro de Storybook. Para este caso puntal, se tienen varias categorías y subcategorias sobre la histora `Banner`. Puntualmente se esta revisando la historia `Banner> Major > With Text`.  En la parte derecha superior se tiene la vista de la historia. El próposito es usar esta vista en el sitio web que se encuentra en producción. Es decir, el detalle importante és que los componentes que se desplieguan en el sitio web sean mismos que se almacenan en Storybook. Esta es la gran diferencia entre una guía de estilos estática, con Storybook. En vez de describir cómo debería ser el componente, Storybook muestra los componentes tal y como son.
+
+Si se inspecciona la página con las herramientas para desarrolladores del navegador, se puede observar que la vista está en una etiqueta `<iframe>`. Con este enfoque se tienen garantías sobre que los estilos de las historias están totalmente aisladod. En otras palabas, los estilos de cada historia son independientes y no abrá interferencia entre ellos así corran en el mismo sandbox.
+
+En la parte inferior derecha del GUI, se tiene el panel de configuraciones de la historia. Para este caso puntual están las pestañas _Knobs_, _Action_ y _See Also_. Knobs, es un complemento personalizado que se revisará en detalle más adelante. Por ahora, solo se quiere resaltar que los cambios que se realicen en el formulario de Knobs actualizarán inmediatamente los contenidos en la vista de la historia, dando así un adelanto de los alcances de Storybook. Esto es posible gracias a la estructura en cómo esta formado el componente, el cual espera unos parámetros que equivalen a los campos definidos en el formulario de Knobs.
+
+Storybook es simplemente una aplicación secundaria que usa los componentes de un sitio web.
+
+
+## ¿Por qué usaría Storybook? {#por-qué-usaría-storybook}
+
+Para definir los casos de uso de Storybook, es válido hacer un recuento de Bootstrap, el cual fue liberado en el 2011 por Twitter como un framework CSS. De diferentes maneras, Bootstrap empezó a transformar la industria del desarrollo web. No fue un esfuerzo para crear una biblioteca de componentes UI, ya que muchas propuestas así ya habian sido liberadas. Lo que realmente logró Bootstrap fue haber establecido un conjunto básico de componentes HTML junto con una buena documentación para saber como usarlos. Tal y como su nombre lo implica, Bootstrap pretende subir el UI un nivel arriba del proceso de desarrollo y hacer que su ejecución sea rápida. A medida de que su popularidad fue creciendo, la herramienta se hizo más consistente en cuanto _look and feel_, ofreciendo así un beneficio sobre el desarrollador, ya que el problema de que un botón en el sitio web sea igual en todas sus vistas ya estaba resuelto. Adicionalmente, los desarrolladores ahora tienen una biblioteca de componentes consistentes estilizados fáciles de utilizar es sus aplicaciones.
+
+En definitiva, Bootstrap empezó a hacer la vida de los desarrolladores más fácil. No obstante, nuevos problemas de UI aparecieron. Bootstrap es estupendo para proveer componentes básicos tales como botones, encabezados y etiquetas. Para aplicaciones que usan componentes más complejos, la oferta de Bootstrap se quedo corta, ya que la combinación de los componentes básicos para formar componentes avanzados era un proceso poco intuitivo y en ocaciones los resultados no eran los esperados. El último reto fue que los proyectos ahora contaban con multiple fuentes de documentación, enfrentandose así a problemas que eran resueltos con ayuda de la documentación de la aplicación y a otros problemas que se solucionaban con la documentación de Bootstrap.
+
+En consecuencia, diferentes roles se vieron obligados a pensar varias veces el uso de una biblioteca externa. Para los desarrolladores, ya no había certeza sobre como debería implementarse un componente, ya que contaban con multiples guías. Por otra parte, para los diseñadores la frustación se presenciaba al ver que sus diseños se veian diferentes una vez estaban implementados en la aplicación. Finalmente, ambos roles eran afectados cuando los componentes eran dinámicos y era necesario ejecutar varios pasos para evidenciar los diferentes estados del componente. Practicamente, el diseñador solo podía ver los componentes en vivo en los ambientes de producción.
+
+Para estos casos dinámicos, Storybook ofrece una solución acertada, ya que permite estructurar estados sobre los componentes y así visualizar la historia en su totalidad con un paso de configuración sencillo. Y es aqui donde el sandbox empieza a tener protagonismo, ya que este tipo de componentes incrementan la colaboración entre el equipo para lograr los resultados esperados. El sandbox empieza a ser un espacio común para discutir problemas de UI y así mismo hacer los ajustes pertinentes sobre el componente. Al tener el sandbox aislado, los diferentes roles pueden hacer sus propios aportes sobre los usos de las historias sin preocupación alguna. Una vez el equipo consolida el estado correcto del componente, Storybook colabora con la implementación de la misma.
+
+Recuerde que _los componentes en Storybook son los mimos componentes que están en su apliación_. Esto siginifica que cualquier paso tomado para mostrar como debería funcionar una historia en Storybook, es el mismo paso tomado para que la vista se actualicé en la aplicación.
+
+En conclusión estas son las razones por la cuales se debería usar Storybook:
+
+-   Es fácil hacer una validación de QA sobre la experiencia de usuario. No es necesario navegar por toda la aplicación para replicar el estado de un componente en particular.
+-   Es intuitiva la colaboración de equipo, ya que todos los miembros del mismo estan viendo el mismo componente en el mismo sandbox, limpiando así posibles malos entendidos.
+-   Es fácil experimentar con los diferentes estados de un componente.
+-   Se tiene una repercusión directa sobre la implementación de la aplicación.
+
+
+## ¿Cómo aprovechar al máximo Storybook? {#cómo-aprovechar-al-máximo-storybook}
+
+La mejor forma de aprovechar Storybook es utilizando. Hoy en día, empresas como Airbnb y Lonely Planet comparten su biblioteca de componentes UI a través de Storybook. Estos son ejemplos de los alcances de Storybook. Estar pendiente a sus actualizaciones y revisar con frecuencia el sitio we oficial son prácticas recomendables para utilizar Storybook.
+
+
+## Referencias {#referencias}
+
+-   [Storybook getting started](https://app.pluralsight.com/library/courses/4118347c-c328-43a6-b03d-c55efc5366da)
