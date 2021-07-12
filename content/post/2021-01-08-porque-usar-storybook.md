@@ -78,7 +78,7 @@ La otra característica a subrayar de Storybook es que es agnóstico a los frame
 
 Para identificar como funciona Storybook primero se va a revisar su interfaz gráfica:
 
-{{< figure src="../images/storybook/01-storybook-interface.png" caption="Figure 1: Storybook GUI" >}}
+{{< figure src="../../images/storybook/01-storybook-interface.png" caption="Figure 1: Storybook GUI" >}}
 
 En la barra lateral de la GUI, se tiene la lista de todas las historias. Dicha barra funciona como un explorador de archivos y su propósito es organizar y habilitar el acceso a los cotenidos dentro de Storybook. Para este caso puntal, se tienen varias categorías y subcategorias sobre la histora `Banner`. Puntualmente se esta revisando la historia `Banner> Major > With Text`.  En la parte derecha superior se tiene la vista de la historia. El próposito es usar esta vista en el sitio web que se encuentra en producción. Es decir, el detalle importante és que los componentes que se desplieguan en el sitio web sean mismos que se almacenan en Storybook. Esta es la gran diferencia entre una guía de estilos estática, con Storybook. En vez de describir cómo debería ser el componente, Storybook muestra los componentes tal y como son.
 

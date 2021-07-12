@@ -611,3 +611,11 @@ const SpeakerDetail = React.memo(({
 Con esta modificación el componente ~SpeakerDetail~ esta siendo empaquetado dentro del llamado ~React.memo~ y ahora se esta retornando una versión en caché del componente cada vez que es llamado. Si se prueba nuevamente en el navegador, se observa que en la consola del mismo ahora solo se registra el cambio de estado del ícono del corazón tan solo para el expositor que es relevante a dicho cambio. Es decir, solo se renderiza la información del expositor sobre el cual se activa el evento para definir si es favorito o no. 
 
 * ~useMemo~
+
+El último hook que se va a revisar es ~useMemo~. Cómo se mencionó anteriormente este hook se utiliza para memorizar valores.
+
+Para el ejemplo de la aplicación de conferencias a un escenario en donde ~useMemo~ puede generar beneficios. Este escenario es la lógica del filtro por día para mostrar los expositores.
+
+** TODO: Write current code to handle filter logic
+** TODO: Write code to filter logic via useMemo
+
