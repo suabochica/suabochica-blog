@@ -614,8 +614,95 @@ Con esta modificación el componente ~SpeakerDetail~ esta siendo empaquetado den
 
 El último hook que se va a revisar es ~useMemo~. Cómo se mencionó anteriormente este hook se utiliza para memorizar valores.
 
-Para el ejemplo de la aplicación de conferencias a un escenario en donde ~useMemo~ puede generar beneficios. Este escenario es la lógica del filtro por día para mostrar los expositores.
+Para el ejemplo de la aplicación de conferencias hay un escenario en donde ~useMemo~ puede generar beneficios. Este escenario es la lógica del filtro por día para mostrar los expositores. A continuación se comparte el estado actual de archivo ~Speakers.js~:
 
-** TODO: Write current code to handle filter logic
-** TODO: Write code to filter logic via useMemo
+#+begin_src js
+// src/Speakers.js
 
+import React, { useContext, useEffect, useReducer, useCallback } from "react";
+
+import /*...*/
+import speakersReducer from "./speakersReducer"
+
+const Speakers = ({}) => {
+
+  useEffect(() => { /*...*/ })
+
+  // Handlers
+  const handleChangeSaturday = () => { /*...*/ }
+  const handleChangeSunday = () => { /*...*/ }
+  const handleHeartFavorite = useCallback((event, favoriteValue) => { /*...*/ }, []);
+  const speakerListFiltered = isLoading
+    ? []
+    : speakerList
+      .filter(
+        ({ saturday, sunday }) => (speakingSaturday && saturday || speakingSunday && sunday)
+      )
+      .sort(function(a, b) {
+        if (a.firstName < b.firstName)
+          return -1;
+        if (a.firstName > b.firstName)
+          return 1;
+        return 0;
+      });
+
+  if (isLoading) return <div>Loading...</div>
+
+  return (
+    {{/* JSX code of the component */}}
+  );
+};
+#+end_src
+
+Como se puede observar, el código relevantes a el filtro de los expositores corresponde a la variable ~speakerListFiltered~. Aquí ademas de filtrar los expositores por día, también se están organizando por la propiedad ~firstName~.
+
+Este escenario no es complejo debido a que solo se están utilizando información de 15 expositores y la lógica de filtro es sencilla. No obstante, si la cantidad de expositores aumentara y se precisaran lógicas de filtro más complejas que puedan requerrir del uso de llamados a servicios web externos, el contexto podría complicarse.
+
+Para mitigar el escenario descrito previamente, el plan consiste en memorizar los expositores a mostrar, junto con las dependencias que causan la recalculación. Se este modo se estará en capacidad de identificar la causea para renderizar los datos calculados ó memorizados. A continuación se comparte la versión actualizada del archivo ~Speakers.js~ con el uso del hook ~useMemo~:
+ 
+#+begin_src js
+// src/Speakers.js
+
+import React, { useContext, useEffect, useReducer, useCallback, useMemo } from "react";
+
+import /*...*/
+import speakersReducer from "./speakersReducer"
+
+const Speakers = ({}) => {
+
+  useEffect(() => { /*...*/ })
+
+  // Handlers
+  const handleChangeSaturday = () => { /*...*/ }
+  const handleChangeSunday = () => { /*...*/ }
+  const handleHeartFavorite = useCallback((event, favoriteValue) => { /*...*/ }, []);
+  const newSpeakerList = useMemo(() => speakerList
+      .filter(
+        ({ saturday, sunday }) => (speakingSaturday && saturday || speakingSunday && sunday)
+      )
+      .sort(function(a, b) {
+        if (a.firstName < b.firstName)
+          return -1;
+        if (a.firstName > b.firstName)
+          return 1;
+        return 0;
+      });
+    , [speakingSaturday, speakingSunday, speakerList]
+  );
+
+  const speakerListFiltered = isLoading
+    ? []
+    : newSpeakerList;
+
+  if (isLoading) return <div>Loading...</div>
+
+  return (
+    {{/* JSX code of the component */}}
+  );
+};
+#+end_src
+
+Varias cosas a resaltar en la versión de ~useMemo~. Primero es que el hook fue importado desde React. Segundo, se creo la variable ~newSpeakerList~ que llama el hook ~useMemo~. Este hook recibe dos parámetros: el primero es el valor que se va a memorizar. Para este caso el ~speakerList~. El segundo argumento corresponde a un arreglo de dependencias que funciona de manera similar a la descripción que se compartió al revisar el hook ~useEffect~. Si alguno los valores en el arreglo de dependencias cambia, la versión memorizada corre la función del primer parámetro y pone en caché ese valor.
+
+** TODO Explanation relate to react rules
+Por otra parte, se resalta que la función memorizada
