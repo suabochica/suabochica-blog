@@ -704,5 +704,18 @@ const Speakers = ({}) => {
 
 Varias cosas a resaltar en la versión de ~useMemo~. Primero es que el hook fue importado desde React. Segundo, se creo la variable ~newSpeakerList~ que llama el hook ~useMemo~. Este hook recibe dos parámetros: el primero es el valor que se va a memorizar. Para este caso el ~speakerList~. El segundo argumento corresponde a un arreglo de dependencias que funciona de manera similar a la descripción que se compartió al revisar el hook ~useEffect~. Si alguno los valores en el arreglo de dependencias cambia, la versión memorizada corre la función del primer parámetro y pone en caché ese valor.
 
-** TODO Explanation relate to react rules
-Por otra parte, se resalta que la función memorizada
+Por último, hay una razón por la cuál el uso de ~useMemo~ se hace en una nueva varialble llamada ~newSpeakerList~ y no se define de manera directa como segunda opción del if ternario. Se recuerda que una de las reglas de los hooks es que no pueden ser anidados dentro de condiciones. Es por está razón que si el hook se denfine directamente dentro del segundo valor del if ternario, el linter indicara este error.
+
+* Recapitulación
+
+Esta publicación puede resumirse en la siguiente tabla:
+
+| Hook          | Descripción                                                                                        | Ejemplo                                                        |
+|---------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------|
+| ~useContext~  | Otorga la habilidad de pasar datos sin bajo un patrón proveedor/subscritor.                        | Datos de configuración inicial                                 |
+| ~useReducer~  | Otorga una forma práctica para otranizar la administración del estado                              | Manejo de la lista de expositores y la definición de favoritos |
+| ~useCallback~ | Otorga una ganancia de rendimiento al memorizar funciones                                          | Renderización de solo el expositor que ha sido modificado      |
+| ~useMemo~     | Otorga la capacidad de almacenar en caché datos del cliente haciendo los procesos más responsivos  | Filtro sobre la lista de expositores                           |
+
+
+Hasta el momento se han revisado todos los React Hooks básicos. La invitación ahora consiste en ir familiarizarse con los patrones en React que utilizan Hooks.
