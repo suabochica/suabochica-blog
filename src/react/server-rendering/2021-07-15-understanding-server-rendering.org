@@ -1,0 +1,21 @@
+#+TITLE: Server Rendering de Componentes React
+#+DESCRIPTION: Serie para explicar el concepto de server rendering en react
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-07-15 Thu>
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+Hoy en día las aplicaciones web dependen cada vez más de experiencias de usuario rápidas y fluidas. Este requerimiento obliga a los desarrolladores a buscar estrategias para asegurar dichas experiencias en dispositivos viejos y lentos. Como alternativa se tiene la construcciones de componentes React renederizados en los servidores para crear aplicaciones que luzcan geniales, sean de carga rápida y su vez fáciles de mantener. En esta serie se van a cubrir los siguientes contenidos:
+
+- Flujo de trabajo con server rendering
+- Andamiaje para una aplicación renderizada por el servidor
+- Rehidratación de componentes renderizados por el servidor
+
+El propósito de estas publicaciones es ofrecer al lecto la capacidad de construir una aplicación que se renderice en el servidor y entregue experiencias de usuario satisfactorais y al instante.
+
+#+begin_notes
+Para sacar mayor provecho de estas lecturas es tener conocimientos básicos React y JavaScript.
+#+end_notes
