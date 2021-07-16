@@ -10,12 +10,27 @@
 
 Hoy en día las aplicaciones web dependen cada vez más de experiencias de usuario rápidas y fluidas. Este requerimiento obliga a los desarrolladores a buscar estrategias para asegurar dichas experiencias en dispositivos viejos y lentos. Como alternativa se tiene la construcciones de componentes React renederizados en los servidores para crear aplicaciones que luzcan geniales, sean de carga rápida y su vez fáciles de mantener. En esta serie se van a cubrir los siguientes contenidos:
 
-- Flujo de trabajo con server rendering
+- Entendiendo el server rendering
+  - Dónde es y no es apropiado
+  - Costos y beneficios
+  - Herramientas requeridas
 - Andamiaje para una aplicación renderizada por el servidor
+  - Creación de un servidor con Express
+  - Compulación de JSX con React en el servidor
 - Rehidratación de componentes renderizados por el servidor
+  - Envío de componentes pre-renderizados al cliente
+  - Entender y aplicar hidratación restaurando interactividad
 
 El propósito de estas publicaciones es ofrecer al lecto la capacidad de construir una aplicación que se renderice en el servidor y entregue experiencias de usuario satisfactorais y al instante.
 
 #+begin_notes
 Para sacar mayor provecho de estas lecturas es tener conocimientos básicos React y JavaScript.
 #+end_notes
+
+* Entendiendo la renderización por servidor
+
+Considere el siguiente caso: como desarrollador, se le solicita la construcción de una aplicación para sus clientes corporativos. Dicha aplicación es una agenda para altos ejecutivos. Siempre presionados por el tiempo, estos ejecutivos quieren que la aplicación cargue extremadamente rápido en sus celulares, tabletas o protátiles. Este tipo de aplicaciones suelen ser grandes y complejas, y por ende tomará tiempo en prestarse en su totalidad. No obstante, los clientes quieren resultados instantáneos. Para atender este requerimiento de resultandos inmediatos, una solución son las aplicaciones renderizadas por servidor.
+
+En las aplicaciones renderizadas por servidor, el servidor obtiene varias responsabilidades que son reservadas para el cliente, y por lo tanto, dispositivos lentos ya no serían un inconveniente. Adicionalmente, el tiempo gastado para descargar React, cargar la aplicación en memoria y dibujar los componentes interactivos son los últimpos pasos ejecutados. En consecuencia, primero se ejecutan tareas para presentar información relativa al cliente, para evitar tiempos de espera prolongados. Tenga presente que el cliente ve la aplicación primero. Por otra parte, la funcionalidad completa de la aplicación, (diligenciamiento de formularios, salvar datos en el servidor, etc.) son activados luego de que React este cargado, lo que usualmente es hecho pocos segundos después de que la aplicación aparece.
+
+Con este contexto en mente, es tiempo de empezar a implementar la aplicación para altos ejecutivos.
