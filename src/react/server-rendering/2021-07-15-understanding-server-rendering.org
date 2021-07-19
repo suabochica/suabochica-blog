@@ -37,7 +37,7 @@ Con este contexto en mente, es tiempo de empezar a implementar la aplicación pa
 
 * Costos y beneficion de las aplicaciones renderizadas en el servido
 
-Es válido pensar que si los beneficios de las aplicaciones renderizadas en el servidor son tan buenas, seguramente todas las aplicaciones deberián ser hechas de esta forma. Esto sería afirmativo siempre y cuando los costos asociados a hacer una aplicación renderizada por el servidor pudieran ser ignorados. A continuación se comparten los costos y se exponen los beneficios de hacer aplicacioens de este tipo:
+Es válido pensar que si los beneficios de las aplicaciones renderizadas en el servidor son tan buenas, seguramente todas las aplicaciones deberián ser hechas de esta forma. Esto sería afirmativo siempre y cuando los costos asociados a hacer una aplicación renderizada por el servidor pudieran ser ignorados. A continuación se comparten los costos y se exponen los beneficios de hacer aplicaciones de este tipo:
 
 ** Costos
 
@@ -47,3 +47,10 @@ Es válido pensar que si los beneficios de las aplicaciones renderizadas en el s
 - Por último, el trabajo adicional en el servidor significa más costos para la empresa. Usualmente el incremento es mínimo, pero desde que el tiempo en servidor cuesta dinero, es importante considerar este aspecto.
 
 ** Beneficios
+- Al poner más lógica en el servidor, se reduce el código enviado desde el cliente. Por ejemplo, si hay elementos de presentación que solo aparecen cuando la aplicación en cargada, dichos elementos pueden ser incluidos estrictamente en el servidor. Adicionalmente, la lógica enviada al cliente será hecha en tiempos más convenientes, luego de haber mostrado algún contenido.
+- Quizar, el beneficio más importante es que la aplicación se carga más rapido, haciendo la difenrecia en dispositivos móviles. Los dispositivos móviles pueden tomar un tiempo largo en analizar todos los componentes en la aplicación. Con aplicaciones renderizadas en el servidor, dichos dispositivos veran contenidos antes de que los tiempo de carga hayan terminado, hecho que hace una gran diferencia para los clientes.
+- En la misma línea se tiene que para instancias donde los usuarios se rinden con el uso de la aplicación por que su carga es muy lenta, dichos comportamientos son mitigados. Al momento en que se da clic en la URL, se comparte algún contenido para mantener entretenido al usuario. Dichos contenidos pueden implementarse sin necesidad de correr JavaScript.
+
+En resumen, las aplicaciones renderizadas en el servidor cambian complejidad por rendimiento. La complejidad incrementa ya que se precisa de más código, el uso de bibliotecas sofisticadas y expone al desarrollador a solución de problemas complejos. Sin embargo, se obtiene mejor rendimiento en la aplicación, ya que la aplicación aparecerá más rápido en todos los dispositivos, resaltando los dispositivos móviles, caracterizados por que su lentitud de carga es usualmente un problema.
+
+* ¿Cómo funciona la renderización en el servidor?
