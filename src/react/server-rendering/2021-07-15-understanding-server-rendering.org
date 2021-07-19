@@ -34,3 +34,16 @@ Considere el siguiente caso: como desarrollador, se le solicita la construcción
 En las aplicaciones renderizadas por servidor, el servidor obtiene varias responsabilidades que son reservadas para el cliente, y por lo tanto, dispositivos lentos ya no serían un inconveniente. Adicionalmente, el tiempo gastado para descargar React, cargar la aplicación en memoria y dibujar los componentes interactivos son los últimpos pasos ejecutados. En consecuencia, primero se ejecutan tareas para presentar información relativa al cliente, para evitar tiempos de espera prolongados. Tenga presente que el cliente ve la aplicación primero. Por otra parte, la funcionalidad completa de la aplicación, (diligenciamiento de formularios, salvar datos en el servidor, etc.) son activados luego de que React este cargado, lo que usualmente es hecho pocos segundos después de que la aplicación aparece.
 
 Con este contexto en mente, es tiempo de empezar a implementar la aplicación para altos ejecutivos.
+
+* Costos y beneficion de las aplicaciones renderizadas en el servido
+
+Es válido pensar que si los beneficios de las aplicaciones renderizadas en el servidor son tan buenas, seguramente todas las aplicaciones deberián ser hechas de esta forma. Esto sería afirmativo siempre y cuando los costos asociados a hacer una aplicación renderizada por el servidor pudieran ser ignorados. A continuación se comparten los costos y se exponen los beneficios de hacer aplicacioens de este tipo:
+
+** Costos
+
+- Tener una lógica adicional en el back-end significa incluir más código en una aplicación estándar. Es necesario implementar el servidor, renderizar los componentes para asegurar que coincidan con el estado de la aplicación, entre otros.
+- Son necesarias herramientas adicionales (express, webpack) que exponen el aplicativo tener más errores. Hay que tener en cuenta que el hizo de herramientas adicionales habilita un canal para que se presenten bugs en la aplicación. En otras palabras, más herramientas implican más problemas.
+- Es posible que algún código corra diferente en el servidor, generando inconsitencia en la aplicación. Un ejemplo simple puede ser que un paquete del cliente esta en una versión diferente a la del servidor, haciendo que los componentes tanto del servidor como del cliente no coincidan generando que la aplicación no se muestre al final.
+- Por último, el trabajo adicional en el servidor significa más costos para la empresa. Usualmente el incremento es mínimo, pero desde que el tiempo en servidor cuesta dinero, es importante considerar este aspecto.
+
+** Beneficios
