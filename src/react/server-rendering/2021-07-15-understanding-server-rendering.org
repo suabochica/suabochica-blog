@@ -54,3 +54,11 @@ Es válido pensar que si los beneficios de las aplicaciones renderizadas en el s
 En resumen, las aplicaciones renderizadas en el servidor cambian complejidad por rendimiento. La complejidad incrementa ya que se precisa de más código, el uso de bibliotecas sofisticadas y expone al desarrollador a solución de problemas complejos. Sin embargo, se obtiene mejor rendimiento en la aplicación, ya que la aplicación aparecerá más rápido en todos los dispositivos, resaltando los dispositivos móviles, caracterizados por que su lentitud de carga es usualmente un problema.
 
 * ¿Cómo funciona la renderización en el servidor?
+
+Tiempo de abordar la teoría detrás de la renederización en el servidor. Esta teoría será complementada por una aplicación de demostración que aterrizará los conceptos expuestos sobre esta arquitectura para desarrollo de aplicaciones web. El siguiente diagrama agrupa los flujos para la renderización de aplicaciones a través de clientes y servidores:
+
+** TODO Compartir diagrama de flujos de renderización
+
+En ambos casos, todo parte desde el acceso a la aplicación por parte del usuario a través de una URL. Para el caso de la renderización tradicional, el cual corresponde al flujo superior del diagrama, el servidor envía una buena cantidad de paquetes al cliente con contenidos de los componentes React, HTML, etc. Dichos contenidos son cargados con scripts y a través de peticiones AJAX se obtiene el estado de los datos de la aplicación y así finalmente el usuarion ejecuta una aplicación completamente funcional.
+
+** TODO Explicar flujo de renderización en el servidor
