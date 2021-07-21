@@ -1,30 +1,29 @@
-#+TITLE: Instalando Storybook
-#+DESCRIPTION: Serie que recopila los beneficios de usar Storybook
-#+AUTHOR: Sergio Benítez
-#+DATE:<2021-01-11 Mon> 
-#+STARTUP: fold
-#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
-#+HUGO_SECTION: /post
-#+HUGO_WEIGHT: auto
-#+HUGO_AUTO_SET_LASTMOD: t
++++
+title = "Instalando Storybook"
+author = ["Sergio Benítez"]
+description = "Serie que recopila los beneficios de usar Storybook"
+date = 2021-01-11T00:00:00-05:00
+lastmod = 2021-07-20T20:05:26-05:00
+draft = false
++++
 
-* Instalando Storybook
+## Instalando Storybook {#instalando-storybook}
 
-Antes de instalar Storybook es necesario instalar [[https://nodejs.org/en/][NodeJS]]. Para validar si se tiene instalado el runtime se puede ejecutar el siguiente comando:
+Antes de instalar Storybook es necesario instalar [NodeJS](https://nodejs.org/en/). Para validar si se tiene instalado el runtime se puede ejecutar el siguiente comando:
 
-#+begin_src
+```nil
 $ node -v
 v12.0.1
-#+end_src
+```
 
 Una vez instalado NodeJS, se inicializa un proyecto NodeJS corriendo el siguiente comando:
 
-#+begin_src
+```nil
 $ npm init -y
 Wrote to /mnt/c/Users/suabochica/Development/suabochica-storybook/package.json:
-#+end_src
+```
 
-#+begin_src json
+```json
 {
   "name": "suabochica-storybook",
   "version": "1.0.0",
@@ -45,33 +44,33 @@ Wrote to /mnt/c/Users/suabochica/Development/suabochica-storybook/package.json:
   },
   "homepage": "https://github.com/suabochica/suabochica-storybook#readme"
 }
-#+end_src
+```
 
 Con el proyecto NodeJS creado es momento de instalar algunas dependencias para correr Storybook con React. En ese orden de ideas, se ejecuta este comando:
 
-#+begin_src
+```nil
 $ npm i -s react react-dom
-#+end_src
+```
 
-~i~ es una abreviatura de ~install~ y ~-s~ es una opción para indicar que el paquete se instale en la sección ~dependencies~ del archivo ~package.json~.
+`i` es una abreviatura de `install` y `-s` es una opción para indicar que el paquete se instale en la sección `dependencies` del archivo `package.json`.
 
 Tiempo de instalar Storybook con soporte para React:
 
-#+begin_src
+```nil
 $ npm i @storybook/react -D
-#+end_src
+```
 
-~-D~ es una opción para indicar que el paquete se instale en la sección ~devDependencies~ del archivo ~package.json~.
+`-D` es una opción para indicar que el paquete se instale en la sección `devDependencies` del archivo `package.json`.
 
-El último paquete que se va a instalar para resolver temas de traspilación es ~babel-loader~:
+El último paquete que se va a instalar para resolver temas de traspilación es `babel-loader`:
 
-#+begin_src
+```nil
 $ npm i babel-loader @babel/core -D
-#+end_src
+```
 
-Una vez instalado todos los paquetes es tiempo de definir un script dentro del archivo ~package.json~ para inicializar el servidor de Storybook. El siguiente es un ejemplo del ~package.json~ con el script configurado:
+Una vez instalado todos los paquetes es tiempo de definir un script dentro del archivo `package.json` para inicializar el servidor de Storybook. El siguiente es un ejemplo del `package.json` con el script configurado:
 
-#+begin_src json
+```json
 {
   "name": "suabochica-storybook",
   "version": "1.0.0",
@@ -94,11 +93,11 @@ Una vez instalado todos los paquetes es tiempo de definir un script dentro del a
     "babel-loader": "^8.2.2"
   }
 }
-#+end_src
+```
 
-Por último, se debe crear un directorio con un archivo de configuración en la siguiente ruta ~.storybook/config.js~. El contenido de dicho archivo es:
+Por último, se debe crear un directorio con un archivo de configuración en la siguiente ruta `.storybook/config.js`. El contenido de dicho archivo es:
 
-#+begin_src js
+```js
 import { configure } from "@storybook/react";
 
 function loadStories() {
@@ -108,19 +107,19 @@ function loadStories() {
 }
 
 configure(loadStories, module);
-#+end_src
+```
 
-Básicamente se esta indicando que todos los archivos dentro de la carpeta ~/stories~ son requeridos para la cargar las historias dentro de Storybook. Esto implica la creación del drectorio ~/stories~ que por ahora puede estar vacio.
+Básicamente se esta indicando que todos los archivos dentro de la carpeta `/stories` son requeridos para la cargar las historias dentro de Storybook. Esto implica la creación del drectorio `/stories` que por ahora puede estar vacio.
 
 Tiempo de probar la instalación ejecutando el script de Storybook:
 
-#+begin_src
+```nil
 $ npm run storybook
-#+end_src
+```
 
 Si se imprime la siguiente salida:
 
-#+begin_src
+```nil
 ╭──────────────────────────────────────────────────────╮
 │                                                      │
 │   Storybook 6.1.14 started                           │
@@ -130,14 +129,16 @@ Si se imprime la siguiente salida:
 │    On your network:  http://192.168.224.161:9001/    │
 │                                                      │
 ╰──────────────────────────────────────────────────────╯
-#+end_src
+```
 
 Significa que la instalación ha sido exitosa
 
-** Errores
-Eseta configuración no funciona con la version 13.3.0 de node. Al correr el comando ~npm run storybook~ se obtiene el siguiente error:
 
-#+begin_src
+### Errores {#errores}
+
+Eseta configuración no funciona con la version 13.3.0 de node. Al correr el comando `npm run storybook` se obtiene el siguiente error:
+
+```nil
 suabochica-storybook on 䳭 main [!?] is 📦 v1.0.0 via ⬢ v13.3.0 took 1m36s
 ❯ npm run storybook
 
@@ -171,38 +172,39 @@ npm ERR! This is probably not a problem with npm. There is likely additional log
 
 npm ERR! A complete log of this run can be found in:
 npm ERR!     /home/suabochica/.npm/_logs/2021-01-12T17_17_11_966Z-debug.log
-#+end_src
+```
 
 La solución es actualizar la versión de node ala 14.15.4
 
-* Agregando Storybook a un proyecto existente
+
+## Agregando Storybook a un proyecto existente {#agregando-storybook-a-un-proyecto-existente}
 
 Para agregar Storybook en un proyecto existente, que generalmente debe estar bajo un sistema de control de versiones distribuido como git, tan solo se debe ejecutar el siguiente comando:
 
-#+begin_src
+```nil
 $ npx -p @storybook/cli sb init
-#+end_src
+```
 
-~npx~ es un corredor de paquetes que le permite ejecutar herramientas CLI que están alojadas en el registro de node. Con este comando, Storybook realizará los siguientes pasos:
+`npx` es un corredor de paquetes que le permite ejecutar herramientas CLI que están alojadas en el registro de node. Con este comando, Storybook realizará los siguientes pasos:
 
-1. Detectará el tipo de proyecto (e.g. React)
-2. Agregará soporte sobre Storybook para la aplicación actual.
-3. Instalará las dependencias pertinentes.
+1.  Detectará el tipo de proyecto (e.g. React)
+2.  Agregará soporte sobre Storybook para la aplicación actual.
+3.  Instalará las dependencias pertinentes.
 
 Si no ahy ningún percance la salidar de este comando le indicara ejecutar el siguiente comando:
 
-#+begin_src
+```nil
 $ npm run storybook
-#+end_src
+```
 
-Este comando constuye y lanzará el sandbox de Storybook en su navegador. Tras bambalinas, el comando inicial lo que hace es crear las carpetas ~/.storybook~ y ~/stories~ con una configuración por defecto, muy parecida a la que se compartió en la sección anterior. Adicionalmente, instala las dependencias de Storybook en función al tipo de proyecto y agrega los scripts para lanzar y construir el sandbox de Storybook.
+Este comando constuye y lanzará el sandbox de Storybook en su navegador. Tras bambalinas, el comando inicial lo que hace es crear las carpetas `/.storybook` y `/stories` con una configuración por defecto, muy parecida a la que se compartió en la sección anterior. Adicionalmente, instala las dependencias de Storybook en función al tipo de proyecto y agrega los scripts para lanzar y construir el sandbox de Storybook.
 
-* Aplicaciones de ejemplo
+
+## Aplicaciones de ejemplo {#aplicaciones-de-ejemplo}
 
 La empresa Carved Rock Fitness lo ha contratado para que usted colabore con la construcción de un e-commerce. Actualmente la compañia cuenta con un home page como el que se muestra a continuación:
 
-#+CAPTION: Web Components on a homepage
-[[../../images/storybook/01-storybook-interface.png]]
+{{< figure src="../../images/storybook/01-storybook-interface.png" caption="Figure 1: Web Components on a homepage" >}}
 
 En rojo se resaltan algunos elementos UI del sitio web: una barra de menú, un avatar, una barra de búsqueda, etc. La mayoria de estos elementos pueden reutilizarse a lo largo de toda la aplicación y perfilarlos como candidatos para convertirlos en componentes. Adicionalemnte, algunos precisarán de una documentación para determinar como y cuando deben ser utilizados.
 
