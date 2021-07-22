@@ -20,7 +20,7 @@ El objetivo de esta serie es evaluar el panorama que ofrece React como herramien
   A continuación se muestra una línea de tiempo con la historia de React:
   
   #+CAPTION: React History
-  [[../images/react/01-react-big-pic-history.png]]
+  [[../../images/react/01-react-big-pic-history.png]]
 
   React ya lleva casi una década en el mercado y quizas el hecho más importante en su historia fue su liberación a código abierto, ya que este evento marco la pauta para un crecimiento en la comunidad que se vío reflejado en la implementación de los nuevos complementos como React Native y los nuevos features como React Hooks. Esta misma comunidad liderada por el equipo dedicado de Facebook esta en constante actividad para actualizar documentación y desarrollar mejoras sobre la librería.
 
