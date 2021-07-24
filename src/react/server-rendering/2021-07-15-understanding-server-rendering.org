@@ -77,3 +77,47 @@ Se resalta que para hace un aplicación React renderizada en el servidor, son ne
 - *React*, para renderizar JSX a HTML tanto en el cliente como en el servidor.
 - *Express*, para enviar el contenido HTML renderizado en el servidor al cliente. No obstante, Express esta en capacidad de abastecer más tareas, como por ejemplo el uso de sus manipuladores para administar la rutas del aplicativo.
 - *Babel* para cargar código JSX en el script del servidor. Se señala que Node esta basado en JavaScript, y al igual que un navegador, no entiente la sintáxis JSX. Por lo tanto, el JSX debe convertirse a JavaScript y para ello se utiliza Babel. 
+
+* Vista completa de la aplicación de demostración
+
+La aplicación será un sistema de encuestas en donde se publicarán preguntas con múltiples respuestas, y se mostrará el porcentaje de votos de cada respuesta. Estas son la funcionalidades releveantes de la aplicación:
+
+- Entrega de contenido renderizado por el servidor
+- Iteractividad garantizada por rehidratación
+- Persistencia del estado de la aplicación
+
+A continuación se comparte la estructura de archivos de la aplicación:
+
+#+begin_src
+react-server-rendering/
+├─ client/
+│  ├─ App.jsx
+│  ├─ client.jsx
+├─ dist/
+├─ public/
+│  ├─ index.html
+├─ server/
+│  ├─ database.js
+│  ├─ server.js
+├─ shared/
+├─ .babelrc
+├─ .gitignore
+├─ package.json
+├─ README.md
+├─ webpack.config.js
+#+end_src
+
+** TODO Agregar enlace al repositorio de github
+La aplicación esta publicada en el siguiente repositorio.
+
+A lo largo de las publicaciones se explicará en detalle los contenidos de cada uno de los directorios y los archivos. En términos generales, hay unos archivos de configuración correspondientes a las herramientas operativas que se utilizan en el proyecto: Webpack y Babel. Dentro del fichero ~/client~ estará contenida toda la aplicación. Adicionalmente, en el archivo ~public/index.html~ se importan las librerías desde un CDN (Content Delivery Network), para salvar unos segundos en la carga de las librerías de React y Bootstrap. Por otra parte, este archivo exporta una variable ~{{rendered}}~ que será utilizada por el servidor para publicar el paquete HTML generado desde allí. En la carpeta ~server/~ se tiene un mock de una base de datos y el archivo que cargará el servidor con Express.
+
+** Recapitulación
+A continuación se exponent los datos más interesantes de los expuesto en esta publicación:
+
+- Las aplicaciones React renderizadas en el servidor intercambian más complejidad por un mayor rendimiento.
+  - Son requeridos más herramientas, conocimiento técnico y más código.
+  - Como resultado, el cliente obtiene información relevante mucho más rápidos en su dispositivo.
+- Las aplicaciones renderizadas por el servidor primero envian y paquete HTML pequeños al clinte y después se envía la mayoría del código de la aplicación.
+  - El cliente esta en capacidad de interactuar solo hasta que se cargue la mayoría del código de la aplicación
+- Express, React, Webpack y Babel son herramientas requeridas para construir una aplicación renderizada por el servidor.
