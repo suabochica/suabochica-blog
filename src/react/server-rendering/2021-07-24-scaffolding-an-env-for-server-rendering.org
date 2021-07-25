@@ -1,0 +1,18 @@
+#+TITLE: Andamiaje de un app renderizada en el servidor
+#+DESCRIPTION: Serie para explicar el concepto de server rendering en react
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-07-24 Sat>
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+No se puede construir una un edificio sólido sin una buena base y el entrono que se va a montar es en muchas formas la base para una aplicación renderizada en el servidor. Estos son los objetivos que se van a abordar en la publicación:
+
+- Usar Webpack y Babel de manera fluida para transformar la sintáxis JSX en JS. Se recuerda que tanto el navegador como Node no entienden JSX por cuenta propia. Por lo tanto el código JSX tiene que ser transformado a JavaScript.
+- Usar Express para crear un servidor HTTP donde la lógica personalizada puede ser escrita.
+- Crear componentes React sin una lógica interna y que puedan ser renderizados tanto por el servidor como el cliente.
+
+* Decisiones de andamio
+En el ecosistema de React, es popular la herramienta ~create-react-app~ para crear aplicaciones React. ~create-react-app~ es una utilidad de línea de comandos para montar aplicaciones React bajo el consenso de buenas practicas establecidad por un elenco de desarrolladores seniors. No obstante, el uso de esta herramienta ofrece tanto ventajas como desventajas que se van a revisar a continuación:

@@ -112,7 +112,7 @@ La aplicación esta publicada en el siguiente repositorio.
 
 A lo largo de las publicaciones se explicará en detalle los contenidos de cada uno de los directorios y los archivos. En términos generales, hay unos archivos de configuración correspondientes a las herramientas operativas que se utilizan en el proyecto: Webpack y Babel. Dentro del fichero ~/client~ estará contenida toda la aplicación. Adicionalmente, en el archivo ~public/index.html~ se importan las librerías desde un CDN (Content Delivery Network), para salvar unos segundos en la carga de las librerías de React y Bootstrap. Por otra parte, este archivo exporta una variable ~{{rendered}}~ que será utilizada por el servidor para publicar el paquete HTML generado desde allí. En la carpeta ~server/~ se tiene un mock de una base de datos y el archivo que cargará el servidor con Express.
 
-** Recapitulación
+* Recapitulación
 A continuación se exponent los datos más interesantes de los expuesto en esta publicación:
 
 - Las aplicaciones React renderizadas en el servidor intercambian más complejidad por un mayor rendimiento.
