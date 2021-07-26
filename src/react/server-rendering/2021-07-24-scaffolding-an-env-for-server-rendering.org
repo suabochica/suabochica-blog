@@ -16,3 +16,21 @@ No se puede construir una un edificio sólido sin una buena base y el entrono qu
 
 * Decisiones de andamio
 En el ecosistema de React, es popular la herramienta ~create-react-app~ para crear aplicaciones React. ~create-react-app~ es una utilidad de línea de comandos para montar aplicaciones React bajo el consenso de buenas practicas establecidad por un elenco de desarrolladores seniors. No obstante, el uso de esta herramienta ofrece tanto ventajas como desventajas que se van a revisar a continuación:
+
+** Ventajas
+- Se necesita poca o ninguna comprensión de la pila completa de tecnologías para el desarrollo web.
+- Esta en revisión constante por expertos.
+- Es una herramientas estándar de la industria. Los desarrolladores suelen estar familiarizados con ella.
+- Create de manera automatica una estructura de directorio basado en las mejores prácticas.
+- La herramientas utilizadas estan basadas en las mejores prácticas.
+- Es fácil la implementaciones de nuevas funcionalidades como: linting, server-side rendering, etc.
+
+** Desventajas
+- Al no ser necesario una comprensión de la pila completa de tecnología para el desarrollo web, varios fundamentos pueden ser omitidos.
+- El valor educativos es insignificante.
+- Tener una gran pila de tecnologías hace que la solución de problemas sea complejo.
+- Create de manera automatica una estructura de directorio basado en las mejores prácticas.
+- No favorece la elección de herrmaientas.
+- Es díficil la implementación de funcionalidades que no están soportadas.
+
+Para los propósitos de esta serie de publicaciones sobre la renderización en el servidor, se va a omitir el uso de ~create-react-app~ ya que se pretenden objetivos educacionales sobre este tipo de arquitecturas.

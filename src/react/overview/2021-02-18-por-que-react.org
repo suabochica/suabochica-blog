@@ -39,7 +39,7 @@ Una de las principales dudas a resolver en esta serie es identificar el por qué
   
 Quizas la razón más convincente para seleccionar React es que una vez se aprende, se esta en capacidad de construir interfaces de usuario para una gran variedad de plataformas y casos de uso. React es notablemente flexible, ya que incorpora menos opciones que sus competidores. React es una librería, no un framework. Al ser una librería resulta ser una herramienta más flexible, ya que se adapta a diferentes contextos.
 
-Cuando React fue creado, solo había un único caso de uso a solucioanr; la creación de componentes para aplicaciones web. Sin embargo, a medida de que su popularidad fue creciendo, su ecosistema se fue ampliando para abordar otros casos de usos como los que se enlistan a continuación:
+Cuando React fue creado, solo había un único caso de uso a solucionar; la creación de componentes para aplicaciones web. Sin embargo, a medida de que su popularidad fue creciendo, su ecosistema se fue ampliando para abordar otros casos de usos como los que se enlistan a continuación:
 
   - Sitios estáticos a tráves de Gatsby
   - Desarrollo de aplicaciones móviles a través de React Native
