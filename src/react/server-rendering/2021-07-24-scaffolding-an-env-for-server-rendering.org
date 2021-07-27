@@ -34,3 +34,13 @@ En el ecosistema de React, es popular la herramienta ~create-react-app~ para cre
 - Es díficil la implementación de funcionalidades que no están soportadas.
 
 Para los propósitos de esta serie de publicaciones sobre la renderización en el servidor, se va a omitir el uso de ~create-react-app~ ya que se pretenden objetivos educacionales sobre este tipo de arquitecturas.
+
+* Creando el proyecto e instalando las dependencias
+
+#+begin_src
+$ npm init --y
+$ npm i react@16.12.0 react-dom@16.12.0 express@4.1 --save
+$ npm i @babel/core@7.7.7 @babel/@7.7.7 babel-loader@8.0.6 --save-dev
+$ npm i webpack@4.41.5 webpack-cli@3.3.1 webpack-dev-server@3.10.1 --save-dev
+#+end_src
+
