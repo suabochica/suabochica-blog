@@ -39,7 +39,7 @@ Para los propósitos de esta serie de publicaciones sobre la renderización en e
 
 Antes de instalar las dependencias es importante tener en cuentas que si se presenta algún bloqueo, puede ser de utilidad las siguientes recomendaciones:
 
-- La versión de React que se va a utilizar es la v16.12.2. Así mismo, se sugiere validar que las versiones de los paquetes utilizados sean las apropiadas.
+- La versión de React que se va a utilizar es la v16.12.0. Así mismo, se sugiere validar que las versiones de los paquetes utilizados sean las apropiadas.
 - Revisar los confilctos entre ambientes locales y globales. Es recomendable usar scripts npm para tener autoría sobre el entorno local.
 - La fuente del código del proyecto puede ser revisada en el siguiente repositorio: https://github.com/danielstern/server-rendered-react-app
 
@@ -51,4 +51,37 @@ $ npm i react@16.12.0 react-dom@16.12.0 express@4.1 --save
 $ npm i @babel/core@7.7.7 @babel/node@7.7.7 babel-loader@8.0.6 --save-dev
 $ npm i webpack@4.41.5 webpack-cli@3.3.1 webpack-dev-server@3.10.1 --save-dev
 #+end_src
+
+Explicación:
+- Inicialización de la aplicación con ~npm~ para crear un archivo ~package.json~ vacío
+- Instalar la librería ~react~ y el contexto ~react-dom~
+- Instalar el framework ~express~
+- Instalar el paquete principal ~@babel/core~ y su extensión ~@babel/node~. Adicionalmente, instalar ~babel/loader~ que es una utilidad fundamental para la operación con babel. Tener en cuenta que en algunos paquetes de babel se utiliza el símbolo ~@~ al principio y en otros no.
+- Instalar el empaquetador ~webpack~ junto con su interfaz de línea de comandos ~webpack-cli~ y una utilidad para levantar el servidor de desarrollodo llamado ~webpack-dev-server~.
+
+Por último, se va a crear el archivo ~server/index.js~ con la configuración para levantar el servidor express. El contenido de este archivo es el siguiente:
+
+#+begin_src js
+const express = require("express");
+const app = new express();
+
+app.get("/", (_request, response) => {
+  response.send(`<h1>Express server is on...</h1>`);
+});
+
+app.listen(7777);
+console.log("Server is listening");
+#+end_src
+
+Basicamente se inicializa una nueva aplicación express, sobre la cual se hace una petición ~get~ a la ruta ~/~ para enviar una respuesta con un mensaje de encabezado. Se especifica el puerto ~7777~ sobre el que se va a escuchar la petición y para correr el servidor se agrega el siguiente script en el ~package.json~:
+
+#+begin_src json
+"scripts": {
+  "start": "node server"
+},
+#+end_src
+
+Por último se corre el comando ~npm run start~ y si todo sale bien, al revisar el ~localhost:7777~ se mostrará el encabezado que se definión en la respuesta de la petición ~get~ del archivo ~server/index.js~.
+
+* Configurando Babel
 
