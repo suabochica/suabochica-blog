@@ -37,10 +37,18 @@ Para los propósitos de esta serie de publicaciones sobre la renderización en e
 
 * Creando el proyecto e instalando las dependencias
 
+Antes de instalar las dependencias es importante tener en cuentas que si se presenta algún bloqueo, puede ser de utilidad las siguientes recomendaciones:
+
+- La versión de React que se va a utilizar es la v16.12.2. Así mismo, se sugiere validar que las versiones de los paquetes utilizados sean las apropiadas.
+- Revisar los confilctos entre ambientes locales y globales. Es recomendable usar scripts npm para tener autoría sobre el entorno local.
+- La fuente del código del proyecto puede ser revisada en el siguiente repositorio: https://github.com/danielstern/server-rendered-react-app
+
+Para el aplicativo de encuestas se van a instalar las siguientes dependecias para tener un estado inicial del proyecto:
+
 #+begin_src
 $ npm init --y
 $ npm i react@16.12.0 react-dom@16.12.0 express@4.1 --save
-$ npm i @babel/core@7.7.7 @babel/@7.7.7 babel-loader@8.0.6 --save-dev
+$ npm i @babel/core@7.7.7 @babel/node@7.7.7 babel-loader@8.0.6 --save-dev
 $ npm i webpack@4.41.5 webpack-cli@3.3.1 webpack-dev-server@3.10.1 --save-dev
 #+end_src
 
