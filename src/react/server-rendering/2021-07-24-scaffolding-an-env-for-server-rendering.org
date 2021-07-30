@@ -85,3 +85,41 @@ Por último se corre el comando ~npm run start~ y si todo sale bien, al revisar 
 
 * Configurando Babel
 
+Babel es la herramienta que va a permitir convertir el código ES6 en algo que pueda ser entendido por el cliente y el servidor. Ahora bien, ¿Qué es Babel?
+
+Babel es una utilidad que traspila una versión de un lenguaje de programación (generalmente JavaScript) a otra. Por lo tanto habilita la posibilidad de tomar ES6 o JSX y transformarla a una versión JavaScript soportada por el navegador o el servidor. Para ello, Babel usa plugings (i.e. ~babel-react-plugin~) que agregan una funcinalidad de manera modular.
+
+Por lo tanto al instalar Babel, no significa que ya se pueda procesar React de manera automática. Es necesario una configuración manual del preset que permita procesar React. dichas configuraciones se hace en el archivo ~.babelrc~
+
+#+begin_src js
+// .babelrc
+{
+    "presets": [
+        "@babel/preset-env",
+        "@babel/preset-react",
+    ]
+}
+#+end_src
+
+#+begin_src
+$ npm i @babel/preset-env@7.7.7 @babel/preset-react@7.7.4 --save-dev
+#+end_src
+
+#+begin_src js
+// server/index.js
+import express from "express";
+const app = new express();
+
+app.get("/", async (_request, response) => {
+  response.send(`<h1>Express server is on...</h1>`);
+});
+
+app.listen(7777);
+console.log("Server is listening");
+#+end_src
+
+#+begin_src json
+"scripts": {
+  "start": "babel-node server"
+},
+#+end_src
