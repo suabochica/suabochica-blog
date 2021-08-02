@@ -123,3 +123,17 @@ console.log("Server is listening");
   "start": "babel-node server"
 },
 #+end_src
+
+* Creando el componente principal de React
+
+Para crear un componente React que sea amigable con el enfoque server-render, estás son unas recomendaciones clave para poder lograr el objetivo:
+
+- Hay que tener certeza de que el estado solo proviente de props externos, nada de llamados AJAX internos.
+- No debe haber métodos asíncronos o llamados AJAX en el código del componente.
+- Los metodos que atienden evento (e.g. clic en un botón) también deben venir de props externos. Por lo tanto, el servidor del cliente puede tener varias versiones de estós métodos si lo desea.
+- El componente React necesita una función pura que genere el mismo código HTML de salida, cuando reciba determinados props. De no ser así, se presenteran varios inconvenientos con el proceso de rehidratación en el cliente.
+
+Dada estas pautas estos son los siguientes puntos a desarrollar en el proyecto:
+1. Crear un componente React que comprenda el aplicativo. El código puede ser modular o contenido en un solo archivo, dependiendo de las necesisdades.
+2. Configurar Webpack y Babel. Webpack cargará y pasará el archivo JSX a través de Babel para crear el archivo JavaScript, y así lograr que el código sea legible tanto para el cliente como el servidor.
+3. Renderizar el componente en el cliente con ayuda de React DOM. Este componente se ejecutará sin la representación del mismo en el servidor. Existe una regla general y es que todos los componentes renderizados en el servidor también deben funcionar en el cliente.
