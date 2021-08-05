@@ -8,7 +8,7 @@
 #+HUGO_WEIGHT: auto
 #+HUGO_AUTO_SET_LASTMOD: t
 
-No se puede construir una un edificio sólido sin una buena base y el entrono que se va a montar es en muchas formas la base para una aplicación renderizada en el servidor. Estos son los objetivos que se van a abordar en la publicación:
+No se puede construir una un edificio sólido sin una buena base y el entorno que se va a montar es en muchas formas la base para una aplicación renderizada en el servidor. Estos son los objetivos que se van a abordar en la publicación:
 
 - Usar Webpack y Babel de manera fluida para transformar la sintáxis JSX en JS. Se recuerda que tanto el navegador como Node no entienden JSX por cuenta propia. Por lo tanto el código JSX tiene que ser transformado a JavaScript.
 - Usar Express para crear un servidor HTTP donde la lógica personalizada puede ser escrita.
@@ -137,3 +137,92 @@ Dada estas pautas estos son los siguientes puntos a desarrollar en el proyecto:
 1. Crear un componente React que comprenda el aplicativo. El código puede ser modular o contenido en un solo archivo, dependiendo de las necesisdades.
 2. Configurar Webpack y Babel. Webpack cargará y pasará el archivo JSX a través de Babel para crear el archivo JavaScript, y así lograr que el código sea legible tanto para el cliente como el servidor.
 3. Renderizar el componente en el cliente con ayuda de React DOM. Este componente se ejecutará sin la representación del mismo en el servidor. Existe una regla general y es que todos los componentes renderizados en el servidor también deben funcionar en el cliente.
+
+Para ver mayor detalle de los contenidos de dichos archivos se sugiere revisar el siguiente [[https://github.com/suabochica/server-rendered-poll-app][repositorio]] en GitHub.
+
+* TODO Explain code
+#+begin_src js
+// client/client.jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const App = () => (
+  <div>
+    This is a React component!
+  </div>
+)
+
+ReactDOM.render(<App/>, document.querySelector("#container"));
+#+end_src
+
+#+begin_src js
+// webpack.config.js
+const { resolve } = require("path");
+
+module.exports = {
+  mode: "development",
+  entry: {
+    client: "./client/client.jsx",
+  },
+  output: {
+    filename: "[name].js",
+  },
+  resolve: {
+    extensions: ["js", "jsx"],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+          },
+        },
+      },
+    ],
+  },
+};
+#+end_src
+
+#+begin_src js
+// server/index.js
+import express from "express";
+import { readFileSync } from "fs";
+
+const app = new express();
+
+app.use(express.static("dist"));
+app.get("/", async (_request, response) => {
+  const index = readFileSync("public/index.html", "utf8");
+  // response.send(`<h1>Express server is on...</h1>`);
+});
+
+app.listen(7777);
+console.log("Server is listening");
+#+end_src
+
+#+begin_src html
+<html>
+  <body>
+    <div id="container">
+      React component code goes here
+    </div>
+    <script src="client.js"></script>
+  </body>
+</html>
+#+end_src
+
+* Recapitulación
+
+En esta publicación se pueden resumir los siguientes puntos. Para crear el andamio de un entorno de desarrollo para una aplicación server-render se puede tener una alternativa aútomatica o manual:
+
+- El andamio automático parte del uso de Create React App, una herramienta que recopila las mejores prácticas para un desarrollo de un aplicativo React.
+- El andamio manual tiene su base en herramientas como Babel, Express y Webpack permitiendo mayor control del entorno de desarrollo.
+
+
+Complementando el enfoque manual, Babel es utilizado para convertir archivos JSX en archivos JavaScript que puedan ser legibles tanto para el navegador como por el servidor. en la misma línea, Webpack crea una versión de la aplicación en un solo archivo JavaScript.
+
+Por último, se pudo observar que los componentes React aceptan propiedades externas que generan HTML puro.
