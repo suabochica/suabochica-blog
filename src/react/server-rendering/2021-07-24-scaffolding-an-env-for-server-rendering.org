@@ -140,7 +140,8 @@ Dada estas pautas estos son los siguientes puntos a desarrollar en el proyecto:
 
 Para ver mayor detalle de los contenidos de dichos archivos se sugiere revisar el siguiente [[https://github.com/suabochica/server-rendered-poll-app][repositorio]] en GitHub.
 
-* TODO Explain code
+En primera instancia, se va a crear un archivo ~client/client.jsx~ con el componente React tal y como se muestra a continuación:
+
 #+begin_src js
 // client/client.jsx
 import React from 'react';
@@ -155,6 +156,10 @@ const App = () => (
 ReactDOM.render(<App/>, document.querySelector("#container"));
 #+end_src
 
+Aquí se tienen varios detalles. Primero, nuestro componente ~App~ tan solo será un texto. Por otra parte, con la función ~render()~ de React DOM se especifíca que el componente será renderizado en el selector ~#container~. Este detalle es el más relevante, puesto que el selector será el gancho para conectar el componente React con el archivo HTML generado.
+
+Se señala que las sintáxis JSX no es comprendida por los navegadores y por el servidor de Node. Para ello es necesario hacer una configuración en Webpack como la siguiente:
+
 #+begin_src js
 // webpack.config.js
 const { resolve } = require("path");
@@ -168,7 +173,7 @@ module.exports = {
     filename: "[name].js",
   },
   resolve: {
-    extensions: ["js", "jsx"],
+    extensions: [".js", ".jsx"],
   },
   module: {
     rules: [
@@ -187,6 +192,25 @@ module.exports = {
 };
 #+end_src
 
+Como se puede observar, dentro de esta configuración hacemos uso del loader y los preset de Babel. Básicamente, en este archivo de configuración se indica los puntos de entrada, salida, las extensiones relevantes y las reglas que se van a aplicar sobre el proyecto. Por último para poder ejecutar este configuración es necesario agregar en el archivo ~package.json~ un nuevo script para hacer el ~build~ de la aplicación, tal y como se muestra en el siguiente snippet:
+
+#+begin_src json
+"scripts": {
+  "start": "node server"
+  "build": "webpack"
+},
+#+end_src
+
+Con esta configuración, quedará habilitado el siguiente comando:
+
+#+begin_src 
+$ npm run build
+#+end_src
+
+Al ejecutarlo sin ningún error se generará este archivo ~dist/client.js~. Dicho archivo es un archivo compilado opr webpack y es la traducción de nuestro componente React en JSX a JavaScript.
+
+El siguiente paso es indicar en el servidor la lectura del archivo ~public/index.html~. Para ello se recurre al ~readFileSync~ del paquete nativo ~fs~ (file-system~ de node. En el siguiente código se ilustran las modificaciones.
+
 #+begin_src js
 // server/index.js
 import express from "express";
@@ -204,6 +228,8 @@ app.listen(7777);
 console.log("Server is listening");
 #+end_src
 
+Por último, se debe conectar el archivo ~public/index.html~ con el archivo JavaScript generado por Webpack. Para ello se usa el tag ~<script>~ como se muestra a continuación:
+
 #+begin_src html
 <html>
   <body>
@@ -214,6 +240,8 @@ console.log("Server is listening");
   </body>
 </html>
 #+end_src
+
+Para probar estas actualizaciones, se abre el navegador en el ~localhost:7777~ y se debe mostrar el mensaje "This is a React component!" definido en el archivo ~client/client.jsx~.
 
 * Recapitulación
 
