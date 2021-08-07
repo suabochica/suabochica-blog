@@ -1,0 +1,24 @@
+
+#+TITLE: Componentes React básicos renderizados en el servidor
+#+DESCRIPTION: Serie para explicar el concepto de server rendering con React
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-08-07 Sat>
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+Antes de comenzar a indagar sobre la renderización de comopnentes React en el servidor es acertado hacer un comporativo entre como se renderizan los componentes React tanto en el cliente como en el servidor.
+
+* Comparación entre renderizacion en el cliente vs. el servidor
+  
+La siguiente tabla agrupa las diferenecias entre el contexto de renderización:
+
+| Renderización en el servidor                                                    | Renderización en el cliente                                                                   |
+|---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------|
+| Los componentes se envían como HTML puro y necesitan ser rehidratados           | Los componentes renderizados son completamente funcionales                                    |
+| Las peticiones AJAX son de servidor a servidor (se esconden del cliente)        | Las peticiones AJAX son de cliente a servidor (visible para usuario técnicamente capacitados) |
+| La mayoría del poder de procesamiento requerido es suministrada por el servidor | La mayoría del poder de procesamiento requerido es suministrada por el cliente                |
+
+Como se puede observar, estas diferencias favorecen determinados contextos. Para tener una funcionalidad apropieada en componentes renderizados en el servidor es necesario aplicar un proceso de rehidratación. El manejo de peticiones AJAX y la distribución del poder de procesamiento también varía de acuerdo el enfoque.
