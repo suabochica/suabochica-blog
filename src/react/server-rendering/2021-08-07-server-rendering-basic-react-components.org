@@ -22,3 +22,11 @@ La siguiente tabla agrupa las diferenecias entre el contexto de renderización:
 | La mayoría del poder de procesamiento requerido es suministrada por el servidor | La mayoría del poder de procesamiento requerido es suministrada por el cliente                |
 
 Como se puede observar, estas diferencias favorecen determinados contextos. Para tener una funcionalidad apropieada en componentes renderizados en el servidor es necesario aplicar un proceso de rehidratación. El manejo de peticiones AJAX y la distribución del poder de procesamiento también varía de acuerdo el enfoque.
+
+* Flujo de trabajo de renderizado en el servidor
+
+Para renderizar un componente React en el servidor se deben ejecutar los siguientes tres pasos:
+
+1. Cargar el componente React y el estado de la aplicación en la memoria del servidor con ayuda de una declaración de importación.
+2. Al tener el estado cargado, este ya puede ser utilizado para renderizar el componente en un string HTML.
+3. Por último, el HTML generado es enviado al cliente.
