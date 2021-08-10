@@ -30,3 +30,72 @@ Para renderizar un componente React en el servidor se deben ejecutar los siguien
 1. Cargar el componente React y el estado de la aplicación en la memoria del servidor con ayuda de una declaración de importación.
 2. Al tener el estado cargado, este ya puede ser utilizado para renderizar el componente en un string HTML.
 3. Por último, el HTML generado es enviado al cliente.
+
+* Renderizando un componente React en el servidor
+
+Con el flujo de trabajo definido, estos son los siguientes pasos a tener en cuenta para poder cumplir el objetivo. Primero, se va a cargar el componente React en la aplicación Express y renderizar el string del componente en NodeJS. Segundo, se va a insertar el string renderizado en el archivo HTML. Por último, se va a enviar el HTML con un componente React no interactivo al cliente. Más adelante se le va a agregar la parte interactiva al componente. Al aplicar estas guías se podrá observar los efectos en rendimiento y experiencia de usuario. Tiempo de ir al código.
+
+El primer cambio consiste en aislar el código del componente React en un archivo del método de renderización. Para ello, se crea un archivo ~client/App.jsx~ con el siguiente contenido.
+
+#+begin_src jsx
+// client/App.jsx
+import React from 'react';
+
+export const App = () => (
+  <div>
+    This is a React component!
+  </div>
+);
+#+end_src
+
+Hecha la modificación, se importa el componente React en el archivo ~client/client.jsx~ de la siguiente manera: 
+#+begin_src jsx
+// client/client.jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import { App } from './App';
+
+ReactDOM.render(<App/>, document.querySelector("#container"));
+#+end_src
+
+El último paso a nivel de cliente consiste en definir un token en el archivo ~public/index.html~ que debe coincidir con una convención establecida en el servidor. Para este caso el token definido es ~{{rendered}}~. En ese orden de ideas, el archivo mencionado tendrá la siguiente modificación:
+
+#+begin_src html
+<!-- public/index.html -->
+<html>
+  <body>
+    <div id="container">
+      {{rendered}}
+    </div>
+    <script src="client.js"></script>
+  </body>
+</html>
+#+end_src
+
+Establecidas las configuraciones en el cliente, es tiempo de consumirlas en el servidor. Primero, se hacen las importaciones del componente React y el método ~renderToString~ del paquete ~react-dom/server~. Segundo, dentro del cuerpo de la petición ~get~ se define una variable ~rendered~ que consumirá el componente React. Por último se envía al cliente el componente React renderizado como string. A continuación se muestran los cambios en ~server/index.js~ para lograr las descripciones hechas previamente.
+
+#+begin_src js
+// server/index.js
+import React from "react";
+import express from "express";
+import { readFileSync } from "fs";
+import { renderToString } from "react-dom/server";
+
+import { App } from "../client/App";
+
+const app = new express();
+
+app.use(express.static("dist"));
+app.get("/", async (_request, response) => {
+  const index = readFileSync("public/index.html", "utf8");
+  const rendered = renderToString(<App />);
+  // response.send(`<h1>Express server is on...</h1>`);
+  response.send(index.replace("{{rendered}}", rendered));
+});
+
+app.listen(7777);
+console.log("Server is listening");
+#+end_src
+
+Al correr el servidor y abrir el navegador a nivel visual no se obtiene ningún cambio. No obstante, si se refresca la página, el tiempo de respuesta es más rápido en la carga de la página.
