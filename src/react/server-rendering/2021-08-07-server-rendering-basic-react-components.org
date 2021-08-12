@@ -99,3 +99,18 @@ console.log("Server is listening");
 #+end_src
 
 Al correr el servidor y abrir el navegador a nivel visual no se obtiene ningún cambio. No obstante, si se refresca la página, el tiempo de respuesta es más rápido en la carga de la página.
+
+* Entendiendo los retos de la renderización desde el servidor
+
+Es importantate explorar los retos que hacen a la renderización desde el servidor un enfoque con compensaciones y no un paquete de ventajas. Estos retos los podemos resumir en los siguientes cuatro puntos.
+
+** La comunicación cliente, servidor sobre HTTP es diferente
+
+Las comunicaciones externas de la aplicación, como por ejemplo la comunicación con un servidor API se hacen de servidor a servidor por medio de peticiones HTTP. Dentro del entorno de desarrollo web, el proceso más popular es que el cliente inicia la comunicación con los servidores a través de la tecnología AJAX y eventualmente el servidor envia la respuesta de dicha petición. Es importante tener en cuenta que las comunicaciones de cliente a servidor son menos seguras que la comunicaciones servidor a servidor.En el  manejo de seguridad en las peticiones se tienen unas librerías que sirven para AJAX y otras para HTTP. La recomendación para administrar temas de seguridad parte de un diseño cuidadoso de la aplicación y la selección de las librerías adecuadas.
+
+** El código debe funcionar y ser probado tanto en el cliente como en el servidor
+
+** Se requiere de un proceso de desarrollo más sofisticado
+
+** Se esta expuesto a bugs inusuales
+
