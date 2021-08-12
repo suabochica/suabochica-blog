@@ -110,7 +110,14 @@ Las comunicaciones externas de la aplicación, como por ejemplo la comunicación
 
 ** El código debe funcionar y ser probado tanto en el cliente como en el servidor
 
+Al tener código que se esta ejecutando tanto en el cliente como en el servidor significa que tenemos cosas adicionales por probar. Si el código varía un poco entre el cliente y el servidor, toda la aplicación puede romperse por como la naturaleza de la renderización en el servidor, ya que el lenguaje de marcado que se genera del componente React debe ser exactamente el mismo (recordemos la condición de componentes puros). En conclusión el presupuesto de pruebas debe aumentarse.
+
 ** Se requiere de un proceso de desarrollo más sofisticado
+
+No importa cual sea el método que se utilice para estructurar el proyecto, para tener a los desarrolladores con trabajos independientes, el proceso de desarrollo tiene que ser los suficientemente sofisticado para permitirles entornos de pruebas sobre las versiones del componente tanto en el servidor como en el cliente y confirmar que ambos funcionan. Por ejemplo, si se agrega una librería adicional al componente, es recomendable tener una especie de portal que permita ver cada uno de los componentes de manera individual. Con esta propuesta, se reduce la confusión de tratar de solucionar si un componente se esta renderizando correctamente en el cliente o si se presento alguna modificación relevante en la salida del servidor. 
 
 ** Se esta expuesto a bugs inusuales
 
+Toda esta conjución detrás de la renderización en el servidor, expone el proceso de desarrollo a una nueva clase de bugs. Es común que la aplicación pueda funcionar en determinado momento, solo para romperse en otra situación oscura. Quizás la renderización en el servidor funcione sobre cada página de la aplicación y el cliente muestre un fallo en un componente específico que se presenta cuando se actualiza la página. Este tipo de bugs son díciles de replicar y díficiles de solucionar.
+
+Al final del día, como en muchos contextos en el mundo del desarrollo de software, es necesario tener presente que las ventajas que se quieren adquirir conllevan a identificar cuales son los retos por afrontar con el fin de llegar así a un punto de equilibrio.
