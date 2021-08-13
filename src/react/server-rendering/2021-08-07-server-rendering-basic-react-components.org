@@ -121,3 +121,113 @@ No importa cual sea el método que se utilice para estructurar el proyecto, para
 Toda esta conjución detrás de la renderización en el servidor, expone el proceso de desarrollo a una nueva clase de bugs. Es común que la aplicación pueda funcionar en determinado momento, solo para romperse en otra situación oscura. Quizás la renderización en el servidor funcione sobre cada página de la aplicación y el cliente muestre un fallo en un componente específico que se presenta cuando se actualiza la página. Este tipo de bugs son díciles de replicar y díficiles de solucionar.
 
 Al final del día, como en muchos contextos en el mundo del desarrollo de software, es necesario tener presente que las ventajas que se quieren adquirir conllevan a identificar cuales son los retos por afrontar con el fin de llegar así a un punto de equilibrio.
+
+* Agregando funcionalidad a la aplicación de encuestas
+
+Las funcionalidades que se van a agregar a la aplicación que actualmente se encuentar en un estado de hola mundo son:
+
+Primero se va a crear un estado por defecto para la aplicación para almacenar la colección de preguntas y la colección de respuestas.
+
+Segundo, se va a crear un componente React que renderice el estado creado en el paso anterior. La responsabilidad de este componente es combinar las preguntas y las respuesta de la encuesta en un a sola lista jerárquica.
+
+Por último, se renderizará el componente React en el servidor enviando el HTML respectivo al cliente para obtener un alto rendimiento, pero sin interacción. La parte interactiva de la renderización en el servidor se logra con rehidratación, un concepto que se indagará mas adelante.
+
+* TODO Explain code
+#+begin_src js
+import React from "react";
+import express from "express";
+import { readFileSync } from "fs";
+import { renderToString } from "react-dom/server";
+
+import { App } from "../client/App";
+
+const app = new express();
+const data = {
+  questions: [
+    {
+      questionId: "Q1",
+      content: "Which back end solution should we use for our application?",
+    },
+    {
+      questionId: "Q2",
+      content:
+        "What percentage of developer time should be devoted to end-to-end testing?",
+    },
+  ],
+  answers: [
+    {
+      answerId: "A1",
+      questionId: 1,
+      upvotes: 2,
+      content: "Apache",
+    },
+    {
+      answerId: "A2",
+      questionId: "Q1",
+      upvotes: 0,
+      content: "Java",
+    },
+    {
+      answerId: "A3",
+      questionId: "Q1",
+      upvotes: 4,
+      content: "Node.js",
+    },
+    {
+      answerId: "A4",
+      questionId: "Q2",
+      upvotes: 2,
+      content: "25%",
+    },
+    {
+      answerId: "A5",
+      questionId: "Q2",
+      upvotes: 1,
+      content: "50%",
+    },
+    {
+      answerId: "A6",
+      questionId: "Q2",
+      upvotes: 1,
+      content: "75%",
+    },
+  ],
+};
+
+app.use(express.static("dist"));
+app.get("/", async (_request, response) => {
+  const index = readFileSync("public/index.html", "utf8");
+  const rendered = renderToString(<App {...data} />);
+  // response.send(`<h1>Express server is on...</h1>`);
+  response.send(index.replace("{{rendered}}", rendered));
+});
+
+app.listen(7777);
+console.log("Server is listening");
+#+end_src
+
+#+begin_src jsx
+import React from 'react';
+
+export const App = ({questions, answers}) => (
+  <div>
+    <h1>Q&A Tool</h1>
+    {questions.map(({questionId, content}) => (
+      <div key={questionId}>
+        <h3>{content}</h3>
+        <div>
+          {
+            answers
+              .filter(answer => answer.questionId === questionId)
+              .map(({content, upvotes, answerId}) => (
+                <div key={answerId}>
+                  <span>{content} - {upvotes}</span>
+                </div>
+              ))
+          }
+        </div>
+      </div>
+    ))}
+  </div>
+);
+#+end_src
