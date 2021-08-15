@@ -1,4 +1,3 @@
-
 #+TITLE: Componentes React básicos renderizados en el servidor
 #+DESCRIPTION: Serie para explicar el concepto de server rendering con React
 #+AUTHOR: Sergio Benítez
@@ -12,7 +11,7 @@
 Antes de comenzar a indagar sobre la renderización de comopnentes React en el servidor es acertado hacer un comporativo entre como se renderizan los componentes React tanto en el cliente como en el servidor.
 
 * Comparación entre renderizacion en el cliente vs. el servidor
-  
+
 La siguiente tabla agrupa las diferenecias entre el contexto de renderización:
 
 | Renderización en el servidor                                                    | Renderización en el cliente                                                                   |
@@ -48,7 +47,7 @@ export const App = () => (
 );
 #+end_src
 
-Hecha la modificación, se importa el componente React en el archivo ~client/client.jsx~ de la siguiente manera: 
+Hecha la modificación, se importa el componente React en el archivo ~client/client.jsx~ de la siguiente manera:
 #+begin_src jsx
 // client/client.jsx
 import React from 'react';
@@ -114,7 +113,7 @@ Al tener código que se esta ejecutando tanto en el cliente como en el servidor 
 
 ** Se requiere de un proceso de desarrollo más sofisticado
 
-No importa cual sea el método que se utilice para estructurar el proyecto, para tener a los desarrolladores con trabajos independientes, el proceso de desarrollo tiene que ser los suficientemente sofisticado para permitirles entornos de pruebas sobre las versiones del componente tanto en el servidor como en el cliente y confirmar que ambos funcionan. Por ejemplo, si se agrega una librería adicional al componente, es recomendable tener una especie de portal que permita ver cada uno de los componentes de manera individual. Con esta propuesta, se reduce la confusión de tratar de solucionar si un componente se esta renderizando correctamente en el cliente o si se presento alguna modificación relevante en la salida del servidor. 
+No importa cual sea el método que se utilice para estructurar el proyecto, para tener a los desarrolladores con trabajos independientes, el proceso de desarrollo tiene que ser los suficientemente sofisticado para permitirles entornos de pruebas sobre las versiones del componente tanto en el servidor como en el cliente y confirmar que ambos funcionan. Por ejemplo, si se agrega una librería adicional al componente, es recomendable tener una especie de portal que permita ver cada uno de los componentes de manera individual. Con esta propuesta, se reduce la confusión de tratar de solucionar si un componente se esta renderizando correctamente en el cliente o si se presento alguna modificación relevante en la salida del servidor.
 
 ** Se esta expuesto a bugs inusuales
 
@@ -124,7 +123,7 @@ Al final del día, como en muchos contextos en el mundo del desarrollo de softwa
 
 * Agregando funcionalidad a la aplicación de encuestas
 
-Las funcionalidades que se van a agregar a la aplicación que actualmente se encuentar en un estado de hola mundo son:
+Las funcionalidades que se van a agregar a la aplicación que actualmente se encuentra en un estado de hola mundo son:
 
 Primero se va a crear un estado por defecto para la aplicación para almacenar la colección de preguntas y la colección de respuestas.
 
@@ -132,8 +131,10 @@ Segundo, se va a crear un componente React que renderice el estado creado en el 
 
 Por último, se renderizará el componente React en el servidor enviando el HTML respectivo al cliente para obtener un alto rendimiento, pero sin interacción. La parte interactiva de la renderización en el servidor se logra con rehidratación, un concepto que se indagará mas adelante.
 
-* TODO Explain code
+Tiempo de aplicar al pie de la letra las instrucciones previas. Para ello, se edita el archivo ~/server/index.js/~ como se muestra a continuación:
+
 #+begin_src js
+// server/index.js
 import React from "react";
 import express from "express";
 import { readFileSync } from "fs";
@@ -206,7 +207,10 @@ app.listen(7777);
 console.log("Server is listening");
 #+end_src
 
+El primer cambio importante es la variable ~data~, que representa el estado de la aplicación, con las dos propiedades ~questions~ y ~answers~. El segundo cambio relevante es que la variable ~data~ se pasa como una propiedad del componente ~<App>~. Esto significa que ahora se puede consumir las información de la variable ~data~ en el componente React. En ese orden de ideas, se prosiguen con las siguientes actualizaciones en el archivo ~client/App.jsx~
+
 #+begin_src jsx
+// client/App.jsx
 import React from 'react';
 
 export const App = ({questions, answers}) => (
@@ -231,3 +235,7 @@ export const App = ({questions, answers}) => (
   </div>
 );
 #+end_src
+
+Se puede observar dentro de la sintaxís JSX del componente que se consumen las propiedades ~questions~ y ~answers~ del estado ~data~. Se mapea el objeto ~questions~y se acceden a las propiedades ~questionId~ y ~content~. Con el ~questionId~ se agregra un key al elemento en el DOM y el ~content~ será renderizado dentro de una etiqueta ~<h3>~. Posteriormente se crea otra sección para filtrar las respuestas que estan asociadas al ~questionId~. Se mapean las propiedades ~answerId~, ~content~ y ~upvotes~. Similarmente se usa el ~answerId~ para asignarle una key al elemento en el DOM y se imprimen los valores de las propiedades ~content~ y ~upvotes~.
+
+Al actualizar el navegador, se puede evidenciar como nuestra aplicación de encuestas va tomando forma. Ahora se tiene renderizada una pregunta y sus posibles respuestas con la votación respectiva.
