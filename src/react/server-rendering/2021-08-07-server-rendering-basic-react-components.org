@@ -239,3 +239,17 @@ export const App = ({questions, answers}) => (
 Se puede observar dentro de la sintaxís JSX del componente que se consumen las propiedades ~questions~ y ~answers~ del estado ~data~. Se mapea el objeto ~questions~y se acceden a las propiedades ~questionId~ y ~content~. Con el ~questionId~ se agregra un key al elemento en el DOM y el ~content~ será renderizado dentro de una etiqueta ~<h3>~. Posteriormente se crea otra sección para filtrar las respuestas que estan asociadas al ~questionId~. Se mapean las propiedades ~answerId~, ~content~ y ~upvotes~. Similarmente se usa el ~answerId~ para asignarle una key al elemento en el DOM y se imprimen los valores de las propiedades ~content~ y ~upvotes~.
 
 Al actualizar el navegador, se puede evidenciar como nuestra aplicación de encuestas va tomando forma. Ahora se tiene renderizada una pregunta y sus posibles respuestas con la votación respectiva.
+
+
+* Recapitulación
+
+Tiempo de desempacar las diferentes cosas revisadas a lo largo de esta publicación:
+
+Primero se aprendio que así como el client accede al estado, el servidor también puede acceder al estado, las plantillas, entre otros de manera rápida y síncorna, siendo un proceso invisible para el usuario final.
+
+Segundo, los componentes renderizados en el servidor se logran a través del uso del método `renderToString`. En pocas palabra, este método convierte el compnenet React en un string que puede ser manipulado por el servidor para generar un HTML. 
+
+Por último, se tiene que una vez los componentes son renderizados como strings, pueden ser enviados al cliente como un HTML sin interactividad.
+
+El siguiente paso es entrar de lleno al concepto de rehidratación para lograr intereactividad en los componentes renderizados por el servidor.
+
