@@ -1,0 +1,21 @@
+
+#+TITLE: Rehidratando componentes React interactivos
+#+DESCRIPTION: Serie para explicar el concepto de server rendering con React
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-08-16 Mon>
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+Hasta ahora se ha logrado renderizar componentes React en el servidor pero sin interactividad alguna. Es evidente que para lograr esta funcionalidad es necesario el uso de una nueva herramienta. Por lo tanto es conveniente recalcar cuales son las limitaciones de los componentes renderizados en el servidor.
+
+* Limitaciones de los componentes renderizados en el servidor
+
+Es importante tener presente que los componentes renderizados en el servidor sin interactividad son una /fachada/. Una fachada es una construcción cuyo único propósito es proveer una impresión visual placentera, y puede enmascarar una estructura sólida y funcional ó una estructura que se está desmoronando. Los componentes renderizados en el servidor están realmente limitados si no usan rehidratación.
+
+En otras palabras, los componentes renderizados en el servidor son solo pequeños pedazos HTML sin ninguna funcionalidad real. Al hacer clic en algún botón o interacción en un formulario, no se generan cambios en el estado. El uso de tooltips o organización de contenidos no va a funcionar y las comunicaciones automáticas con el servidor tampoco. Para evitar la figura de fachada, la tecnología a utilizar es la rehidratación.
+
+  
+  
