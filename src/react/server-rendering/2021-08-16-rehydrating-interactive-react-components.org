@@ -17,5 +17,23 @@ Es importante tener presente que los componentes renderizados en el servidor sin
 
 En otras palabras, los componentes renderizados en el servidor son solo pequeños pedazos HTML sin ninguna funcionalidad real. Al hacer clic en algún botón o interacción en un formulario, no se generan cambios en el estado. El uso de tooltips o organización de contenidos no va a funcionar y las comunicaciones automáticas con el servidor tampoco. Para evitar la figura de fachada, la tecnología a utilizar es la rehidratación.
 
-  
-  
+* Entendiendo la rehidratación
+
+Antes de agregar rehidratación en la aplicación, es conveniente revisar el concepto como tal. La siguiente definición es un punto de partida:
+
+#+begin_notes
+/Rehidratación/: Es el proceso para restaurar interactividad y funcionalidad en los componentes renderizados por el servidor.
+#+end_notes
+
+Para complementar esta definición, se recuerda que la librería de React que se ejecuta en el cliente tiene la capacidad de reconocer el entregable del servidor cuyo desarrollo inicial esta hecho en React. Por tanto, el código del cliente puede vincularse al marcado existente e instantáneamente puede sustituir el componente por una versión totalmente funcional sin necesidad de redibujar los elementos HTML.
+
+La siguiente tabla compara las características de los componentes renderizados en el servidor que no son hidratados contra los que si son hidratados:
+
+| Componentes No Hidratados                                                    | Componentes Hidratados                                                         |
+|------------------------------------------------------------------------------+--------------------------------------------------------------------------------|
+| Son extremadamente ligeros                                                   | Son ligeros pero requieren de librerías JavaScript                             |
+| No se puede interacuar con ellos                                             | Son completamente interactivos                                                 |
+| No precisan de JavaScript ni React para funcionar                            | Tanto React como JavaScript deben ser ejecutados en el dispositivo del cliente |
+| No se actualizan por si mismo como respuesta a cambios en el modelo de datos | Ofrecen actualizaciones de alto rendimiento basado en el cambio de estado     |
+
+Con estas aclaraciones, es tiempo de rehidratar el componente React que tenemos para la aplicación de encuestas.
