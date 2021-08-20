@@ -37,3 +37,11 @@ La siguiente tabla compara las características de los componentes renderizados 
 | No se actualizan por si mismo como respuesta a cambios en el modelo de datos | Ofrecen actualizaciones de alto rendimiento basado en el cambio de estado     |
 
 Con estas aclaraciones, es tiempo de rehidratar el componente React que tenemos para la aplicación de encuestas.
+
+* Agregando interactividad al componete renderizado en el servidor utilizando rehidratación
+
+Estos son los detalles a tener en cuenta para agregar interactividad al componente renderizado en el servidor:
+
+Primero se va a crear un servicio REST API que le permita acceder al cliente al mismo estado al que accede el servidor. Para ello se utiliza el Fetch API de JavaScript para realizar una petición GET que permita acceder al estado.
+
+El segundo paso es rehidratar la aplicación en el cliente. El efecto se verá en los botones designados para las votaciones de las repuestas en la encuesta. Por ahora el resultado de la rehidratación no va a coincidir con el conjunto de datos, tan solo va reflejar una versión inicial.
