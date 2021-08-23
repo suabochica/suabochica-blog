@@ -39,9 +39,88 @@ La siguiente tabla compara las características de los componentes renderizados 
 Con estas aclaraciones, es tiempo de rehidratar el componente React que tenemos para la aplicación de encuestas.
 
 * Agregando interactividad al componete renderizado en el servidor utilizando rehidratación
-
+  
 Estos son los detalles a tener en cuenta para agregar interactividad al componente renderizado en el servidor:
 
 Primero se va a crear un servicio REST API que le permita acceder al cliente al mismo estado al que accede el servidor. Para ello se utiliza el Fetch API de JavaScript para realizar una petición GET que permita acceder al estado.
 
 El segundo paso es rehidratar la aplicación en el cliente. El efecto se verá en los botones designados para las votaciones de las repuestas en la encuesta. Por ahora el resultado de la rehidratación no va a coincidir con el conjunto de datos, tan solo va reflejar una versión inicial.
+
+#+begin_src javascript
+// server/index.js
+app.use(express.static("dist"));
+app.get("/data", async (_request, response) => {
+  response.json(data);
+});
+app.get("/", async (_request, response) => {
+  const index = readFileSync("public/index.html", "utf8");
+  const rendered = renderToString(<App {...data} />);
+  response.send(index.replace("{{rendered}}", rendered));
+});
+#+end_src
+
+#+begin_src javascript
+// client/client.jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import { App } from './App';
+
+let state = undefined;
+
+// fetch("http://localhost:7777/data")
+fetch("http://172.21.13.99:7777/data")
+  .then(data => data.json())
+  .then(json => {
+    state = json;
+    console.log("Got the state", state);
+    render()
+  });
+
+function handleModifyAnswerVotes(answerId, increment) {
+  state.answers = state.answers.map(answer => {
+    if (answer.answerId !== answerId ) {
+      return answer;
+    } else {
+      return { ...answer, upvotes: answer.upvotes + increment };
+    }
+  });
+  render();
+}
+
+function render() {
+  ReactDOM.hydrate(
+    <App {...state} handleModifyAnswerVotes={handleModifyAnswerVotes}/>,
+    document.querySelector("#container")
+  );
+}
+#+end_src
+
+#+begin_src javascript
+// client/App.jsx
+import React from 'react';
+
+export const App = ({questions, answers, handleModifyAnswerVotes}) => (
+  <div>
+    <h1>Q&A Tool</h1>
+    {questions.map(({questionId, content}) => (
+      <div key={questionId}>
+        <h3>{content}</h3>
+        <div>
+          {
+            answers
+              .filter(answer => answer.questionId === questionId)
+              .map(({content, upvotes, answerId}) => (
+                <div key={answerId}>
+                  <span>{content} - {upvotes}</span>
+                  <button onClick={() => handleModifyAnswerVotes(answerId, 1)}> + </button>
+                  <button onClick={() => handleModifyAnswerVotes(answerId, -1)}> - </button>
+                </div>
+              ))
+          }
+        </div>
+      </div>
+    ))}
+  </div>
+);
+#+end_src
