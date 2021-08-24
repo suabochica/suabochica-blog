@@ -46,6 +46,8 @@ Primero se va a crear un servicio REST API que le permita acceder al cliente al 
 
 El segundo paso es rehidratar la aplicación en el cliente. El efecto se verá en los botones designados para las votaciones de las repuestas en la encuesta. Por ahora el resultado de la rehidratación no va a coincidir con el conjunto de datos, tan solo va reflejar una versión inicial.
 
+En ese orden de ideas, se va a agregar el contenido de la variable ~data~ en una ruta del servidor. Con express dicha configuración resulta sencilla con ayuda del método ~.get~ que recibe como primer argumento la ruta en la que se va a exponer la variable (para este caso ~localhost:7777/data~) y como segundo parámetro una función que hace una petición y trae como respuesta el valor de la variable ~data~. El siguiente código ilustra las modificaciones sobre el archivo ~server/index.js~
+
 #+begin_src javascript
 // server/index.js
 app.use(express.static("dist"));
@@ -59,6 +61,8 @@ app.get("/", async (_request, response) => {
 });
 #+end_src
 
+Con el estado expuesto desde el servidor, es tiempo de consumirlo desde el cliente. Para ello se define una variable global ~state~ y con ayuda del API ~fetch~ de JavaScript se recupera el contenido de la variable data en la ruta ~localhost:7777/data~ y se almacena dicha respuesta en la variable ~state~ definida previamente. La parte inicial del siguiente snippet, muestra como se hace efectiva la descripción anterior:
+
 #+begin_src javascript
 // client/client.jsx
 import React from 'react';
@@ -68,8 +72,7 @@ import { App } from './App';
 
 let state = undefined;
 
-// fetch("http://localhost:7777/data")
-fetch("http://172.21.13.99:7777/data")
+fetch("http://localhost:7777/data")
   .then(data => data.json())
   .then(json => {
     state = json;
@@ -95,6 +98,14 @@ function render() {
   );
 }
 #+end_src
+
+Una vez recuperado el estado se podrá rehidratar el componente. Para ello, el primer paso es crear una función ~render()~ que utilice el método ~ReactDOM.rehydrate~ el cual recibe como primer argumento el componente a reahiratar, y como segundo argumento el selector sobre el que se va a embuir el componente.
+
+Como se puede observar, al definir el componente ~<App />~ dentro de la función ~rehydrate()~ se le está pasando la variable ~state~ y un atributo ~handleModifyAnswerVotes~. Previamente se declaró una función ~handleModifyAnswerVotes()~ cuya responsabilidad es actualizar las votaciones realizadas en las respuestas de las preguntas. Dicha función recibe como argumento el ~answerId~ y el tipo de acción ~increment~ para hacer un mapeo sobre las respuestas definidas en la variable ~state~ y así identificar que respuestas deben ser actualizadas.
+
+El hecho más relevante en este bloque de código es el llamado de la función ~render()~ al final del llamado ~fetch()~ y de la función ~handleModifyAnswerVotes()~. De este forma es que se especifica los momentos en los que el componente debe ser rehidratado.
+
+Por último, es necesario actualizar el componente ~<App />~ para que reciba como propiedad la función ~handleModifyAnswerVotes~ que será asociada al evento ~click~ de unos botones que se van a agregar al marcado para actualizar las votaciones en las respuestas de cada una de las preguntas. El siguiente código contempla las modificaciones descritas:
 
 #+begin_src javascript
 // client/App.jsx
@@ -124,3 +135,6 @@ export const App = ({questions, answers, handleModifyAnswerVotes}) => (
   </div>
 );
 #+end_src
+
+Si se abre el navegador, se contempla que cada vez que se hace clic sobre el botón ~+~ o ~-~ el número de votaciones asociado a cada una de las respuestas es actualizado. Ya se tiene la primera interacción en un componente renderizados en el servidor. No obstante, dichas interacciónes no son registradas en el estado del servidor y por lo tanto cada vez que se refresca el navegador se pierden los cambios realizados. tiempo de revisar los últimos detalles para tener una funcionalidad completa en el componente renderizado en el servidor.
+
