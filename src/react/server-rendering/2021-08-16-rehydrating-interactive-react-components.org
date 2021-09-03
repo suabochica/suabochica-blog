@@ -138,3 +138,5 @@ export const App = ({questions, answers, handleModifyAnswerVotes}) => (
 
 Si se abre el navegador, se contempla que cada vez que se hace clic sobre el botón ~+~ o ~-~ el número de votaciones asociado a cada una de las respuestas es actualizado. Ya se tiene la primera interacción en un componente renderizados en el servidor. No obstante, dichas interacciónes no son registradas en el estado del servidor y por lo tanto cada vez que se refresca el navegador se pierden los cambios realizados. tiempo de revisar los últimos detalles para tener una funcionalidad completa en el componente renderizado en el servidor.
 
+* Compartiendo código entre el cliente y el servidor
+
