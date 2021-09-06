@@ -10,14 +10,9 @@
 
 * Usando complementos
 
-Tener la disposición de como su componente se va a ver dentro de la aplicación
-final es un primer paso importante, pero ser capaz de ver como se comportará es
-igual de importante. Es tiempo de revisar como se interactua con un componente
-dentro de Storybook.
+Tener la disposición de como su componente se va a ver dentro de la aplicación final es un primer paso importante, pero ser capaz de ver como se comportará es igual de importante. Es tiempo de revisar como se interactua con un componente dentro de Storybook.
 
-En la publicación pasada se dió un vistazo al complemento ~action~ para atender
-el evento del clic sobre el componente botón. Es conveniente revisar nuevamente
-como se configuró el uso de este complemento:
+En la publicación pasada se dió un vistazo al complemento ~action~ para atender el evento del clic sobre el componente botón. Es conveniente revisar nuevamente como se configuró el uso de este complemento:
 
 #+begin_src javascript
 // stories/button.stories.js
@@ -35,34 +30,21 @@ storiesOf('Button', module)
 ));
 #+end_src
 
-Dos cosas a reslatar de este snippet. Primero el complemento se importa
-directamente desde Storybook. Luego, la función ~action~ se usa dentro del
-componente CallToAction al indicar que la función ~onClick~ va a llamar a la
-función ~action~. Dentro de esta última función el mensaje ~"button-click~ será
-procesado y se obtiene como salida un registro de la ejecución del evento dentro
-del panel Actions de la interfaz de Storybook.
+Dos cosas a reslatar de este snippet. Primero el complemento se importa directamente desde Storybook. Luego, la función ~action~ se usa dentro del componente CallToAction al indicar que la función ~onClick~ va a llamar a la función ~action~. Dentro de esta última función el mensaje ~"button-click~ será procesado y se obtiene como salida un registro de la ejecución del evento dentro del panel Actions de la interfaz de Storybook.
 
-Por otra parte, un patrón que se puede encontrar entre los complementos es que
-suelen agregar funcionalidades a la previsualización de la historia y a la
-sección de paneles que conforman la parte superior e inferior del GUI de
-Storybook respectivamente.
+Por otra parte, un patrón que se puede encontrar entre los complementos es que suelen agregar funcionalidades a la previsualización de la historia y a la sección de paneles que conforman la parte superior e inferior del GUI de Storybook respectivamente.
 
-Los complementos son muy útiles para abordar los posibles comportamientos que 
-puede manifestar un componente.
+Los complementos son muy útiles para abordar los posibles comportamientos que puede manifestar un componente.
   
 * Complementos con información
 
-Una de las funcionalidades más llamativas de Storybook es la capacidad de ver
-exactamente lo que se necesita implementar para tener el componente funcionando
-en la aplicación. Esto se logra a través del complemente ~info~. Para empezar 
-a utilizarlo primero debe ser instalado:
+Una de las funcionalidades más llamativas de Storybook es la capacidad de ver exactamente lo que se necesita implementar para tener el componente funcionando en la aplicación. Esto se logra a través del complemente ~info~. Para empezar  a utilizarlo primero debe ser instalado:
 
 #+begin_src
 $ npm i -D @storybook/addon-info
 #+end_src
 
-Una vez instalado, se puede utilizar en los componentse tal y como se muestra
-a continuación, en el componentse Button:
+Una vez instalado, se puede utilizar en los componentse tal y como se muestra a continuación, en el componentse Button:
   
 #+begin_src javascript
 // stories/button.stories.js
@@ -82,10 +64,7 @@ storiesOf('Button', module)
 ));
 #+end_src
 
-Este complemento se implementa ligeramente diferente al de ~actions~, ya que
-requiere del uso de la función ~addDecorator~ de Storybook para React, el cual
-retorna un compenente empaquetado. Si revisa el navegador se obtiene el
-siguiente resultado:
+Este complemento se implementa ligeramente diferente al de ~actions~, ya que requiere del uso de la función ~addDecorator~ de Storybook para React, el cual retorna un compenente empaquetado. Si revisa el navegador se obtiene el siguiente resultado:
 
 #+CAPTION: Add-on info show button
 [[../images/storybook/07-storybook-add-on-info-button.png]]
@@ -96,13 +75,7 @@ Al dar clic en el botón Show Info, la vista cambia por:
 [[../images/storybook/08-storybook-add-on-info-show.png]]
 
 
-Ahora está disponible la información necesaria para usar el componente
-adecuadamente. La visualización de la documentación puede modificarse, ya que la
-función ~withInfo~ puede recibir como argumento un objeto de configuración. Por
-ejemplo, se puede considerar innecesario que se tenga que dar clic en el botón
-Show Info para ver la información. Hay una vista alternativa en donde el
-componente se muestra dentro de la documentación. Para habilitarla se pasa el 
-siguiente objeto com parámetro de la función ~withInfo~,
+Ahora está disponible la información necesaria para usar el componente adecuadamente. La visualización de la documentación puede modificarse, ya que la función ~withInfo~ puede recibir como argumento un objeto de configuración. Por ejemplo, se puede considerar innecesario que se tenga que dar clic en el botón Show Info para ver la información. Hay una vista alternativa en donde el componente se muestra dentro de la documentación. Para habilitarla se pasa el  siguiente objeto com parámetro de la función ~withInfo~,
 
 #+begin_src javascript
 // stories/button.stories.js
@@ -114,12 +87,7 @@ storiesOf('Button', module)
 ));
 #+end_src
 
-Este complemento es bastante útil pero actualmente solo esta habilitado en el 
-componente Button. Si se revisa el componente Banner, no hay ningún botón Show
-Info que permita visualizar la documentación del Banner. Para habilitar el 
-complemento ~info~ globalmente en Storybook, se deben deshacer los cambios 
-mostrados previamente, y se debe actualizar el ~.storybook/config.js~, con el
-siguiente código: 
+Este complemento es bastante útil pero actualmente solo esta habilitado en el  componente Button. Si se revisa el componente Banner, no hay ningún botón Show Info que permita visualizar la documentación del Banner. Para habilitar el  complemento ~info~ globalmente en Storybook, se deben deshacer los cambios  mostrados previamente, y se debe actualizar el ~.storybook/config.js~, con el siguiente código: 
 
 #+begin_src javascript
 // .storybook/config.js
@@ -136,13 +104,11 @@ addDecorator(withInfo({
 configure(loadStories, module);
 #+end_src
 
-Con este cambio, se podrá visualizar la documentación de todos los componentes
-que estan alojados en Storybook.
+Con este cambio, se podrá visualizar la documentación de todos los componentes que estan alojados en Storybook.
 
 * Knobs
   
-Un complemento bastante útil en Storybook es Knobs, ya que permite editar las
-propiedades de un componente dinamicamente.
+Un complemento bastante útil en Storybook es Knobs, ya que permite editar las propiedades de un componente dinamicamente.
 
 El primer paso es instalar el addon:
 
@@ -171,13 +137,9 @@ addDecorator(withKnobs);
 configure(loadStories, module);
 #+end_src
 
-Un detalle a considerar es el orden en el que se agregan los decoradores.
-Siempre el decorador del complemento ~info~ tiene que ser el primero para evitar
-comportamientos inesperados.
+Un detalle a considerar es el orden en el que se agregan los decoradores. Siempre el decorador del complemento ~info~ tiene que ser el primero para evitar comportamientos inesperados.
 
-Se prosige con la actuialización en el código de alguno de los
-componentes para consumir knobs. En este caso se va a utilizar el MajorBanner
-With All Text Options como ejemplo:
+Se prosige con la actuialización en el código de alguno de los componentes para consumir knobs. En este caso se va a utilizar el MajorBanner With All Text Options como ejemplo:
 
 #+begin_src javascript
 // stories/banner.stories.js
@@ -206,19 +168,11 @@ storiesOf('Minor Banner', module)
   .add('With Pictures', () => (...));
 #+end_src
 
-Dos cosas a resaltar en este snippter. Primero, la importación de la función
-~text~ desde knobs. Segundo, el uso de esta función en la historia With All Text
-Options se ve reflejado en una asignación a la variable ~title~ cuyo valor es
-igual al llamado de la función ~text~, la cual recibe dos argumentos: El nombre
-de la propiedad, y el valor por defecto con el que se inicializa la propiedad.
+Dos cosas a resaltar en este snippter. Primero, la importación de la función ~text~ desde knobs. Segundo, el uso de esta función en la historia With All Text Options se ve reflejado en una asignación a la variable ~title~ cuyo valor es igual al llamado de la función ~text~, la cual recibe dos argumentos: El nombre de la propiedad, y el valor por defecto con el que se inicializa la propiedad.
 
-Para terminar el consumo del complemento knobs en el componente, se actualiza la
-propiedad ~title~ en el ~<MajorBanner>~ para que  referencie la variable que se
-definió previamente.
+Para terminar el consumo del complemento knobs en el componente, se actualiza la propiedad ~title~ en el ~<MajorBanner>~ para que  referencie la variable que se definió previamente.
 
-El último paso es agregar el complemento ~knobs~ al registro de complementos en 
-Storybook. En consecuencia el contenido del archivo ~.storybook/addons.js~ 
-debe ser el siguiente:
+El último paso es agregar el complemento ~knobs~ al registro de complementos en Storybook. En consecuencia el contenido del archivo ~.storybook/addons.js~  debe ser el siguiente:
 
 #+begin_src javascript
 // .storybook/addons.js
@@ -227,24 +181,18 @@ import '@storybook/addon-info/register';
 import '@storybook/addon-knobs/register';
 #+end_src
 
-Se guarda el archivo y se reinicia el servidor de Storybook. Al revisar en el
-navegador se tendra una interfaz como la que se muestra a continuación:
+Se guarda el archivo y se reinicia el servidor de Storybook. Al revisar en el navegador se tendra una interfaz como la que se muestra a continuación:
  
 #+CAPTION: Add-on knobs with a title
 [[../images/storybook/09-storybook-add-on-knobs.png]]
 
-Ahora es tiempo de poner en práctica el poder de ~knobs~. Si se cambia la
-entrada con el texto 'Banner Title' por 'Knobs' se puede observar como el texto
-del título en el componente se actualiza a 'Knobs'.
+Ahora es tiempo de poner en práctica el poder de ~knobs~. Si se cambia la entrada con el texto 'Banner Title' por 'Knobs' se puede observar como el texto del título en el componente se actualiza a 'Knobs'.
 
-Knobs permite hacer más que edición de textos. Algunas opciones disponibles son
-booleanos, números, objetos, selects, fechas o incluso archivos. Para ver la
-lista de los knobs disponibles por facor revisar el siguiente [[https://github.com/storybookjs/storybook/tree/master/addons/knobs][enlace]].
+Knobs permite hacer más que edición de textos. Algunas opciones disponibles son booleanos, números, objetos, selects, fechas o incluso archivos. Para ver la lista de los knobs disponibles por facor revisar el siguiente [[https://github.com/storybookjs/storybook/tree/master/addons/knobs][enlace]].
 
 * Sobreescribiendo configuraciones
 
-Otra de las funcionalidades atractivas de Storybook es que permite establecer 
-configuraciones a nivel global, grupal e individual.
+Otra de las funcionalidades atractivas de Storybook es que permite establecer configuraciones a nivel global, grupal e individual.
 
 Todas las configuraciones globales están agrupadas en el archivos
 ~.storybook/config.js~
@@ -283,10 +231,7 @@ addDecorator(withKnobs);
 configure(loadStories, module);
 #+end_src
 
-Ahora bien, se ha decidido que el componente MajorBanner, no debe mostrar su
-documentación bajo el formato ~iniline~ que esta definido como una configuración
-global. Para sobreescribir este formato se hace la siguiente modificación en el
-archivo ~stories/banner.stories.js~
+Ahora bien, se ha decidido que el componente MajorBanner, no debe mostrar su documentación bajo el formato ~iniline~ que esta definido como una configuración global. Para sobreescribir este formato se hace la siguiente modificación en el archivo ~stories/banner.stories.js~
 
 #+begin_src javascript
 // stories/banner.stories.js
@@ -319,17 +264,9 @@ storiesOf('Minor Banner', module)
   .add('With Pictures', () => (...));
 #+end_src
 
-Si se examina Storybook dentro del navegador, se puede evidenciar que las
-historias de MajorBanner ya no siguen el formato ~inline~ y muestran el botón
-Show Info en la parte superior derecha del visualizador de historias. No
-obstante, tanto el Button como el MinorBanner siguen mostrandose bajo el formato
-~iniline~. Es así como se sobreescribe una configurarción global de un
-complemento en un grupo de historias.
+Si se examina Storybook dentro del navegador, se puede evidenciar que las historias de MajorBanner ya no siguen el formato ~inline~ y muestran el botón Show Info en la parte superior derecha del visualizador de historias. No obstante, tanto el Button como el MinorBanner siguen mostrandose bajo el formato ~iniline~. Es así como se sobreescribe una configurarción global de un complemento en un grupo de historias.
 
-Anular las configuraciones globales, también puede hacerse a nivel de historias.
-A continuación se muestra como se va a sobreescribir el complemento ~info~ en
-la historia MinorBanner - No Pictures, para deshabilitar la vista ~inline~ en la
-historia: 
+Anular las configuraciones globales, también puede hacerse a nivel de historias. A continuación se muestra como se va a sobreescribir el complemento ~info~ en la historia MinorBanner - No Pictures, para deshabilitar la vista ~inline~ en la historia: 
 
 #+begin_src javascript
 // stories/banner.stories.js
@@ -355,15 +292,9 @@ storiesOf('Minor Banner', module)
   .add('With Pictures', () => (...));
 #+end_src
 
-Al verificar en el navegador, puede darse cuenta de que el formato inline ya no
-se aplica en el Minnor Banner - No Pictures, pero si en el Minnor Banner - With
-Pictures.
+Al verificar en el navegador, puede darse cuenta de que el formato inline ya no se aplica en el Minnor Banner - No Pictures, pero si en el Minnor Banner - With Pictures.
 
-Es importante resaltar que el objeto para realizar las configuraciones en los
-tres casos fue practicamente el mismo. Por otra parte, varias de las opciones
-del complemento ~info~ se pueden sobreescribir; desde las fuentes de los
-encabezados y los snippets, el uso de tablas de propiedades hasta los estilos y
-el número máximo de propiedades.
+Es importante resaltar que el objeto para realizar las configuraciones en los tres casos fue practicamente el mismo. Por otra parte, varias de las opciones del complemento ~info~ se pueden sobreescribir; desde las fuentes de los encabezados y los snippets, el uso de tablas de propiedades hasta los estilos y el número máximo de propiedades.
 
 En reseumen, este es la relación de las configuraciones por jerarquía:
 
@@ -374,12 +305,9 @@ parámetro de la función ~add~
 
 * Revisión
 
-Se cubrieron varios contenidos en esta publicación y es tiempo de destacar los
-puntos clave.
+Se cubrieron varios contenidos en esta publicación y es tiempo de destacar los puntos clave.
 
-El principal dato para llevar es que Storybook ofrece una gran cantidad de
-opciones de configuración que se habilitan a través de complementos. Para este
-documentos se trabajaron tres complementos:
+El principal dato para llevar es que Storybook ofrece una gran cantidad de opciones de configuración que se habilitan a través de complementos. Para este documentos se trabajaron tres complementos:
 
 1. ~actions~, instalado por defecto, permite capturar eventos sobre las historias.
 2. ~info~, el cual suministra el código fuente, la trabla de propiedades y texto
@@ -387,18 +315,10 @@ personalizable al rededor de la historia
 3. ~knobs~, el cual permite ediciones dinámicas de los datos que se muestran en
 la historia.
 
-Todos los complementos se pueden consultar en la [[https://storybook.js.org/addons][página oficial de addons]] para
-Storybook. Hay unos muy útiles para trabajar temas de accesibilidad y otros
-sobre diseño responsivo.
+Todos los complementos se pueden consultar en la [[https://storybook.js.org/addons][página oficial de addons]] para Storybook. Hay unos muy útiles para trabajar temas de accesibilidad y otros sobre diseño responsivo.
 
-Por otra parte, el uso de complementos desencadena un nuevo concepto, los
-decoradores. Los decoradores son envolturas para los componentes y son usados
-sobre las historias para habilitar cambios en los paneles o en el visualizador
-de historias.
+Por otra parte, el uso de complementos desencadena un nuevo concepto, los decoradores. Los decoradores son envolturas para los componentes y son usados sobre las historias para habilitar cambios en los paneles o en el visualizador de historias.
 
-Recuerde que para evitar problemas, una vez instalado el complemento, este se
-debe registrar en el archivo ~addons.js~ y posteriormente reiniciar el servidor
-de Storybook para así habilitar el consumo del mismo.
+Recuerde que para evitar problemas, una vez instalado el complemento, este se debe registrar en el archivo ~addons.js~ y posteriormente reiniciar el servidor de Storybook para así habilitar el consumo del mismo.
 
-Por último, las configuraciones se pueden escribir a tres niveles: global,
-grupal y a nivel de historia.
+Por último, las configuraciones se pueden escribir a tres niveles: global, grupal y a nivel de historia.
