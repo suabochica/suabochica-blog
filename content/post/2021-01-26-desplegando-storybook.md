@@ -5,6 +5,9 @@ description = "Serie que recopila los beneficios de usar Storybook"
 date = 2021-01-26T00:00:00-05:00
 lastmod = 2021-09-07T22:28:44-05:00
 draft = false
+tags = [
+  "storybook",
+]
 +++
 
 ## Desplegando Storybook {#desplegando-storybook}
