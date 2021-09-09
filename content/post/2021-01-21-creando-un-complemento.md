@@ -16,7 +16,7 @@ Una vez repasados los temas de escritura de historias y uso de complementos, el 
 
 Antes de escribir el complemento es adecuado definir que va a hacer dicho complemento. Para este caso se va a crear una nueva pestaña en la sección de paneles llamada **See Also**, la cual redireccionará a historias relacionadas con la historia actual. La siguiente es una imagen con la vista del nuevo componente:
 
-{{< figure src="../images/storybook/10-storybook-see-also-add-on.png" caption="Figure 1: Add-on info show button" >}}
+{{< figure src="../../images/storybook/10-storybook-see-also-add-on.png" caption="Figure 1: Add-on info show button" >}}
 
 Detras de escenas este es el paso a paso del uso del complemento personalizado.
 

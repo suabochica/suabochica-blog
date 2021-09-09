@@ -69,11 +69,11 @@ storiesOf('Button', module)
 
 Este complemento se implementa ligeramente diferente al de `actions`, ya que requiere del uso de la función `addDecorator` de Storybook para React, el cual retorna un compenente empaquetado. Si revisa el navegador se obtiene el siguiente resultado:
 
-{{< figure src="../images/storybook/07-storybook-add-on-info-button.png" caption="Figure 1: Add-on info show button" >}}
+{{< figure src="../../images/storybook/07-storybook-add-on-info-button.png" caption="Figure 1: Add-on info show button" >}}
 
 Al dar clic en el botón Show Info, la vista cambia por:
 
-{{< figure src="../images/storybook/08-storybook-add-on-info-show.png" caption="Figure 2: Add-on info show info" >}}
+{{< figure src="../../images/storybook/08-storybook-add-on-info-show.png" caption="Figure 2: Add-on info show info" >}}
 
 Ahora está disponible la información necesaria para usar el componente adecuadamente. La visualización de la documentación puede modificarse, ya que la función `withInfo` puede recibir como argumento un objeto de configuración. Por ejemplo, se puede considerar innecesario que se tenga que dar clic en el botón Show Info para ver la información. Hay una vista alternativa en donde el componente se muestra dentro de la documentación. Para habilitarla se pasa el  siguiente objeto com parámetro de la función `withInfo`,
 
@@ -184,7 +184,7 @@ import '@storybook/addon-knobs/register';
 
 Se guarda el archivo y se reinicia el servidor de Storybook. Al revisar en el navegador se tendra una interfaz como la que se muestra a continuación:
 
-{{< figure src="../images/storybook/09-storybook-add-on-knobs.png" caption="Figure 3: Add-on knobs with a title" >}}
+{{< figure src="../../images/storybook/09-storybook-add-on-knobs.png" caption="Figure 3: Add-on knobs with a title" >}}
 
 Ahora es tiempo de poner en práctica el poder de `knobs`. Si se cambia la entrada con el texto 'Banner Title' por 'Knobs' se puede observar como el texto del título en el componente se actualiza a 'Knobs'.
 
