@@ -140,3 +140,18 @@ Si se abre el navegador, se contempla que cada vez que se hace clic sobre el bot
 
 * Compartiendo código entre el cliente y el servidor
 
+Compartir código entre el cliente y el servidor es un tema avanzado, pero puede lograrse de forma sencilla cuando se han ejecutado los pasos previos asociados a rehidratación e interectividad.
+
+Cuando el back-end de una aplicación renderizada en el servidor no esta escrito en JavaScript, es común que el código deba ser duplicado en multiples lenguajes de programación para que funcione. Al tener el back-end en JavaScript se cuentan con las siguientes ventajas:
+
+- Las bibliotecas como React son exactamente las mismas para el cliente y el servidor.
+- La utilidades para personalizar el código que funciona con el conjunto de datos se puede compartir con facilidad.
+- Las pruebas, al tener las mismas especificaciones pueden retulizarse tanto en el cliente como en el servidor.
+
+En esta sección se va a profundizar el punto en la lista previa asociado a las utilidades. En ese orden de ideas el primer paso es crear una utilidad simple con JavaScript en el servidor. El segundo paso es cargar la utilidad y utilizarla desde el cliente. Por último se va a actualizar el script que registra las votaciones en el servidor.
+
+** TODO Create a simple JavaScript utility
+  
+** TODO Load and use the utility on the client
+
+** TODO Update script to modify upvotes on server as well
