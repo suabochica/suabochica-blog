@@ -150,8 +150,68 @@ Cuando el back-end de una aplicación renderizada en el servidor no esta escrito
 
 En esta sección se va a profundizar el punto en la lista previa asociado a las utilidades. En ese orden de ideas el primer paso es crear una utilidad simple con JavaScript en el servidor. El segundo paso es cargar la utilidad y utilizarla desde el cliente. Por último se va a actualizar el script que registra las votaciones en el servidor.
 
-** TODO Create a simple JavaScript utility
-  
-** TODO Load and use the utility on the client
+La utilidad personalizada que se va a abordar es el sistema de votaciones por respuesta. Para ello se crea un un archivo en la ruta ~/server/shared/utility.js~ y se traslada la función ~handleModifyAnswerVotes~ tal y como se muestra a continuación:
 
-** TODO Update script to modify upvotes on server as well
+#+begin_src javascript
+// server/shared/utility.js
+export function handleModifyAnswerVotes(answers, answerId, increment) {
+  return answers.map((answer) => {
+    if (answer.answerId !== answerId) {
+      return answer;
+    } else {
+      return { ...answer, upvotes: answer.upvotes + increment };
+    }
+  });
+}
+#+end_src
+
+Dos detalles importantes a considerar; Primero, se agregó el parametró ~answers~ que a nivel del ~client.jsx~ era accedido directamente desde el estado. Segundo, se usa la parabra reservada ~export~ para habilitar el consumo de la función ~handleModifyAnswerVotes~ en donde sea importada.
+
+Continuando con los pasos a realizar, se va a consumir la utilidad en el cliente:
+
+#+begin_src javascript
+// client/client.jsx
+import { handleModifyAnswerVotes } from "../server/shared/utility";
+
+function handleVote(answerId, increment) {
+  state.answers = handleModifyAnswerVotes(state.answers, answerId, increment);
+  fetch(`vote/${answerId}?increment=${increment}`);
+
+  render();
+}
+
+function render() {
+  ReactDOM.hydrate(
+    <App {...state} handleModifyAnswerVotes={handleVote}/>,
+  );
+}
+#+end_src
+
+Al importar la función ~handleModifyAnswerVotes~, esta es utilizada dentro de la nueva funcón ~handleVote~ en donde se asigna al ~state.anwers~ el resultado de la utilidad.
+
+Adicionalmente la función ~handleVote~ realiza un ~fecth~ a un nuevo servicio que se va a exponer desde el servidor para persistir las modificaciones en el valor de las votaciones asignadas por respuesta.
+
+Por último se hace el llamado a la función ~render~ cuyo valor en el atributo ~handleModifyAnswerVotes~ es asignado a la función ~handleVote~.
+
+El último paso consiste en crear un nuevo servicio ~GET~ en el servidor para persistir los cambios en las votaciones de las respuestas. El siguiente código ilustra el caso:
+
+#+begin_src javascript
+// server/index.js
+import { handleModifyAnswerVotes } from "./shared/utility";
+//  ...
+app.get("/vote/:answerId", (_request, response) => {
+  const { query, params } = _request;
+
+  data.answers = handleModifyAnswerVotes(
+    data.answers,
+    params.answerId,
+    +query.increment // number cast with +
+  );
+
+  response.send("OK");
+});
+#+end_src
+
+Este servicio definido en la ruta ~/vote/:answerId~ recibe un parámetro de consulta en la URL que determina la cantidad del incremento/decremento de la votación. La estructura se evidencia en la línea con el ~fecth~ de los cambios realizados en el archivo ~client.jsx~
+
+Al cargar el servidor ahora se puede observar en el navegador una aplicación funcional que persiste las votaciones realizadas por respuesta a través de una utilidad definida en el servidor.
