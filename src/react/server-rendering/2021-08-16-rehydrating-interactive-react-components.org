@@ -214,4 +214,33 @@ app.get("/vote/:answerId", (_request, response) => {
 
 Este servicio definido en la ruta ~/vote/:answerId~ recibe un parámetro de consulta en la URL que determina la cantidad del incremento/decremento de la votación. La estructura se evidencia en la línea con el ~fecth~ de los cambios realizados en el archivo ~client.jsx~
 
-Al cargar el servidor ahora se puede observar en el navegador una aplicación funcional que persiste las votaciones realizadas por respuesta a través de una utilidad definida en el servidor.
+ ptAl cargar el servidor ahora se puede observar en el navegador una aplicación funcional que persiste las votaciones realizadas por respuesta a través de una utilidad definida en el servidor.
+
+* Recapitulación
+
+A continuación se recopilan los aprendizajes expuestos en esta sección:
+
+- Los componentes renderizados en el servidor por defecto no son interactivos. Necesitan ser rehidratados para poder ser interactivos.
+- Cuando los componentes son rehidratados no son redibujados; de este modo se ahorra poder de procesamiento.
+- En la aplicaciones rehidratadas se obtiene el beneficio de tener las mismas utilidades tanto en el servidor como en el cliente.
+- No hacer coincidir los conjuntos de datos entre el servidor y el cliente provocará errores
+
+Cons estas conclusiones se abarca una base sólida sobre la técnica de rehidratación en los componentes renderizado en el servidor.
+
+* Recapitulación Ejecutiva
+
+Por último se va a compartir un resumen total de los diferentes puntos abordados sobre los componentes renderizados en el servidor. Para ello es conveniente recordar las siguientes palabras de /Howard Phillips Lovecraft/:
+
+#+begin_quote
+Vivimos en una plácida isla de ignorancia en medio de los mares negros del infinito, y no se pretendía que viajáramos lejos.
+#+end_quote
+
+Ciertamente, hay algunas cosas de las que la gente no debería saber demasiado. Pero una cosa de la que ahora se tiene conocimiento es sobre los componentes de renderización del servidor.
+
+En primera instancia, ya se puede dar por hecho que los componentes React de renerización en el servidor entregan una gran experiencia de usuario ya que son aplicaciones pequeñas que se descargan rápido; ejercen una tensión baja en dispositivos lentos; ofrecen una apariencia correcta.
+
+El segundo punto es que Express es la herramienta que permite enviar componentes renderizados en el servidor al cliente. Babel le habilita al servidor la carga de archivos ~.jsx~. Bajo esta misma línea, el método ~renderToString~ le entrega al servidor un componente con solo HTML, el cual por defecto no es interactivo.
+
+El tercer y último punto es que la tećnica de rehidratación agrega interactividad a los componentes de renderización en el servidor. La rehidratación sucede en el cliente a través de la carga de la librería React, la cual se vincula al componente HTML del servidor y restaura la interacción del mismo.
+
+Con estos tres puntos claves se da por finalizados la serie de publicaicones asociadas a los componentes de renderización en el servidor. Espero sea de utilidad para futuras implementaciones.

@@ -240,7 +240,6 @@ Se puede observar dentro de la sintaxís JSX del componente que se consumen las 
 
 Al actualizar el navegador, se puede evidenciar como nuestra aplicación de encuestas va tomando forma. Ahora se tiene renderizada una pregunta y sus posibles respuestas con la votación respectiva.
 
-
 * Recapitulación
 
 Tiempo de desempacar las diferentes cosas revisadas a lo largo de esta publicación:
