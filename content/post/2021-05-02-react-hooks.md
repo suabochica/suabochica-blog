@@ -3,12 +3,8 @@ title = "React Hooks"
 author = ["Sergio Benítez"]
 description = "Serie que pretende explicar la funcionalidad de React Hooks"
 date = 2021-05-02T00:00:00-05:00
-lastmod = 2021-09-27T21:17:52-05:00
+lastmod = 2021-10-02T22:54:25-05:00
 draft = false
-tags = [
-  "react",
-  "react-hooks",
-]
 +++
 
 React Hooks representa un enorme paso hacia adelante hacia la construcción de aplicaciones plenamente funcionales con un uso mínimo de componentes de clase.
@@ -63,7 +59,7 @@ En los últimos años del mundo de la programación front-end, no importa el fra
 
 La idea de estado consiste en que cada vez que se ve algo nuevo en la pantalla, sea rastreado como un estado nuevo. Para aterrizar este concepto se presenta el siguiente ejemplo:
 
-{{< figure src="../images/react/react-hooks/01-two-way-data-binding.png" caption="Figure 1: Two way data-binding" >}}
+{{< figure src="../../images/react/react-hooks/01-two-way-data-binding.png" caption="Figure 1: Two way data-binding" >}}
 
 Esta  imagen ilustra los elementos relevantes para hacer un manejo de estado con la digitación de un correo electrónicio dentro de una etiqueta `<Input/>` que representa una caja de texto. Este elemento de entrada interactua con un modelo de datos en donde se va a almacenar lo que el usuairo esta escribiendo en el navegador. Cada caracter digitado actualizará el almacenamiento y posterior a dicha actualización en el modelo de datos la salida de este evento estará registrada en una etiqueta `<Label>`. El almacenamiento de datos es conocido como _estado_.
 
