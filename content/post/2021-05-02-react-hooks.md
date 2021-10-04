@@ -5,6 +5,10 @@ description = "Serie que pretende explicar la funcionalidad de React Hooks"
 date = 2021-05-02T00:00:00-05:00
 lastmod = 2021-10-02T22:54:25-05:00
 draft = false
+tags = [
+  "react",
+  "react-hooks",
+]
 +++
 
 React Hooks representa un enorme paso hacia adelante hacia la construcción de aplicaciones plenamente funcionales con un uso mínimo de componentes de clase.
