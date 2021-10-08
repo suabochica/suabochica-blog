@@ -196,7 +196,7 @@ En esta versión se usa una funcionalidad de TypeScript llamada `interface` para
 
 La tercera opción es Flow, un proyecto de Facebook para agregar validaciones de tipos estáticos a JavaScript. A diferencia de TypeScript, Flow utiliza anotaciones sobre el código JavaScript para inferir los tipos del mismo. El siguiente ejemplo es la versión del `Greeting` component con Flow:
 
-\#+begin\_src javascript
+```javascript
 // @flow
 import React from "react";
 
@@ -209,6 +209,7 @@ function Greeting(props: Props) {
     return (<h1>Hello {props.name}</h1>)
   }
 }
+```
 
 El punto más relevante en este snippet es la anotación al principio de cada archivo para habilitar la validación por parte de Flow. La declaración de los props y su especificación del tipo en el argumento que recibe la función del componente es similar a la versión de TypeScript. Ahora bien, Flow corre en un proceso diferente y por ende los tipos son validados cuando se corre dicho proceso.
 

@@ -154,7 +154,7 @@ Cuando React fue presentado en el 2013, la audiencia fue muy escéptica ya que e
 La siguiente imagen muestra la visión de React del nuevo enfoque de separación de responsabilidades.
 
   #+CAPTION: React History
-  [[../images/react/02-react-separation-of-concerns.png]]
+  [[../../images/react/02-react-separation-of-concerns.png]]
 
 En resumidas cuentas, en vez de tener tecnologías separadas con preocupaciones entrelazadas, se tiene que cada componente (un botón, un acordión o un texto de entrada), es una preocupación por si sola. Con el tiempo la comunidad fue respaldando este enfoque, ya que por experiencia la separación de preocupaciones basada en tecnologías puede obstaculizar la depuración y relentiza la retroalimentación del desarrollo por el simple hecho de lograr que los archivos separados estén sincronizados. Hoy en día varios desarrolladores sustentan que la separación por componentes vale la pena.
 
@@ -164,7 +164,7 @@ Una analogía válida es pensar los componentes anidados de React como unas matr
 React es una de las muchas tecnologías no estandarizadas para crear componentes web. El estándar para componentes web ha existido durante años sin mucho uso todavía y por ende es valido preguntarse ¿por qué los desarrolladores no están construyendo aplicaciones con el estándar de los componentes web?. Antes de abordar esta pregunta, se va a revisar el estándar para componentes web. La siguiente imagen consolida el estándar en sus cuatro tecnologías principales:
 
   #+CAPTION: Web Component Standard
-  [[../images/react/03-react-standard-web-components.png]]
+  [[../../images/react/03-react-standard-web-components.png]]
 
 Ahora bien, ¿por qué los desarrolladores no fomentan el uso del estándar para los componentes web?. Básicamente es por los siguientes cuatro argumentos:
 

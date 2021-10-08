@@ -202,6 +202,7 @@ function Greeting(props: Props) {
     return (<h1>Hello {props.name}</h1>)
   }
 }
+#+end_src
 
 El punto más relevante en este snippet es la anotación al principio de cada archivo para habilitar la validación por parte de Flow. La declaración de los props y su especificación del tipo en el argumento que recibe la función del componente es similar a la versión de TypeScript. Ahora bien, Flow corre en un proceso diferente y por ende los tipos son validados cuando se corre dicho proceso.
 
