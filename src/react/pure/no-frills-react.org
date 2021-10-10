@@ -42,3 +42,32 @@ Al abrir este archivo en el navegador se verá una línea de texto diciendo "not
 - Es un documento estándar HTML5
 - Se agregar un elemento ~<div>~ la cual va a renderizar la aplicación React más adelante.
 - Se importaron las bibliotecas the ~react@17.0.1~ y ~react-dom@17.0.1~ a través de dos etiquetas ~<script>~
+- Se dejo una etiqueta ~<script>~ libre que es en donde se va a poner el código del componente React. 
+
+La biblioteca ~react@17.0.1~ es la interfaz para interactuar con Reactl todos los métodos (excepto uno ~render()~) estarán disponible a través de esta biblioteca. La biblioteca no contiene una forma para renderizarse a si misma, es solo un API. La biblioteca ~react-dom@17.0.1~ es la capa de renderización. Ya que para este caso se va a renderizar en el navegador, se necesita usar React DOM. Se recuerda que hay otras librerías como React Native o React 360, que determinan en que contexto se va a renderizar React. El orden de las importaciones no es importante.
+
+El contenido del ~<script>~ abierto es el siguiente.
+
+#+begin_src js
+const App = () => {
+  return React.createElement(
+    "div",
+    {},
+    React.createElement("h1", {}, "Adopt Me!")
+  );
+};
+
+ReactDOM.render(React.createElement(App, docoument.getElementId('root'));
+#+end_src
+
+Y está es la forma más sencilla de construir una aplicación React. Las siguientes instrucciones explican el código previo:
+
+1. ~App~ es el componente propio que se esta creando. React gira en torno de la creación de componentes, y en utilizar estos componentes para crear otros.
+2. Hay dos tipos de componentes: componentes funcionales y componentes de clase. el componente ~App~ es un componente funcional.
+3. Un componente funcional debe retornar un marcado generado por ~React.createElement~.
+4. Estas funciones de renderización de componentes deben ser rápidas ya que serán llamadas con mucha frecuencia. Es una ruta de código caliente.
+5. Dentro de la función de renderización no se puede modificar cualquier tipo de estado. En terminos funcionales, esta función tiene que ser pura.
+6. ~React.createElement~ crea una instancia de algún componente. Si se pasa un string, el va a crear una etiqueta DOM con ese string. Para este ejemplo se usaron las etiquetas ~h1~ y ~div~ que son enviadas al DOM.
+7. El segundo argumento corresponde a los atributos que se pasan a la etiqueta o la componente. Para este caso se envió un objeto vacío ~{}~.
+8. ~ReactDOM.render~ es lo que toma el componente de ~App~ renderizado y lo coloca en el DOM (en este caso, se coloca en el elemento con id ~root~).
+9. Observe que  ~React.createElement~ usa ~App~ como parámetro para ~ReactDOM.render~. Se necesita una instancia de ~App~ para renderizar. ~App~ es de la clase componente y con ~React.createElement~ se crea una instancia de dicha clase.
