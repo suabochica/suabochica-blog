@@ -1,0 +1,44 @@
+#+TITLE: React puro
+#+DESCRIPTION: Serie que recopila una descripción general de React
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-03-12 Thu> 
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+Un buen ejercicio para comenzar a explorar el mundo de React es escribir un componente React Puro, sin paso de compilación, sin JSX, sin Babel y sin Webpack or Parcel. Solo algo de JavaScript en la página.
+
+Para ello, se va a crear una carpeta proyecto con el nombre ~adopt-me~ desde la cual se va a construir una aplicación para adoptar mascotas. El primer paso es crear un directorio ~src/~ con el archivo ~index.html~:
+
+
+#+begin_src html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./style.css">
+  <title>Adopt Me</title>
+</head>
+
+<body>
+  <div id="root">not rendered</div>
+  <script src="https://unpkg.com/react@17.0.1/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.1/umd/react-dom.development.js"></script>
+  <script>
+    // Your code is going to go here
+  </script>
+</body>
+
+</html>
+#+end_src
+
+Al abrir este archivo en el navegador se verá una línea de texto diciendo "not rendered". En resumen esta son las instrucciones descritas en el documento ~index.html~:
+
+- Es un documento estándar HTML5
+- Se agregar un elemento ~<div>~ la cual va a renderizar la aplicación React más adelante.
+- Se importaron las bibliotecas the ~react@17.0.1~ y ~react-dom@17.0.1~ a través de dos etiquetas ~<script>~
