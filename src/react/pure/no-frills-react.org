@@ -71,3 +71,45 @@ Y está es la forma más sencilla de construir una aplicación React. Las siguie
 7. El segundo argumento corresponde a los atributos que se pasan a la etiqueta o la componente. Para este caso se envió un objeto vacío ~{}~.
 8. ~ReactDOM.render~ es lo que toma el componente de ~App~ renderizado y lo coloca en el DOM (en este caso, se coloca en el elemento con id ~root~).
 9. Observe que  ~React.createElement~ usa ~App~ como parámetro para ~ReactDOM.render~. Se necesita una instancia de ~App~ para renderizar. ~App~ es de la clase componente y con ~React.createElement~ se crea una instancia de dicha clase.
+
+Para cerrar esta introducción a React puro, el tema pendiente son los props de los componentes React. Considere el siguiente componente ~Pet~.
+
+#+begin_src js
+const Pet = () => {
+  return React.createElement(
+    "div",
+    {},
+    [
+      React.createElement("h2", {}, "Luna"),
+      React.createElement("h3", {}, "Dog"),
+      React.createElement("h3", {}, "Havanese"),
+    ]
+  );
+};
+#+end_src
+
+Este componente ~Pet~ pretende representar a cualquier mascota, pero en esete momento solo representa a ~Luna~. Lo conveniente es poder llamar el componente ~Pet~ de la siguiente forma:
+
+#+begin_src js
+React.createElement(Pet, {name: "Luna", animal: "Dog", breed: "Havanese"}),
+React.createElement(Pet, {name: "Pepper", animal: "Bird", breed: "Cockatiel"}),
+React.createElement(Pet, {name: "Sudo", animal: "Dog", breed: "Wheaten Terrier"}),
+#+end_src
+
+Para darle mayor flexibilidad al componente ~Pet~, se hacen las siguientes modificaciones de la versión inicual, acudiendo al uso de los ~props~:
+
+#+begin_src js
+const Pet = (props) => {
+  return React.createElement(
+    "div",
+    {},
+    [
+      React.createElement("h2", {}, props.name),
+      React.createElement("h3", {}, props.animal),
+      React.createElement("h3", {}, props.breed),
+    ]
+  );
+};
+#+end_src
+
+Ahora si se revisa el navegador, se va a renderizar el componente ~Pet~ con la respectiva información de cada una de las mascotas. Esta es una de las principales funcionalidades de React, pasar la información desde el componente padre hacia el componente hijo. Hay que tener en cuenta que el flujo de datos es unidirección y va de arriba hacia abajo. Para este caso, ~Pet~ *no* podría enviar datos a ~App~
