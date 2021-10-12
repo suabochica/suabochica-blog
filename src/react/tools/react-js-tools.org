@@ -1,0 +1,28 @@
+#+TITLE: Herramientas de JavaScript
+#+DESCRIPTION: Serie que recopila una descripción general de React
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-03-15 Thu> 
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+Es tiempo de indagar sobre la diferentes herramientas que permiten crear un ambiente de desarrollo para aplicaciones web React:
+
+## npm
+
+~npm~ no significa Node Package Manager, pero si es un administrador de paquetes para NodeJS. ~npm~ se ha compertido en el gestor de paquetes del campo frontend y cuenta con una herramienta de líneas de comando llamada ~npm~ también. ~npm~ permite traer código desde el registro de ~npm~ en donde se almacenan una cantidad consideraple de módulos de código abierto que la gente ha escrito y que cualquiier desarrollador puede utilizar. Al correr el siguiente comando:
+
+#+begin_src zsh
+npm install react
+#+end_src
+
+Se va a obtener la última versión de React guardada en el registro de npm. Para crear un proyecto ~npm~ se ejecuta el siguiente comando en el directorio raíz del proyecto:
+
+#+begin_src zsh
+npm init -y
+#+end_src
+
+El requisito es tener instalado NodeJS. Una vez ejecutado el comando se creará un archivo ~package.json~ el cual se va a modificar más adelante. Este archivo permite instalar y salvar paquetes.
+
