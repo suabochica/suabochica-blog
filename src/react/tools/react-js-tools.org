@@ -26,3 +26,30 @@ npm init -y
 
 El requisito es tener instalado NodeJS. Una vez ejecutado el comando se creará un archivo ~package.json~ el cual se va a modificar más adelante. Este archivo permite instalar y salvar paquetes.
 
+## Prettier
+
+Es importante mantener una calidad alta cuando se escribe código, o por lo menos, aceptar como compañeros de trabajo a la combinación ESLint y Prettier. La mayoría de los desarrolladores somos perezosos y siempre estamos en la búsqueda de recargar varias responsabilidades a la máquina para tener el foco en tareas de arquitectura y resolución de problemas, invertiendo la menor cantidad de tiempo posible en contextos de sintáxis y estilo de código. Hay muchas herramientas que nos ayudan a mantener la calidad del código alta, pero ESLint y Prettier son quizas la más populares en el flujo de trabajo de aplicaciones web.
+
+Prettier es una herramienta increible, ya que su creador estaba hastiado de lidiar con problemas de estilo de código: donde colocar sangrías, cuando usar saltos de línea, entre otros.Prettier toma el código que se escribe, lo descompone en un árbol de sintaxis abstracta (AST) que es solo una representación de su código. Luego toma ese AST, desecha todo el estilo de código que creó y lo vuelve a imprimir usando un estilo predefinido. Si bien esto suena un poco aterrador, el resultado es genial. Al perder el control del estilo de su código, ya no tiene que pensar en ello. Su código siempre es coherente, al igual que el código del resto de su equipo.
+
+Una analogía valida es si tu cerebro es un procesador, puedes liberar el hilo de tu cerebro que se preocupa por los estilos de código y la legibilidad: simplemente te sucede a ti. ¿No te gustan los puntos y comas? ¡No las escribas! Los pone por ti. Punto para Prettier.
+
+#+begin_src zsh
+npm install -D prettier
+#+end_src
+
+Crear el archivo ~.prettierrc~ con el siguiente contenido:
+
+#+begin_src js
+{}
+#+end_src
+
+Agregar el siguiente script en el ~package.json~.
+
+#+begin_src js
+{
+    "format": "prettier --write \"src/**/*.{.js, .jsx}"
+}
+#+end_src
+
+Instalar la extensión de Prettier en visual code.
