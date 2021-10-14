@@ -34,22 +34,36 @@ Prettier es una herramienta increible, ya que su creador estaba hastiado de lidi
 
 Una analogía valida es si tu cerebro es un procesador, puedes liberar el hilo de tu cerebro que se preocupa por los estilos de código y la legibilidad: simplemente te sucede a ti. ¿No te gustan los puntos y comas? ¡No las escribas! Los pone por ti. Punto para Prettier.
 
+Para instalar Prettier se ejecuta el siguiente comando:
+
 #+begin_src zsh
 npm install -D prettier
 #+end_src
 
-Crear el archivo ~.prettierrc~ con el siguiente contenido:
+Ahora se crea el archivo ~.prettierrc~. En este archivo se van a definir las configuraciones que se quieren aplicar sobre determinado formato de archivo. Prettier ofrece reglas de estilo de código para JavaScript, TypeScrip, JSX, entre otros. Las (opciones)[https://prettier.io/docs/en/options.html] que ofrece Prettier de configuración son varias, ya que van desde el ancho de impresión, hasta el ancho del Tab. Por ahora se va a dejar una configuración vacía para el archivo ~.prettierrc~:
 
 #+begin_src js
+// .prettierrc
 {}
 #+end_src
 
-Agregar el siguiente script en el ~package.json~.
+Prettier funciona de maravilla con Visual Studio Code. La recomendación es instalar la (extensión)[https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode&WT.mc_id=reactintro-github-brholt] y configurarla para que que Prettier solo se ejecuto cuando detecte un archivo ~.prettierrc~. Para ello, hay que buscar dentro del archivo de configuración de la extensión la opción ~prettier.requireConfig~ y definirla como ~true~. Si se quiere dar formato al archivo cuando se guarde, se debe definir la opción ~editor.formatOnSave~ con ~true~
+
+Puede ser algo incómodo tratar the recordar todos los comandos CLI que se puede correr en el proyecto, Dichos comandos pueden etiquetarse en la sección "scripts" del  ~package.json~. Por ejemplo, el comando para dar formato a los archivo ~.js~ y ~.jsx~ sería:
 
 #+begin_src js
+// package.json
 {
-    "format": "prettier --write \"src/**/*.{.js, .jsx}"
+    "scripts": {
+        "format": "prettier --write \"src/**/*.{.js, .jsx}"
+    }
 }
 #+end_src
 
-Instalar la extensión de Prettier en visual code.
+Ahora se puede ejecutar el siguiente comando:
+
+#+begin_src zsh
+npm run format
+#+end_src
+
+Con esta configuración ya no es necesario recordar la cantidad de comandos que se pueden ejecutar para darle formato al código. Sobra la marcha se aprenderá mas de las funcionalidaes de Prettier.
