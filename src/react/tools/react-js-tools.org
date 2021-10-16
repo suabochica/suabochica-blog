@@ -67,3 +67,19 @@ npm run format
 #+end_src
 
 Con esta configuración ya no es necesario recordar la cantidad de comandos que se pueden ejecutar para darle formato al código. Sobra la marcha se aprenderá mas de las funcionalidaes de Prettier.
+
+## ESLint
+
+Ya se vio que Prettier soluciona todo lo realtivo al formato de código. Ahora bien, es posible forzar algunos estilos de código relacionados a uso. Por ejemplo, usted quiere forzar a que el equipo  nunca utilice la palabra reservada ~with~ de JavaScript, ya que no se considera una buena práctica en JavaScript. ESLint entra en este contexto ya que ayuda a resolver dichos contextos.
+
+El primer paso es instalar ESLint a través de ~npm~ con sus respectivas dependencias:
+
+#+begin_src zsh
+npm install -D eslint eslint-config-prettire
+#+end_src
+
+Una vez instalado, se procede con la configuración del linter. Actualmente hay docenas de configuraciones preestablecidas para ESLint y puede usar cualquiera de ellas. La configuración de Airbnb es muy popular, al igual que la configuración estándar. Por ahora se va a crear un archivo ~.eslintrc.json~ para comenzar a ligar el proyecto.
+
+
+
+Cree este archivo llamado .eslintrc.json.
