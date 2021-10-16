@@ -75,11 +75,57 @@ Ya se vio que Prettier soluciona todo lo realtivo al formato de código. Ahora b
 El primer paso es instalar ESLint a través de ~npm~ con sus respectivas dependencias:
 
 #+begin_src zsh
-npm install -D eslint eslint-config-prettire
+npm install -D eslint eslint-config-prettier
 #+end_src
 
 Una vez instalado, se procede con la configuración del linter. Actualmente hay docenas de configuraciones preestablecidas para ESLint y puede usar cualquiera de ellas. La configuración de Airbnb es muy popular, al igual que la configuración estándar. Por ahora se va a crear un archivo ~.eslintrc.json~ para comenzar a ligar el proyecto.
 
+#+begin_src js
+//.eslintrc.json
+{
+    "extends" : [
+        "eslint:recommended",
+        "prettier"
+    ],
+    "plugins": [],
+    "parserOptions": {
+        "ecmaVersion": 2021,
+        "sourceType": module,
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "env" : {
+        "es6": true,
+        "browser": true,
+        "node": true
+    }
+}
+#+end_src
 
+Esta combinación es la configuración recomendada para ESLint y Prettier. Dicha configuración señalara inconsistencias para archivo ~.js~ y ~.jsx~. Para visualizar los errores encontrador por el linter, es necesario agregar el siguiente script:
 
-Cree este archivo llamado .eslintrc.json.
+#+begin_src js
+// package.json
+{
+    "scripts": {
+        "lint": "eslint  \"src/**/*.{.js, .jsx} --quiet"
+    }
+}
+#+end_src
+
+Ahora se puede ejecutar el siguiente comando:
+
+#+begin_src zsh
+npm run lint
+#+end_src
+
+El resultado de este comando arrojará todos los errores el ESLint encuentre en el proyecto. Como alternativa se puede ejecutar el comando lint con la opción ~--fix~ para solucionar dichos errores:
+
+#+begin_src zsh
+npm run lint --fix
+#+end_src
+
+No obstante, es recomendable hacer una revisión previa sobre los errores encontrados y una revisón de las soluciones ejecutadas por el comando.
+
+Por último, ESLint es muy fácil para trabajar con Visual Studio Code. Solo baja la [extensión](https://code.visualstudio.com/) y ahora se podrá redigira a la documentación de ESLint desde Visual Studio Code.
