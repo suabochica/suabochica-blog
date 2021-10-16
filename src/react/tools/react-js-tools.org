@@ -129,3 +129,29 @@ npm run lint --fix
 No obstante, es recomendable hacer una revisión previa sobre los errores encontrados y una revisón de las soluciones ejecutadas por el comando.
 
 Por último, ESLint es muy fácil para trabajar con Visual Studio Code. Solo baja la [extensión](https://code.visualstudio.com/) y ahora se podrá redigira a la documentación de ESLint desde Visual Studio Code.
+
+## Parcel
+Parcel es un empaquetador de proyectos para JavaScript. Otra alternativa popular es Webpack, pero requiere de mayor tiempo para su configuración. La recomendación es usar Webpack para proyecto grandes. Dicho esto, el atractivo de Parcer es que no requiere de pasos de configuración. Dado que esta es una serie sobre React y no sobre procesos de compilación, el enfoque estará guiado hacia React. El primer paso es instalar Parcel:
+
+#+begin_src zsh
+npm install -D parcel@1.12.3
+#+end_src
+
+Posteriormente se agrega un nuevo script en el ~package.json~ para indicarle a Parcel cual es el punto de entrada de la aplicación:
+
+#+begin_src js
+// package.json
+{
+    "scripts": {
+        "dev": "parcel src/index.html"
+    }
+}
+#+end_src
+
+Ahora se puede ejecutar el siguiente comando:
+
+#+begin_src zsh
+npm run dev
+#+end_src
+
+Al abrir el navegador en el ~http://localhost:1234~ verá el proyecto montado. La diferencia aquí es que ahora se está ejecutando a través de Parcel, lo que significa que se puenden aprovechar todas las funciones que Parcel nos permite y que exploraremos en breve.
