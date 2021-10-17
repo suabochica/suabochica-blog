@@ -40,7 +40,7 @@ Para instalar Prettier se ejecuta el siguiente comando:
 npm install -D prettier
 #+end_src
 
-Ahora se crea el archivo ~.prettierrc~. En este archivo se van a definir las configuraciones que se quieren aplicar sobre determinado formato de archivo. Prettier ofrece reglas de estilo de código para JavaScript, TypeScrip, JSX, entre otros. Las (opciones)[https://prettier.io/docs/en/options.html] que ofrece Prettier de configuración son varias, ya que van desde el ancho de impresión, hasta el ancho del Tab. Por ahora se va a dejar una configuración vacía para el archivo ~.prettierrc~:
+Ahora se crea el archivo ~.prettierrc~. En este archivo se van a definir las configuraciones que se quieren aplicar sobre determinado formato de archivo. Prettier ofrece reglas de estilo de código para JavaScript, TypeScript, JSX, entre otros. Las (opciones)[https://prettier.io/docs/en/options.html] que ofrece Prettier de configuración son varias, ya que van desde el ancho de impresión, hasta el ancho del Tab. Por ahora se va a dejar una configuración vacía para el archivo ~.prettierrc~:
 
 #+begin_src js
 // .prettierrc
@@ -155,3 +155,41 @@ npm run dev
 #+end_src
 
 Al abrir el navegador en el ~http://localhost:1234~ verá el proyecto montado. La diferencia aquí es que ahora se está ejecutando a través de Parcel, lo que significa que se puenden aprovechar todas las funciones que Parcel nos permite y que exploraremos en breve.
+
+## Babel
+Babel es una parte fundamental del ecosistema de JavaScript, al ser la herramienta de traspilación más popular en JavaScript. En esencia, traspilar código es tomar un aspecto del mismo implementado en determinada manera y transformalo en un conjunto de código de aspecto diferente. Uno de sus usos principales es transformar JavaScript futurista (como ES2021) en una versión anterior de JavaScript (como ES5, es decir, JavaScript antes de 2015) para que los navegadores más antiguos puedan usar su JavaScript más nuevo. Babel también maneja cosas como JSX y TypeScript
+
+Por fortuna, Parcel esta en capacidad de incluir en su configuración aspectos de Babel al momento de ejecutar el siguiente comando:
+
+#+begin_src zsh
+npm install -D @babel/core@7.12.16 @babel/preset-react@7.12.13
+#+end_src
+
+La configuración manual que se debe realizar es indicarle a Babel los requerimientos preestablecidas que se van a usar en el proyecto. Para este caso, se va a usar el ~preset-react~. Para ello se crea el archivo ~.babelrc~ con el siguiente contenido:
+
+#+begin_src js
+// .babelrc
+{
+    "presets": [
+        [
+            "@babel/preset-react",
+            {
+                "runtime": "automatic"
+            }
+
+        ]
+    ]
+}
+#+end_src
+
+Con esta configuración el proyecto ya esta en capacidad de realizar las transformaciones de JSX, tema del que vamos a hablar en con conceptos fundmentales de React.
+
+## Browserlist
+#+begin_src js
+// package.json
+{
+    "browserslist": {
+        "last 2 Chrome version"
+    }
+}
+#+end_src
