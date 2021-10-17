@@ -131,6 +131,7 @@ No obstante, es recomendable hacer una revisión previa sobre los errores encont
 Por último, ESLint es muy fácil para trabajar con Visual Studio Code. Solo baja la [extensión](https://code.visualstudio.com/) y ahora se podrá redigira a la documentación de ESLint desde Visual Studio Code.
 
 ## Parcel
+
 Parcel es un empaquetador de proyectos para JavaScript. Otra alternativa popular es Webpack, pero requiere de mayor tiempo para su configuración. La recomendación es usar Webpack para proyecto grandes. Dicho esto, el atractivo de Parcer es que no requiere de pasos de configuración. Dado que esta es una serie sobre React y no sobre procesos de compilación, el enfoque estará guiado hacia React. El primer paso es instalar Parcel:
 
 #+begin_src zsh
@@ -157,6 +158,7 @@ npm run dev
 Al abrir el navegador en el ~http://localhost:1234~ verá el proyecto montado. La diferencia aquí es que ahora se está ejecutando a través de Parcel, lo que significa que se puenden aprovechar todas las funciones que Parcel nos permite y que exploraremos en breve.
 
 ## Babel
+
 Babel es una parte fundamental del ecosistema de JavaScript, al ser la herramienta de traspilación más popular en JavaScript. En esencia, traspilar código es tomar un aspecto del mismo implementado en determinada manera y transformalo en un conjunto de código de aspecto diferente. Uno de sus usos principales es transformar JavaScript futurista (como ES2021) en una versión anterior de JavaScript (como ES5, es decir, JavaScript antes de 2015) para que los navegadores más antiguos puedan usar su JavaScript más nuevo. Babel también maneja cosas como JSX y TypeScript
 
 Por fortuna, Parcel esta en capacidad de incluir en su configuración aspectos de Babel al momento de ejecutar el siguiente comando:
@@ -184,7 +186,12 @@ La configuración manual que se debe realizar es indicarle a Babel los requerimi
 
 Con esta configuración el proyecto ya esta en capacidad de realizar las transformaciones de JSX, tema del que vamos a hablar en con conceptos fundmentales de React.
 
-## Browserlist
+## Browserslist
+
+Babel transforma su código JS de código futurista a código comprensible para navegadores más antiguos a través de un paquete llamado [Browserslist](https://browserslist.dev/) (que Parcel instaló para usted).  En Browserslist usted puede ver por medio de consultas que cobertura global tiene al especificar la lista de navegadores que quiere soportar en el proyecto. Por defecto Parcel usa la configuración ~> .25% que apunta a todos los navegadores que tiene mas the un ~.25%~ de uso. Esta configuración ofrece una cobertura del 92% de todos los usuarios de Internet.
+
+Para cambiar esta configuración por defecto se debe agregar al ~package.json~ la siguiente propiedad:
+
 #+begin_src js
 // package.json
 {
@@ -193,3 +200,11 @@ Con esta configuración el proyecto ya esta en capacidad de realizar las transfo
     }
 }
 #+end_src
+
+Con esta congfiguración se esta diciendo que el proyecto va a ofrecer cobertura sobre las dos últimas versiones de Chrome. Dependiendo de su audiencia, este valor puede cambiar.
+
+## Recapitulación
+
+En esta publicación se registraron cuales son las herramientas que nos permiten crear una aplicación React. Partiendo desede ~npm~ como gestor de paquetes, resaltando los beneficios de la combinación Prettier y ESLint para evitar preocupaciones en formato de códigos o usos indebidos del lenguaje de programación, el uso de Parcel como empaquetador de JavaScript con cero configuraciones, y la combinación Babel y Browserslist para traspilar el código JavaScript moderno a versionos que soportan los navegadores mas antiguos.
+
+Ahora es tiempo de entrar de lleno a los conceptos fundamentales de React. Este será un tema desarrollado en la siguiente publicación.
