@@ -1,0 +1,69 @@
+
+#+TITLE: Conceptos fundamentales de React
+#+DESCRIPTION: Serie que recopila una descripción general de React
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-03-18 Thu> 
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+En esta publicación se van a revisar los conceptos fundamentales de React a través de la creación de una aplicación para adoptar mascotas
+
+## JSX
+Hasta ahora se ha estado escribiendo React sin JSX, no obstante todos los desarrolladores React usan JSX. JSX simplemente hace que su código sea un poco más legible.
+
+Si se escribe ~React.createElement("h1", {id: "main-title"}, "MyWebsite");~ lo que se renderiza es ~<h1 id="main-title">MyWebsite</h1>~ . JSX acota esta capa de traducción, para ganar mayor legibilidad. En ese orden de ideas el componente ~Pet~ que se muestra a continuación:
+
+#+begin_src js
+const Pet = (props) => {
+  return React.createElement(
+    "div",
+    {},
+    [
+      React.createElement("h2", {}, props.name),
+      React.createElement("h3", {}, props.animal),
+      React.createElement("h3", {}, props.breed),
+    ]
+  );
+};
+#+end_src
+
+Puede escribirse con la sintáxis JSX de la siguiente manera:
+
+#+begin_src js
+const Pet = (props) => {
+  return (
+    <div>
+        <h2>{props.name}</h2>
+        <h3>{props.animal}</h3>
+        <h3>{props.breed}</h3>
+    </div>
+  );
+};
+
+export default Pet;
+#+end_src
+
+Honestamente, esta segunda versión resulta más legible. Sin embargo, ahora sabe lo que JSX está haciendo por usted. Simplemente está traduciendo esas etiquetas HTML en llamadas ~React.createElement~. Eso es todo.
+
+Siguiendo con esta línea, es tiempo de escribir el archivo ~App.jsx~ con JSX:
+
+#+begin_src js
+import { render } from "react-dom"
+import Pet from "./Pet"
+
+const App = () => {
+  return (
+    <div>
+        <h1>Adopt Me!</h1>
+        <Pet name="Luna" animal="dog" breed="Havanese"/>
+        <Pet name="Pepper" animal="bird" breed="Cockatiel"/>
+        <Pet name="Doink" animal="cat" breed="Mix"/>
+    </div>
+  );
+};
+
+export default Pet;
+#+end_src
