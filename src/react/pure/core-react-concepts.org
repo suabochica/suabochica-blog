@@ -67,3 +67,60 @@ const App = () => {
 
 export default Pet;
 #+end_src
+
+## ESLint + React
+
+Es necesario darle una mano a ESLint para que reconozca React. Para ello es necesario correr el siguiente comando:
+
+#+begin_src zsh
+npm install -D eslint-plugin-import@2.22.1 eslint-plugin-jsx-a11y@6.4.1 eslint-plugin-react@7.22.0
+#+end_src
+
+Una vez instalado los plugins se debe actualizar el ~.eslintrc.json~ con el siguiente contenido:
+
+#+begin_src json
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "prettier',
+    "prettier/react'
+  ],
+  "rules": {
+    "react/prop-types": 0,
+    "react/react-in-jsx-scope": 0
+  },
+  "plugins": [
+    "react",
+    "import",
+    "jsx-a11y"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
+#+end_src
+
+Esta configuración es recomendada para trabajar proyecto personales. No obstante, es posible ahorrarse este pasa y simplemente usar le configuración [estándar](https://standardjs.com/), o la establecida por [airbnb](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb). Esta configuración atiende los siguientes escenarios:
+
+- El complemento ~react~ es sobre todo errores comunes de React, como no llamar a uno de los props en los componentes hijos.
+- El complemento de ~import~ ayuda a ESLint a detectar errores comunes relacionados con importaciones, exportaciones y módulos en general.
+- ~jsx-a11y~ detecta muchos errores relacionados con la accesibilidad que pueden surgir accidentalmente al usar React, como no tener un atributo ~alt~ en una etiqueta ~img~.
+- ~eslint-plugin-react~ ahora requiere que le informe qué versión de React está usando. La instrucción es que detecte la version a través del ~package.json~.
+- Las reglas ~react / react-in-jsx-scope: 0~ son nuevas y se utilizan para no tener que importar React en todas partes.
