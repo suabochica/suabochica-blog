@@ -124,3 +124,71 @@ Esta configuración es recomendada para trabajar proyecto personales. No obstant
 - ~jsx-a11y~ detecta muchos errores relacionados con la accesibilidad que pueden surgir accidentalmente al usar React, como no tener un atributo ~alt~ en una etiqueta ~img~.
 - ~eslint-plugin-react~ ahora requiere que le informe qué versión de React está usando. La instrucción es que detecte la version a través del ~package.json~.
 - Las reglas ~react / react-in-jsx-scope: 0~ son nuevas y se utilizan para no tener que importar React en todas partes.
+
+## Hooks
+
+Los Hooks son una funcionalidad liberada con la versión 16.4 de React y su objetivo es facilitar las administración de estado a través de componentes funcionales.
+
+Para revisar a fondo el concepto de Hooks, se va a usar como ejemplo un nuevo componente para realizar una búsqueda a través de los parámetros suministrados. La versión inicial del componente ~SearchParams~ sería:
+
+#+begin_src js
+// SearchParams.js
+const SearchParams = () => {
+  const location = "Seatle, WA";
+
+  return (
+    <div className="search-params">
+      <form>
+        <label htmlFor="location">
+          Location
+          <input id="location" value={location} placeholder="Location"/>
+        </label>
+      </form>
+    </div>
+  )
+}
+#+end_src
+
+Para habilitar este componente en la aplicación es necesario hacer las actualizaciones de rutas pertinentes en el archivo ~App.jsx~:
+
+#+begin_src js
+// App.js
+// comment Pet import, and add SearchParams
+import SearchParams from "./SearchParams";
+
+// in App.js, replace all the Pets
+<SearchParams />;
+#+end_src
+
+Al revisar estos cambios en el navegador vía localhost, en el campo de entrada del componente de búsqueda se mostrará el texto "Seatle, WA". No obstante, al tratar de escribir sobre dicho campo, no se podrá hacer modificaciones. Esto es algo muy difícil de lograr, pero es un comportamiento natural en React. React detecta que un evento de escritura sucedió en el DOM, y por lo tanto algo debió cambiar, por consiguiente va a ejecutar una renderización. Es por esta razón que las funciones de renderizado son operaciones muy breves en React, ya que al encontrar diferencias el actualiza la cantidad mínima de cambios necesario en el DOM.
+
+Por otra parte, observe que se esta usando ~className~ en lugar de ~class~ en el elemento HTML para las clases CSS. Esto se debe a que ~class~ es una palabra reservada en JS y JSX sigue siendo solo JS. Entonces, en su lugar, optaron por usar ~className~, que es el nombre de la API JS para interactuar con los nombres de las clases. Como ~className~, ~htmlFor~ se usa porque for es una palabra reservada en JS.
+
+#+begin_src js
+// SearchParams.js
+import { useState } from 'react';
+
+const SearchParams = () => {
+  const [location, setLocaiton] = useState("Seatle, WA");
+
+  function updateLocation(event) {
+    setLocaiton(event.target.value);
+  }
+
+  return (
+    <div className="search-params">
+      <form>
+        <label htmlFor="location">
+          Location
+          <input
+            id="location"
+            onChange={updateLocation}
+            value={location}
+            placeholder="Location
+          />
+        </label>
+      </form>
+    </div>
+  )
+}
+#+end_src
