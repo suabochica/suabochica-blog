@@ -162,7 +162,9 @@ import SearchParams from "./SearchParams";
 
 Al revisar estos cambios en el navegador vía localhost, en el campo de entrada del componente de búsqueda se mostrará el texto "Seatle, WA". No obstante, al tratar de escribir sobre dicho campo, no se podrá hacer modificaciones. Esto es algo muy difícil de lograr, pero es un comportamiento natural en React. React detecta que un evento de escritura sucedió en el DOM, y por lo tanto algo debió cambiar, por consiguiente va a ejecutar una renderización. Es por esta razón que las funciones de renderizado son operaciones muy breves en React, ya que al encontrar diferencias el actualiza la cantidad mínima de cambios necesario en el DOM.
 
-Por otra parte, observe que se esta usando ~className~ en lugar de ~class~ en el elemento HTML para las clases CSS. Esto se debe a que ~class~ es una palabra reservada en JS y JSX sigue siendo solo JS. Entonces, en su lugar, optaron por usar ~className~, que es el nombre de la API JS para interactuar con los nombres de las clases. Como ~className~, ~htmlFor~ se usa porque for es una palabra reservada en JS.
+Por otra parte, observe que se esta usando ~className~ en lugar de ~class~ en el elemento HTML para las clases CSS. Esto se debe a que ~class~ es una palabra reservada en JS y JSX sigue siendo solo JS. Entonces, en su lugar, optaron por usar ~className~, que es el nombre de la API JS para interactuar con los nombres de las clases. Como ~className~, ~htmlFor~ se usa porque ~for` es una palabra reservada en JS.
+
+Retomando el comportamiento en el navegador, si se escribe en el ~input~, React activa una instrucción para renderizarse. Ahora bien ¿qué salida se tiene en la etiqueta de ~input~? Al revisar el código se observa que su valor está ligado a la variable ~location~ pero al no pode escribir en el campo, no se ha manifestado ningún cambio. En otras palabras, el enlace de datos bidireccional no es gratuito en React. Esta es una característica de React, obligar al desarrollador a ser explícito sobre cómo maneja sus datos. Para hacer que funcione se necesitan los siguientes cambios:
 
 #+begin_src js
 // SearchParams.js
@@ -192,3 +194,13 @@ const SearchParams = () => {
   )
 }
 #+end_src
+
+Aquí se hace uso del hook ~useState~. Un hook recibe su nombre porque es un gancho que queda atrapado cada vez que se llama a la función de renderizado.
+
+Los hooks se llaman en el mismo orden cada vez, y por ende siempre apuntarán a la misma parte del estado. Debido a eso, pueden ser /stateful/: puede mantener partes de estado mutable usando hooks y luego modificarlos más tarde usando las funciones de actualización proporcionadas.
+
+Un concepto absolutamente clave que debe comprender es que los hooks se basan en un estricto orden. Como tal, no coloque se debe colocar hooks dentro de declaraciones con condiciones o bucles. Si lo hace, tendrá errores locos que implican que ~useState~ devuelva el estado incorrecto. Esta regla es tan crítica que el equipo de React a suministrado una configuración para ESLint que se revisara más adelante.
+
+Para este caso puntual, el argumento dado al ~useState~ es un valor por defecto que corresponde a ~"Seatle, WA"~. ~useState~ retorna un arreglo con dos cosas: El valor actual de ese estado, y una función para actualizar dicho valor. Para este caso puntual se usa una funcionalidad de JavaScript llamada destructuración para obtener ambos elementos de dicho arreglo.
+
+Por último, se observa el uso de una funcón ~updateLocation~ en el atributo ~onChange~ del ~input~. Cada vez que se escribe sobre este campo de entrada, se hace un llamado a esta función. Cuando la función ~updateLocation~ es llamada, React es conciente de que el estado ha sido modificado y lanza una renderización.
