@@ -204,3 +204,22 @@ Un concepto absolutamente clave que debe comprender es que los hooks se basan en
 Para este caso puntual, el argumento dado al ~useState~ es un valor por defecto que corresponde a ~"Seatle, WA"~. ~useState~ retorna un arreglo con dos cosas: El valor actual de ese estado, y una función para actualizar dicho valor. Para este caso puntual se usa una funcionalidad de JavaScript llamada destructuración para obtener ambos elementos de dicho arreglo.
 
 Por último, se observa el uso de una funcón ~updateLocation~ en el atributo ~onChange~ del ~input~. Cada vez que se escribe sobre este campo de entrada, se hace un llamado a esta función. Cuando la función ~updateLocation~ es llamada, React es conciente de que el estado ha sido modificado y lanza una renderización.
+
+Para garantizar usos correctos de los hooks se debe agregar una regla en ESLint. Se instala el la siguiente extensión:
+
+#+begin_src zsh
+npm install -D eslint-plugin-react-hooks@4.2.0
+#+end_src
+
+Y se agrega la siguiente configuración en el ~.eslintrc.json~:
+
+#+begin_src javascript
+{
+  "extends": [
+    ...
+    "plugin:react-hooks/recommended"
+  ]
+}
+#+end_src
+
+Con dicha configuración se puede preseguir con la creación de una lista desplegable de animales:
