@@ -222,4 +222,80 @@ Y se agrega la siguiente configuración en el ~.eslintrc.json~:
 }
 #+end_src
 
-Con dicha configuración se puede preseguir con la creación de una lista desplegable de animales:
+Con dicha configuración se puede preseguir con la creación de una lista desplegable de animales y razas en el archivo ~SearchParams.js~:
+
+#+begin_src js
+// SearchParams.js
+import { useState } from 'react';
+
+const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"]
+
+const SearchParams = () => {
+  const [location, setLocaiton] = useState("Seatle, WA");
+  const [animal, setAnimal] = useState("");
+  const [breed, setBreed] = useState("");
+  const breeds = []
+
+  function updateLocation(event) {
+    setLocaiton(event.target.value);
+  }
+
+  return (
+    <div className="search-params">
+      <form>
+        <label htmlFor="location">
+          Location
+          <input
+            id="location"
+            onChange={updateLocation}
+            value={location}
+            placeholder="Location
+          />
+        </label>
+        <label htmlFor="animal">
+          Animal
+          <select
+            id="animal"
+            value={animal}
+            onChange={event => setAnimal(event.target.value)}
+            onBlur={event => setAnimal(event.target.value)}
+          >
+            <option value=""><option/>
+            {
+              ANIMALS.map(animal => (
+                <option value={animal} key={animal}>
+                  {animal}
+                </option>
+              ))
+            }
+          </select>
+        </label>
+
+        <label htmlFor="breed">
+          Breed
+          <select
+            id="breed"
+            disabled={!breeds.length}
+            value={breed}
+            onChange={event => setBreed(event.target.value)}
+            onBlur={event => setBreed(event.target.value)}
+          >
+            <option value=""><option/>
+            {
+              breeds.map(breed => (
+                <option value={breed} key={breed}>
+                  {breed}
+                </option>
+              ))
+            }
+          </select>
+        </label>
+      </form>
+    </div>
+  )
+}
+#+end_src
+
+Varias cosas a resaltar de este código. La primera es que se puede utilizar el hook ~useState~ tantas veces como sea necesario para varias piezas de su estado. Se recuerda que es importante conservar el un orden en estas definiciones porque es de este modo que React tiene garantías para acceder al mismo pedazo de estado cada vez que sea necesario. Segundo, en las etiquetas ~<select>~ se están usando los métodos ~onChange~ y ~onBlur~ para tener más covertura en temas de accesibilidad. Por último la diferencia entre el selector de animales y el de razas radica en que el segundo estará deshabilitado si el arreglo de raza se encuentra vació. Con esta configuración se dará la introducción a un nuevo hook, ~useEffect~.
+
+## useEffect
