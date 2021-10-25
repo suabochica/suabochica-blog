@@ -1,4 +1,4 @@
-#+TITLE: React puro
+#+TITLE: React Puro
 #+DESCRIPTION: Serie que recopila una descripción general de React
 #+AUTHOR: Sergio Benítez
 #+DATE:<2021-03-12 Thu> 
@@ -11,7 +11,6 @@
 Un buen ejercicio para comenzar a explorar el mundo de React es escribir un componente React Puro, sin paso de compilación, sin JSX, sin Babel y sin Webpack or Parcel. Solo algo de JavaScript en la página.
 
 Para ello, se va a crear una carpeta proyecto con el nombre ~adopt-me~ desde la cual se va a construir una aplicación para adoptar mascotas. El primer paso es crear un directorio ~src/~ con el archivo ~index.html~:
-
 
 #+begin_src html
 <!DOCTYPE html>

@@ -10,7 +10,7 @@
 
 Es tiempo de indagar sobre la diferentes herramientas que permiten crear un ambiente de desarrollo para aplicaciones web React:
 
-## npm
+* npm
 
 ~npm~ no significa Node Package Manager, pero si es un administrador de paquetes para NodeJS. ~npm~ se ha compertido en el gestor de paquetes del campo frontend y cuenta con una herramienta de líneas de comando llamada ~npm~ también. ~npm~ permite traer código desde el registro de ~npm~ en donde se almacenan una cantidad consideraple de módulos de código abierto que la gente ha escrito y que cualquiier desarrollador puede utilizar. Al correr el siguiente comando:
 
@@ -68,7 +68,7 @@ npm run format
 
 Con esta configuración ya no es necesario recordar la cantidad de comandos que se pueden ejecutar para darle formato al código. Sobra la marcha se aprenderá mas de las funcionalidaes de Prettier.
 
-## ESLint
+* ESLint
 
 Ya se vio que Prettier soluciona todo lo realtivo al formato de código. Ahora bien, es posible forzar algunos estilos de código relacionados a uso. Por ejemplo, usted quiere forzar a que el equipo  nunca utilice la palabra reservada ~with~ de JavaScript, ya que no se considera una buena práctica en JavaScript. ESLint entra en este contexto ya que ayuda a resolver dichos contextos.
 
@@ -157,7 +157,7 @@ npm run dev
 
 Al abrir el navegador en el ~http://localhost:1234~ verá el proyecto montado. La diferencia aquí es que ahora se está ejecutando a través de Parcel, lo que significa que se puenden aprovechar todas las funciones que Parcel nos permite y que exploraremos en breve.
 
-## Babel
+* Babel
 
 Babel es una parte fundamental del ecosistema de JavaScript, al ser la herramienta de traspilación más popular en JavaScript. En esencia, traspilar código es tomar un aspecto del mismo implementado en determinada manera y transformalo en un conjunto de código de aspecto diferente. Uno de sus usos principales es transformar JavaScript futurista (como ES2021) en una versión anterior de JavaScript (como ES5, es decir, JavaScript antes de 2015) para que los navegadores más antiguos puedan usar su JavaScript más nuevo. Babel también maneja cosas como JSX y TypeScript
 
@@ -186,7 +186,7 @@ La configuración manual que se debe realizar es indicarle a Babel los requerimi
 
 Con esta configuración el proyecto ya esta en capacidad de realizar las transformaciones de JSX, tema del que vamos a hablar en con conceptos fundmentales de React.
 
-## Browserslist
+* Browserslist
 
 Babel transforma su código JS de código futurista a código comprensible para navegadores más antiguos a través de un paquete llamado [Browserslist](https://browserslist.dev/) (que Parcel instaló para usted).  En Browserslist usted puede ver por medio de consultas que cobertura global tiene al especificar la lista de navegadores que quiere soportar en el proyecto. Por defecto Parcel usa la configuración ~> .25% que apunta a todos los navegadores que tiene mas the un ~.25%~ de uso. Esta configuración ofrece una cobertura del 92% de todos los usuarios de Internet.
 
@@ -203,7 +203,7 @@ Para cambiar esta configuración por defecto se debe agregar al ~package.json~ l
 
 Con esta congfiguración se esta diciendo que el proyecto va a ofrecer cobertura sobre las dos últimas versiones de Chrome. Dependiendo de su audiencia, este valor puede cambiar.
 
-## Recapitulación
+* Recapitulación
 
 En esta publicación se registraron cuales son las herramientas que nos permiten crear una aplicación React. Partiendo desede ~npm~ como gestor de paquetes, resaltando los beneficios de la combinación Prettier y ESLint para evitar preocupaciones en formato de códigos o usos indebidos del lenguaje de programación, el uso de Parcel como empaquetador de JavaScript con cero configuraciones, y la combinación Babel y Browserslist para traspilar el código JavaScript moderno a versionos que soportan los navegadores mas antiguos.
 

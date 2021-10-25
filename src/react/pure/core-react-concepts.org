@@ -11,7 +11,8 @@
 
 En esta publicación se van a revisar los conceptos fundamentales de React a través de la creación de una aplicación para adoptar mascotas
 
-## JSX
+* JSX
+
 Hasta ahora se ha estado escribiendo React sin JSX, no obstante todos los desarrolladores React usan JSX. JSX simplemente hace que su código sea un poco más legible.
 
 Si se escribe ~React.createElement("h1", {id: "main-title"}, "MyWebsite");~ lo que se renderiza es ~<h1 id="main-title">MyWebsite</h1>~ . JSX acota esta capa de traducción, para ganar mayor legibilidad. En ese orden de ideas el componente ~Pet~ que se muestra a continuación:
@@ -68,7 +69,7 @@ const App = () => {
 export default Pet;
 #+end_src
 
-## ESLint + React
+* ESLint + React
 
 Es necesario darle una mano a ESLint para que reconozca React. Para ello es necesario correr el siguiente comando:
 
@@ -125,7 +126,7 @@ Esta configuración es recomendada para trabajar proyecto personales. No obstant
 - ~eslint-plugin-react~ ahora requiere que le informe qué versión de React está usando. La instrucción es que detecte la version a través del ~package.json~.
 - Las reglas ~react / react-in-jsx-scope: 0~ son nuevas y se utilizan para no tener que importar React en todas partes.
 
-## Hooks
+* Hooks
 
 Los Hooks son una funcionalidad liberada con la versión 16.4 de React y su objetivo es facilitar las administración de estado a través de componentes funcionales.
 
@@ -298,4 +299,4 @@ const SearchParams = () => {
 
 Varias cosas a resaltar de este código. La primera es que se puede utilizar el hook ~useState~ tantas veces como sea necesario para varias piezas de su estado. Se recuerda que es importante conservar el un orden en estas definiciones porque es de este modo que React tiene garantías para acceder al mismo pedazo de estado cada vez que sea necesario. Segundo, en las etiquetas ~<select>~ se están usando los métodos ~onChange~ y ~onBlur~ para tener más covertura en temas de accesibilidad. Por último la diferencia entre el selector de animales y el de razas radica en que el segundo estará deshabilitado si el arreglo de raza se encuentra vació. Con esta configuración se dará la introducción a un nuevo hook, ~useEffect~.
 
-## useEffect
+* useEffect
