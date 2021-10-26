@@ -1,0 +1,24 @@
+
+#+TITLE: La revolucón blockchain
+#+DESCRIPTION: Serie que recopila una aprendizaje sobre blockchain
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-10-25 Thu> 
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+La cadena de bloques (mejor blockchain) se ha descrito como todo, desde oro digital hasta un reemplazo de Internet.
+
+Este campo se está desarrollando increíblemente rápido y hay muchas oportunidades en las que puede participar.
+
+La blockchain tiene el potencial de revolucionar industrias como las finanzas, el gobierno y la medicina. Incluso está reimaginando la forma en que pensamos sobre la identidad y la seguridad personal.
+
+* ¿Por qué Blockchain?
+
+Trabajar en el espacio de Blockchain hoy en día es muy llamativo ya que básicamente esta reinventado el Wall Street. Con Blockchain se esta automatizando todo lo que se hace en la bolsa de valores y se esta tranformando en código. En otras palabras el Blockchain está construyendo una economía digital.
+
+Es emocionante ver como todo este concepto se inicia ya que puede equipararse con el hecho de haber nacido hace 20 o 30 años en la era del Internet y ser testigo de como este cambio hizo que la información se volviera digitalizada y programable.
+
+Ciertamente, desarrollar una nueva Blockchain es retador, ya que requiere de conocimiento de varios temas y es una tarea díficil para cualquier programador. Paralelamente, la demanda de posiciones abiertas para trabajos con Blockchain ha venido incrementando en los últimos años, no obstante, la oferta sigue siendo limitada porque es un campo que se ha venido acercando sigilosamente a la gente con una estrucura demasiado amplia, si se compara con aprendizajes web.
