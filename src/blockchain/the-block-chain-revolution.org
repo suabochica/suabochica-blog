@@ -1,4 +1,3 @@
-
 #+TITLE: La revolucón blockchain
 #+DESCRIPTION: Serie que recopila una aprendizaje sobre blockchain
 #+AUTHOR: Sergio Benítez
@@ -22,3 +21,21 @@ Trabajar en el espacio de Blockchain hoy en día es muy llamativo ya que básica
 Es emocionante ver como todo este concepto se inicia ya que puede equipararse con el hecho de haber nacido hace 20 o 30 años en la era del Internet y ser testigo de como este cambio hizo que la información se volviera digitalizada y programable.
 
 Ciertamente, desarrollar una nueva Blockchain es retador, ya que requiere de conocimiento de varios temas y es una tarea díficil para cualquier programador. Paralelamente, la demanda de posiciones abiertas para trabajos con Blockchain ha venido incrementando en los últimos años, no obstante, la oferta sigue siendo limitada porque es un campo que se ha venido acercando sigilosamente a la gente con una estrucura demasiado amplia, si se compara con aprendizajes web.
+
+* La Influencia del Blockchain
+
+El Blockchain está cambiando las industrias en todo el mundo a tráves de las siguientes industrias: identificación personal, medicina, finanzas, gestión de cadenas de suministros y gobierno. Ahora bien ¿cómo Blockchain hace esto posible?.
+
+Básicamente, Blockchain es una nueva forma de compartir datos que permite realizar transacciones de forma más segura, más transparente y más barata que antes. Todo esto se puede lograr sin que grandes compañias collecionen y administren nuestra información como lo hacen hoy en dia. 
+
+Por ejemplo, para la industria de identificación personal todos queremos que nuestra identidad sea segura. Nadie debería estar en capacidad de acceder a la información sobre los lugares a donde vamos, que estamos haciendo o incluso que estamos planificando sin nuestro permiso. El problema es que hoy en día estamos otorgando esta información a las grandes corporaciones a cambio de los servicios que ellos proveen. Este escenario nos expone a perder el control sobre como nuestra información esta siendo usada.
+
+Dichas corporaciones almacenan los datos que nosotros producimos en grandes bases de datos centralizadas, teniendo información tan importante en una única ubicación, que en primera instancia podía ser de utilidad, pero nos exhibe a algunos riesgos, como por ejemplo los ataques de hacker para el robo de datos. Un caso reciente fue en 2017 con Equifax, en donde aproximadamente 140 millones de personas perdió información importante de accesos a tarjetas de creditos y cuentas bancarias gracias a un ataque de hackers. 
+
+El punto a favor de Blockchain para mitigar este riesgo se debe a que los datos no se mantienen en una base de datos centralizada, puesto que es compartida por cada una de las personas verificadas que están en la red. Además, la información es asegurada usando cifrados para que los criminales no puedan robar los datos, haciendo así que este tipo de violación de datos sea casi imposible.
+
+Otro campo de acción del Blockchain es la gestión de cadenas de suministros en diferentes mercados. Por ejemplo en la industria automotriz para construir un carro hay muchas compañias involucradas. Las piezas de envío como tornillos, paneles, motores o puertas son suministrados por diferentes proveedores y es conveniente realizar un seguimiento sobre dichas partes. Aún cuando el carro ya esta construido, se debe tener un rastreo de cuando llega al fabricante, se pasa al distribuidor y lo obtiene el cliente final. Actualmente, crear esta cadena de suminstro es extremadamente complicada, porque la información esta regada por muchas compañias que incluso llegan a tener políticas para no compartir la información, convirtiendo en una lucha la manutención de datos actualizados. Por lo tanto, las compañias se ven obligadas a gastar recursos para el manejo de dichos registros.
+
+Con Blockchain, la información del carro sería pública y estaría disponible en cualquier momento, permitiendo así conocer la información exacta de los detalles y el historial de cada una de las partes de productos que se compran, se alquila o se usen. Ahora bien ¿Qué pasaría si nadie quisiera compoartir la información con los demás? No hay problema ya que en Blockchain la información pública también es anónima. De esta forma, nadie podrá saber que es lo que usted está haciendo. También se tienen otras medidas de seguridad constuidas en el sistema que serán discutidas más adelante.
+
+Concluyendo de manera rapida la influencia de Blockchain en las diferentes industrias se tiene para medicina la oportunidad de salvar más vidas con información más segura y precisa del paciente. También es posible envíar dinero a todos el mundo de manera gratuita y segura cambiando de manera potencial el sistema finaciero. Por último las elecciones gubernamentales podrían realizarse de una manera segura y transparente sobre el Blockchain.
