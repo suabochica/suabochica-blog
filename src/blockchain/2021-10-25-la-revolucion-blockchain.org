@@ -1,4 +1,4 @@
-#+TITLE: La revolución Blockchain
+#+TITLE: La Revolución Blockchain
 #+DESCRIPTION: Serie que recopila una aprendizaje sobre blockchain
 #+AUTHOR: Sergio Benítez
 #+DATE:<2021-10-25 Thu> 
@@ -15,7 +15,7 @@ Este campo se está desarrollando increíblemente rápido y hay muchas oportunid
 La blockchain tiene el potencial de revolucionar industrias como las finanzas, el gobierno y la medicina. Incluso está reimaginando la forma en que pensamos sobre la identidad y la seguridad personal.
 
 * ¿Por qué Blockchain?
-
+ 
 Trabajar en el espacio de Blockchain hoy en día es muy llamativo ya que básicamente esta reinventado el Wall Street. Con Blockchain se esta automatizando todo lo que se hace en la bolsa de valores y se esta tranformando en código. En otras palabras el Blockchain está construyendo una economía digital.
 
 Es emocionante ver como todo este concepto se inicia ya que puede equipararse con el hecho de haber nacido hace 20 o 30 años en la era del Internet y ser testigo de como este cambio hizo que la información se volviera digitalizada y programable.
@@ -55,3 +55,10 @@ El Blockchain es llamativo por su forma de crear, organizar y gestionar datos ya
 Ahora bien ¿Cómo funciona el Blockchain? Las entidades relevantes en el Blockchain son: Un emisor, un receptor y una transacción. La transacción es un registro de información que el emisor envía al receptor. Para el ejemple del envío de dinero, la información de la transacción sería la cantidad de dinero que se envia. Una vez la transacción esta hecha, es enviada a una red de usuarios. El objetivo de esta red de usuarios es tomar nuestras transacciones y agruparlas con otras en un bloque. Cuando una cantidad importante de transacciones sean recolectadas, el bloque se completa y esta listo para ser agregado de manera permanente al Blockchain. Para asegurar su permanencia, al bloque se le asigna un valor único conocido como Hash. Este sería la huella digital de bloque y con ello se podrá identificar el bloque en el futuro. El Hash es sumamente importante ya que también ayuda a identificar cuales son los datos que están en el bloque.
 
 Al actualizar la información de la transacción, como por ejemplo reducir la cantidad de dinero enviada, el Hash será cambiado y se crea un nuevo bloque haciendo invalido el bloque antiguo. No obstante, ambos bloque se unirán y con el tiempo se continuará con la creación de cadenas de bloques cada vez más largas. El resultado es una cadena de bloques con registros históricos de transacciones cuya información no puede ser modificada y sucedieron en una red de usuarios. 
+
+* Motivación del Blockchain
+
+Si bien Blockchain tiene sus raíces en las finanzas, sus aplicaciones van mucho más allá. Quizas su característica más llamativa es su naturaleza disruptiva en todos los verticales de las tecnologías de información. Es emocionante saber que hoy en día se pueden hacer transacciones con cualquier persona en cualquier lugar del mundo a través de una red confiable. El otro aspecto llamativo es la anulación de intermediarios en las transacciones. Evidentemente esto fomenta intercambios y procesos más transparentes que pueden reflejarse en campos gubernamentales e incluso en la mejora de los registros médicos electrónicos de los datos de un paciente.
+
+En escencia, los más emocionante de Blockchain es simplemente su capacidad de derribar las paredes sin tener que preocuparse por las fronteras cuando se trata de realizar transacciones con varias comunidades. Es importante aclarar que Blockchain no es solo las transacciones. Las tecnologías que hacen que esas transacciones funcionen y el tipo de datos que se pueden embuir en dichas transacciones es un hecho maravilloso por la flexibilidad que nos ofrece por solo usar a nuestro favor la tecnología como tal.
+

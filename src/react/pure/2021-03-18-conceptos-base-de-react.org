@@ -1,5 +1,5 @@
 
-#+TITLE: Conceptos fundamentales de React
+#+TITLE: Conceptos Gundamentales de React
 #+DESCRIPTION: Serie que recopila una descripción general de React
 #+AUTHOR: Sergio Benítez
 #+DATE:<2021-03-18 Thu> 
