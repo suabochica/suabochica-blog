@@ -10,10 +10,21 @@
 
 Tiempo de explorar los componentes fundamentales del Blockchain. Para ello se va a romper lo que inicialmente puede parecer una caja negra y reconocer así el sistema subyacente al Blockchain. Es importante tener unas bases fuertes sobre dichos conceptos ya que en el futuro ayudarán a entender con facilidad los conceptos avanzados.
 
-Para aterrizar estos conceptos, se va a implementar un proyecto que consiste en la creación y administració de su propio Blockchain. Para ello se va a estar revisando con frecuencia la siguiente gráfica conocida como el Blockchain Framework:
+Para aterrizar estos conceptos, se va a implementar un proyecto que consiste en la creación y administración de identidad en un Blockchain. Para ello se va a estar revisando con frecuencia la siguiente gráfica conocida como el Blockchain Framework:
 
 #+CAPTION: Blockchain Framework
 [[../../images/blockchain/01-blockchain-framework.png]]
 
 
 El Blockchain Framework provee una viste general de los componentes claves del Blockchain, y puede ser interpretado como un mapa de ruta para el entendimiento de Blockchain.
+
+Al ser Blockchain una tecnología nueva, es importante dedicar tiempo en el entendimiento de sus fundamentos. Hay que tener en cuenta que Blockchain es una tecnología que todavía se esta explorando y por ende sus avances vienen respaldados por una serie de reglas y regulaciones sobre el protocolo. Con el proyecto de identidad en Blockchain se va a reforzar el entendimiendo del protocolo, ya que motiva la uso de servicios que se van a crear en una aplicación para lograr establecer identidad en los servicios de Blockchain.
+
+El Blockchain empezó como una forma para intentar resolver algunos problemas vistos en las transacciones financieras. Por los tantos es importante revisar en que consisten estás transacciones y discutir las soluciones que Blockchain ofrece.
+
+* Transacciones Financieras
+  
+Para entrar al contexto financiero es importante hacerse las siguientes preguntas: ¿Qué hace que el dinero sea valioso? ¿Por qué la gente lo usa? ¿Hay alguna forma de mejorar el sistema acutal?. Para responder estas preguntas es necesario descomponer como funciona el sistema financiero actual.
+
+#+CAPTION: Transacciones financieras actuales
+[[../../images/blockchain/02-current-financials-transactions.png]]
