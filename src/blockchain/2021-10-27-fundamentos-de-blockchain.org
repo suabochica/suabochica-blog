@@ -7,3 +7,13 @@
 #+HUGO_SECTION: /post
 #+HUGO_WEIGHT: auto
 #+HUGO_AUTO_SET_LASTMOD: t
+
+Tiempo de explorar los componentes fundamentales del Blockchain. Para ello se va a romper lo que inicialmente puede parecer una caja negra y reconocer así el sistema subyacente al Blockchain. Es importante tener unas bases fuertes sobre dichos conceptos ya que en el futuro ayudarán a entender con facilidad los conceptos avanzados.
+
+Para aterrizar estos conceptos, se va a implementar un proyecto que consiste en la creación y administració de su propio Blockchain. Para ello se va a estar revisando con frecuencia la siguiente gráfica conocida como el Blockchain Framework:
+
+#+CAPTION: Blockchain Framework
+[[../../images/blockchain/01-blockchain-framework.png]]
+
+
+El Blockchain Framework provee una viste general de los componentes claves del Blockchain, y puede ser interpretado como un mapa de ruta para el entendimiento de Blockchain.
