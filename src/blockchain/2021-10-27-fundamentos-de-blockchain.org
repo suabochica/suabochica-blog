@@ -48,3 +48,36 @@ Evidentemente se pueden afinar estas características y se recuerda que Blockcha
 En detalle esta es la propuesta de Blockchain: Actualmente todos los bancos recopilan toda la información que es crucial en el sistema financiero y también tienen control total sobre los datos que se manejan allí. Es decir, tienen acceso a todos los movimientos de nuestro dinero y están en capacidad de escoger si quieren compartir esta infomación con sus clientes. Quizás sería mejor que todo el mundo tuviera acceso a estos registros y en vez de tener un libro mayor mantendio por el banco, se podría crear un libro mayor compartido al cual todo el mundo pudiera acceder. De ser esto posible, todo el mundo tendría control completo sobre su información. En resumidas cuentas, el Blockchain hace posible que se puedan omitir los terceros en las transacciones, haciendo que el dinero se envía más rapido y reduciendo los impuestos asociados al simple hecho de hacer una transacción.
 
 Algo que se debe anotar, es que todavía no se sabe si esta propuesta funciona realmente. No obstante, se ha manifestado un maravilloso progreso hasta ahora. Se resalta que las propuestas de Blockchain estan en construcción. Blockchain no es una solución definitiva, es más bien una alternativa que debe ser contemplada y probada para validar su efectividad. La invitación esta abierta a hacer parte de esta solución. 
+
+* Introducción al Bitcoin
+
+La cadena de bloques es un tema enorme que abarca muchas plataformas e industrias. Con tanto que aprender y las nuevas actualizaciones que ocurren todos los días, es difícil saber por dónde empezar. Creemos que el mejor lugar para comenzar es donde todo comenzó: ¡con Bitcoin!
+
+Los conceptos e ideas que desarrolló Bitcoin continúan influyendo en todas las demás cadenas de bloques. Por esa razón, usaremos bitcoin como una forma de ayudar a recorrer algunos conceptos importantes del programa.
+
+** ¿Qué es Bitcoin?
+
+El Blockchain empezó con su primera implementación usando un nuevo tipo de moneda conocido como Bitcoin.
+
+#+begin_quote
+Bitcoin es una moneda digital que utiliza el Blockchain para facilitar las transacciones finacieras
+#+end_quote
+
+Bitcoin sentó las bases para otras ideas subyacentes a otras cadenas de bloques. Por lo tanto entedende com funciona Bitcoin es un paso importante para entender las ideas que se están presentando sobre todas las industrias.
+
+Bitcoin usa la idea de bloques para agrupar y validar transacciones. Un bloque es un grupo de transacciones. Bitcoin es una secuela de un árticulo publicado en 1991 por Stuart Haber y Scoot Stornetta llamado [[https://www.anf.es/pdf/Haber_Stornetta.pdf][How to Time-Stamp a Digital Document]] en donde se presenta la idea de agrupar, validar y enlazar documentos. En dicho árticulo también se explica como esta estructura forma una cadene de docuemntos al dia completamente validados.
+
+En 2008, un autor bajo el alias de Satoshi Nakamoto publicado un árticulo llamado Blockchain: [[https://bitcoin.org/bitcoin.pdf][A Peer-to-Peer Electronic Cash System]] en donde se comparte todas las bases del Bitcoin que se conoce hoy en día. Este árticulo cambio por completo la forma en la que la socieda entiende una  divisa. El 3 Enero del 2009, Nakamoto liberó el software de Bitcoin, Desatando los primeros Bitcoins al mundo. En dicho árticulo se comparte los fundamentos del Bitcoin, Blockchain y otro tipo de criptomonedas. Por lo tanto se recomiendo realizar la lectura del árticulo teniendo en cuenta las siguientes preguntas:
+
+- ¿Cuál es el problema que Bitcoin soluciona?
+- ¿Qué soluciones ofrece Bitcoin?
+- ¿Qué componentes son usados para desarrollar es sistema de Bitcoin?
+
+Muchos de los conceptos expuestos por Nakamoto se extienden del contexto de Bitcoin y las criptomonedas, puesto que estos conceptos son la base de la construcción de un Blockchain robusta para cualquier aplicación.
+
+Sorprendentemente, solo hasta que Bitcoin fue desarrollado se empezó a populizar el potencial de la tecnología subyacente al sistema, el Blockchain. Abstraer esta ideas a aplicacione diferentes a contexto finacieros y criptomonedas es como Blockchain esta en capacidad de empezar a transformar muchas industrias.
+
+ Una conclusión importante es: Bitcoin no es el Blockchain, es un Blockchain.
+
+Actualmente hay muchas cadenas de bloques, e incluso se va a construir una propia. La idea es también repasar otras cadenas de bloques y plataformas. No obstante se comienza con Bitcoin porque una vez se comprendan estas ideas básicas, podrá aplicarlas en cualquier lugar.
+
