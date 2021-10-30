@@ -81,3 +81,20 @@ Sorprendentemente, solo hasta que Bitcoin fue desarrollado se empezó a populiza
 
 Actualmente hay muchas cadenas de bloques, e incluso se va a construir una propia. La idea es también repasar otras cadenas de bloques y plataformas. No obstante se comienza con Bitcoin porque una vez se comprendan estas ideas básicas, podrá aplicarlas en cualquier lugar.
 
+* Hashing
+
+Hasing es una idea que ya se menciono anteriormente. Básicamente es una forma de crear una huella dactilar digital para una pieza de datos. Es una idea fundamental para lograr que el Blockchain funcione, y ademas es un punto de partida para conectar dinámicas más avanzadas dentro de la cadena de bloque.
+
+#+CAPTION: Hashsing Component
+[[../../images/blockchain/03-blockchain-hashing.png]]
+
+Secure Hashing Algorithm
+
+#+CAPTION: SHA256
+[[../../images/blockchain/04-SHA256.png]]
+
+** Hasign Demo
+
+Ahora que se tienen una idea de como funcionan los valores hash, se puede hacer una pequeña demonstración. La idea es visitar [[https://andersbrownworth.com/blockchain/hash][anders.com]] y en la pestaña Hashs empezar a introducir contenidos aleatorios como textos y números. Los importante a tener en cuenta aquí es que cada vez quese modifica el contenido el valor del hash es actualizados y dicho valor es único. 
+
+Eso concluye esta introducción al hash. Tenga en cuenta estas ideas a medida que avanzamos en la lección. Cada una de estas nuevas ideas se complementan entre sí. Es útil comprender cada uno de ellos de forma aislada para que esté mejor preparado para verlos como un sistema más adelante.
