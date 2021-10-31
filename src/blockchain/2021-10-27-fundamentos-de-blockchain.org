@@ -85,16 +85,23 @@ Actualmente hay muchas cadenas de bloques, e incluso se va a construir una propi
 
 Hasing es una idea que ya se menciono anteriormente. Básicamente es una forma de crear una huella dactilar digital para una pieza de datos. Es una idea fundamental para lograr que el Blockchain funcione, y ademas es un punto de partida para conectar dinámicas más avanzadas dentro de la cadena de bloque.
 
+En la siguiente gŕafica se resalta la parte del framework que se va a a desarrollar en esta sección:
+
 #+CAPTION: Hashsing Component
 [[../../images/blockchain/03-blockchain-hashing.png]]
 
-Secure Hashing Algorithm
+Un /Valor Hash/ es na huella digital para información. Es una cadena de caracteres de texto y números que representa un conjunto de datos. Estos datos se pasan a través de una /Función de Hashing/. Esta función mapea un grupo de datos a un valor único de hash. Ese valor hash se convierte en el único de acceso a los datos agrupados por la función. El término SHA256 corresponde a una funcíon de hash. SHA significa Secure Hashing Algorithm, y el 256 representa la salida del algoritmo. Para este caso el valor hash es un número en 256 bits. Bitcoin usa el SHA256 para crear un valor hash único al bloque que componen la cadena de bloques. La siguente gráfica muestra la relación de un bloque, con una función hash y un valor hash:
 
 #+CAPTION: SHA256
 [[../../images/blockchain/04-SHA256.png]]
+
+Los hashes son utilizados para referenciar bloques dentro de la cadena y también para identificar las uniones de bloques en el Blockchain. Para entender como funciona la cadena, es necesario entender como funcionan los bloques en si mismo, tema que se abordará en la siguiente sección.
+
 
 ** Hasign Demo
 
 Ahora que se tienen una idea de como funcionan los valores hash, se puede hacer una pequeña demonstración. La idea es visitar [[https://andersbrownworth.com/blockchain/hash][anders.com]] y en la pestaña Hashs empezar a introducir contenidos aleatorios como textos y números. Los importante a tener en cuenta aquí es que cada vez quese modifica el contenido el valor del hash es actualizados y dicho valor es único. 
 
 Eso concluye esta introducción al hash. Tenga en cuenta estas ideas a medida que avanzamos en la lección. Cada una de estas nuevas ideas se complementan entre sí. Es útil comprender cada uno de ellos de forma aislada para que esté mejor preparado para verlos como un sistema más adelante.
+
+* Bloques
