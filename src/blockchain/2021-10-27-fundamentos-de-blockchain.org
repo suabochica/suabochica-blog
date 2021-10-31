@@ -97,11 +97,36 @@ Un /Valor Hash/ es na huella digital para información. Es una cadena de caracte
 
 Los hashes son utilizados para referenciar bloques dentro de la cadena y también para identificar las uniones de bloques en el Blockchain. Para entender como funciona la cadena, es necesario entender como funcionan los bloques en si mismo, tema que se abordará en la siguiente sección.
 
-
-** Hasign Demo
+** Hashign Demo
 
 Ahora que se tienen una idea de como funcionan los valores hash, se puede hacer una pequeña demonstración. La idea es visitar [[https://andersbrownworth.com/blockchain/hash][anders.com]] y en la pestaña Hashs empezar a introducir contenidos aleatorios como textos y números. Los importante a tener en cuenta aquí es que cada vez quese modifica el contenido el valor del hash es actualizados y dicho valor es único. 
 
 Eso concluye esta introducción al hash. Tenga en cuenta estas ideas a medida que avanzamos en la lección. Cada una de estas nuevas ideas se complementan entre sí. Es útil comprender cada uno de ellos de forma aislada para que esté mejor preparado para verlos como un sistema más adelante.
 
 * Bloques
+
+Los bloques son un componente fundamental del Blockchain. La palabla "bloque" es una forma apropiada de pensar cmo la información es almacenada. No obstante el bloque es un poco más complejo de lo que inicialmente se espera.Por lo tanto, en esta sección  se va a revisar que es un bloque puntualmente, ¿por qué son importantes? y las bases para entender cómo funcionan.
+
+#+CAPTION: Blocks Component
+[[../../images/blockchain/05-blockchain-blocks.png]]
+
+Un /Bloque/ es un contenedor de una lista de transacciones que se agregarán a la cadena de bloques. Como se ha visto el Blockchain es una libro mayor digital compartido que registra una lista de transacciones que se realizar en una red. Tener una lista gigante de transacciones fomenta una gestión tediosa sobre la misma. La propuesta de Blockchain es separar esta lista gigante de transacciones en secciones pequeñas llamadas bloques. A medida de que las transacciones son hechas, estas van siendo empaquetadas en los bloques y agregadas al Blockchain. Al tener la separación de bloques se puede gestionar el sistema entero de manera más eficiente.
+
+A demás de las transacciones, los bloques tambien contienen otro tipo de información. A mayor detalle el bloques se compone de dos partes: un encabezado y un cuerpo. En el cuerpo se guarda la transacciones como tal y en el encabezado se tienen detalles sobre la estructura de los datos que están dentro del bloques. la siguiente lista recopila los detalles que se encuentran en un encabezado del bloque:
+
+- Valor hash del bloque previo
+- El tiempo en el que el bloque fue hecho
+- La raíz Merkle
+- Nonce
+
+El *valor hash del bloque previo*, se explica por si solo. Lo importante de esta información es que suministra lo necesario para identificar de manera sencilla que bloque viene después o antes de otro bloque en el Blockchain. En otras palabras, esta es la base que forma el Blockchain entero.
+
+El *tiempo* en el que el bloque fue creado también se explica por si solo. Su uso corresponde a identificar de manera precisa cuando ciertas transacciones fueron ejecutadas y pude ayudar a atrapar casos como cuando alguién intenta gastar el mismo dinero dos veces, ya que la información registrada permite saber cual transacción fue válidbasado en cual se presentó primero. Este sello de tiempo es la solución al problema de doble gasto que se menciono en la primera publicación de esta serie.
+
+*La raíz Merkle*, es el hash que representa cada transacción dentro del bloque. Para obtenerlo, un par de las transacciones que están dentro del bloque son agrupadas rápidamente y cada par se representa con un hash único. Luego el hash de las dos parejas de transacciones es nuevamente agrupado para generar otro hash único. Este proceso se repite recursivamente hasta lograr a un valor hash único con todas las transacciones dentro del bloque. Este valor hash final es conocido como la raíz de Merkle. Con este proceso, ahora es posible revertir cada uno de los valores hash dentro del bloque para realizar una búsqueda sobre la transacción original que se alamcenó en el bloque. Todo partiendo desde la raíz de Merkle.
+
+Por último, El *Nonce* tiene más que ver con algunos temas de minería que se van a desarrollar más adelante, pero una introducción rápida es que el nonce es un número arbitrario que solo puede ser utilizado una vez. Cuando se crea un hash para un bloque no cualquier valor va a funcionar. El sistema solicitará un valor hash específico que comienza con cierto número de ceros. Estás restricciones adicionales hacen que el hash sea más díficil de encontrar. Para resolver este valor, se deben combinar todos los bloques de datos con el nonce para tratar de generar el valor hash correcto. Los computadores adivinan una y otra vez el nonce hasta que finalmente obtienen el valor que cumple con las restricciones. La cantindad de ceros al inicio del nonce es conocido como la dificultad del bloque.
+
+Paralelo al encabezado, se tiene una información adicional que corresponde al tamaño del bloque. El tamaño del bloque es la cantidad de espacio que un bloque tiene para almacenar información, y funciona tal cual los limitantes de espacio que tienen los computadores o los dispositivos móviles. Este tamaño es definido por el desarrollador y ayuda a controlar cosas como cuánto tiempo tomará un bloque en completarse o cuántos bloques estarán en la cadena. Una vez decidido, todos los bloques en la cadena tendrán el mismo tamaño y solo podrá ser modificado cuando se actualiceel software.
+
+El último dato adicional es de un bloque es un valor del hash de si mismo, el cuál servirá para identificarlo en el futuro. Si los datos del bloque son modificados, un nuevo valor hash será generado. Esto es importante ya que permite saber cuando un bloque ha sido manipulado, haciendo así el Blockchain una forma segura para mantener el historial de la información que usted está compartiendo.
