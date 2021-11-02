@@ -97,7 +97,7 @@ Un /Valor Hash/ es na huella digital para información. Es una cadena de caracte
 
 Los hashes son utilizados para referenciar bloques dentro de la cadena y también para identificar las uniones de bloques en el Blockchain. Para entender como funciona la cadena, es necesario entender como funcionan los bloques en si mismo, tema que se abordará en la siguiente sección.
 
-** Hashign Demo
+** Hashing Demo
 
 Ahora que se tienen una idea de como funcionan los valores hash, se puede hacer una pequeña demonstración. La idea es visitar [[https://andersbrownworth.com/blockchain/hash][anders.com]] y en la pestaña Hashs empezar a introducir contenidos aleatorios como textos y números. Los importante a tener en cuenta aquí es que cada vez quese modifica el contenido el valor del hash es actualizados y dicho valor es único. 
 
@@ -130,3 +130,12 @@ Por último, El *Nonce* tiene más que ver con algunos temas de minería que se 
 Paralelo al encabezado, se tiene una información adicional que corresponde al tamaño del bloque. El tamaño del bloque es la cantidad de espacio que un bloque tiene para almacenar información, y funciona tal cual los limitantes de espacio que tienen los computadores o los dispositivos móviles. Este tamaño es definido por el desarrollador y ayuda a controlar cosas como cuánto tiempo tomará un bloque en completarse o cuántos bloques estarán en la cadena. Una vez decidido, todos los bloques en la cadena tendrán el mismo tamaño y solo podrá ser modificado cuando se actualiceel software.
 
 El último dato adicional es de un bloque es un valor del hash de si mismo, el cuál servirá para identificarlo en el futuro. Si los datos del bloque son modificados, un nuevo valor hash será generado. Esto es importante ya que permite saber cuando un bloque ha sido manipulado, haciendo así el Blockchain una forma segura para mantener el historial de la información que usted está compartiendo.
+
+** TODO Blocks Demo
+
+* Blockchain
+
+Cómo probablemente ya se habrá notado, la palabra "blockchain" agrupa todos los componentes que se ilustraron en la imagen del Blockchain Framework. No obstante, específicamente el blockchain es el lugar donde los datos son almacenados. Todos los otros componentes son el sistema al rededor del Blockchain que ayudan a lograr su funcionamientos.
+
+** TODO Blockchain Demo
+
