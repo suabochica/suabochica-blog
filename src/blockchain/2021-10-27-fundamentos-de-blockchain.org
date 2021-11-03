@@ -139,3 +139,13 @@ Cómo probablemente ya se habrá notado, la palabra "blockchain" agrupa todos lo
 
 ** TODO Blockchain Demo
 
+   
+* Redes Distribuidas de igual a igual (Peer-to-Peer a.k.a P2P)
+
+La idea de una red es lo que permite que la cadena de bloques eluda la necesidad de terceros como se mencionó anteriormente. En esta sección, se repasará cómo sucede eso, qué es la red y por qué es tan importante para hacer una cadena de bloques efectiva.
+
+Como se puede observar, este componente se forma de dos conceptos que son convenientes evaluarlos de manera independiente: redes distribuidas y redes peer-to-peer.
+
+Una red peer-to-peer es una red de computadores que permite compartir información entre usuarios.
+
+Una red distribuida es una red que permita que la información se difunda entre muchos usuarios.
