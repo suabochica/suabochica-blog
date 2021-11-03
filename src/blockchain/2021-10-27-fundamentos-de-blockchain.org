@@ -141,11 +141,33 @@ Con el entendimiento de los bloques el siguiente paso es responder cómo los val
    
 * Blockchain
 
-Cómo probablemente ya se habrá notado, la palabra "blockchain" agrupa todos los componentes que se ilustraron en la imagen del Blockchain Framework. No obstante, específicamente el blockchain es el lugar donde los datos son almacenados. Todos los otros componentes son el sistema al rededor del Blockchain que ayudan a lograr su funcionamientos.
+Cómo probablemente ya se habrá notado, la palabra "blockchain" agrupa todos los componentes que se ilustraron en la imagen del Blockchain Framework. No obstante, específicamente el Blockchain es el lugar donde los datos son almacenados. Todos los otros componentes son el sistema al rededor del Blockchain que ayudan a lograr su funcionamientos.
 
-** TODO Blockchain Demo
+#+CAPTION: Blockchain Component
+[[../../images/blockchain/06-blockchain-blockchain.png]]
 
-   
+El Blockchain es un libro mayor digital que contiene el historial entero de las transacciones hechas en una red. Es la acomulación de bloques enlazados unidos entre sí por valores hash que se van creando sobre el tiempo. Toda la información en el Blockchain es permanente y no puede ser cambiada, lo que significa que los datos son inmutables.
+
+Para construir el Blockchain se necesitan dos cosas: bloques y valores hash.
+
+#+CAPTION: Blockchain Parts
+[[../../images/blockchain/07-blockchain-composition.png]]
+
+Como se mencionó en la sección de bloques, en el encabezdo cada bloque tiene su valor hash y el valor hash del bloque previo. Estós valores hash encadenan los bloques desde el bloques más reciente hasta el primer bloque creado. Al estar los bloques enlazadaos con valores hash, se obtienen unas características interesantes. Primero, se sabe que si se cambian los datos en un bloque eso va a crear un nuevo valor hash para e bloque, haciendolo inválido y compartiendo que el bloque ha sido cambiado. Este comportamiento se replica cuando el bloque hace parte de la cadena e invalida todos los bloques siguientes al bloque cuyos datos fueron modificados. La siguiente imagen ilustra este comportamiento.
+
+#+CAPTION: Blockchain Invalid Chain
+[[../../images/blockchain/08-blockchain-invalid-chain.png]]
+
+Para identificar la secuencia de los bloques, se tiene el número del bloque el cual indica el orden de llegada del bloque a la cadena. El primer bloque de la cadena, también es conocido como el bloque genésis.
+
+** PROGRESS Blockchain Demo
+
+Con las bases adquiridas del componente Blockchain es tiempo de atender otra demostración. La idea con las demostraciones es interectuar desde temprano con las ideas básicas del componente Blockchain.
+
+El demo puede seguirse desde las pestaña Blockchain de la página [[https://andersbrownworth.com/blockchain/blockchain][anders.com]].
+
+Nuevamente se va a observar el formulario del bloque pero emulado en una cadena. La invitación aqui es agregar diferente información en los cuerpos de los bloques y marcar los bloques como válidos al dar clic en el botón *Mine*. Una vez se tengan los tres primeros bloques validados, se va a cambiar el cuerpo del bloque número dos. Al hacer este cambio se nota que tanto el bloque número dos como los bloques posteriores se vuelven inválidos al obtener un fondo rojo en el contenedor.
+
 * Redes Distribuidas de igual a igual (Peer-to-Peer a.k.a P2P)
 
 La idea de una red es lo que permite que la cadena de bloques eluda la necesidad de terceros como se mencionó anteriormente. En esta sección, se repasará cómo sucede eso, qué es la red y por qué es tan importante para hacer una cadena de bloques efectiva.
