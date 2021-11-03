@@ -131,8 +131,14 @@ Paralelo al encabezado, se tiene una información adicional que corresponde al t
 
 El último dato adicional es de un bloque es un valor del hash de si mismo, el cuál servirá para identificarlo en el futuro. Si los datos del bloque son modificados, un nuevo valor hash será generado. Esto es importante ya que permite saber cuando un bloque ha sido manipulado, haciendo así el Blockchain una forma segura para mantener el historial de la información que usted está compartiendo.
 
-** TODO Blocks Demo
+** Blocks Demo
 
+Ahora que se tiene una idea básica de como los bloques funcionan, es tiempo de revisar una demostración simple. Para ello, se invita a navegar nuevamente a la página [[https://andersbrownworth.com/blockchain/block][anders.com]] pero esta vez visitando la pestaña Block.
+
+En está página, se va a mostrar un formulario dentro de un contenedor que inicialmente aparecerá con un fondo rojo. Si se revisan los campos de formulario estos corresponden a las partes del bloque que se especificaron previamente. La invitación es a agregar un contenido dentro del campo *Data* y luego dar clic en el botón *Mine*. Este evento cambiará el fondo del contenedor a verde indicando que el bloque, es un bloque válido. Si se actualiza el contenino de el campo *Data* se osberva que el contenedor vuelve al fondo rojo, indicado que el bloque es ínvalido. Básicamente, este es el comportamiento esperado de los bloques. Recordemos que cualquier modificación cambiará el valor hash del bloque, teniendo así un historial transparente de la información dentro del bloque.
+
+Con el entendimiento de los bloques el siguiente paso es responder cómo los valores hash y los bloques funcionan en conjunto para crear el Blockchain.
+   
 * Blockchain
 
 Cómo probablemente ya se habrá notado, la palabra "blockchain" agrupa todos los componentes que se ilustraron en la imagen del Blockchain Framework. No obstante, específicamente el blockchain es el lugar donde los datos son almacenados. Todos los otros componentes son el sistema al rededor del Blockchain que ayudan a lograr su funcionamientos.
