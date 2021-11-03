@@ -168,12 +168,39 @@ El demo puede seguirse desde las pestaña Blockchain de la página [[https://and
 
 Nuevamente se va a observar el formulario del bloque pero emulado en una cadena. La invitación aqui es agregar diferente información en los cuerpos de los bloques y marcar los bloques como válidos al dar clic en el botón *Mine*. Una vez se tengan los tres primeros bloques validados, se va a cambiar el cuerpo del bloque número dos. Al hacer este cambio se nota que tanto el bloque número dos como los bloques posteriores se vuelven inválidos al obtener un fondo rojo en el contenedor.
 
+Con las bases del componente Blockchain la siguiente pregunta a resolver es ¿dónde se almacena la información? La respuesta es interesante ya que la información se en una red de usuarios que tienen su propia copia de la cadena de bloques. Ningún usuario es propietario de los datos, todos tienen acceso y todos pueden participar. Esto es asombroso y para revisar como funciona dicha red se debe revisar las redes distribuidas de igual a igual.
+
 * Redes Distribuidas de igual a igual (Peer-to-Peer a.k.a P2P)
 
 La idea de una red es lo que permite que la cadena de bloques eluda la necesidad de terceros como se mencionó anteriormente. En esta sección, se repasará cómo sucede eso, qué es la red y por qué es tan importante para hacer una cadena de bloques efectiva.
 
+#+CAPTION: Blockchain Network
+[[../../images/blockchain/09-blockchain-network.png]]
+
 Como se puede observar, este componente se forma de dos conceptos que son convenientes evaluarlos de manera independiente: redes distribuidas y redes peer-to-peer.
 
-Una red peer-to-peer es una red de computadores que permite compartir información entre usuarios.
+Una red peer-to-peer es una red de computadores que permite compartir información entre usuarios. Permite que los usuarios, conocidos como nodos, envién información de manera directa entre ellos, sin tener dependencia de una autoridad central para mantener la información. Por lo tanto es una forma para conectar usuarios que están en capacidad de compartir información. Un ejemplo cercano de una red P2P es la red sobre la que operan nuestros télefonos móviles. No obstante Blockchain no es solo una red P2P, también es una red distribuida.
 
-Una red distribuida es una red que permita que la información se difunda entre muchos usuarios.
+Una red distribuida es una red que permite que la información se difunda entre muchos usuarios. Mientras que una red P2P permite comunicación abierta entre usuarios, la red distribuida permite que la información en si misma pertenezca a dichos usuarios. Para entender las redes distribuidas es de gran ayuda compararla con los tipos de red que se muestra en la siguiente imagen:
+
+#+CAPTION: Network Types
+[[../../images/blockchain/10-network-types.png]]
+
+Antes de empezar con la revisión detallada de cada una de las redes, se debe tener presente que cada tipo de red tienes sus propios casos de uso y fortalezas. El Blockchain es una red distribuida porque sencillamente es el mejor tipo de red que se adapta a su propuesta.
+
+En una red centralizada todo se conecta a un propietario central. El propietario puede ser una persona, una compañia o una base de datos. Aquí hay una única fuente que contiene toda la información del sistema. Para imaginar este tipo de red, piense en una biblioteca que contiene todos los libros del mundo. Cada vez que se quiere obtener información es necesario ir a esta biblioteca. Esta puede ser una forma efectiva y bastante común de compartir información. No obstante, si la biblioteca es destruida, toda la información se perdería. En las redes centralizadas es muy complicado recuperar la información en caso de perdida. Otro detalle encontra es la velocidad. Para obtener el libro, se tiene que ir directamente a la biblioteca sin importar en que parte del mundo usted se encuentra.
+
+Para atender esas falencias se creo una red descentralizada. En una red descentralizada no hay un único punto donde toda la información existe. En su lugar, toda la información es difundida a lo largo de multiple ubicaciones. Por lo tanto, en vez de tener todos los libros en una sola biblioteca, se tienen muchas librerías dispersadas en la ciudad. Duplicados de cada libro pueden existir en cada biblioteca. Si una biblioteca es destruida, se van a perder algunos recursos pero no se va a perder toda la información. Es posible tener respaldo de los libros en otras ubicaciones. Al tener las bibliotecas difundidas por la ciudad también se van a tener accessos más rápidos a los libros, ya que los usuarios podrán ir a la biblioteca más cercana.
+
+Por último una red distribuida es una red centralizada forzada a sus límites más lejanos. En un sistema distribuido todos tienen una copia de la información, con el mismo accesos y el mismo control que cualquier otro. No hay ningún tipo de centralización. Extendiendo el ejemplo de las bibliotecas, imagine que una biblioteca va a contener 50 libros, la cantidad de libros necesaria para llenar un estante personal. Ahora, un grupo de personas va a obtener una copia de esos 50 libros para ponerlos en sus estantes personales. De esta forma se crea una red donde todos tienen una acceso rápido a la información que ya existe. Esta es la idea detrás de las redes distribuidas y ya no habría necesidad de ir a una biblioteca para conseguir los libros.
+
+Regresando al Blockchain, esta descripción es importante por que en sí el Blockchain es una red distribuida que le da a todos sus usuarios propiedad de la información permitiendo la descarga de una copia del Blockchain en sus computadores locales, otorgando acceso completo a la infomación contenida en la cadena de bloques. De esta forma se elude la dependencia a terceros.
+
+La verdad, resulta divertido visualizar lo que sucede en la red del Blockchain. La forma en que la información es compartida entre la red distribuida de igual a igual resulta muy interesante puesto que aquí se manifiesta la forma en como las transacciones se manejan y se incorporan a la red.
+
+Antes de que las crear la red, y eventualmente el Blockchain, las transacciones son contenidas en el pool de memoria. Este componente será revisado en la siguiente sección.
+
+* TODO Pool de Memoria
+
+* TODO Consenso
+
