@@ -200,7 +200,42 @@ La verdad, resulta divertido visualizar lo que sucede en la red del Blockchain. 
 
 Antes de que las crear la red, y eventualmente el Blockchain, las transacciones son contenidas en el pool de memoria. Este componente será revisado en la siguiente sección.
 
-* TODO Pool de Memoria
+* Grupo de Memoria
+
+Antes de ingresar al Blockchain o hacerse parte de la red, las transacciones entran en un grupo de memeoria.
+
+El grupo de memoria (aka mempool por su nombre en inglés) es el lugar de espera de las transacciones sin confirmar antes de entrar al Blockchain. La cadena de bloques solo puede manejar cierta información a la vez, y la acumulación de información va aquí, en el mempool. Es tiempo de revisar como funciona el grupo de memoria y entender qué lo hace importante en el ecosistema del Blockchain.
+
+#+CAPTION: Blockchain Network
+[[../../images/blockchain/11-blockchain-mempool.png]]
+
+En cualquier red, las transacciones suceden a medida de que los usuarios las ejecutan. No obstante, eso no significa que la red este en capacidad de antender todas las transacciones al mismo tiempo. En otras palabras, el número de transacciones que se hacen se someten al número de transacciones que una red puede operar. Para mantener está dinámica es necesario contar con una línea de espera conocida como el mempool.
+
+Su nombre se debe al hecho de que las transacciones se ubican en la memoria RAM de todos los nodos de la red Blockchain. Por consiguiente, cuando se empiezan a hacer transacciones en el Blockchain estás no suceden instantaneamente. Hay un tiempo de espera dedicado a determinar si la transacción ha sido verificada por la red. Esta confirmación es hecha por nodos especiales en la red de Bitcoin llamados mineros. Al validar las transacciones antes de ser agregadas al Blockchain, los mineros ayuda a dar garantias sobre el consenso en el Blockchain. La minería es un tema que se verá más adelante.
+
+Para visualizar de forma efectiva el mempool, se hace la invitación a navegar los siguientes recursos en Blockchain.com:
+
+- [[https://www.blockchain.com/btc/unconfirmed-transactions][Unconfirmed Transactions]]
+- [[https://www.blockchain.com/charts][Blockchain Data Charts]]
+
+Una transacción deja el mempool cuando un minero lo agrega a un bloque. Este proceso garantiza la seguridad y la validación en la cadena de bloques. Sin embargo hay otras razones por las cuales una transacción deja el mempool.
+
+- La transacción expira por tiempo de espera (14 días luego de haber entrado al grupo de memoria)
+- La transacción estaba en la parte inferior del mempool (cuando se ordenó por tarifa por tamaño), el mempool alcanzó su límite de tamaño y se aceptó una nueva transacción con una tarifa más alta, desalojando la transacción en la parte inferior.
+- La transacción o uno de sus antepasados ​​no confirmados entra en conflicto con una transacción que se incluyó en un bloque.
+
+El mempool es un espacio temporal para revisión antes de enviar la información de manera permantente al Blockchain. Su propóposito es proveer seguridad en las transacciones. Una vez la transacción se incluye en el bloque, dicho bloque se va a confirmar seis veces. Es decir, cinco bloques adicionales van a agregar a la misma cadena y es aquí donde el bloque se categoriza como irrevocable y va a requerir una cantidad considerable de computación para invalidar o recalcular el acuerdo de estos seis bloques. Es así como el Blockchain propone una fuente de verdad transparente segura e inmutable.
+
+En este punto, se discutió qué es el grupo de memoria, por qué es importante y cómo ayuda a contribuir a las transacciones que ingresan a la cadena de bloques.
+
+¡Comprender el hash, los bloques, las cadenas de bloques, las redes y ahora las mempools es un gran paso!
+
+Las preguntas que puede tener en este momento son:
+
+- ¿Quién toma las decisiones por sobre el mempool?
+- ¿Quién decide cuándo una transacción es válida o qué datos pertenecen a un bloque?
+
+Estas preguntas se responden en el Consenso. Es aquí dodne todas las decisiones para establecer y hacer crecer el Blockchain son contempladas.
 
 * TODO Consenso
 
