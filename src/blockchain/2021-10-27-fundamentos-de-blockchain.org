@@ -237,5 +237,29 @@ Las preguntas que puede tener en este momento son:
 
 Estas preguntas se responden en el Consenso. Es aquí dodne todas las decisiones para establecer y hacer crecer el Blockchain son contempladas.
 
-* TODO Consenso
+* PROGRESS Consenso
+
+El consenso es un tema extenso. Probablemente no se va a abordar en su totalidad pero se va a hacer un enfásis en las piezas que se importantes que se requieren para ser un desarrollador Blockchain exitoso.
+
+#+CAPTION: Blockchain Consensus
+[[../../images/blockchain/12-blockchain-consensus.png]]
+
+El Consenso es la forma como Blockchain toma decisiones. El consenso es una idea, pero esta idea es implementada a través de muchos algoritmos diferentes. Todos estos algoritmos son formas diferentes de intentar lograr un consenso de manera más eficaz. Cosas como prueba de trabajo, prueba de participación y DBFT son algoritmos de consenso que se discutiran pronto.
+
+Una definción incial para el Consenso en el contexto del Blockchain es la forma como la red llega a un acuerdo sobre cuales transacciones son las más dignas de confianza.
+
+Para 
+
+** Problema de los Generales Bizantinos 
+
+Las bases de un consenso se encuentran en el problema de los generales bizantinos. Por lo tanto es relevanto revisar en qué consiste el problema, cómo se soluciona y cómo ayuda a que una red logre un consenso.
+
+El problema es el siguiente: Nueve generales que comandan una porción equitativa del ejercito Bizantino rodean una ciudad y necesitan formar un plan para atacarla. Los generales deben decidir si atacar o retirarse. La advertencia es que los nueve deben estar de acuerdo en atacar o retirarse. Si solo un grupo de los generales decide atacar y los otros se retiran serán sobrepasados y perderan la batalla. Además hay otro tipo de complicaciones. De los nueve generales podría haber algunos traidores que están en capacidad de interrumpir la votación del grupo. Por ejemplo si cuatro de los nueve generales apoya el ataque, y los otro cuatro apoyan la retirada, el general restante puede tenr una mala intención y estropear todo. Los generales están separados físicamente y su voto se envía a través de mensajeros. No obstante, los mensajeros están expuestos a ser capturados. Por tanto corren el riesgo de no poder entregar el voto, o crear un voto falso.
+
+#+CAPTION: Byzantine General's problem
+[[../../images/blockchain/13-byzantine-generals-problem.png]]
+
+Este problema puede ser mapeado al contexto de Blockchain, en donde los generales son reemplazados por nodos, y en vez de hablar de una guerra, se habla de la red Blockchain. La misma idea se traslada en ambas situaciones, es necesario garantizar confianza entre los usuarios de una red distribuida cuando no tienen una forma efectiva de comunicación. La propuesta de Bitcoin para solucionar el problema es el uso de un algoritmo de prueba de trabajo. Es una forma de lograr consenso sin una autoridad central, hecho que le permite a Bitcoin solucionar el problema del doble-gasto. por lo tanto es tiempo de entrar a revisar en que consiste el algoritmo de prueba de trabajo.
+
+** Prueba de trabajo
 
