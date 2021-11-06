@@ -263,3 +263,14 @@ Este problema puede ser mapeado al contexto de Blockchain, en donde los generale
 
 ** Prueba de trabajo
 
+Uno de los primeros algoritmos creados para consenso es el de *prueba de trabajo* el cual fue propuesto por Bitcoin para lo solución del problema de los generales Bizantinos. La idea detrás de la prueba de trabajo es que quién ponga más trabajo para contribuir en el sistema es el más digno de confianza. Para ello el sistema debe determinar que la información puede ser costosa de producir, pero fácil de verificar.
+
+En el contexto de la prueba de trabajo, hay un costo inicial de recursos conocido como trabajo enfocado a generar el valor hash del bloque. Este trabajo puede ser fácilmente validado por el resto de la red al revisar que fue hecho de manera correcta.
+
+En Blockchain, cada nodo de la red esta involucrado en resolver un problema para demostrar que ha realizado un trabajo previo. Haber puesto tiempo en hacer este trabajo es señal para que el sistema pueda confiar en el resultado del trabajo realizado. Los nodos que intentan resolver el problema son conocidos como mineros. Minar para encontrar la solución de estos problemas va a requerir un gran costo de energía computacional. Estos mineros están constantemente en una carrera para resolver cada problema tan rápido como puedan y así poder construir el siguiente bloque. En retorno de su tiempo y recursos se les pagan tarifas de transacción que vienen directamente de los usuarios que están haciendo las transacciones. En el caso de Bitcoin, la red los remunera con Bitcoins que son creados específicamente como recompensa por minar el nuevo bloque. Estas nuevas monedas creadas en la minería es la única forma de introducir monedas nuevas en el sistema.
+
+La carrera de los mineros para resolver el problema merece una revisión más profunda. Los mineros tratan de encontrar el Nonce de cada bolque nuevo. El Nonce ya se reviso en la sección de Bloque, pero no esta de más hacer una recapitulación para tener más contexto sobre el porqué fue hecho. Cuando se crea el valor hash de un bloque no cualquier valor va a funcionar. El sistema solicita un valor hash muy específico que empieza con cierto número de ceros. Estas limitaciones adicionales hacen que el hash sea mucho más díficil de encontrar. Para encontrar ese valor, se deben combinar todos los datos en los bloques con los nodos para tratar de generar el valor hash correcto.Los computadores adivinan el Nonce una y otra vez hasta que finalmente dan con el valor has que cumple con todas las limitaciones establecidas. La razón por la cual esto es importante se verá cuando se aborden temas de minería.
+
+*** Demo de una prueba de trabajo
+*** Problemas de la prueba de trabajo
+
