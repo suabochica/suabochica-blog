@@ -281,7 +281,25 @@ Entre más ceros a la izquierda se necesiten, más dificultad tendrá la búsque
 
 En Bitcoin, la dificultad del bloque se ajusta de automaticamente para garantizar que un nuevo bloque se crea cada 10 minutos. Si el bloque se crea muy rápido, entonces la dificultad se incrementa para relentizar el proceso. Pero si la creación es muy lenta, entonces la dificultad se disminuye para hacer el proceso de prueba de trabajo más rápido. Los 10 minutos establecidos para crear un bloque fue una decisión tomada por los desarrolladores. Este rango de tiempo se considera un buen balance entre tener una red segura que pueda mantener la creación de nuevos bloques.
 
-No obstante, el algorimo de prueba de tabajo tiene algunos inconvenientes que se pueden mejorar, en la siguiente sección se revisarán estos puntos.
+No obstante, el algoritmo de prueba de tabajo tiene algunos inconvenientes que se pueden mejorar, en la siguiente sección se revisarán estos puntos.
 
 *** Problemas de la prueba de trabajo
+
+Prueba de trabajo fue la primera implementación para el consenso del Blockchain propuesto y ejecutado por Bitcoin. Recordemos que el algoritmo de consenso es importante en el Blockchain para garantizar una red digna de confianza y una versión de verdad. Ademán también previente adversidades potenciales para romper el sistema. No obstante el algoritmpo de prueba de trabajo presenta los siguientes problemas:
+
+1. Consumo de energía extremadamente alto
+2. El monopolio de mineros genera preocupación por centralización
+
+El consumo de energía elevado se debe a que los cálculos de la prueba de trabajo requieren de mucho poder computacional, implicando costos tanto financieros como ambientales. Para minar Bitcoin, se usan plataformas mineras. Es decir computadores de alta potencia para procesar nuevos bloques. Estas plataformas pueden hacerse en hogares pero tambien existen granjas mineras de Bitcoin. En 2017, una de las minas más grandes de Bitcoin ubicada al interior de Mongolia contaba con 25 mil máquinas trabajando las 24 horas al día para minar Bitcoin. Se dice que la minería de Bitcoin esta consumiendo más electricidad que 159 países al rededor del mundo. En 2017, la se registro una estadística de que la energia utilizada para minar Bitcoins usaba más energia que dos millones de horas en Estados Unidos.
+
+El monopolio de minería se debe también al alto consumos que requiere el algoritmo de prueba de trabajo. Los recursos para abastecer esta demanda de energía representa una ventaja injusta. El sigueinte diagrama muestra la distribución de los grupos mineros mas grandes al rededor del mundo:
+
+#+CAPTION: Pooled Mining
+[[../../images/blockchain/14-pooled-mining.png]]
+
+Como se puede observar esta distribución es sesgada. Estos grandes grupos mineros están en capacidad de controlar la mayor parte de la red ya que al tener los nodos que ofrecen más recursos a la red tienen más participación en la definición de un bloque válido. Por lo tanto se proporciona una tendencia a tener una red centralizada en vez de una red distribuida, que fue la intención original.
+
+Para resolver estos retos, nuevos algoritmos se ha propuesto. Este sera el tema de la siguiente sección.
+
+** Prueba de Participación
 
