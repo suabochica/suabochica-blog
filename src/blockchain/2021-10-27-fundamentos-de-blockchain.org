@@ -303,3 +303,19 @@ Para resolver estos retos, nuevos algoritmos se ha propuesto. Este sera el tema 
 
 ** Prueba de Participación
 
+La prueba de participación es otro algoritmo utilizado para lograr el consenso en un blockchain. La idea principal detrás de la prueba de participación es que se enfoca en dar votos para los miembros, dependiendo en que tanta participación ellos tienen para el éxito de la cadena.
+
+La participación en este caso significa aquellos nodos que tienen mayores inversiones en el sistema y pretenden  salidas positivas del mismo. Se consideran candidatos para realizar una votación y así generar un impacto positivo para el sistema. En el algoritmo de prueba de participación no se tienen mineros y en su lugar hay validadores. Los validadores no requieren de costos computacionales ya que su función como interesados es determinar qué bloque entrará en la cadena de bloques. Con el fin de validar transacciones y crear bloques, los validadores ponen sus propias monedas como apuesta. Si ellos validan una transacción fraudolenta, ellos pierden sus posesiones y el derecho al rol de validador en futuras votaciones. En teoría, esta revisión incentiva a que el sistema valida solo transacciones de veraces. Un validador que tenga una apuesta de 400 monedas sobre un bloque, tiene más participación que un validador con una apuesta de 100 monedas por otro bloque.
+
+Ahora bien, el validador puede distribuir sus monedas en todos los bloques para asi asegurar una ganancia en la apuesta. Esta opción es conocida como /nada en juego/, y es un problema para la prueba de participación. Hay un inconveniente en Blockchains que se extieneden bajo el paradigma de prueba de participación que no se ha mencionado, y es la posibilidad de que la cadena se bifurque. En determinado momento dos bloques pueden recibir la misma instrucción de ser agregados a la cadena y crear dos secuencias de cadena de bloques. Por otra parte, puede haber un intento malicioso de reecribir el historico y reversar la última transacción.
+
+Afortunadamente, los partidiarios de la prueba de participación tienen estrategia en contra de este tipo de ataques. Una estrategia es el /Slasher Solutoin/ lo que implica penalizar a los validadores si crean simultáneamente bloques en múltiples cadenas. Otra alternativa es que los protocolos tienen sus mecanismos de penalización para validadores que crean bloques en la cadena equivocada. Por lo tanto se incentiva a que los validadores sean conscientes sobre los Blockchain en donde van a ubicar su participación.
+
+A continuación se comparte una lista de las plataformas que actualmente usan la prueba de participación:
+
+- [[https://ethereum.org/en/][Ethereum]], cambio de PoW a PoS en el proyecto casper
+- [[https://www.dash.org/][DASH]], un pionero de PoS
+- [[https://lisk.com/][LISK]], una herramienta enfocada en la creación de aplicaciones descentralizadas.
+
+La prueba de participación es un algoritmo popular para lograr consenso, pero hay otras alternativas. Una de ellas es *Tolerancia Delegada a Fallas Bizantinas* (DBFT por sus siglas en inglés) y sera indagando en la siguiente sección.
+
