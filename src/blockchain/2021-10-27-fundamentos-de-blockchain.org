@@ -319,3 +319,36 @@ A continuación se comparte una lista de las plataformas que actualmente usan la
 
 La prueba de participación es un algoritmo popular para lograr consenso, pero hay otras alternativas. Una de ellas es *Tolerancia Delegada a Fallas Bizantinas* (DBFT por sus siglas en inglés) y sera indagando en la siguiente sección.
 
+** DBFT
+
+La *Tolerancia Delegada a Fallas Bizantincas* o DBFT en corto es otro algortimo importate de consenso. A diferencia de la prueba de participación, DBFT intenta lograr el consenso asignando roles que ayuden a coordinar el consenso.
+
+Para lograrlos, DBFT no cuenta con mineros y en su lugar hace una división entre nodos ordinarios y nodos de consenso. La mayoria de los nodos en la red son ciudadanos ordinarios que pueden intercambiar activos pero no participan en la validación de bloques. Los nodos de consenso tienen el poder de validar cada bloque escrito en el Blockchain y representan a los otros nodos que compoenen la red. Una analogía válida corresponde a los oficiales gubernamentales elegidos para representar a la mayoria de los constituyentes.
+
+#+CAPTION: How works DBFT
+[[../../images/blockchain/15-dbft.png]]
+
+Para que un nodo ordinario se convierta en un nodo de consenso es necesario cumplir con algunos criterios que varian de una plataforma a otra. Algunas pueden incluir el uso de un equipo especial para tener una conexión a internet dedicada, ó tener cierta participación en la red.
+
+Los nodos de consenso hacen un seguimiento sobre los bloques que se propuestos para ser agregados a la cadena de bloques. Cuando es tiempo de decidir cuál sera el siguiente bloque a agregar un nodo de consenso de todo el grupo de nodos de consenso es seleccionado de manera aleatoria y se le delega la función de /expositor/ y los otros nodos quedan como /delegados/. El expositor crea un bloque nuevo y lo propone a los delegados. Dos tercios de los delegados necesitan aprobar este bloque antes de pasarlo al Blockchain. Si el bloque no pasa, el nodo expositor vuelve a ser un delegado y se elige otro expositor para que realice una nueva propuesta de bloque.
+
+DBFT es muchos más rápido que la prueba de trabajo ya que requiere de menos recursos y no hay rompecabezars de cifrado por solucionar. Por otra parte es resistente a la bifurcación de cadena, ya que en cualquier momento solo habrá una versión de la verdad.
+
+No obstante, DBFT no es imune a todos los problemas. Los escenarios más potenciales son:
+
+1. Un expositor deshonesto
+2. Un delegado deshonesto
+
+Para compensar estos problemas, algunas plataformas de Blockchain libera datos acerca de honestidad y funcionamiento de cada uno de los delegados y los expositores que van a participar en la votación.
+
+Actualmente, NEO es el defensor y procursor del DBFT. Es una plataforma de criptomoneda diseñada para construir redes escalables de las aplicaciones descentralizads.
+
+Si bien la prueba de trabajo y la prueba de participación son sin duda los algorítmos más populares para consenso, nuevos mecanismos siguen apareciendo. Se recuerda que el algoritmo de consenso logra su reputación por garantizar segurida para un periodo largo de tiempo. Por ejemplo, Bitcoin se ha mantenido como una red segura desde el 2009. A continuacón se comparte una lista de los diferentes algoritmos de consenso:
+
+- [[https://bitcoin.org/bitcoin.pdf][PoW en el artículo de Bitcoin]]
+- [[https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ][PoS Ethereum FAQs]]
+- [[https://steemit.com/neo/@basiccrypto/neo-s-consensus-protocol-how-delegated-byzantine-fault-tolerance-works][Protocolo de Consenso de NEO]]
+- [[https://www.coinbureau.com/blockchain/proof-of-activity-explained-hybrid-consensus-algorithm/][Prueba de Actividad]]
+- [[https://99bitcoins.com/what-is-proof-of-burn/][Prueba de Quemadura]]
+
+Con esto dicho, no hay un mecanismo de consenso perfecto y probablemente nunca existirá. Pero es interesante ver como nuevos Blockchains viente con sus propios mecanismos y a su vez lograr entender los puntos a favor y en contra de dichas propuestas.
