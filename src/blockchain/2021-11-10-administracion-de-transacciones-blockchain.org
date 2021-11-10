@@ -1,0 +1,26 @@
+#+TITLE: Gestión de Transacciones Blockcahin
+#+DESCRIPTION: Serie que recopila una aprendizaje sobre blockchain
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-11-10 Wed> 
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+* Identitdad Blockcahin
+
+* Billeteras
+
+** Tipos de Billeteras
+
+* Llaves Privadas
+
+* Obtengas su Propia Billetera
+
+* Restaurando la Identidad en Blockchain
+
+* Señal de Transacción
+
+* Ciclo de Vida de una Transacción en Blockchain
+

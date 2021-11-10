@@ -352,3 +352,9 @@ Si bien la prueba de trabajo y la prueba de participación son sin duda los algo
 - [[https://99bitcoins.com/what-is-proof-of-burn/][Prueba de Quemadura]]
 
 Con esto dicho, no hay un mecanismo de consenso perfecto y probablemente nunca existirá. Pero es interesante ver como nuevos Blockchains viente con sus propios mecanismos y a su vez lograr entender los puntos a favor y en contra de dichas propuestas.
+
+* Recapitulación
+
+En esta publicación se discutieron las bases del Blockchain.
+
+Bloques, valores hash, grupos de memoria, consenso y algoritmos de consenso son ahora conceptos familiares para el lector.
