@@ -8,7 +8,16 @@
 #+HUGO_WEIGHT: auto
 #+HUGO_AUTO_SET_LASTMOD: t
 
-* Identitdad Blockcahin
+Los Blockchains son sistemas basados en transacciones, por lo tanto el tema de transacciones es uno de los más importantes.
+
+En esta publicación se van a revisar de manera conjunta los conceptos que se mencionaron en los [[fundamentos de blockchain][./2021-10-27-fundamentos-de-blockchain.org]] de llaves, bloques, billeteras, entre otros. El próposito de este árticulo es atacar los siguientes puntos:
+
+- Entender las mecánicas de una transacción simple entre dos entidades, usando llaves privadas, llaves públicas, billeteras y un blockchain público.
+- Determinar y generar el tipo de billetera adecuado segun las necesidades de la situación (No determinística, Determinista Secuencial, Determinista Jerárquica).
+- Crear y restaurar una billetera bitcoin usando llaves privadas.
+- Reconocer la firma de transacciones como parte del ciclo de vida de la transacción y describir tanto su propósito como su proceso.
+
+* Identitdad Blockchain
 
 * Billeteras
 
