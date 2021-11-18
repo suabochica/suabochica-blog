@@ -237,7 +237,7 @@ Las preguntas que puede tener en este momento son:
 
 Estas preguntas se responden en el Consenso. Es aquí dodne todas las decisiones para establecer y hacer crecer el Blockchain son contempladas.
 
-* PROGRESS Consenso
+* Consenso
 
 El consenso es un tema extenso. Probablemente no se va a abordar en su totalidad pero se va a hacer un enfásis en las piezas que se importantes que se requieren para ser un desarrollador Blockchain exitoso.
 
