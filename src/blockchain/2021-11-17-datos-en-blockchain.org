@@ -20,6 +20,18 @@
 
 * Scripts de Bitcoin
 
+  - *Versión:*
+  - *Conteo de entradas:*
+  - *Hash de la salida previa:*
+  - *Índice de la salida previa:*
+  - *Tamaño del script de desbloqueo:*
+  - *Script de desbloqueo:*
+  - *Conteo de salidas:*
+  - *Cantidad:*
+  - *Tamaño del script de bloqueo:*
+  - *Script de bloqueo:*
+  - *Tiempo de bloqueo:*
+
 ** Opcodes 
 
 ** Atributos de un Script
