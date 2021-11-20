@@ -21,14 +21,19 @@ En esta publicación se van a revisar de manera conjunta los conceptos que se me
 
 
 Así como un número de seguridad social, una cuenta bancaria o una licencia de conducción, la identidad blockchain es como se establece usted mismo en el mundo de la cadena de bloques. Para revisar el cómo se maneja identidad en blockchain se van a revisar dos casos. El primero es describir como una persona que posee dinero tiene acceso para gastarlo garantizando que su transacción no puede ser rastreada. 
+
 * Billeteras
 
 ** Tipos de Billeteras
 
+   - Billeteras no determinísticas
+   - Billeteras determinísticas
+   - Billeteras jerarquicas determinísticas
+
 * Llaves Privadas
 
 * Obtengas su Propia Billetera
-
+  
 * Restaurando la Identidad en Blockchain
 
 * Señal de Transacción
