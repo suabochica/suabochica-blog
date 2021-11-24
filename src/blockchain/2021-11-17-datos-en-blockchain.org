@@ -37,3 +37,5 @@
 ** Atributos de un Script
 
 * Ciclo de Vida de una Transacción en Blockchain
+
+* Incrustar datos en el Blockchain
