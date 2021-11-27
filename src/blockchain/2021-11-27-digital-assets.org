@@ -8,4 +8,8 @@
 #+HUGO_WEIGHT: auto
 #+HUGO_AUTO_SET_LASTMOD: t
 
+A lo largo de esta publicación, se trabajará con activos digitales de manera programática utilizando su terminal y JavaScript. Esto está destinado a ayudarlo a prepararse para el próximo proyecto en el que utilizará estas habilidades en su propia cadena de bloques privada.
+
+También se familiarizará con algunas ideas sobre cómo exponer sus funcionalidades Blockchain a sus clientes usando RESTApi's.
+
 *Activos Digitales
