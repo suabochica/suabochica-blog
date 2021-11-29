@@ -12,4 +12,19 @@ A lo largo de esta publicación, se trabajará con activos digitales de manera p
 
 También se familiarizará con algunas ideas sobre cómo exponer sus funcionalidades Blockchain a sus clientes usando RESTApi's.
 
-*Activos Digitales
+* Activos Digitales
+
+* Codificar y Decodificar
+En esta sección se dará el primer paso para unificar los activos digitales con el Blockchain. Como se comentó anteriormente, los activos digitales son codificados y decodificados para facilitar la comunicacíon ente computadores y personas. Para ellos se va a empezar con la codificación y decodificación de texto e imágenes.
+
+#+begin_notes
+Codificar: Proceso para poner una secuencia de caracteres en un formato especializado para una transmisión o almacenamiento eficiente en computadores.
+#+end_notes
+
+#+begin_notes
+Decodificar: Tomar archivos codificados, sin procesar e ilegibles y los convierte de nuevo a un formato legible para humanos
+#+end_notes
+
+** Tipos de codificación y decodificación
+
+** NodeJS
