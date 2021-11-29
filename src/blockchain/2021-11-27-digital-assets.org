@@ -27,4 +27,7 @@ Decodificar: Tomar archivos codificados, sin procesar e ilegibles y los conviert
 
 ** Tipos de codificación y decodificación
 
+- ASCII: American Standar Code for Information Interchange
+- Hexadecimal: Representación concisa de binarios para que sea más legible por humanos
+- Base64: Esquema de codificación destinado a representar datos como números en un formato de cadena
 ** NodeJS
