@@ -30,4 +30,10 @@ Decodificar: Tomar archivos codificados, sin procesar e ilegibles y los conviert
 - ASCII: American Standar Code for Information Interchange
 - Hexadecimal: Representación concisa de binarios para que sea más legible por humanos
 - Base64: Esquema de codificación destinado a representar datos como números en un formato de cadena
-** NodeJS
+
+** Demostración
+Hasta este punto se ha repasado la teoría detrás de los activos digitales, codificación y decodificación. Ahora es tiempo de poner este conocimiento en práctica, y para ello se va a utilizar la terminal del sistema operativo en los siguientes casos:
+
+- Codificar y decodificar *texto* dentro de la terminal
+- Codificar y decodificar *archivos de texto* desde la terminal
+- Codificar y decodificar *archivos de imágenes* desde la terminal
