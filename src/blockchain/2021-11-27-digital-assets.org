@@ -12,7 +12,7 @@ A lo largo de esta publicación, se trabajará con activos digitales de manera p
 
 También se familiarizará con algunas ideas sobre cómo exponer sus funcionalidades Blockchain a sus clientes usando RESTApi's.
 
-* Activos Digitales
+* TODO Activos Digitales
 
 * Codificar y Decodificar
 En esta sección se dará el primer paso para unificar los activos digitales con el Blockchain. Como se comentó anteriormente, los activos digitales son codificados y decodificados para facilitar la comunicacíon ente computadores y personas. Para ellos se va a empezar con la codificación y decodificación de texto e imágenes.
@@ -31,9 +31,83 @@ Decodificar: Tomar archivos codificados, sin procesar e ilegibles y los conviert
 - Hexadecimal: Representación concisa de binarios para que sea más legible por humanos
 - Base64: Esquema de codificación destinado a representar datos como números en un formato de cadena
 
-** Demostración
+** Demostración desde la Terminal
 Hasta este punto se ha repasado la teoría detrás de los activos digitales, codificación y decodificación. Ahora es tiempo de poner este conocimiento en práctica, y para ello se va a utilizar la terminal del sistema operativo en los siguientes casos:
 
 - Codificar y decodificar *texto* dentro de la terminal
 - Codificar y decodificar *archivos de texto* desde la terminal
 - Codificar y decodificar *archivos de imágenes* desde la terminal
+
+Para codificar texto dentro de la terminal primero se convierte un ~string~ en ~hexadecimal~ con el comando linux ~xxd~ y la opción ~-p~:
+
+#+begin_src
+xxd -p <<< "Blockchain Developer"
+#+end_src
+
+Para decodificar texto dentro de la terminal primero se convierte el ~hexadecimal~ en ~string~ con el comando linux ~xxd~ y las opciones ~-r -p~, tal y como se muestra a continuación:
+
+#+begin_src
+echo 426c6f636b636861696e20446576656c6f7065720a | xxd -r -p
+#+end_src
+
+
+Para codificar archivos de texto desde la terminal, primero se crea un archivo:
+
+#+begin_src
+touch hello.txt
+#+end_src
+
+Se le agrega contenido a dicho archivo y se guardan los cambios. Posteriormete para codificar ahora si el archivo de ~string~ a ~hexadecimal~ se ejecuta:
+
+#+begin_src
+xxd -p hello.txt helloEncoded.txt
+#+end_src
+
+De forma similar, para decodificar el archivo de texto se ejecuta:
+
+#+begin_src
+xxd -r -p helloEncoded.txt helloDecoded.txt
+#+end_src
+
+Si se revisa el contenido del archivo ~helloDecoded.txt~ se puede observar que se recupera el texto original
+
+Por último, para codificar una imagen desde la terminal se descarga la imagen y se ubica en el directoria en el que se encuentra abierta la terminal. Para codificar la imagen a hexadecimal se corre:
+
+#+begin_src
+xxd -p cat.png cat.txt
+#+end_src
+
+Luego, para decodificar el hexadecimal a imagen, se ejecuta:
+
+#+begin_src
+xxd -r -p cat.txt catDecoded.png
+#+end_src
+
+Felicitaciones, ahora puede codificar y decodificar tanto texto como imágenes. ¡Ese es un gran comienzo! Recuerde que el objetivo aquí es obtener este tipo de funcionalidad para ayudar a respaldar nuestra aplicación blockchain.
+
+** TODO Demostración con NodeJS
+
+*  Prueba de existencia
+El concepto de probar y autenticar públicamente cualquier activo digital en la cadena de bloques mediante la verificación de su hash.
+
+** Demostración con POEX
+
+A continuación se resume el paso a paso de como POEX valida activos digitales:
+
+1. El activo digital se somete a un proceso de hash a través de SHA256
+2. El hash se adjunta a un identificador
+3. Tanto el hahs como el identificador se ponen en una transacción generada
+4. La transacción se marca con ~OP_RETURN~, luego no se puede modificar 
+
+** Algoritmos para POE
+
+Existen muchos algoritmos para demostrar la prueba de existencia. Los que se van a evaluar en esta sección son:
+
+- SHA256
+- MD5
+
+SHA256 es un algortimo con el que ya se esta familiarizado puesto que se usa en diferentes parte de la red Bitcoin, Por ejemplo la minería como parte del algoritmo de prueba de trabajo. También es usado para crear direcciones seguras en Bitcoin. SHA256 significa Algoritmo Hash de Seguridad y es una función hash en un solo sentido que toma cualquier pieza de datos y le produce un hash único. Este algoritmo es usado por POEX para asegurar sus documentos digitales.
+
+MD5 es un algortimo que con una función hash toma un String de entrada y produce un valor hash de 128 bits. El valor es usualmente mostrado como un hexadecimal de 32 caracteres que los humanos pueden leer.
+
+Se recuerda que el objetivo de los algortimos para prueba de existencia es aplicar hash únicos a activos digitales para esconder el contenido real. Una vez que los datos hash se incrustan en una transacción en la cadena de bloques, la existencia de esa transacción en la cadena de bloques demuestra que el documento existía en el momento en que la transacción se incluyó en un bloque.
