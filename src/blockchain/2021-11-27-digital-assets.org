@@ -87,7 +87,7 @@ Felicitaciones, ahora puede codificar y decodificar tanto texto como imágenes. 
 
 ** TODO Demostración con NodeJS
 
-*  Prueba de existencia
+*  Prueba de Existencia
 El concepto de probar y autenticar públicamente cualquier activo digital en la cadena de bloques mediante la verificación de su hash.
 
 ** Demostración con POEX
@@ -111,3 +111,12 @@ SHA256 es un algortimo con el que ya se esta familiarizado puesto que se usa en 
 MD5 es un algortimo que con una función hash toma un String de entrada y produce un valor hash de 128 bits. El valor es usualmente mostrado como un hexadecimal de 32 caracteres que los humanos pueden leer.
 
 Se recuerda que el objetivo de los algortimos para prueba de existencia es aplicar hash únicos a activos digitales para esconder el contenido real. Una vez que los datos hash se incrustan en una transacción en la cadena de bloques, la existencia de esa transacción en la cadena de bloques demuestra que el documento existía en el momento en que la transacción se incluyó en un bloque.
+
+*  TODO Asegurar Activos Usando una Identidad Digital
+
+*  TODO Consideraciones de Servicios Web con Blockchain
+
+* TODO Generaciones de Blockchain
+
+** Bitcoin y el Blockchain 1.0
+** Etherium y el Blockchain 2.0
