@@ -1,0 +1,39 @@
+#+TITLE: Fundamentos de Ethereum
+#+DESCRIPTION: Serie que recopila una aprendizaje sobre blockchain
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-12-02 Wed>
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+Ethereum is the world's leading platform for developing decentralized applications on the blockchain. This lesson will introduce you to the basics of what Ethereum is and how to get started as an Ethereum blockchain developer.
+
+Los propósitos de esta publicación son:
+
+- Comprender qué es Ethereum, por qué es importante y en qué se diferencia de otras plataformas Blockchain.
+
+- Conéctarse a las herramientas y la comunidad de Ethereum disponibles para usted como desarrollador de blockchain de Ethereum.
+
+- Cree una aplicación descentralizada simple que se conecte a la cadena de bloques Ethereum.
+
+* Bases de Ethereum
+
+Para comprender las bases de Ethereum se van a explicar los siguientes puntos:
+
+- Describir como el Framework de Blockchain se relaciona con Ethereum.
+- Definir la terminología básica para empezar con Ethereum.
+- Navegar el sitio web de Ethereum y entender sus valores básicos.
+
+El marco de blockchain se introdujo anteriormente en el la serie y será extremadamente útil ahora para comprender Ethereum.
+
+Ethereum, es un proyecto de código abierto que ofrece una plataforma blockchain pública y programable.
+
+Ethereum Virtual Machine (EVM) es una máquina virtual que esta en capacidad de ejecutar lógica, algoritmos y procesar entrada de datos.
+
+Smart Contract
+
+Soliditye, es un lenguaje de programación de alto nivel para programar y desplegar contratos inteligentes.
+
+Patricia Tree

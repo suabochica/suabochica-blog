@@ -120,3 +120,5 @@ Se recuerda que el objetivo de los algortimos para prueba de existencia es aplic
 
 ** Bitcoin y el Blockchain 1.0
 ** Etherium y el Blockchain 2.0
+
+* Recapitualción
