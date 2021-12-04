@@ -37,3 +37,39 @@ Smart Contract
 Soliditye, es un lenguaje de programación de alto nivel para programar y desplegar contratos inteligentes.
 
 Patricia Tree
+
+* Transacciones en Ethereum
+
+Tipos de transacciones
+
+- Message Call Transactions
+- Contract Creation Transaction
+
+Ejemplo de una transacción en Ethereum:
+
+- Nonce
+- Gas Price
+- Gas Limit
+- To
+- Value
+- Data Init
+
+* Ethereum Gas y Fees
+
+Gas Price
+Gas Limit
+
+* Ethereum Metrics
+
+La invitación es ir a visital [[Ethstats][https://ethstats.net/]] y revisar algunos datos actuales de la red de Ethereum. Si no esta familiarizado con las denominaciones de Ethereum, puede revisar la siguiente [documentación](http://ethdocs.org/en/latest/ether.html). Esta documentación no tiene a cambiar con frecuencia y puede ser utilizado para entender cuales son la denomicaciones que actualmente existen. Con mayor regularidad se empezará a hablar en términos de Ether y Wei. 
+
+Recap
+
+- Blockchain Framework Refresher
+- Ethereum Basic Terminology
+- Ethereum Roadmap and Consensus Algorith
+- Ethereum Network Performance
+- Transaction Lifecycle
+- Ethereum CLI
+- Ethereum GUI
+- Network Types and Funding Wallets
