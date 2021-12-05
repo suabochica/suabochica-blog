@@ -1,0 +1,36 @@
+#+TITLE: Cadena de Suministro
+#+DESCRIPTION: Serie que recopila una aprendizaje sobre blockchain
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-12-07 Wed>
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+Para entender la arquitectura establecida en Blockchain se debe tener conocimientos de su cadena de suministro y así plantear soluciones más adecuadas.
+
+La cedena de suministro es un tema muy amplio ya que contempla muchos aspectos en cualquier negocio. En general incluye todo lo necesario para ejecutar los siguientes pasos en un producto:
+
+- Planificar
+- Construir
+- Crear
+- Manufacturar
+- Entragar
+
+En resumen, la cadena de suministro abarca todo lo que necesita el producto de una compañia, desde los insumos originales hasta el producto final teniendo como intermediario el proceso de ventas. Su objetivo es ejecutar todo este proceso de la manera más efectiva posible.
+
+Como desarrolladores de cadena de bloques, hay interés en atender las cadenas de suministro porque en el núcleo de cada una de las transacciones hay dos puntos principales:
+
+1. Confianza
+2. Automatización
+
+Estos puntos pueden ser hechos con la creación de un libro mayor abierto y compartido que permita a las empresas a colaborar e interactuar de manera más efectiva.
+
+Como se puede observar, el Blockchain tiene un impacto enorme si se resuelva la forma de cómo los contratos inteligentes puede mejorar las cadenas de suministro.
+
+Esto ya está comenzando a gran escala. A principios de 2018, Maersk, la empresa de transporte de contenedores más grande del mundo, e IBM se asociaron para crear TradeLens, una plataforma para construir estándares abiertos para aplicar blockchain a la cadena de suministro global del mundo.
+
+TradeLens utiliza la tecnología IBM Blockchain como base para las cadenas de suministro digitales, lo que permite que varios socios comerciales colaboren estableciendo una vista única compartida de una transacción sin comprometer los detalles y la privacidad.
+
+Maersk e IBM fueron los primeros en unirse a TradeLens, pero más de 90 organizaciones de todo el mundo se han unido para participar en la plataforma TradeLens.

@@ -65,3 +65,15 @@ complex string operations should be avoid
 bytep[15]
 - Dynamic
 ** Enums
+
+* Funciones
+
+* Manejo de Errores
+
+* Herencia
+
+* Eventos
+
+* Tokens
+
+* El estándar de tokens ERC 
