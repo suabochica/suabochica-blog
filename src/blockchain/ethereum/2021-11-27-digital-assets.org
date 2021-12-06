@@ -14,7 +14,7 @@ También se familiarizará con algunas ideas sobre cómo exponer sus funcionalid
 
 * TODO Activos Digitales
 
-* Codificar y Decodificar
+* TODO Codificar y Decodificar
 En esta sección se dará el primer paso para unificar los activos digitales con el Blockchain. Como se comentó anteriormente, los activos digitales son codificados y decodificados para facilitar la comunicacíon ente computadores y personas. Para ellos se va a empezar con la codificación y decodificación de texto e imágenes.
 
 #+begin_notes
@@ -25,13 +25,13 @@ Codificar: Proceso para poner una secuencia de caracteres en un formato especial
 Decodificar: Tomar archivos codificados, sin procesar e ilegibles y los convierte de nuevo a un formato legible para humanos
 #+end_notes
 
-** Tipos de codificación y decodificación
+** TODO Tipos de codificación y decodificación
 
 - ASCII: American Standar Code for Information Interchange
 - Hexadecimal: Representación concisa de binarios para que sea más legible por humanos
 - Base64: Esquema de codificación destinado a representar datos como números en un formato de cadena
 
-** Demostración desde la Terminal
+** TODO Demostración desde la Terminal
 Hasta este punto se ha repasado la teoría detrás de los activos digitales, codificación y decodificación. Ahora es tiempo de poner este conocimiento en práctica, y para ello se va a utilizar la terminal del sistema operativo en los siguientes casos:
 
 - Codificar y decodificar *texto* dentro de la terminal
@@ -87,7 +87,7 @@ Felicitaciones, ahora puede codificar y decodificar tanto texto como imágenes. 
 
 ** TODO Demostración con NodeJS
 
-*  Prueba de Existencia
+* TODO Prueba de Existencia
 El concepto de probar y autenticar públicamente cualquier activo digital en la cadena de bloques mediante la verificación de su hash.
 
 ** Demostración con POEX
@@ -112,13 +112,13 @@ MD5 es un algortimo que con una función hash toma un String de entrada y produc
 
 Se recuerda que el objetivo de los algortimos para prueba de existencia es aplicar hash únicos a activos digitales para esconder el contenido real. Una vez que los datos hash se incrustan en una transacción en la cadena de bloques, la existencia de esa transacción en la cadena de bloques demuestra que el documento existía en el momento en que la transacción se incluyó en un bloque.
 
-*  TODO Asegurar Activos Usando una Identidad Digital
+* TODO Asegurar Activos Usando una Identidad Digital
 
-*  TODO Consideraciones de Servicios Web con Blockchain
+* TODO Consideraciones de Servicios Web con Blockchain
 
 * TODO Generaciones de Blockchain
 
 ** Bitcoin y el Blockchain 1.0
 ** Etherium y el Blockchain 2.0
 
-* Recapitualción
+* TODO Recapitualción

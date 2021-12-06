@@ -34,3 +34,10 @@ Esto ya está comenzando a gran escala. A principios de 2018, Maersk, la empresa
 TradeLens utiliza la tecnología IBM Blockchain como base para las cadenas de suministro digitales, lo que permite que varios socios comerciales colaboren estableciendo una vista única compartida de una transacción sin comprometer los detalles y la privacidad.
 
 Maersk e IBM fueron los primeros en unirse a TradeLens, pero más de 90 organizaciones de todo el mundo se han unido para participar en la plataforma TradeLens.
+
+* TODO Descriprción General de la Arquitectura Blockchain 
+
+** Web 2.0
+
+** Web 3.0
+

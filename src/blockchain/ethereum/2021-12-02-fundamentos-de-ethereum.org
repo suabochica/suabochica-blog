@@ -18,7 +18,7 @@ Los propósitos de esta publicación son:
 
 - Cree una aplicación descentralizada simple que se conecte a la cadena de bloques Ethereum.
 
-* Bases de Ethereum
+* TODO Bases de Ethereum
 
 Para comprender las bases de Ethereum se van a explicar los siguientes puntos:
 
@@ -38,7 +38,7 @@ Soliditye, es un lenguaje de programación de alto nivel para programar y desple
 
 Patricia Tree
 
-* Transacciones en Ethereum
+* TODO Transacciones en Ethereum
 
 Tipos de transacciones
 
@@ -54,12 +54,12 @@ Ejemplo de una transacción en Ethereum:
 - Value
 - Data Init
 
-* Ethereum Gas y Fees
+* TODO Ethereum Gas y Fees
 
 Gas Price
 Gas Limit
 
-* Ethereum Metrics
+* TODO Ethereum Metrics
 
 La invitación es ir a visital [[Ethstats][https://ethstats.net/]] y revisar algunos datos actuales de la red de Ethereum. Si no esta familiarizado con las denominaciones de Ethereum, puede revisar la siguiente [documentación](http://ethdocs.org/en/latest/ether.html). Esta documentación no tiene a cambiar con frecuencia y puede ser utilizado para entender cuales son la denomicaciones que actualmente existen. Con mayor regularidad se empezará a hablar en términos de Ether y Wei. 
 
