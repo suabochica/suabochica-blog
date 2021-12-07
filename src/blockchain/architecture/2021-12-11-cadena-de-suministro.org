@@ -39,5 +39,29 @@ Maersk e IBM fueron los primeros en unirse a TradeLens, pero más de 90 organiza
 
 ** Web 2.0
 
-** Web 3.0
+** Web 3.0 
 
+* TODO UML
+
+** TODO Diagramas de Actividad
+
+** TODO Diagramas de Secuencia
+
+** TODO Diagramas de Estado
+
+
+* TODO Modelando Datos
+
+* TODO Decisiones en la Capa de Servicios
+
+* Recapitulación
+
+En esta publicación se discutió la arquitectura de una cadena de bloques para luego planificar y diseñar una solución Blockchain.
+
+El enfoque partió de la evolución de la web desde la web 1.0 hacia la web 2.0, culimando en la web 3.0 resalanto los cambios de arquitectura que debieron presentarse para avanzaz de una versión a otra.
+
+Con dichas bases en temas de arquitectura, se indago en una etapa de planificación a través de UML para modelar las actividades, las secuencias y los cambios de estado de una tienda de mascotas.
+
+Usando la información de la etapa de planificación, se creo un diagrama para modelar los datos para redactar las relaciones entre los contratos inteligentes que se están construyendo.
+
+Por último, se agruparon las preguntas relevantes para soluciones de plataforma y bases de datos teniendo en cuenta los criterios: red, rendimiento, lógica de negocio y consenso.
