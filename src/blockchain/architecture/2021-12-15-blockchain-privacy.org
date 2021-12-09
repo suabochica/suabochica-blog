@@ -1,0 +1,17 @@
+#+TITLE: Privacidad en Blockchain
+#+DESCRIPTION: Serie que recopila una aprendizaje sobre blockchain
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-12-15 Wed>
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+* TODO Hashing
+* TODO Árboles Merkle
+* TODO Firmas de Anillo
+* TODO Pruebas de Cero Conocimiento
+* TODO ZK-SNARKs
+* TODO Privacidad diferencial
+* Recap

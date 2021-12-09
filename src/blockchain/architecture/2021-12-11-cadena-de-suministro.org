@@ -1,7 +1,7 @@
 #+TITLE: Cadena de Suministro
 #+DESCRIPTION: Serie que recopila una aprendizaje sobre blockchain
 #+AUTHOR: Sergio Benítez
-#+DATE:<2021-12-07 Wed>
+#+DATE:<2021-12-11 Sat>
 #+STARTUP: fold
 #+HUGO_BASE_DIR: ~/Development/suabochica-blog/
 #+HUGO_SECTION: /post
