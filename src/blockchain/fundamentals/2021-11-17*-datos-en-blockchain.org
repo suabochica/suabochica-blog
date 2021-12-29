@@ -8,15 +8,15 @@
 #+HUGO_WEIGHT: auto
 #+HUGO_AUTO_SET_LASTMOD: t
 
-* Modelos de datos en Blockchain
+* TODO Modelos de datos en Blockchain
 
-* Transacciones
+* TODO Transacciones
 
 ** Entrada y Salidas
 
 ** Modelo de Datos en las Transacciones
 
-* Scripts de Bitcoin
+* TODO Scripts de Bitcoin
 
   - *Versión:*
   - *Conteo de entradas:*
@@ -34,6 +34,6 @@
 
 ** Atributos de un Script
 
-* Ciclo de Vida de una Transacción en Blockchain
+* TODO Ciclo de Vida de una Transacción en Blockchain
 
-* Incrustar datos en el Blockchain
+* TODO Incrustar datos en el Blockchain

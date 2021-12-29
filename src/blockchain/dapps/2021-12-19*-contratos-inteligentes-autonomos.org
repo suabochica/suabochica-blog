@@ -1,0 +1,13 @@
+#+TITLE: Contratos Inteligentes Autónomos
+#+DESCRIPTION: Serie que recopila una aprendizaje sobre blockchain
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-12-19 Sun>
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+* TODO Detención de Pérdidas
+
+* TODO Recibir, Transferir y Enviar Fondos

@@ -67,7 +67,7 @@ Recap
 
 - Blockchain Framework Refresher
 - Ethereum Basic Terminology
-- Ethereum Roadmap and Consensus Algorith
+- Ethereum Roadmap and Consensus Algorimth
 - Ethereum Network Performance
 - Transaction Lifecycle
 - Ethereum CLI

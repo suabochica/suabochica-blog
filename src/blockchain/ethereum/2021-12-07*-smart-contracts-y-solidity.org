@@ -8,22 +8,22 @@
 #+HUGO_WEIGHT: auto
 #+HUGO_AUTO_SET_LASTMOD: t
 
-* Contratos Inteligentes
+* TODO Contratos Inteligentes
 
-* Administración de Memoria
+* TODO Administración de Memoria
 
 - memory
 - storage
 - callData
 
-* Tipos de Datos
+* TODO Tipos de Datos
 
 - uint
 - int
 - bool
 - address
 
-* Conversión de Tipos
+* TODO Conversión de Tipos
 
 Todos los lenguajes de programación soportan la conversión de tipos. Solidity da la opción de hacer conversiones implícitas o explícitas. Se reviseran algunos ejemplos para familiarizarse con las conversiones de tipo y los posibles errores de compilación que servirán como guía.
 
@@ -41,7 +41,7 @@ b = a
 
 if(1) {}
 
-* Tipos de Datos Complejos
+* TODO Tipos de Datos Complejos
 
 - Arrays
 - Structs
@@ -66,14 +66,14 @@ bytep[15]
 - Dynamic
 ** Enums
 
-* Funciones
+* TODO Funciones
 
-* Manejo de Errores
+* TODO Manejo de Errores
 
-* Herencia
+* TODO Herencia
 
-* Eventos
+* TODO Eventos
 
-* Tokens
+* TODO Tokens
 
-* El estándar de tokens ERC 
+* TODO El estándar de tokens ERC 
