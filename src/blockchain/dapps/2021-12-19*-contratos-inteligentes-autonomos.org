@@ -11,3 +11,25 @@
 * TODO Detención de Pérdidas
 
 * TODO Recibir, Transferir y Enviar Fondos
+
+** TODO Ether y fundamentos de pago
+** TODO Trabajando con fondos
+** TODO La biblioteca SafeMath
+** TODO Revisiones y Efectos
+** TODO Limitación de tasa
+** TODO Guardia de reingreso
+** TODO Mejores prácticas de seguridad
+*** Mantenga las funciones privadas
+*** Débito antes que crédito
+*** Ser conciente de ~delegatecall()~
+*** ~now = block.timestamp~
+*** Las llamadas externas no son de confianza
+*** No alamcene información sensible
+*** Evite cambios de estado
+*** Consejos sobre funciones fallback
+*** Visibilidad explícita de marca
+*** ¿Necesita estar en cadena?
+
+** Recapitulación
+
+En esta sección se comenzó con la revisión de ether y fundamentos de pago agregando el barniz de lo importante que es la seguridad en dichos conceptos. Posteriormente se examinó la biblioteca ~SafeMath~, entendiendo cuando debe ser utilizada y que beneficios ofrece. Luego se evaluaron tres patrones de diseño para proteger los pagos en las transacciones y funciones. Por último, se compartieron diez mejores prácticas de seguridad para proteger los contratos inteligentes de una amplia variedad de ataques e inconvenientes.
