@@ -1,0 +1,12 @@
+#+TITLE: Capacidad de Actualización en Contratos Inteligentes
+#+DESCRIPTION: Serie que recopila una aprendizaje sobre blockchain
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-12-22 Wed>
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+* TODO Por qué los contratos inteligentes deben actualizarse
+* TODO Separar la lógica de los datos

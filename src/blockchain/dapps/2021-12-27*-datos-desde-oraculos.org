@@ -1,0 +1,17 @@
+#+TITLE: Datos desde los Oráculos
+#+DESCRIPTION: Serie que recopila una aprendizaje sobre blockchain
+#+AUTHOR: Sergio Benítez
+#+DATE:<2021-12-27 Mon>
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+* TODO Oráculos
+* TODO Oráculos sin Confianza
+* TODO Tipos de Ataques
+* TODO Registro de Oráculos
+* TODO Solicitud de Datos en Oráculos
+* TODO Devolución de Llamada de Oráculos
+* TODO Recapitulación
