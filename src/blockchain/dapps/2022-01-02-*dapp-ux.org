@@ -1,0 +1,20 @@
+#+TITLE: Dapp UX
+#+DESCRIPTION: Serie que recopila una aprendizaje sobre blockchain
+#+AUTHOR: Sergio Benítez
+#+DATE:<2022-01-02 Sun>
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+* TODO Tiempos de Expera
+* TODO Impacto
+* TODO Costos
+* TODO Eventos
+* TODO Procedencia
+* TODO Direcciones
+* TODO Historia
+* TODO Contexto
+* TODO Privacidad
+* TODO Asequibilidad
