@@ -19,7 +19,17 @@ En esta publicación se van a revisar de manera conjunta los conceptos que se me
 
 * Identitdad Blockchain
 
-Así como un número de seguridad social, una cuenta bancaria o una licencia de conducción, la identidad blockchain es como se establece usted mismo en el mundo de la cadena de bloques. Para revisar el cómo se maneja identidad en blockchain se van a revisar dos casos. El primero es describir como una persona que posee dinero tiene acceso para gastarlo garantizando que su transacción no puede ser rastreada. 
+Así como un número de seguridad social, una cuenta bancaria o una licencia de conducción, la identidad blockchain es como se establece usted mismo en el mundo de la cadena de bloques. Para revisar el cómo se maneja identidad en blockchain se van a revisar dos casos. El primero es describir como una persona que posee dinero tiene acceso para gastarlo garantizando que su transacción no puede ser rastreada. El segundo es que dicha persona tiene la posibilidad de compartir su identidad con los demás para poder hacer transacciones con los otros usuarios en la red. Este escenario específico se soluciona en el blockchain a través de billeteras.
+
+Por ejemplo, una billtera Bitcoin establece la identidad en la cadena de bloques para permitir transacciones dentro de la misma. Una billetera se compone de los siguientes tres elementos:
+
+- Una llave privada.
+- Una llave pública.
+- Una dirección de billetera.
+
+La dirección de una billetera es un identificador único para su billetera. Esta dirección le permite al propietario de la billetera compartir con los otros usuarios de la red para enviar y recibir Bitcoin. Es por eso que en los detalles de una transacción uno de los items que conforman el bloque son las direcciones de las billeteras de las partes relevantes en la transacción. No obstante, es válido cuestrionarse si al exponer dicha información va a ser posible porder hacer un rastreo sobre quienes hacen parte de la transacción. La respuesta es que no se puedo y esto se debe a como la billetera se crea.
+
+
 
 * TODO Billeteras
 
