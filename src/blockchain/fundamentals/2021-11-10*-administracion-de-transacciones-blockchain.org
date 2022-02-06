@@ -46,6 +46,38 @@ La identidad en la cadena de bloques se logra con herramientas importantes como 
    - *Billeteras determinísticas:* Son billeteras en donde las direcciones, las llaves privada y las llaves públicas se pueden rastrear hasta sus palabras originales
    - *Billeteras jerarquicas determinísticas:* Un tipo avanzado de billetera determinista que contiene claves derivadas en una estructura de árbol.
 
+** Escenarios para billeteras
+
+A continuación se inventan una variedad de escenarios para explorar. Con base en las definiciones anteriores, considere la situación y decida qué tipo de billetera podría ser la más adecuada.
+
+*** Escenario 1
+
+Quiero crear billeteras de papel derivadas de una clave maestra para poder almacenarlas y recuperarlas todas de forma determinista. ¿Qué billetera se usa para lograr esto?
+
+Respuesta: Billetera Secuencial Determinista
+
+*** Escenario 2
+
+Estoy creando un servidor web que vende widgets y quiero generar una dirección de transacción única para cada cliente habilitando un seguimiento de forma independiente. Quiero poder tomar una clave pública maestra y generar una secuencia de claves subpúblicas, cada una asociada con una transacción y colocarla en un servidor web público y asegurarme de que el servidor web no tenga claves privadas.
+
+Respuesta: Billetera Jerárquica Determinista
+
+*** Escenario 3
+
+Se está auditando una cadena de suministro de calzado. Los auditores reciben una clave pública para que puedan ver todas las transacciones del subárbol, pero no pueden desbloquearlo. ¿Qué billetera se usa para lograr esto?
+
+Respuesta: Billetera Jerárquica Determinista
+
+*** Escenario 4
+
+Un sitio web de redes sociales de blockchain utiliza claves privadas para proteger los datos personales de los usuarios. Utiliza billeteras para servicios de back-end que usan claves privadas que no se derivan de una semilla. ¿Qué billetera se usa para lograr esto?
+
+Respuesta: Billetera No Determinista
+
+A lo largo de esta sección, se analizo más de cerca las diferencias entre las billeteras deterministas y no deterministas. Luego, pasó por una variedad de escenarios para ayudar a determinar qué tipo de billetera es la más adecuada para una circunstancia determinada.
+
+Es importante tener presenta que la billetera es el primer paso para describir una pieza increíblemente importante para la seguridad de su identidad de blockchain: ¡las claves privadas!
+
 * TODO Llaves Privadas
 
 * TODO Obtengas su Propia Billetera
