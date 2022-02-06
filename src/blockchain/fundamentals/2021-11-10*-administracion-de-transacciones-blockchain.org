@@ -23,21 +23,28 @@ Así como un número de seguridad social, una cuenta bancaria o una licencia de 
 
 Por ejemplo, una billtera Bitcoin establece la identidad en la cadena de bloques para permitir transacciones dentro de la misma. Una billetera se compone de los siguientes tres elementos:
 
-- Una llave privada.
-- Una llave pública.
-- Una dirección de billetera.
+- Una llave privada: Un número secreto que permite gastar bitcoins desde su billetera.
+- Una llave pública: Un clave que se comparte de manera publica pero no se usa para gastar bitcoins.
+- Una dirección de billetera: Un identificador único para su billetera.
 
-La dirección de una billetera es un identificador único para su billetera. Esta dirección le permite al propietario de la billetera compartir con los otros usuarios de la red para enviar y recibir Bitcoin. Es por eso que en los detalles de una transacción uno de los items que conforman el bloque son las direcciones de las billeteras de las partes relevantes en la transacción. No obstante, es válido cuestrionarse si al exponer dicha información va a ser posible porder hacer un rastreo sobre quienes hacen parte de la transacción. La respuesta es que no se puedo y esto se debe a como la billetera se crea.
+La dirección de una billetera es un identificador único para su billetera. Esta dirección le permite al propietario de la billetera compartir con los otros usuarios de la red para enviar y recibir Bitcoin. Es por eso que en los detalles de una transacción uno de los items que conforman el bloque son las direcciones de las billeteras de las partes relevantes en la transacción. No obstante, es válido cuestrionarse si al exponer dicha información va a ser posible poder hacer un rastreo sobre quienes hacen parte de la transacción. La respuesta es que no se puedo y esto se debe a como la billetera se crea.
 
+En la creación de una billetera tiene protagonismo la llave privada y la llave pública. Las billeteras pueden tener una o más llaves privadas asociadas y no deben compartirse con nadie. Esta llave secreta se convierte en una llave pública y se puede compartir con cualquier persona con el fin de recibir bitcoins. Una llave pública se genera desde una llave privada a través de un algoritmo de seguridad. Es por eso que toda llave pública se enlaza a una llave privada. Su relación es llamativa ya que se puede compartir una llave pública sin comprometer la seguridad de la llave privada. Por otra parte, una llave privada puede hacer seguimiento sobre una llave pública. Por último, el algoritmo para generar la llave pública hace que no sea posible resolver la llave privada desde la llave pública. La siguiente imagen ilustra la relación entre una llave privada y una llave pública:
 
+#+CAPTION: Private and Public Keys Relationship
+[[../../images/blockchain/15-private-and-public-keys.png]]
 
-* TODO Billeteras
+Con este contexto, es tiempo de ahondar en el concepto de billeteras:
+
+* Billeteras
+
+La identidad en la cadena de bloques se logra con herramientas importantes como billeteras, direcciones y llaves. Además de que tener diferentes alternativas en la selección de las herramientas también es posible implementarlas en diferentes formas. Estas implementaciones se reflejan en diferentes tipos de billeteras.
 
 ** Tipos de Billeteras
 
-   - Billeteras no determinísticas
-   - Billeteras determinísticas
-   - Billeteras jerarquicas determinísticas
+   - *Billeteras no determinísticas:* También conocidas como billeteras aleatorias son billeteras en donde las llaves privadas se generan desde números aleatorios.
+   - *Billeteras determinísticas:* Son billeteras en donde las direcciones, las llaves privada y las llaves públicas se pueden rastrear hasta sus palabras originales
+   - *Billeteras jerarquicas determinísticas:* Un tipo avanzado de billetera determinista que contiene claves derivadas en una estructura de árbol.
 
 * TODO Llaves Privadas
 
