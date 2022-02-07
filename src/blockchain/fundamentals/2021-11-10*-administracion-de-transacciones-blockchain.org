@@ -100,8 +100,22 @@ Una vez entendido el concepto de llaves privadas se procede a generar una propia
 
 En esta sección, se repasaron los conceptos básicos de las claves privadas, por qué son seguras y cómo crear una. Después se compartieron instrucciones para crear una propia. Próximamente, se usará el conocimiento de billeteras y claves para establecer identidades propias de cadena de bloques usando una billetera bitcoin.
   
-* TODO Obtengas su Propia Billetera
-  
+* Obtenga su Propia Billetera
+
+Los tipos de billeteras y las claves privadas son interesantes, pero hasta ahora todo ha sido teoría. Es tiempo de conseguir una billetera propia para aterrizar esta teoría a la práctica.
+
+Conseguir una billetera y trabajar con ella por cuenta propia ayuda a ver lo que realmente está pasando con estos nuevos conceptos. ¡También te da la oportunidad de crear tu propia identidad blockchain!
+
+Hay muchas billeteras para elegir, y cualquiera de ellas puede tener sentido para usted según sus necesidades. Siéntase libre de elegir cualquier billetera que desee, pero investigue un poco antes de instalar una para usted.
+
+Una buena manera de comenzar es simplemente buscar en Google "carteras de bitcoin" y comenzar a buscar.
+
+La recomendación en esta publicación es la cartera de Electrum, citada previamente y las razones son la siguientes: Funciona en casi cualquier computadora. Es rápido y ligero. E incluye toda la funcionalidad que se necesita.
+
+Para usar electrum, deberá instalarlo en su computadora. Analicemos los detalles de cómo hacerlo.
+
+Para obtener más información sobre cómo comenzar con electrum, consulte el siguiente [[https://www.youtube.com/watch?v=WdVlH9N2oKU][enlace]]. Esta es una excelente descripción general de las características básicas de esta billetera.
+
 * TODO Restaurando la Identidad en Blockchain
 
 * TODO Señal de Transacción
