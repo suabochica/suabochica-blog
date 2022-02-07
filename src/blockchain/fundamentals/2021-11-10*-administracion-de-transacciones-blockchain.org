@@ -78,8 +78,28 @@ A lo largo de esta sección, se analizo más de cerca las diferencias entre las 
 
 Es importante tener presenta que la billetera es el primer paso para describir una pieza increíblemente importante para la seguridad de su identidad de blockchain: ¡las claves privadas!
 
-* TODO Llaves Privadas
+* Llaves Privadas
+Las carteras son geniales, pero es lo que hay dentro lo que cuenta. ¡Dentro de las carteras encontrarás llaves!
 
+En esta sección, se repasará el concepto de llaves y se averiguará para qué sirven. Esto ayuda a comprender cómo contribuyen a la seguridad de su identidad de blockchain. ¡A partir de ahí, la idea es que el lecto genere sus propias llaves privadas!
+
+Las llaves privadas son un número aleatorio de 256 bits entre 1 y 2^256 y pueden representarse en diferentes formatos (e.g. Hex, WIF, WIF-Compressed). Esto puede resultar confuso, pero recuerde que independientemente del formato siempre se trata del mismo número. El formato más convencional es el hexadecimal; 256 bits en hexadecimal son 32 bytes y usan 64 carácteres desde el rango de 0 a 9 y de la A hasta la F. En este punto se puede cuestionar cómo es posible que una llave privada sea completamente única? No obstante el rango de 1 a 2^256 es enorme y nos brinda una icreíble cantidad de posibilidades. Para aterrizar estas posibilidades se comparte el siguiente comparativo. En la tierra hay alrededor de 2^63 granos de arena. Esto no esta ni cerca de las posibles 2^256 llaves privadas que se pueden generar. Ante este número tan amplio, solo se necesita escoger uno.
+
+** Definiciones
+
+- *Llave privada:* Un número aleatorio de 256 bits entre 1 y 2^256.
+- *Entropía:* Un número aleatorio de 256 bits entre 1 y 2^256.
+
+** Genere su Propia Llave Privada
+
+Una vez entendido el concepto de llaves privadas se procede a generar una propia. Estos son los métodos para crear una clave privada:
+
+- El vieja escuela, que consiste en tomar papel, lapiz y un par de dados y seguir las siguientes [[https://bitcointalk.org/index.php?topic=297077.msg3197393#msg3197393][instrucciones]].
+- El generador de billeteras fuera de lína. Siga estas [[https://github.com/bigmob/cryptosteel-tutorial/wiki/How-to-generate-private-key-offline-with-Bitaddress][instrucciones]] parausar un generador de billeteras como BitAddress.
+- Usar un software de billeteras como [[https://electrum.org/#home][Electrum]].
+
+En esta sección, se repasaron los conceptos básicos de las claves privadas, por qué son seguras y cómo crear una. Después se compartieron instrucciones para crear una propia. Próximamente, se usará el conocimiento de billeteras y claves para establecer identidades propias de cadena de bloques usando una billetera bitcoin.
+  
 * TODO Obtengas su Propia Billetera
   
 * TODO Restaurando la Identidad en Blockchain
