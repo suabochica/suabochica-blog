@@ -116,7 +116,65 @@ Para usar electrum, deberá instalarlo en su computadora. Analicemos los detalle
 
 Para obtener más información sobre cómo comenzar con electrum, consulte el siguiente [[https://www.youtube.com/watch?v=WdVlH9N2oKU][enlace]]. Esta es una excelente descripción general de las características básicas de esta billetera.
 
-* TODO Restaurando la Identidad en Blockchain
+* PROGRESS Restaurando la Identidad en Blockchain
+
+¡Toda persona olvida las contraseñas de vez en cuando, y nadie es inmune a las historias de terror de contraseñas!
+
+Hay momentos en los que puede terminar necesitando restaurar la identidad de su billetera.
+
+Esto podría suceder por algunas razones
+
+- Es posible que olvide su contraseña.
+- Podrías perder el dispositivo de verificación en dos pasos.
+- El servicio de billetera podría incluso dejar de estar disponible.
+- También es posible que pierdas tu computadora o te la roben.
+
+Ojalá ninguna de estas cosas suceda, ¡pero es importante estar preparado por si acaso!
+
+Para ayudarlo a prepararse para situaciones como esta, es útil saber cómo restaurar su billetera bitcoin.
+
+** Formas Para Recuperar Una Cartera
+
+Si alguna vez necesita restaurar su billetera, hay 2 formas de hacerlo. Puede hacerlo con las palabras de la billetera que guardó o con las claves privadas de cuando creó su billetera por primera vez.
+
+*** Usando Una Semilla
+
+Una forma de restaurar una billetera es usando una semilla. La 'semilla' son las 12 palabras que le dieron al crear su billetera. ¡Si puede recordar estas palabras, puede usarlas para restaurar su billetera!
+
+El beneficio de restaurar su identidad usando la semilla es que puede ser mucho más simple que usar la clave privada. Es más fácil recordar una lista de palabras que una serie aleatoria de números y letras.
+
+La parte más difícil de todo esto es almacenar o recordar esta información de manera segura para cuando la necesite. Cualquier otra persona que descubra la lista de palabras puede acceder a la billetera y a los fondos vinculados a ella.
+
+¡Así que tenga mucho cuidado!
+
+*** Usando Una Clave Privada
+
+Otra forma de restaurar una billetera es con una clave privada.
+
+Al restaurar una billetera usando una clave privada, hay 2 formas de hacerlo. Puede importar o barrer esta clave, y es útil comprender la diferencia.
+
+Al importar una clave privada, tendrá una billetera de origen y una billetera de destino. Es probable que la billetera de destino ya esté llena con un grupo de claves privadas. Para importar la clave, mueva la clave privada de la billetera de origen a la billetera de destino.
+
+Esto da como resultado que obtenga acceso tanto a la billetera de origen como a la billetera de destino.
+
+La desventaja de importar es que la clave privada de la billetera de origen está esencialmente comprometida desde que se compartió. Si alguien obtiene acceso a la clave privada de la billetera de origen, puede acceder a esos bitcoins.
+
+Vea más sobre cómo importar una clave privada en [[https://bitcoinelectrum.com/importing-your-private-keys-into-electrum/][BitcoinElectrum.com]].
+
+Cuando barre una clave privada, agrega una clave privada de una billetera de origen a la billetera de destino. Todos los bitcoins que pertenecen a esa clave privada se transfieren de la billetera de origen a la billetera de destino.
+
+Esto es un poco diferente a importar porque elimina completamente los fondos de la billetera original. Ahora solo usará esta nueva billetera para realizar transacciones futuras.
+
+Vea más sobre cómo barrer una clave privada en [[https://bitcoinelectrum.com/sweeping-your-private-keys-into-electrum/][BitcoinElectrum.com]].
+
+*** ¿Cuál Deberías Elegir? 
+
+¿Por qué importaría o barrería una clave privada? Barra una billetera si le preocupa la seguridad de la billetera. Esto podría suceder en el caso de que crea que alguien podría tener acceso a su clave privada. El barrido limpia completamente la billetera para que nadie tenga acceso a sus bitcoins.
+
+Si está seguro de que nadie ha tenido acceso a su clave privada, y de que nadie lo hará nunca, puede importar la clave en su lugar. Esto es útil en los casos en que necesita que los fondos estén disponibles en varias billeteras.
+
+En caso de duda, quédese con el barrido. Es más seguro de esta manera y evita algunos problemas asociados con la importación de una billetera.
+
 
 * TODO Señal de Transacción
 
