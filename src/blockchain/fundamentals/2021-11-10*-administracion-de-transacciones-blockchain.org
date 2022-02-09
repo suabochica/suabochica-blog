@@ -116,7 +116,7 @@ Para usar electrum, deberá instalarlo en su computadora. Analicemos los detalle
 
 Para obtener más información sobre cómo comenzar con electrum, consulte el siguiente [[https://www.youtube.com/watch?v=WdVlH9N2oKU][enlace]]. Esta es una excelente descripción general de las características básicas de esta billetera.
 
-* PROGRESS Restaurando la Identidad en Blockchain
+* Restaurando la Identidad en Blockchain
 
 ¡Toda persona olvida las contraseñas de vez en cuando, y nadie es inmune a las historias de terror de contraseñas!
 
@@ -176,7 +176,20 @@ Si está seguro de que nadie ha tenido acceso a su clave privada, y de que nadie
 En caso de duda, quédese con el barrido. Es más seguro de esta manera y evita algunos problemas asociados con la importación de una billetera.
 
 
-* TODO Señal de Transacción
+* PROGRESS Firma de una Transacción
+Al comenzar con una billetera, eventualmente comenzará a realizar algunas transacciones por sí mismo. En esta sección, se retrocedera un poco a la teoría para explorar algunas ideas más sobre lo que hace que esas transacciones sean seguras. El propósito es que esto le ayude a tener la confianza para comenzar a trabajar con estas herramientas por cuenta propia.
+
+Después de crear una transacción, hay algunas cosas a considerar.
+
+- ¿Cómo se sabe que la transacción es válida?
+- ¿Quién es el dueño de la transacción?
+
+Las transacciones se validan y la propiedad se asigna mediante lo que se conoce como /firma digital/. Estas firmas son una pieza importante subyacente a la seguridad de la cadena de bloques. Es tiempo de analizar cómo funciona la firma de una transacción.
+
+Una firma establece una prueba de propiedad para cada transacción en la cadena de bloques. Las transacciones empiezan con transmiciones a la red cuando una billetera firma  la transacción. Al igual que en papel y lapiz, Bitcoin require de una firma del emisor antes de que la transacción se envie a la red. Ahora bien, cómo esta prueba de propiedad ayuda a establecer seguridad en la cadena de bloques? Pues a diferencia de un sistema de correos electrónicos, en la cadena de bloques la firma es creada usando una dirección de cartera que en terminos familiares es equivalente a una cuenta bancaria. Esa dirección es única para su propietario, y esta enlazada a una llave privada. En la cadena de bloques es necesario usar la llave privada para ejecutar una transacción.
+
+Una vez la transacción es firmada va desde el emisor hasta el receptor como una mensaje de transacción. En Bitcoin este mensaje es propagado a la cadena como una _Unspent Transaction Output_ conocida como UTXO. Solo los UTXO pueden ser usado como entradas para aceptar una transacción.
+
 
 * TODO Ciclo de Vida de una Transacción en Blockchain
 
