@@ -176,8 +176,8 @@ Si está seguro de que nadie ha tenido acceso a su clave privada, y de que nadie
 En caso de duda, quédese con el barrido. Es más seguro de esta manera y evita algunos problemas asociados con la importación de una billetera.
 
 
-* PROGRESS Firma de una Transacción
-Al comenzar con una billetera, eventualmente comenzará a realizar algunas transacciones por sí mismo. En esta sección, se retrocedera un poco a la teoría para explorar algunas ideas más sobre lo que hace que esas transacciones sean seguras. El propósito es que esto le ayude a tener la confianza para comenzar a trabajar con estas herramientas por cuenta propia.
+* Firma de una Transacción
+Al tener una billetera, eventualmente comenzará a realizar algunas transacciones por sí mismo. En esta sección, se retrocedera un poco a la teoría para explorar algunas ideas más sobre lo que hace que esas transacciones sean seguras. El propósito es que esto le ayude a tener la confianza para comenzar a trabajar con estas herramientas por cuenta propia.
 
 Después de crear una transacción, hay algunas cosas a considerar.
 
@@ -186,10 +186,20 @@ Después de crear una transacción, hay algunas cosas a considerar.
 
 Las transacciones se validan y la propiedad se asigna mediante lo que se conoce como /firma digital/. Estas firmas son una pieza importante subyacente a la seguridad de la cadena de bloques. Es tiempo de analizar cómo funciona la firma de una transacción.
 
-Una firma establece una prueba de propiedad para cada transacción en la cadena de bloques. Las transacciones empiezan con transmiciones a la red cuando una billetera firma  la transacción. Al igual que en papel y lapiz, Bitcoin require de una firma del emisor antes de que la transacción se envie a la red. Ahora bien, cómo esta prueba de propiedad ayuda a establecer seguridad en la cadena de bloques? Pues a diferencia de un sistema de correos electrónicos, en la cadena de bloques la firma es creada usando una dirección de cartera que en terminos familiares es equivalente a una cuenta bancaria. Esa dirección es única para su propietario, y esta enlazada a una llave privada. En la cadena de bloques es necesario usar la llave privada para ejecutar una transacción.
+Una firma establece una prueba de propiedad para cada transacción en la cadena de bloques. Las transacciones empiezan con transmiciones a la red cuando una billetera firma la transacción. Al igual que en papel y lapiz, Bitcoin require de una firma del emisor antes de que la transacción se envie a la red. Ahora bien, cómo esta prueba de propiedad ayuda a establecer seguridad en la cadena de bloques? Pues a diferencia de un sistema de correos electrónicos, en la cadena de bloques la firma es creada usando una dirección de cartera que en terminos familiares es equivalente a una cuenta bancaria. Esa dirección es única para su propietario, y esta enlazada a una llave privada. En la cadena de bloques es necesario usar la llave privada para ejecutar una transacción.
 
-Una vez la transacción es firmada va desde el emisor hasta el receptor como una mensaje de transacción. En Bitcoin este mensaje es propagado a la cadena como una _Unspent Transaction Output_ conocida como UTXO. Solo los UTXO pueden ser usado como entradas para aceptar una transacción.
+Una vez la transacción es firmada va desde el emisor hasta el receptor como una mensaje de transacción. En Bitcoin este mensaje es propagado a la cadena como una _Unspent Transaction Output_ conocido como UTXO. Solo los UTXO pueden ser usados como entradas para aceptar una transacción. Cada uno de estos UTXO contienen condiciones sobre una prueba de propiedad basado en la llave privada para poder hacer efectiva la transacción de los fondos.
+
+Como se comento previamente, las transacciones se realizan a partir de múltiples entradas y salidas. Al comprender las entradas, las salidas, las tarifas de los mineros y la cantidad enviada, podemos determinar el saldo de las billeteras de los usuarios antes y después de realizar las transacciones.
+
+Para recapitular, esta es la secuencia de pasos para generar una transacción en una cadena de bloques:
+
+1. Demostrar la propiedad de la dirección firmando con clave privada.
+2. Ciclo de vida de la transacción del remitente al receptor.
+3. Salida de transacción no gastada UXTO.
+
+Con los aspectos básicos de la firma de una transacción se abre la oportunidad de explorar cómo firmar y verificar un mensaje (el mismo concepto se aplica para firmar una transacción) usando las bibliotecas Bitcoin Javascript [[https://github.com/bitcoinjs/bitcoinjs-lib][bitcoinjs-lib]] y [[https://github.com/bitpay/bitcore-message][bitcore-message]].
 
 
-* TODO Ciclo de Vida de una Transacción en Blockchain
+* PROGRESS Ciclo de Vida de una Transacción en Blockchain
 
