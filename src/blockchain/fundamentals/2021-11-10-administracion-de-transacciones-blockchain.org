@@ -175,7 +175,6 @@ Si está seguro de que nadie ha tenido acceso a su clave privada, y de que nadie
 
 En caso de duda, quédese con el barrido. Es más seguro de esta manera y evita algunos problemas asociados con la importación de una billetera.
 
-
 * Firma de una Transacción
 Al tener una billetera, eventualmente comenzará a realizar algunas transacciones por sí mismo. En esta sección, se retrocedera un poco a la teoría para explorar algunas ideas más sobre lo que hace que esas transacciones sean seguras. El propósito es que esto le ayude a tener la confianza para comenzar a trabajar con estas herramientas por cuenta propia.
 
@@ -200,6 +199,22 @@ Para recapitular, esta es la secuencia de pasos para generar una transacción en
 
 Con los aspectos básicos de la firma de una transacción se abre la oportunidad de explorar cómo firmar y verificar un mensaje (el mismo concepto se aplica para firmar una transacción) usando las bibliotecas Bitcoin Javascript [[https://github.com/bitcoinjs/bitcoinjs-lib][bitcoinjs-lib]] y [[https://github.com/bitpay/bitcore-message][bitcore-message]].
 
+* Ciclo de Vida de una Transacción en Blockchain
 
-* PROGRESS Ciclo de Vida de una Transacción en Blockchain
+Se ha cubierto una gran cantidad de información y es momento de sintetizar en un ejemplo el ciclo de vida de una transacción para poder llegar a la cadena de bloques. El ejemplo empiezan con dos usuario Bitcoin, Joe y Brandy. Joe queire enviar 1 BTC a brandy y a continuación se describe el paso a paso de como lograr esta solicitud:
+
+1. Joe obtiene la dirección de billetara de Brandy.
+2. Con esta información, Joe crea una nueva transacción de 1 BTC desde su billtera e incluye tarifa de transacción de0.003 BTC.
+3. Verifica su información y envía la transacción.
+4. La billetera de Joe inicia el algoritmo para firmar la transacción con su llave privada.
+5. La a transacción ahora se transmite al grupo de memoria dentro de la red
+6. La tranascción eventualmente es aceptada por los mineros.
+7. Los mineros agrupas la transacción en un bloque.
+8. Se ejecuta la prueba de trabajo.
+9. Se asigna un valor hash al bloque.
+10. El bloque se coloca en la cadena de bloques.
+11. Cuando el bloque obtiene las confirmaciones se acepta como una transacción válida en la red.
+12. Una vez la transacción es aceptada, Brandy obtiene el 1 BTC.
+
+Se se entiende todo este flujo, esta yendo por el gran camino para entender el blockchain. En este ejemplo obviamente se excluyeron algunos detalles pero sirve como una historia rápida para tener un panorama general de como se comoprtan las transacciones en el blockchain.
 
