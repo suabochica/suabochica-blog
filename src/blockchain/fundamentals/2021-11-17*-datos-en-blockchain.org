@@ -8,6 +8,15 @@
 #+HUGO_WEIGHT: auto
 #+HUGO_AUTO_SET_LASTMOD: t
 
+En esta publicación se usará Bitcoin Core para explorar las limitaciones y las mejores prácticas al incorporar datos en transacciones de blockchain.
+
+Los propósitos puntuales de esta sección son:
+- Reconocer la estructura de datos de bloques y transacciones.
+- Reconocer el propósito de los códigos de operación de Bitcoin Script que se usan comúnmente en las partes de entrada y salida de un proceso de transacción.
+- Explore las limitaciones y las mejores prácticas para incorporar datos en transacciones de blockchain. 
+
+¡Usar estas habilidades lo ayudará con la con la construcción de los componentes de su propia cadena de bloques simple y privada desde cero!
+
 * TODO Modelos de datos en Blockchain
 
 * TODO Transacciones
