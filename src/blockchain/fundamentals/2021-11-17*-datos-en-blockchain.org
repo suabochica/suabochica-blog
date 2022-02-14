@@ -33,9 +33,20 @@ El encabezado de bloque almacena la siguiente información:
 
 Por otra parte, el cuerpo del bloque se encarga de las transacciones, incluyendo las entradas y las salidas de las mismas. en la siguiente sección se expandirá el modelo de datos de las transacciones haciendo enfásis en la entradas y las salidas ya que su relación permite el entendimiento de la creación de transacciones propias. No importa que blockchain este trabajando, recuerde que las cadenas de bloques son sistemas transaccionales.
 
-* TODO Transacciones
+* Transacciones
 
 ** Entrada y Salidas
+
+Las transacciones codifican la transferencia de valor entre los participantes en el sistema. Más detalladamente, una transacción es una estructura de datos que codifica una transferencia de valor desde una fuente de fondos llamada "entrada" a un destino llamado "salida".
+
+Las entradas en una transacción son solo las salidas no gastadas de otra transacción. Todas las entradas hacen referencia a una salida. Recuerde que las salidas no utilizadas se referencian como UTXO por sus sigral en inglés. La siguiente imagen nos ilustra la relación entre las entradas y las salidas de un par de transacciones:
+
+#+CAPTION: Private and Public Keys Relationship
+[[../../images/blockchain/17-transactions-inputs-outputs.png]]
+
+Conceptualice la flecha como un puntero de las entradas que hacen referencia a las salidas de las que provienen. Esto es similar a los punteros en una lista enlazada. Descubrirá que esta es una notación de flecha estándar, las entradas apuntan hacia sus salidas.
+
+Tiempo de revisar el modelos de datos de las transacciones.
 
 ** Modelo de Datos en las Transacciones
 
