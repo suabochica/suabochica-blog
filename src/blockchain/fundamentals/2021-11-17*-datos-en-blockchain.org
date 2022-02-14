@@ -17,14 +17,21 @@ Los propósitos puntuales de esta sección son:
 
 ¡Usar estas habilidades lo ayudará con la con la construcción de los componentes de su propia cadena de bloques simple y privada desde cero!
 
-* PROGRESS Modelos de datos en Blockchain
+* Modelos de datos en Blockchain
 
-Encabezado de bloque
+Para entender como la información es almacenada en cualquier blockchain, es necesario aclarar los modelos de datos del bloque y la transacción. Anteriormente se menciono que el modelo de dato de un bloque se comopone de:
+
+- Un encabezado
+- Un cuerpo
+
+El encabezado de bloque almacena la siguiente información:
 
 - *Hash del bloque anterior:* el valor hash del bloque que viene directamente antes de un bloque determinado en la cadena. Esto es lo que une los bloques en el blockchain
 - *Hora:* la hora en que se creó el bloque también se mantiene en el encabezado.
 - *Raíz de Merkle:* la raíz de Merkle es un hash que representa cada transacción incluida dentro del bloque. Para obtener la raíz de merkle, los pares de transacciones dentro de un bloque se mezclan repetidamente. Cada par da como resultado un solo hash. Luego, el hash de dos pares de transacciones se vuelve a mezclar con otros dos pares hash, una y otra vez hasta que se llega a un solo valor hash, el cuál sería la raíz del árbol. Con ese valor hash final, conocido como raíz merkle, se pueden buscar las transacciones originales o los valores hash que las crearon incluyendo los primeros bloques del blockchain.
 - *Nonce:* un nonce (significa "número que solo se usa una vez") es un número que se usa en la minería de bitcoin. Los mineros de la cadena de bloques están resolviendo el nonce que, cuando se agrega a un bloque con hash, y esos 2 valores se repiten, resolverán el rompecabezas de la minería.
+
+Por otra parte, el cuerpo del bloque se encarga de las transacciones, incluyendo las entradas y las salidas de las mismas. en la siguiente sección se expandirá el modelo de datos de las transacciones haciendo enfásis en la entradas y las salidas ya que su relación permite el entendimiento de la creación de transacciones propias. No importa que blockchain este trabajando, recuerde que las cadenas de bloques son sistemas transaccionales.
 
 * TODO Transacciones
 
