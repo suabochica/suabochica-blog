@@ -69,25 +69,65 @@ Se aclara que una transacción en el blockchain de Bitcoin es almacenado en form
 SHA256(SHA256(01000…)) = b138360800cdc72248c3ca8dfd06de85913d1aac7f41b4fa54eb1f5a4a379081
 #+end_src
 
-Para explorar los contenidos de una transacción de forma legible se puede utilizar [[https://live.blockcypher.com/btc/tx/b138360800cdc72248c3ca8dfd06de85913d1aac7f41b4fa54eb1f5a4a379081/][BlockCypher]].
+Para explorar los contenidos de una transacción de forma legible se puede utilizar [[https://live.blockcypher.com/btc/tx/b138360800cdc72248c3ca8dfd06de85913d1aac7f41b4fa54eb1f5a4a379081/][BlockCypher]]. Ahora bien, es tiempo de desglozar la transacción en bruto:
 
-* TODO Scripts de Bitcoin
+#+CAPTION: Rasw Transaction Breakdown
+[[../../images/blockchain/19-bitcoin-scripts.png]]
 
-  - *Versión:*
-  - *Conteo de entradas:*
-  - *Hash de la salida previa:*
-  - *Índice de la salida previa:*
-  - *Tamaño del script de desbloqueo:*
-  - *Script de desbloqueo:*
-  - *Conteo de salidas:*
-  - *Cantidad:*
-  - *Tamaño del script de bloqueo:*
-  - *Script de bloqueo:*
-  - *Tiempo de bloqueo:*
+
+- *Versión:* todas las transacciones incluyen información sobre el número de versión de Bitcoin para que sepamos qué reglas sigue esta transacción.
+
+- *Recuento de entradas:* cuántas entradas se usaron para esta transacción
+
+*** Datos almancenados en la información de entrada
+- *Hash de salida anterior:* todas las entradas hacen referencia a una salida (UTXO). Esto apunta de nuevo a la transacción que contiene la UTXO que se gastará en esta entrada. El valor hash de este UTXO se guarda aquí en orden inverso.
+- *Índice de salida anterior:* la transacción puede tener más de un UTXO a los que se hace referencia por su número de índice. El primer índice es 0.
+- *Tamaño del script de desbloqueo:* este es el tamaño del script de desbloqueo en bytes.- *Script de desbloqueo:* este es el hash del Script de desbloqueo que cumple las condiciones del Script de bloqueo de UTXO.
+- *Número de secuencia:* esta es una función obsoleta de bitcoin, actualmente configurada en ffffffff de forma predeterminada.
+
+*Recuento de salidas:* que nos dice cuántas salidas se produjeron a partir de esta transacción.
+
+*** Datos almancenados en la información de salida
+- *Cantidad:* la cantidad de Bitcoin generada en Satoshis (la unidad de bitcoin más pequeña). 10^8 Satoshis = 1 Bitcoin.
+- *Tamaño del script de bloqueo:* este es el tamaño del script de bloqueo en bytes.
+- *Script de bloqueo:* este es el hash del Script de bloqueo que especifica las condiciones que se deben cumplir para gastar esta salida.
+
+*Tiempo de bloqueo:* el campo de tiempo de bloqueo indica la hora más temprana o el bloque más temprano que se puede agregar una transacción a la cadena de bloques. Si el tiempo de bloqueo no es cero y es inferior a 500 millones, se interpreta como una altura de bloque y los mineros deben esperar hasta que se alcance esa altura de bloque antes de intentar agregarlo a un bloque. Si el tiempo de bloqueo es superior a 500 millones, se lee como una marca de tiempo UNIX, lo que significa la cantidad de segundos desde la fecha del 1 de enero de 1970. Por lo general, es 0, lo que significa que se debe confirmar lo antes posible.
 
 ** Opcodes 
 
+Los códigos de operación, abreviados como opcodes, son parte del scripting de Bitcoin y cuenta con apróximadamente 80 instrucciones. Hay que tener presente que el scripting de Bitcoin es un lenguaje basado en pila y los opcodes habilitan la interacción con los datos dentro de la pila. Las instrucciones más populares en un manejo de pilas son ~PUSH~ y ~POP~ para empujar o retirar parámetros de la pila respectivamente. Todos estos códigos empiezan con el prefijo ~OP_~ y la acción a ejecutar. La lista de opcodes para Bitcoin la puede consultar [[https://en.bitcoin.it/wiki/Script][aquí]]. Ahora bien, para familiarizarse con la ejecución de los opcodes se explica el siguiente script:
+
+#+begin_src
+  2 6 OP_ADD 8 OP_EQUAL
+#+end_src
+
+El resultado de ese script es el valor booleano TRUE, y a continuación se comparte el paso a paso de como se ejecuta el script. Es importante señalar que los scripts se ejecutan de izquierda a derecha:
+
+1. ~PUSH 2~ empuja el 2 en la pila [2]
+2. ~PUSH 6~ empuja el 6 en la pila [2 6]
+3. ~OP_ADD~ retira el 2 y el 6 de la pila; los suma para obtener el 8 y lo empuja a la pila [8]
+4. ~PUSH 8~ empuja el 8 en la pila [8 8]
+5. ~OP_EQUAL 8~ retira ambos 8, los compara para la evaluación y empuja el TRUE a la pila [TRUE].
+
+Estos scripts son usados para bloquear las salidas de las transacciones. La parte del ~6 OP_ADD 8 OP_EQUAL~ se conoce cmo el /locking script/ mientras que el ~2~ se conoce como el /unlocking script/. Si la ejecución del script es TRUE significa que la transacción es válida y el UTXO puede ser gastado por cualquier minero que identifica que el número ~2~ desbloquea el script. Este ejemplo es para familiarizarse con el proceso, ya que en la aplicación real de Bitcoin las llaves pública se incluyen como parte del script, tenienfo algo como:
+
+#+begin_src
+  <sig> <pubKey> OP_DUP OP_HASH160 <pubKeyHash> OP_EQUALVERIFY OP_CHECKSIG
+#+end_src
+
+En donde ~<sig> <pubKey>~ es el unlocking script y el ~OP_DUP OP_HASH160 <pubKeyHash> OP_EQUALVERIFY OP_CHECKSIG~ es el locking script.
+
 ** Atributos de un Script
+
+Los dos atributos de un script son:
+
+- No aplican la completitud de Turing
+- Verificación sin estado
+
+Cuando se habla de que un script no cumple con la cumplitud the Turing significa que no maneja bucles o estructuras de control complejas. Por otra parte es completamente determinístico, es decir, se sabe cuando y como el programa va a terminar. Así se remueve el miedo a que una ejecución de un script termine en un bucle infinito o rompa le red de la cadena de bloques. Por último al tener un lenguaje limitado se previene a que la validación de transacciones sea objetivo de ataques ya que lo hace un sistema simple y seguro.
+
+En cuanto a la verificación sin estado, el script debe contar con toda la información necesaria para ser ejecutado y ningún estado debe guardarse antes o después de que el script se ejecute. Así se tiene garantías de que el mismo script puede ser utilizado en diferentes sistemas.
 
 * TODO Ciclo de Vida de una Transacción en Blockchain
 
