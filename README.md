@@ -1,4 +1,7 @@
-# Suabochica Blog
+# 📝 Suabochica Blog
+
+## 🧰 Tech Stack
+- [hugo](https://gohugo.io/getting-started/quick-start/)
 
 ## TODO
 1. Add favicon
@@ -7,6 +10,7 @@
 4. ~~Customize styles~~ changes applied form: suabochica-blog/themes/m10c/resources/_gen/assets/scss/css/main.scss_e86386c8bae1cd02295de71a1be078d6.content
 5. Check how to compile theme changes
 
+## 🚀 Build
 Command to run the hugo server
 
 ```
