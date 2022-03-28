@@ -1,6 +1,6 @@
 # 📝 Suabochica Blog
 
-## 🧰 Tech Stack
+## 🧰  Tech Stack
 - [hugo](https://gohugo.io/getting-started/quick-start/)
 
 ## TODO
@@ -23,7 +23,7 @@ Command to build the page
 hugo
 ```
 
-## Folder structure
+## :file_folder:  Folder structure
 
 ```
 .
@@ -69,7 +69,7 @@ From these folder structure, below I list the relevant ones:
 - `src/`: folder with in progress posts. They are written in ~.org~ and should be exported to markdown
 - `themes/m10c`: folder with in progress posts. They are written in ~.org~ and should be exported to markdown
 
-## Adding tags
+## :bookmark: Adding tags
 To add tags to the posts, at the begining of each file we have to set the ~tags~ property with an array of the relevant tags. Below it I share an example.
 
 ``` markdown
