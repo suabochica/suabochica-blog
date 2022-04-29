@@ -1,0 +1,19 @@
+#+TITLE: Por qué Usar Docker Como Desarrollador?
+#+DESCRIPTION: Serie que recopila una aprendizaje sobre blockchain
+#+AUTHOR: Sergio Benítez
+#+DATE:<2022-02-02 mié> 
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+* TODO Qué es Docker?
+
+* TODO Beneficios de Docker para desarrolladores
+
+* TODO Herramientas de Docker
+
+* TODO Docker en acción
+
+* TODO Recapitulación 
