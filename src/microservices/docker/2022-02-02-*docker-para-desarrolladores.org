@@ -1,5 +1,5 @@
 #+TITLE: Por qué Usar Docker Como Desarrollador?
-#+DESCRIPTION: Serie que recopila una aprendizaje sobre blockchain
+#+DESCRIPTION: Docker for Web Developers
 #+AUTHOR: Sergio Benítez
 #+DATE:<2022-02-02 mié> 
 #+STARTUP: fold
@@ -7,6 +7,11 @@
 #+HUGO_SECTION: /post
 #+HUGO_WEIGHT: auto
 #+HUGO_AUTO_SET_LASTMOD: t
+
+Docker es una plataforma de software que le permite crear, probar e implementar aplicaciones rápidamente.
+
+Docker empaqueta software en unidades estandarizadas llamadas /contenedores/ que incluyen todo lo necesario para que el software se ejecute, incluidas bibliotecas, herramientas de sistema, código y tiempo de ejecución.
+
 
 * TODO Qué es Docker?
 
