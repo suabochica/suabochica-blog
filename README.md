@@ -1,31 +1,34 @@
 # 📝 Suabochica Blog
 
 ## 🧰  Tech Stack
+
 - [hugo](https://gohugo.io/getting-started/quick-start/)
 
 ## TODO
-1. Add favicon
+
+1. ~~Add favicon~~
 2. ~~Add tags~~
-3. Organize images
+3. ~~Organize images~~
 4. ~~Customize styles~~ changes applied form: suabochica-blog/themes/m10c/resources/_gen/assets/scss/css/main.scss_e86386c8bae1cd02295de71a1be078d6.content
 5. Check how to compile theme changes
 
 ## 🚀 Build
+
 Command to run the hugo server
 
-```
+```sh
 hugo server
 ```
 
 Command to build the page
 
-```
+```sh
 hugo
 ```
 
 ## :file_folder:  Folder structure
 
-```
+```txt
 .
 ├── content
 │   ├── images
@@ -70,7 +73,8 @@ From these folder structure, below I list the relevant ones:
 - `themes/m10c`: folder with in progress posts. They are written in ~.org~ and should be exported to markdown
 
 ## :bookmark: Adding tags
-To add tags to the posts, at the begining of each file we have to set the ~tags~ property with an array of the relevant tags. Below it I share an example.
+
+To add tags to the posts, at the beginning of each file we have to set the ~tags~ property with an array of the relevant tags. Below it I share an example.
 
 ``` markdown
 +++
