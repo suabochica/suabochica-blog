@@ -13,7 +13,9 @@ Docker es una plataforma de software que le permite crear, probar e implementar 
 Docker empaqueta software en unidades estandarizadas llamadas /contenedores/ que incluyen todo lo necesario para que el software se ejecute, incluidas bibliotecas, herramientas de sistema, código y tiempo de ejecución.
 
 
-* TODO Qué es Docker?
+* INPROGRESS  Qué es Docker?
+
+Docker es una tecnología de código abierto que facilita la creación, implementación y ejecución de aplicaciones utilizando contenedores. Los contenedores son paquetes ligeros, independientes y ejecutables que contienen todo lo necesario para ejecutar una aplicación, incluyendo código, bibliotecas y herramientas del sistema. Utilizando Docker, puedes crear y administrar fácilmente múltiples contenedores en una sola máquina, lo que lo convierte en una opción popular para desarrolladores y administradores de sistemas.
 
 * TODO Beneficios de Docker para desarrolladores
 
