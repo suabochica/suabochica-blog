@@ -13,11 +13,25 @@ Docker es una plataforma de software que le permite crear, probar e implementar 
 Docker empaqueta software en unidades estandarizadas llamadas /contenedores/ que incluyen todo lo necesario para que el software se ejecute, incluidas bibliotecas, herramientas de sistema, código y tiempo de ejecución.
 
 
-* INPROGRESS  Qué es Docker?
+* Qué es Docker?
 
 Docker es una tecnología de código abierto que facilita la creación, implementación y ejecución de aplicaciones utilizando contenedores. Los contenedores son paquetes ligeros, independientes y ejecutables que contienen todo lo necesario para ejecutar una aplicación, incluyendo código, bibliotecas y herramientas del sistema. Utilizando Docker, puedes crear y administrar fácilmente múltiples contenedores en una sola máquina, lo que lo convierte en una opción popular para desarrolladores y administradores de sistemas.
 
-* TODO Beneficios de Docker para desarrolladores
+* Beneficios de Docker para desarrolladores
+
+Uno de los principales beneficios de Docker es su portabilidad. Con Docker, puedes mover fácilmente contenedores entre diferentes entornos, ya sea desde tu máquina local a un servidor basado en la nube o de un proveedor de la nube a otro. Esto hace que sea fácil desarrollar y probar aplicaciones en un entorno local antes de moverlas a producción.
+
+Otro beneficio de Docker es su escalabilidad. Con Docker, puedes crear rápidamente y fácilmente múltiples contenedores para ejecutar diferentes partes de tu aplicación, lo que te permite escalar hacia arriba o hacia abajo según la demanda. Esto hace que sea fácil manejar picos repentinos de tráfico o escalar hacia abajo durante períodos de uso bajo, lo que puede ayudar a ahorrar en costos de infraestructura.
+
+Finalmente, Docker es fácil de usar. Con su interfaz de línea de comandos intuitiva y su extensa documentación, puedes empezar a usar Docker rápidamente, incluso si tienes poca o ninguna experiencia con la tecnología de contenedores.
+
+* Cómo empezar con Docker
+
+Para empezar con Docker, deberás descargar e instalar Docker en tu máquina. Una vez que hayas hecho eso, puedes empezar a crear y gestionar contenedores utilizando la CLI de Docker. Docker también proporciona una interfaz gráfica de usuario llamada Docker Desktop, que facilita la gestión de contenedores e imágenes.
+
+Para crear un nuevo contenedor, deberás empezar con una imagen de Docker, que es un paquete preconfigurado que contiene todos los archivos y dependencias necesarios para ejecutar una aplicación o servicio específico. Puedes crear tus propias imágenes de Docker o utilizar imágenes que están disponibles en Docker Hub, que es un repositorio de imágenes de Docker públicamente disponibles.
+
+Una vez que hayas creado un contenedor, puedes iniciarlo utilizando la CLI de Docker o Docker Desktop. También puedes detener, reiniciar y eliminar contenedores según sea necesario. Docker también proporciona una variedad de herramientas y servicios, como Docker Swarm y Kubernetes, que make it easy to manage and orchestrate multiple containers across multiple machines.
 
 * TODO Herramientas de Docker
 
