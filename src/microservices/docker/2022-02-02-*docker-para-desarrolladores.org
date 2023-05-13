@@ -33,6 +33,29 @@ Para crear un nuevo contenedor, deberás empezar con una imagen de Docker, que e
 
 Una vez que hayas creado un contenedor, puedes iniciarlo utilizando la CLI de Docker o Docker Desktop. También puedes detener, reiniciar y eliminar contenedores según sea necesario. Docker también proporciona una variedad de herramientas y servicios, como Docker Swarm y Kubernetes, que make it easy to manage and orchestrate multiple containers across multiple machines.
 
+* Mejores prácticas con Docker
+Si bien Docker puede ser una excelente herramienta para administrar aplicaciones, es importante seguir algunas mejores prácticas para asegurarse de que sus contenedores sean seguros y estables.
+
+** Uso de imágenes oficiales
+
+Al crear imágenes de Docker, es importante utilizar imágenes oficiales siempre que sea posible. Las imágenes oficiales son creadas y mantenidas por Docker, y se actualizan regularmente para garantizar que sean seguras y estables. El uso de imágenes oficiales puede ayudar a asegurar que sus contenedores se ejecuten en una base estable y segura.
+
+** Limitar los privilegios del contenedor
+
+Por defecto, los contenedores de Docker se ejecutan con privilegios de root, lo que puede ser un riesgo de seguridad. Para limitar los privilegios del contenedor, es una buena práctica crear un usuario sin privilegios dentro del contenedor y ejecutar el contenedor como ese usuario. Esto puede ayudar a evitar que los usuarios malintencionados obtengan acceso al sistema host.
+
+** Mantener los contenedores pequieños y enfocado
+
+Uno de los beneficios de Docker es su capacidad para crear contenedores livianos que se centran en una tarea específica. Para aprovechar esto, es una buena práctica mantener los contenedores pequeños y enfocados en una sola tarea o servicio. Esto puede ayudar a reducir la superficie de ataque de sus contenedores y hacerlos más fáciles de administrar.
+
+** Utilice Docker Compose para aplicaciones con varios contenedores
+
+Si su aplicación requiere varios contenedores, es una buena práctica utilizar Docker Compose para administrarlos. Docker Compose es una herramienta que le permite definir y ejecutar aplicaciones Docker de varios contenedores. Con Docker Compose, puede definir los servicios que componen su aplicación, y Docker los iniciará y detendrá automáticamente según sea necesario.
+
+** Actualice regularmente las imágenes y los contenedores
+
+Por último, es importante actualizar regularmente sus imágenes y contenedores de Docker para asegurarse de que se estén ejecutando en las últimas versiones de software y parches de seguridad. Docker facilita la actualización de imágenes y contenedores utilizando la CLI de Docker, y muchas imágenes de Docker tienen procesos de actualización automatizados integrados.
+
 * TODO Herramientas de Docker
 
 * TODO Docker en acción
