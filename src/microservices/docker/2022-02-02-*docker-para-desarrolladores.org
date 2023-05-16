@@ -56,8 +56,7 @@ Si su aplicación requiere varios contenedores, es una buena práctica utilizar 
 
 Por último, es importante actualizar regularmente sus imágenes y contenedores de Docker para asegurarse de que se estén ejecutando en las últimas versiones de software y parches de seguridad. Docker facilita la actualización de imágenes y contenedores utilizando la CLI de Docker, y muchas imágenes de Docker tienen procesos de actualización automatizados integrados.
 
-* TODO Herramientas de Docker
 
-* TODO Docker en acción
+* Conclusión
 
-* TODO Recapitulación 
+Docker es una herramienta poderosa para gestionar aplicaciones utilizando contenedores. Siguiendo estas mejores prácticas, puedes asegurarte de que tus contenedores sean seguros, estables y fáciles de gestionar. Ya sea que estés empezando con Docker o seas un usuario experimentado de Docker, estas mejores prácticas pueden ayudarte a sacar el máximo provecho de esta tecnología poderosa.
