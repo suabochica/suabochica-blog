@@ -1,0 +1,73 @@
+#+TITLE: Qué es la progrgamamción?
+#+DESCRIPTION: Definciones sobre la práctica de la progrgamamción
+#+AUTHOR: Sergio Benítez
+#+DATE:<2023-03-05 Tue> 
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+
+> La programación es una colaboración entre humanos y computadoras. 
+
+* La programación está en todas partes
+
+La programación está literalmente a nuestro alrededor. Desde la comida para llevar que pedimos hasta las películas que transmitimos, el código permite acciones cotidianas en nuestras vidas. Las empresas tecnológicas ya no son reconocidas solo como empresas de software. En su lugar, llevan comida a nuestra puerta, nos ayudan a conseguir un taxi, influyen en los resultados de las elecciones presidenciales o actúan como entrenador personal. La buena noticia es que la programación es para todos.
+
+Durante muchos años, solo unas pocas personas han sabido cómo programar. Sin embargo, eso está empezando a cambiar. El número de personas que aprenden a programar aumenta año tras año, con estimaciones de alrededor de [31,1 millones de desarrolladores de software en todo el mundo](https://www.developernation.net/developer-reports/dn22), lo que ni siquiera tiene en cuenta las muchas *otras* carreras que se relacionan con la programación.
+
+Esa es la razón por la cual varias entidades están haciendo accesible y aplicable el conocimiento técnico. La tecnología juega un papel crucial en nuestra economía, pero la programación ya no es solo para ingenieros de software. Cualquier persona puede beneficiarse de aprender a programar, ya sea aprendiendo HTML para mejorar sus correos electrónicos de marketing o tomando un curso de SQL para agregar una dosis de análisis a su papel de investigación.
+
+Incluso fuera de la industria tecnológica, aprender a programar es esencial para participar en el mundo que nos rodea: afecta a los productos que compramos, a las políticas legales por las qué votamos y a los datos que compartimos en línea.
+
+Entonces, profundicemos en lo que es la programación.
+
+* ¿Qué es la programación?
+
+En pocas palabras, programar es dar un conjunto de instrucciones a una computadora para que las ejecute. Si alguna vez has cocinado usando una receta, puedes considerarte a ti mismo como la computadora y al autor de la receta como un programador. El autor de la receta te proporciona un conjunto de instrucciones que lees y luego sigues. ¡Cuanto más complejas sean las instrucciones, más complejo será el resultado!
+
+### Programación como comunicación, o codificación
+
+"De acuerdo, ahora sé lo que es la programación, pero ¿qué es la codificación? Estoy aquí para aprender a codificar. ¿Son lo mismo?"
+
+Aunque a veces se usan indistintamente, programación y codificación tienen definiciones diferentes.
+
+- *Programación* es el proceso mental de pensar en instrucciones para dar a una máquina (como una computadora).
+- *Codificación* es el proceso de transformar esas ideas en un lenguaje escrito que una computadora pueda entender.
+
+Durante el último siglo, los humanos han estado tratando de descubrir la mejor manera de comunicarse con las computadoras a través de diferentes [lenguajes de programación](https://www.codecademy.com/resources/blog/programming-languages/). La programación ha evolucionado desde tarjetas perforadas con filas de números que una máquina leía, hasta interfaces de arrastrar y soltar que aumentan la velocidad de programación, con muchos otros métodos intermedios.
+
+Hasta el día de hoy, las personas siguen desarrollando lenguajes de programación, tratando de mejorar nuestra eficiencia de programación. Otros están construyendo nuevos idiomas que mejoran la accesibilidad para aprender a codificar, cómo [desarrollar un lenguaje de programación en árabe](http://nas.sr/%D9%82%D9%84%D8%A8/) o mejorar el acceso para [personas ciegas y con discapacidad visual](https://wp.nyu.edu/ability/).
+
+Hay toneladas de lenguajes de programación por ahí, cada uno con sus propias fortalezas y aplicaciones únicas. En última instancia, el mejor para ti depende de lo que estés buscando lograr. Consulta nuestros [consejos para elegir tu primer lenguaje](https://www.codecademy.com/resources/blog/what-programming-language-should-i-learn/) para obtener más información.
+
+*** Programación como colaboración
+
+> El problema con la programación no es que la computadora no sea lógica, la computadora es terriblemente lógica, implacablemente literal. Ellen Ullman, Life in code
+ 
+
+Cuando le damos instrucciones a una computadora a través de código, estamos, a nuestra manera, comunicándonos con la computadora. Pero cómo las computadoras están construidas de manera diferente a nosotros, debemos traducir nuestras instrucciones de una manera que las computadoras puedan entender.
+
+Las computadoras interpretan las instrucciones de una manera muy literal, por lo que debemos ser muy específicos en cómo las programamos. Piensa en darle instrucciones a alguien para caminar. Si comienzas diciéndole: "Pon tu pie delante de ti", ¿saben qué es un pie? ¿O qué significa adelante? (y ahora entendemos por qué ha tardado tanto en desarrollarse robots bípedos ...). En la codificación, eso podría significar asegurarse de que cosas pequeñas como la puntuación y la ortografía sean correctas. Muchas lágrimas se han derramado por la falta de un punto y coma (`;`), un símbolo que muchos lenguajes de programación usan para denotar el final de una línea. Pero en lugar de pensar en esto como una relación jefe-empleado, es más útil pensar en nuestra relación con las computadoras como una colaboración.
+
+La computadora es solo una herramienta (particularmente poderosa) en una larga lista de herramientas que los humanos han utilizado para extender y aumentar su capacidad.
+
+Como se mencionó antes, las computadoras son muy buenas en ciertas cosas y, bueno, no tan buenas en otras. Pero aquí está la buena noticia: las cosas en las que las computadoras son buenas, los humanos son malos, ¡y las cosas en las que las computadoras son malas, los humanos son buenos! Echa un vistazo a esta práctica tabla:
+
+| Humano | Computadora |
+| --- | --- |
+| Piensa creativamente | No tiene creatividad |
+| Comunica a través de la inferencia | Conocimiento limitado y cableado duro |
+| Detecta patrones para dar sentido al mundo | Calcula información rápidamente |
+| Inconsistente | Consistente |
+| Puede aburrirse | No pierde el enfoque |
+
+¡Imagina lo que podemos lograr cuando trabajamos juntos! Podemos hacer películas con efectos especiales increíbles, tener producción continua de fábricas 24/7 y mejorar nuestras ciudades y nuestra salud.
+
+*Los mejores programas de computadora son aquellos que nos permiten hacer cosas que no podríamos hacer por nuestra cuenta, pero aprovechan nuestras capacidades creativas. Podemos ser buenos dibujando, pero una computadora es genial haciendo la misma tarea repetidamente, ¡y rápidamente!*
+
+* Conclusión
+
+A medida que la programación se convierte en una parte más grande de nuestras vidas, es vital que todos tengan una comprensión de lo que es la programación y cómo se puede utilizar. La programación es importante para nuestras carreras, pero también juega un papel clave en cómo participamos en política, como compramos cosas y cómo nos mantenemos en contacto unos con otros.
+
+Aprender a codificar es un viaje emocionante. Ya sea que tu objetivo sea construir una aplicación móvil, buscar en una base de datos o programar un robot, la codificación es una habilidad que te llevará lejos en la vida. Solo recuerda: las computadoras son herramientas. Si bien aprender a programar puede ser frustrante al principio, si decides seguir adelante, podrás hacer cosas brillantes.
