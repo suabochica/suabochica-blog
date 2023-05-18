@@ -37,6 +37,7 @@ Jaime Torres, también trabaja en calzado Joy, pero es un man de mayor edad que 
 * * *
 
 ## Problemas
+
 - Las cuentas no son bien llevadas
 - El espacio no está bien distribuido por las mesas de panadería
 - El baño de mujeres está dentro de la casa, es incómodo, no es amigable ni atractivo. Es una violación al espacio privado
@@ -44,12 +45,14 @@ Jaime Torres, también trabaja en calzado Joy, pero es un man de mayor edad que 
 - Hay un exceso de vitrinas
 
 ## Oportunidades
+
 - Eliminar vitrinas innecesarias
 - Cambiar el estilo de mesas
 - Definir mejor los espacios
 - Reubicación de recursos (gadgets)
 
 ## Insights
+
 - Las personas que se sientan en la mesa de panadería tienen su “burbuja privada” en el lugar
 - Nadie se atreve a sacar las sillas del lugar
 - El escalón marca la división de espacios

@@ -1,12 +1,11 @@
-#+TITLE: Qué es la progrgamamción?
+#+TITLE: Qué es la progrgamación?
 #+DESCRIPTION: Definciones sobre la práctica de la progrgamamción
 #+AUTHOR: Sergio Benítez
-#+DATE:<2023-03-05 Tue> 
+#+DATE:<2023-03-05 Sun> 
 #+HUGO_BASE_DIR: ~/Development/suabochica-blog/
 #+HUGO_SECTION: /post
 #+HUGO_WEIGHT: auto
 #+HUGO_AUTO_SET_LASTMOD: t
-
 
 > La programación es una colaboración entre humanos y computadoras. 
 

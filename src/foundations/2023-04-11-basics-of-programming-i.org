@@ -1,0 +1,10 @@
+#+TITLE: Bases de la programación I
+#+DESCRIPTION: Variables, tipos de datos y operadores.
+#+AUTHOR: Sergio Benítez
+#+DATE:<2023-04-11 Tue> 
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+
