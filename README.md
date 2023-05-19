@@ -12,6 +12,12 @@
 4. ~~Customize styles~~ changes applied form: suabochica-blog/themes/m10c/resources/_gen/assets/scss/css/main.scss_e86386c8bae1cd02295de71a1be078d6.content
 5. Check how to compile theme changes
 
+## 🚀 Workflow
+
+1. Use ORG mode to create drafts.
+2. Export ORG scratch to markdown.
+3. Add tags in markdown file.
+
 ## 🚀 Build
 
 Command to run the hugo server
