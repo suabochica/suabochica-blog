@@ -7,4 +7,14 @@
 #+HUGO_WEIGHT: auto
 #+HUGO_AUTO_SET_LASTMOD: t
 
+Aprende los conceptos esenciales de programación de variables, operadores y tipos de datos.
 
+* Index
+
+- Variables
+- Tipos de datos
+- Operadores
+
+* Introducción a las variables
+
+En programación, tenemos una manera de almacenar valores para que podamos reutilizarlos en todo nuestro programa o cambiarlos, si es necesario. Este concepto se conoce como una variable.

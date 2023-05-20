@@ -1,7 +1,7 @@
 #+TITLE: Enable JetBrains Mono Ligatures
 #+DESCRIPTION: Configuración de ligaduras en spacemacs
 #+AUTHOR: Sergio Benítez
-#+DATE:<2020-12-23 Tue> 
+#+DATE:<2020-12-23 mié>
 #+HUGO_BASE_DIR: ~/Development/suabochica-blog/
 #+HUGO_SECTION: /post
 #+HUGO_WEIGHT: auto
