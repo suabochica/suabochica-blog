@@ -1,0 +1,97 @@
+#+TITLE: Bases de la programación I
+#+DESCRIPTION: Variables, tipos de datos y operadores.
+#+AUTHOR: Sergio Benítez
+#+DATE:<2023-04-11 Tue> 
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+Aprende los conceptos esenciales de programación de variables, operadores y tipos de datos.
+
+* Index
+
+- Variables
+- Tipos de datos
+- Operadores
+
+* Introducción a las variables
+
+En programación, tenemos una manera de almacenar valores para que podamos reutilizarlos en todo nuestro programa o cambiarlos, si es necesario. Este concepto se conoce como una variable.
+
+Quizás esté familiarizado con el término matemático *variable*, o la palabra *variabilidad*. Las variables de programación comparten cualidades con ambas. Similar a una variable en matemáticas, una variable es una forma de guardar una pieza de información con un nombre específico. Al darle un nombre a un valor, podemos reutilizar fácilmente ese valor una y otra vez en nuestro código. Al igual que la idea de variabilidad, una variable de programación nos permite cambiar fácilmente un valor en todo nuestro código.
+
+Las variables son un primer paso importante en la codificación porque con ellas podemos comenzar a usar una herramienta de programación importante: la repetición. En lugar de escribir un conjunto de datos cada vez que lo necesitamos, lo escribimos una vez y la computadora lo recuerda y puede repetir esa información.
+
+En esta lección, exploraremos por qué las variables son una parte importante de la programación, incluyendo:
+
+- Usar variables para reutilizar
+- Usar variables para cambiar un valor
+
+** Reutilización de Valores en Variables
+
+Una razón por la que usamos variables es que nos permiten reutilizar fácilmente valores en diferentes partes de nuestro código.
+
+Cuando reutilizamos un valor, aparecerá en múltiples lugares de nuestro código. Volver a escribir ese valor se vuelve tedioso, lo que lleva a errores, y sin un nombre de variable, no queda claro qué representa el valor. También puede no estar claro qué valor se supone que representa.
+
+Echemos un vistazo al siguiente fragmento de código. Aquí tenemos un número que reutilizamos para realizar algunos cálculos:
+
+#+begin_src txt
+847595593392818109495
+847595593392818109495 * 2
+847595593392818109495 / 4
+#+end_src
+
+En lugar de escribir el mismo número una y otra vez, podemos guardarlo en una variable llamada ~my_number~:
+
+#+begin_src txt
+my_number = 847595593392818109495
+my_number * 2
+my_number / 4
+#+end_src
+
+Quizás estés pensando, "Pero ¿qué pasa si el nombre de mi variable es más largo que el valor que almacena? ¿Cuál es el punto de una variable?"
+
+Cuando usamos un valor sin asignarlo a una variable, eso se conoce como *hardcoding*. Si bien a veces es más rápido codificar valores inicialmente en tu programa, a la larga tendrás problemas, especialmente si necesitas cambiar qué valores son.
+
+** Cambiando el valor de una variable
+
+El punto fuerte de utilizar una variable es que podemos cambiar fácilmente su valor, lo que hace que nuestros programas sean flexibles.
+
+Como vimos en el último ejercicio, podemos guardar un número en una variable y reutilizarlo a lo largo de un programa:
+
+#+begin_src txt
+my_number = 847595593392818109495
+my_number * 2
+my_number / 4
+#+end_src
+
+Podríamos cambiar fácilmente el valor de `my_number` sin tener que cambiar ese número en múltiples lugares en nuestro código.
+
+#+begin_src txt
+my_number = 1
+my_number * 2
+my_number / 4
+#+end_src
+
+
+Podríamos cambiar el valor de `my_number` en medio de nuestro programa:
+
+#+begin_src txt
+my_number = 1
+my_number * 2
+
+my_number = 3
+my_number / 4
+#+end_src
+
+** Revisión - Variables
+
+¡Felicitaciones! Ahora has aprendido acerca de las variables y por qué son útiles en la programación.
+En esta lección, aprendimos que:
+
+- Las variables nos permiten almacenar información.
+- Las variables nos permiten reutilizar rápidamente un valor en nuestro programa.
+- Las variables nos permiten cambiar fácilmente un valor en nuestro programa.
+
+En la próxima lección, veremos diferentes tipos de información que podemos utilizar en un programa y guardar en variables.
