@@ -95,3 +95,78 @@ En esta lección, aprendimos que:
 - Las variables nos permiten cambiar fácilmente un valor en nuestro programa.
 
 En la próxima lección, veremos diferentes tipos de información que podemos utilizar en un programa y guardar en variables.
+
+** Introducción a los tipos de datos
+
+*Los datos* son unidades básicas en la programación. ¡Sin datos, no podríamos escribir programas! Pero, ¿qué *son* los datos? Es posible que estemos familiarizados con los datos como información o hechos. En informática, los datos son los fragmentos de información que utilizamos para construir programas, como los números en un cálculo o el texto que se imprime en una pantalla.
+
+*Los tipos de datos* son exactamente lo que suenan: diferentes tipos de datos. Los tipos de datos nos proporcionan información sobre los datos, incluyendo cómo se pueden almacenar y qué tipos de operaciones podemos realizar. Por ejemplo, podemos escribir un programa que eleve al cuadrado números, pero no sería capaz de elevar al cuadrado una palabra.
+
+En la programación, existe un grupo especial de tipos de datos llamados *primitivos*. Los primitivos son los tipos de datos más básicos, tan básicos que los puedes encontrar en casi todos los lenguajes de programación. Incluyen:
+
+- Números
+- Cadenas de texto (strings)
+- Valores booleanos (verdadero o falso)
+
+En los siguientes ejercicios, profundizaremos un poco más en cada tipo de dato primitivo y en lo que generalmente se puede (y no se puede) hacer con cada uno.
+
+** Números
+
+*Los números* son el tipo de dato original. Las primeras computadoras se comunicaban únicamente mediante números, utilizando la computación binaria.
+
+Actualmente, no solo programamos utilizando números, pero los números aún tienen propiedades especiales y se utilizan para lo siguiente:
+
+- *Describir* - los números se utilizan para expresar valores: ¿cuál es la frecuencia de una onda de sonido? Podemos expresarlo en un número, como 800Hz.
+- *Calcular* - los números se utilizan en cálculos: ¿cuál es la distancia entre la Tierra y Marte?
+- *Contar* - los números se utilizan para llevar un registro: ¿cuántas veces ha dado la vuelta el coche a la pista?
+
+Aunque podemos hacer muchas cosas con números, hay algunas cosas que no podemos hacer con ellos. Por ejemplo, supongamos que tenemos el número 20 y el texto "Tengo 20 años". Aunque ambos tratan sobre la idea de 20 como un valor, una computadora podría realizar operaciones matemáticas en el primer conjunto de datos, pero no en el segundo.
+
+** Cadenas de texto
+
+Pero, ¿qué pasa si queremos trabajar con datos que no son números? Podemos representar otras formas de datos como una *cadena de texto*.
+
+Las cadenas de texto son cualquier secuencia de caracteres (letras, espacios, números o símbolos). Aunque casi cualquier cosa puede ser una cadena de texto, generalmente se utilizan para representar texto o discurso.
+
+Similar a cómo representamos el discurso por escrito, rodeamos las cadenas de texto con comillas simples (`'...'`) o comillas dobles (`"..."`).
+
+Pero, ¿por qué el nombre de *cadenas de texto*? Las cadenas de texto son una secuencia de símbolos, por lo que podemos pensar en los caracteres unidos, como cuentas en un collar.
+
+Entonces, ¿para qué podemos usar las cadenas de texto?
+
+- Para mostrar datos que utilizan texto o símbolos, como imprimir nuestro nombre en la pantalla.
+- Para agregar o eliminar texto. Dado que las cadenas de texto son una secuencia lineal de caracteres, podemos dividirlas en cadenas más pequeñas o combinar cadenas para crear cadenas más largas.
+- Para modificar caracteres. Por ejemplo, podríamos capitalizar la primera letra de cada palabra en una cadena si queremos convertirla en un título.
+- Para permitir que la computadora se comunique con nosotros de una manera "legible por humanos", como mostrar las reglas de un juego en línea.
+
+A veces, las cadenas de texto pueden parecer similares a otros tipos de datos. Pero es importante recordar que, aunque un número parezca un número o un booleano parezca un booleano, es bueno verificar que no sea una cadena de texto; de lo contrario, no podrás usarlo correctamente.
+
+Toma la siguiente cadena de texto: '20'. La cadena de texto '20' es diferente al valor numérico de 20. Aunque parecen ser iguales, una computadora vería el primero como dos caracteres: '2' y '0', mientras que el segundo contiene el valor numérico de 20.
+Booleano
+
+Este siguiente tipo de dato tiene una importancia especial en la informática. Los valores booleanos representan las ideas lógicas de verdadero y falso.
+
+Los booleanos, a diferencia de los números o las cadenas de texto, solo tienen dos valores: verdadero y falso. El término booleano proviene del inventor de una forma específica de lógica, George Boole. La lógica es importante para la informática porque es un intento temprano de traducir la capacidad humana de razonamiento a las computadoras.
+
+Entonces, ¿para qué utilizamos los booleanos?
+
+- Para determinar la validez. Por ejemplo, queremos saber si un meme se ha vuelto viral. Si se ha visto más de 50 millones de veces en menos de una semana, diríamos que es verdadero que se volvió viral.
+- Para tomar decisiones. Por ejemplo, si recibo un correo electrónico, el programa verifica que el correo electrónico sea nuevo y lo muestra en la parte superior de mi bandeja de entrada.
+
+Dado que los booleanos actúan como opuestos binarios, podemos pensar en ellos de muchas formas, como encendido y apagado, sí y no, e incluso a veces como 1 y 0.
+
+Aunque utilizamos las palabras verdadero y falso para representar los valores booleanos, es importante recordar que son diferentes de las cadenas de texto 'verdadero' y 'falso'.
+
+Los programadores primero pudieron ilustrar la idea de la lógica binaria al encender y apagar circuitos eléctricos, donde encendido equivalía a verdadero y apagado equivalía a falso. De hecho, la relación entre la electricidad y la lógica es la base de la digitalización.
+
+** Resumen - Tipos de datos
+
+¡Felicidades! Ahora conoces los fundamentos de la mayoría de los lenguajes de programación y deberías tener una idea de los tipos de programas simples que podrías escribir.
+
+En esta sección, aprendimos:
+
+- La categorización de la información utilizando *tipos de datos* es una forma en que una computadora distingue diferentes tipos de entrada.
+- Los *tipos primitivos* son los tipos de datos más simples y se comparten en muchos lenguajes de programación. Incluyen:
+   - *Números* - valores que nos permiten hacer cálculos y llevar un conteo.
+   - *Cadenas* - una secuencia de caracteres o símbolos que se usan a menudo para representar texto.
+   - *Booleanos* - valores lógicos que representan la idea de verdadero o falso.
