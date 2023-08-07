@@ -7,8 +7,26 @@
 #+HUGO_WEIGHT: auto
 #+HUGO_AUTO_SET_LASTMOD: t
 
-* TODO Que son Ligatures
+Desde hace unos años las fuentes de codificación empezaron a agregar ligaduras relativas a sintaxís comunes en diferentes lenguajes de programación. En esta publicación se va a compartir una configuración para habilitar el uso de ligaduras en spacemacs. Antes de comenzar, es importante aclarar qué es una ligadura.
+
+* PROJ Qué son las ligaduras?
+
+En escritura y tipografía, la ligadura (ligature en inglés) ocurre cuando dos o más grafemas o letras se unen para formar un solo glifo. Ejemplos son los caracteres æ y œ utilizados en inglés y francés, en los que las letras 'a' y 'e' se unen para la primera ligadura y las letras 'o' y 'e' se unen para la segunda ligadura.
+
+#+BEGIN_QUOTE
+Tenga en cuenta que agregar ligaduras a una fuente de codificación no cambia su código de ninguna manera, solo cambia la forma en que se muestra.
+#+END_QUOTE
+
+Hoy en día se puede encontrar una gran variedad de fuentes con ligaduras. En la siguiente lista se muestran la fuentes más populares según el sitio web better web type:
+
+- Fira code
+- Iosevka
+- Monoid
+- Hasklig
+
 * TODO JetBrains Mono font
+
+
 * PROGRESS Configuración de ligatures
 
 Hay muchos caminos para lograr que una fuente con ligadures sea visualizada,
@@ -46,3 +64,4 @@ uso de reglas de composición como se muestra a continuación:
 
 * Referencia
 - [[https://emacs.stackexchange.com/questions/55059/ligatures-with-the-jetbrains-mono-font][Ligatures with the JetBrains Mono font]]
+- [[https://betterwebtype.com/5-free-monospaced-fonts-with-coding-ligatures/][5 free monospaced fonts with coding ligatures]]

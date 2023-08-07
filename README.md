@@ -16,7 +16,7 @@
 
 1. Use ORG mode to create drafts.
 2. Export ORG scratch to markdown.
-3. Add tags in markdown file.
+3. Add tags in markdown file
 
 ## 🚀 Build
 
