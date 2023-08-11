@@ -1,11 +1,15 @@
 #+TITLE: Consejos para configurar HTML y JavaScript
-#+DESCRIPTION: Configuración recomendada para trabajar con HTML y JavaScript
+#+DESCRIPTION: Configuración recomendada para trabajar con HTML y JavaScript en spacemacs
 #+AUTHOR: Sergio Benítez
 #+DATE:<2020-12-25 Thu> 
 #+HUGO_BASE_DIR: ~/Development/suabochica-blog/
 #+HUGO_SECTION: /post
 #+HUGO_WEIGHT: auto
 #+HUGO_AUTO_SET_LASTMOD: t
+
+#+begin_quote
+⚠This guide is under the context of spacemacs
+#+end_quote
 
 * Configuracíon de layers
 #+begin_src elisp
@@ -64,3 +68,5 @@ en la sección ~dotspacemacs/user-config~ como se muestra a continuación:
     (add-to-list 'auto-mode-alist '("'\\.vue\\'" . web-mode))
     )
 #+end_src
+
+* Footnotes
