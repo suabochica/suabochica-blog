@@ -1,0 +1,33 @@
+
+#+TITLE: Intro to Emacs Doom
+#+DESCRIPTION: En esta publicación se comparte una breve guía con los primeros pasos a dar en doom emacs
+#+AUTHOR: Sergio Benítez
+#+DATE:<2023-08-15 Mon>
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+En definitiva, una de las curvas de aprendizaje más altas a las que me he enfrentado es la introducción al mundo de Emacs. El objetivo es compartir los conceptos de primer nivel para empezar a ganar productividad como desarrollador en el uso de este editor inmenso (a veces referenciado como sistema operativo)
+
+Es importante dar una batalla inicial intentando construir tus propios dotfiles desde cero, y posteriormente evaluar si los paquetes de configuraciones como Doom o Spacemacs se ajustan a tus necesidades.
+
+Doom es una propuesta liderada por Henrik Lissner, construida sobre el EvilMode. Esto significa que las configuraciones están pensadas para que los usuarios del editor VI se sientan como en casa.
+
+Para empezar, por favor asegurarse de tener instalaldo Emacs en tu sistema operativo y luego sigue la guía de instalación de Doom:
+
+** Filosofía de la encuadernación de llaves de Emacs
+
+- Hay tres conceptos básicos para la encuadernación de llaves (key bindings en inglés) y son: modificadores/modifiers, acordes/chords y sencuencias/sequences.
+
+Una clave modificadora es cualquiera de los siguientes. Cualquier otra cosa es una llave no-modificadora.
+
+** TODO: Paste modifier images
+
+Un acorde se compone de cero o más teclas modificadoras pulsadas al mismo tiempo. Por ejemplo, el "C-x" es un acorde para presionar Ctrl y "x" al mismo tiempo y luego liberarlos. "C-s-v" es un acorde para presionar Ctrl, Comando (o Windows) y "v" al mismo tiempo.
+
+Una secuencia es una serie de acordes, prensados y lanzados en una fila. El comando más importante en Emacs, "C-x C-c", es un gran ejemplo de una secuencia. Al ejecutarla usted está en el proceso de salir de Emacs.
+
+#+begin_quote
+Nota de Doom: Emacs tiene una extensión especial llamada modo de maligno que emula una gran cantidad de funcionalidad del editor VI. Doom está fuertemente centrada en el modo malvado, y mucho del resto de este artículo implica el uso de las diversas encuadernaciones clave que se configuran con él. La pieza más grande es el concepto de un líder "evil", que es básicamente una tecla que pulsas como el primer paso en una secuencia que luego abre una nueva rama de posibles comandos. En Doom, el líder malvado está puesto en la Barra Espaciadora por defecto. Así, por ejemplo, para dividir la pantalla en dos ventanas lado a lado, usted presionaría "SPC w v". Mantenga presente este concepto de la clave de líder a medida que pasamos por ejemplos prácticos.
+#+end_quote

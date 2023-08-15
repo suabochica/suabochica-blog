@@ -24,10 +24,8 @@ Hoy en día se puede encontrar una gran variedad de fuentes con ligaduras. En la
 - Monoid
 - Hasklig
 
-* TODO JetBrains Mono font
 
-
-* PROGRESS Configuración de ligatures
+* Configuración de ligatures
 
 Hay muchos caminos para lograr que una fuente con ligadures sea visualizada,
 desde la instalación de paquetes en MELPA como pretty-mode hasta configuraciones
