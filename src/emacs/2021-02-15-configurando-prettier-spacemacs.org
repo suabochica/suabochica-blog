@@ -6,6 +6,7 @@
 #+HUGO_SECTION: /post
 #+HUGO_WEIGHT: auto
 #+HUGO_AUTO_SET_LASTMOD: t
+
 * ¿Qué es Prettier?
 
 Prettier es un formateador de código obstinado que admite muchos leguajes de programación y se integra con la mayoría de los editores. Se puede instalar a través de ~npm~ o ~yarn~ y la recomendación es hacer una instalación global en el sistema para que su editor lo integre correctamente e incluso se pueda aplicar el formato automaticamente mientras guarda los archivos.

@@ -31,6 +31,6 @@ Una secuencia es una serie de acordes, prensados y lanzados en una fila. El coma
 Nota de Doom: Emacs tiene una extensión especial llamada modo de maligno que emula una gran cantidad de funcionalidad del editor VI. Doom está fuertemente centrada en el modo malvado, y mucho del resto de este artículo implica el uso de las diversas encuadernaciones clave que se configuran con él. La pieza más grande es el concepto de un líder "evil", que es básicamente una tecla que pulsas como el primer paso en una secuencia que luego abre una nueva rama de posibles comandos. En Doom, el líder malvado está puesto en la Barra Espaciadora por defecto. Así, por ejemplo, para dividir la pantalla en dos ventanas lado a lado, usted presionaría "SPC w v". Mantenga presente este concepto de la clave de líder a medida que pasamos por ejemplos prácticos.
 #+end_quote
 
-** Referencias
-
-- [[https://www.youtube.com/watch?v=37H7bD-G7nE][Doom Emacs, What you need to now on day one]]
+** Vease tambien
+- [[https://www.youtube.com/watch?v=37H7bD-G7nE][Doom Emacs, What you need to now on day one]] by DistroTube
+- [[https://medium.com/urbint-engineering/emacs-doom-for-newbies-1f8038604e3b][Emacs Doom for Newbies]] by Justins DeMaris
