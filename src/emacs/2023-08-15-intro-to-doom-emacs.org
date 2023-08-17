@@ -31,6 +31,30 @@ Una secuencia es una serie de acordes, prensados y lanzados en una fila. El coma
 Nota de Doom: Emacs tiene una extensión especial llamada modo de maligno que emula una gran cantidad de funcionalidad del editor VI. Doom está fuertemente centrada en el modo malvado, y mucho del resto de este artículo implica el uso de las diversas encuadernaciones clave que se configuran con él. La pieza más grande es el concepto de un líder "evil", que es básicamente una tecla que pulsas como el primer paso en una secuencia que luego abre una nueva rama de posibles comandos. En Doom, el líder malvado está puesto en la Barra Espaciadora por defecto. Así, por ejemplo, para dividir la pantalla en dos ventanas lado a lado, usted presionaría "SPC w v". Mantenga presente este concepto de la clave de líder a medida que pasamos por ejemplos prácticos.
 #+end_quote
 
+** Definiendo una fuente
+
+En el archivo `config.el`
+
+#+begin_src
+(setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 12 :weight 'semi-light)
+    doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font Propo" :size 13))
+#+end_src
+
+*** TODO: Translate this
+So use M-x describe-font to look up and search the available fonts as Emacs/your OS see them. You should see a list of xlfd font strings. E.g.
+
+#+begin_src
+-CTDB-Fira Code-bold-normal-normal-*-*-*-*-*-m-0-iso10646-1
+-CTDB-Fira Code-light-normal-normal-*-*-*-*-*-m-0-iso10646-1
+-CTDB-Fira Code-medium-normal-normal-*-*-*-*-*-m-0-iso10646-1
+-CTDB-Fira Code-regular-normal-normal-*-*-*-*-*-m-0-iso10646-1
+-CTDB-Fira Code-semibold-normal-normal-*-*-*-*-*-m-0-iso10646-1
+-CTDB-Fira Code-regular-normal-normal-*-10-*-*-*-m-0-fontset-startup
+-CTDB-Fira Code Symbol-regular-normal-normal-*-*-*-*-*-*-0-iso10646-1
+#+end_src
+
+In my case, I can deduce that Fira Code is the correct family name to use. If no Fira Code entries show up on this list (or $ fc-list | grep fira on the command line), then the font hasn't been installed correctly.
+
 ** Vease tambien
 - [[https://www.youtube.com/watch?v=37H7bD-G7nE][Doom Emacs, What you need to now on day one]] by DistroTube
 - [[https://medium.com/urbint-engineering/emacs-doom-for-newbies-1f8038604e3b][Emacs Doom for Newbies]] by Justins DeMaris
