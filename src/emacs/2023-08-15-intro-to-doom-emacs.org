@@ -55,6 +55,20 @@ So use M-x describe-font to look up and search the available fonts as Emacs/your
 
 In my case, I can deduce that Fira Code is the correct family name to use. If no Fira Code entries show up on this list (or $ fc-list | grep fira on the command line), then the font hasn't been installed correctly.
 
+** Reiniciar Doom Emacs
+
+Para reiniciar Doom Emacs luego de hacer unas actualizaciones en sus archivos de configuación se puede ejecutar la siguiente secuencia:
+
+#+begin_src
+SPC h r r
+#+end_src
+
+o si preferimos usar el navegador de comando podemos ejecutar `Alt + x` y buscar el comando:
+
+#+begin_src
+M-x doom/reload
+#+end_src
+
 ** Vease tambien
 - [[https://www.youtube.com/watch?v=37H7bD-G7nE][Doom Emacs, What you need to now on day one]] by DistroTube
 - [[https://medium.com/urbint-engineering/emacs-doom-for-newbies-1f8038604e3b][Emacs Doom for Newbies]] by Justins DeMaris
