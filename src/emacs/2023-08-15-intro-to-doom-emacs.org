@@ -17,15 +17,18 @@ Para empezar, por favor asegurarse de tener instalaldo Emacs en tu sistema opera
 
 ** Filosofía de la encuadernación de llaves de Emacs
 
-- Hay tres conceptos básicos para la encuadernación de llaves (key bindings en inglés) y son: modificadores/modifiers, acordes/chords y sencuencias/sequences.
+Hay tres conceptos básicos para la encuadernación de llaves (key bindings en inglés) y son: modificadores/modifiers, acordes/chords y sencuencias/sequences.
 
-Una clave modificadora es cualquiera de los siguientes. Cualquier otra cosa es una llave no-modificadora.
+Una clave *modificadora* es cualquiera de las claves que se muestran en la siguiente imagen.
 
-** TODO: Paste modifier images
+  #+CAPTION: Emacs Modifiers
+  [[../../images/emacs/01-emacs-modifiier.png]]
 
-Un acorde se compone de cero o más teclas modificadoras pulsadas al mismo tiempo. Por ejemplo, el "C-x" es un acorde para presionar Ctrl y "x" al mismo tiempo y luego liberarlos. "C-s-v" es un acorde para presionar Ctrl, Comando (o Windows) y "v" al mismo tiempo.
+Cualquier otra cosa es una llave no-modificadora.
 
-Una secuencia es una serie de acordes, prensados y lanzados en una fila. El comando más importante en Emacs, "C-x C-c", es un gran ejemplo de una secuencia. Al ejecutarla usted está en el proceso de salir de Emacs.
+Un *acorde* se compone de cero o más teclas modificadoras pulsadas al mismo tiempo. Por ejemplo, el "C-x" es un acorde para presionar Ctrl y "x" al mismo tiempo y luego liberarlos. "C-s-v" es un acorde para presionar Ctrl, Comando (o Windows) y "v" al mismo tiempo.
+
+Una *secuencia* es una serie de acordes, prensados y lanzados en una fila. El comando más importante en Emacs, "C-x C-c", es un gran ejemplo de una secuencia. Al ejecutarla usted está en el proceso de salir de Emacs.
 
 #+begin_quote
 Nota de Doom: Emacs tiene una extensión especial llamada modo de maligno que emula una gran cantidad de funcionalidad del editor VI. Doom está fuertemente centrada en el modo malvado, y mucho del resto de este artículo implica el uso de las diversas encuadernaciones clave que se configuran con él. La pieza más grande es el concepto de un líder "evil", que es básicamente una tecla que pulsas como el primer paso en una secuencia que luego abre una nueva rama de posibles comandos. En Doom, el líder malvado está puesto en la Barra Espaciadora por defecto. Así, por ejemplo, para dividir la pantalla en dos ventanas lado a lado, usted presionaría "SPC w v". Mantenga presente este concepto de la clave de líder a medida que pasamos por ejemplos prácticos.
@@ -33,15 +36,14 @@ Nota de Doom: Emacs tiene una extensión especial llamada modo de maligno que em
 
 ** Configurando una fuente
 
-En el archivo ~config.el~
+En el archivo ~config.el~, se agregan las siguiente líneas
 
 #+begin_src
 (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 12 :weight 'semi-light)
     doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font Propo" :size 13))
 #+end_src
 
-*** TODO Translate this
-So use ~M-x~ describe-font to look up and search the available fonts as Emacs/your OS see them. You should see a list of xlfd font strings. E.g.
+ Para validar que fuente disponibles encuentra emacs ejecute el comadno ~M-x describe-font~ . El resultado sera una lista con las fuentes. e.g.
 
 #+begin_src
 -CTDB-Fira Code-bold-normal-normal-*-*-*-*-*-m-0-iso10646-1
@@ -53,31 +55,46 @@ So use ~M-x~ describe-font to look up and search the available fonts as Emacs/yo
 -CTDB-Fira Code Symbol-regular-normal-normal-*-*-*-*-*-*-0-iso10646-1
 #+end_src
 
-In my case, I can deduce that Fira Code is the correct family name to use. If no Fira Code entries show up on this list (or $ fc-list | grep fira on the command line), then the font hasn't been installed correctly.
+Para este caso se puede deducir que "Fira Code" es el nombre correcto de la familia de fuentes. Si no hay resultados para la búsqueda de fuentes con el nombre "Fira Code" ó el resultado del comando ~fc-list | grep fira~ es vacío, entonces la fuente no está instalada correctamente.
 
+** Administración de ventanta
 
-** Configurando Neotree
+* TODO agregar contenido
 
-En el archivo ~config.el~, se agregan las siguientes líneas
+** Navegación de la estructura de archivos (neotree)
 
-#+begin_src
+Neotree en un plugin de para emacs inspirado en el NerdTree de vim, para navegar el sistema de archivos en un explorador tipo árbol.
+
+Para habilitar neotree en doom emacs, dentro del archivo ~init.el~ habilitamos el respectivo módulo descomentando la siguiente línea.
+
+#+begin_src lisp
+neotree           ; a project drawer, like NERDTree for vim
+#+end_src
+
+Para personalizar el uso del módulo, en el archivo ~config.el~, se agregan las siguientes líneas
+
+#+begin_src lisp
+;; config.el
 (after! neotree
   (setq neo-smart-open t
         neo-window-fixed-size nil
         neo-window-position (quote right)))
 #+end_src
 
-Revisemos una por una; la instrucción ~after!~ se utiliza para indicar sobre qué módulo se quieren hacer determinadas configuraciones (e.g. neotree). Con la instrucción ~setq~ es un comando de lisp para definir un valor de un simbolo asociado a una expresión. En ese orden de ideas, el módulo neotree nos ofrece los siguientes símbolos:
+Revisemos una por una; la instrucción ~after!~ se utiliza para indicar sobre qué módulo se quieren hacer determinadas configuraciones (e.g. neotree). ~setq~ es un comando de lisp para definir un valor de un símbolo asociado a una expresión. En ese orden de ideas, el módulo neotree nos ofrece los siguientes símbolos:
 
 - ~neo-smart-open~: para determinar que cada vez que se abra la ventana de neotree, se encuentre el archivo actual y saltar directamente al nodo.
 - ~neo-window-fixed-size~: para determinar si queremos que el tamaño de la ventada de neotree sea de un ancho fijo.
 - ~neo-window-position~: para determinar en que posición queremos mostrar la ventana de neotree.
 
+Con los valores definidos en el snippet, se especifica que cada vez que se abra el neotree se muestre la ubicaión del archvio desde donde se mando la instrucción para mostrar el árbol; al abrirse el ancho del panel no sea fijo y por últimp se posiciona el panel a la derecha del usuario.
+
 Para mayor detalles sobre los simbolos personalizables de neotree por favor revisar el proyecto [[https://github.com/jaypei/emacs-neotree/blob/dev/neotree.el][emacs-neotree]] en github.
 
-** TODO Add description to map leaders
+El paso restante es personalizar la secuencia de emacas para abror neotree. Por preferencia personal todas las funcionalidades de conmutación las asocio al carácter `t` de ~toggle~. Para neotree la combinación que utilizo es ~SPC t n~. Para hacer esta configuración dentro del mismo archivo ~config.el~ agregamos el siguiente contenido:
 
-#+begin_src
+#+begin_src lisp
+;; config.el
 (map! :leader
       :desc "Toggle neotree file viewer" "t n" #'neotree-toggle
       :desc "Open directory in neotree" "d n" #'neotree-dir)
@@ -91,7 +108,7 @@ Para reiniciar Doom Emacs luego de hacer unas actualizaciones en sus archivos de
 SPC h r r
 #+end_src
 
-o si preferimos usar el navegador de comando podemos ejecutar ~Alt + x~ y buscar el comando:
+o si se prefiere usar el navegador de comando podemos ejecutar ~Alt + x~ y buscar el comando:
 
 #+begin_src
 M-x doom/reload
