@@ -57,15 +57,47 @@ En el archivo ~config.el~, se agregan las siguiente líneas
 
 Para este caso se puede deducir que "Fira Code" es el nombre correcto de la familia de fuentes. Si no hay resultados para la búsqueda de fuentes con el nombre "Fira Code" ó el resultado del comando ~fc-list | grep fira~ es vacío, entonces la fuente no está instalada correctamente.
 
-** Administración de ventanta
+** Administración de ventanas
 
-* TODO agregar contenido
+¿Qué es de un editor si tu solo puedes tener a sola cosa en la pantalla? No sería muy bueno y to monitor 4k llorraría por ser tan poco aprovechado. En emacs, facilmente se puede dividir la pantalla horizontalmente y/o verticalmente en ventanas diferentes con diferentes contenidos. El en fondo, Emac tiene un montón de buffers abiertos, uno por cada archivo abierto para ser editado. Cuando se abre una ventana, se asigna un buffer a dicha ventanta. Es posible tener el mismo archvio abierto en dos ventanas diferentes, pero realmentes estás editando el mismo buffer! Por lo tanto si editas el contenido en una ventana, podrás ver la misma edición en todas las otras ventanas del mismo archivo. Esto resulta útil cuando se tiene un archivo grando y quieres revisar una parte del archvio en una ventana y otra parte del mismo archivo en otra ventana.
+
+Para dividir la ventana actual en una ventana del lado a lado con Doom, presione:
+
+#+begin_quote
+SPC w v
+#+end_quote
+
+Esta secuencia divide la ventana con el mismo buffer en ambas ventanas:
+
+* TODO insertar imagen
+
+Se puede empezar a encontrar un patron con estas combinaciones de teclado. Estas secuencias están categorizados. ~SPC~ es el evil leader para indicar que se quiere ejecutar algún comando. "w" viene de la categría "window". Si olvida exactamente que tecla presionar, puede recordar la categoría y los plugins de Doom pueden darte una guía a lo largo del proceso. e.g
+
+#+begin_quote
+SPC w
+#+end_quote
+
+Abre una sección guía en un minibuffer:
+
+* TODO agregar imagen del minibuffer
+
+Aquí se observa que "v" ejeuta el comando ~evil-window-vsplit~. Para hacer la división de arriba a abajo  se puede presionar "S" para correr el comando ~evil-window-split~. Una vez se tienen alguna ventanas abiertas, para navegar entre ellas se puede usar el cursor del ratón. pero esto no es lo que emacs fomenta. Hay muchas formas de hacer esta navegación pero las más populares se muestran en la siguiente tabla:
+
+* TODO agregar image con la secuence para navegar entre ventantas
+
+Finalmente para cerrar las ventanas, se usa la siguiente secuencia:
+
+#+begin_quote
+SPC w c
+#+end_quote
+
+Evidentemente, la invitaicón queda hecha para explorar todos los comandos que se ofrecen en el minibuffer al presionar la combinacion "SPC w" .
 
 ** Navegación de la estructura de archivos (neotree)
 
 Neotree en un plugin de para emacs inspirado en el NerdTree de vim, para navegar el sistema de archivos en un explorador tipo árbol.
 
-Para habilitar neotree en doom emacs, dentro del archivo ~init.el~ habilitamos el respectivo módulo descomentando la siguiente línea.
+Para habilitar neotree en doom Emacs, dentro del archivo ~init.el~ habilitamos el respectivo módulo descomentando la siguiente línea.
 
 #+begin_src lisp
 neotree           ; a project drawer, like NERDTree for vim
@@ -91,7 +123,7 @@ Con los valores definidos en el snippet, se especifica que cada vez que se abra 
 
 Para mayor detalles sobre los simbolos personalizables de neotree por favor revisar el proyecto [[https://github.com/jaypei/emacs-neotree/blob/dev/neotree.el][emacs-neotree]] en github.
 
-El paso restante es personalizar la secuencia de emacas para abror neotree. Por preferencia personal todas las funcionalidades de conmutación las asocio al carácter `t` de ~toggle~. Para neotree la combinación que utilizo es ~SPC t n~. Para hacer esta configuración dentro del mismo archivo ~config.el~ agregamos el siguiente contenido:
+El paso restante es personalizar la secuencia de emacs para abror neotree. Por preferencia personal todas las funcionalidades de conmutación las asocio al carácter `t` de ~toggle~. Para neotree la combinación que utilizo es ~SPC t n~. Para hacer esta configuración dentro del mismo archivo ~config.el~ agregamos el siguiente contenido:
 
 #+begin_src lisp
 ;; config.el
