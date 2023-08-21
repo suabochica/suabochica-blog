@@ -11,7 +11,7 @@ En definitiva, una de las curvas de aprendizaje más altas a las que me he enfre
 
 Es importante dar una batalla inicial intentando construir tus propios dotfiles desde cero, y posteriormente evaluar si los paquetes de configuraciones como Doom o Spacemacs se ajustan a tus necesidades.
 
-Doom es una propuesta liderada por Henrik Lissner, construida sobre el EvilMode. Esto significa que las configuraciones están pensadas para que los usuarios del editor VI se sientan como en casa.
+Doom es una propuesta liderada por Henrik Lissner, construida sobre el modo maligno (evil-mode en inglés). Esto significa que las configuraciones están pensadas para que los usuarios del editor VI se sientan como en casa.
 
 Para empezar, por favor asegurarse de tener instalaldo Emacs en tu sistema operativo y luego sigue la guía de instalación de Doom:
 
@@ -132,7 +132,7 @@ El paso restante es personalizar la secuencia de emacs para abror neotree. Por p
       :desc "Open directory in neotree" "d n" #'neotree-dir)
 #+end_src
 
-** Reiniciar Doom Emacs
+** Reiniciar doom emacs
 
 Para reiniciar Doom Emacs luego de hacer unas actualizaciones en sus archivos de configuación se puede ejecutar la siguiente secuencia:
 
@@ -145,6 +145,33 @@ o si se prefiere usar el navegador de comando podemos ejecutar ~Alt + x~ y busca
 #+begin_src
 M-x doom/reload
 #+end_src
+
+** Usando la terminal
+
+Las intancias de una terminal se pueden abrir en emacs como una de las ventanas. Esto resulta práctico para hacer cosas relacionadas a comandos git ya que el músculo de memeoria para usar git suele ser mas intuitivo en una interfaz de línead de comandos que en un editor.
+
+Para abrir una ventana con una línea de comandos (cli por sus siglas en inglés), se puede usar el siguiente comando vim:
+
+#+begin_quote
+:term
+#+end_quote
+
+Es conveniente asociar este comando a la categoria de aperturas de ventanas. Así como se asocio la secuencia "SPC o n" para abrir neotree, se puede usar "SPC o t" para abrir una terminal.
+
+Una vez abierta la ventana con la terminal, se puede ejectuar cualquier operación de línea de comandos aquí, e incluso usear la combinaciones para navegar a las ventanas de edición y la ventana CLI. Una vez terminado tu trabajo en la terminal, esta se puede cerrar presionando:
+
+#+begin_quote
+:C-x 0 (zero)
+#+end_quote
+
+Esta instrucción cierra la termina y lo retorna a su edición normal.
+
+** Conclusión
+
+Una recomendación final, si estás seguro de que un comando para alguna acción puntual debe existir, pero nos esta seguro de como se llama, presione la combinación "Alt-X" o ("M-x") en su teclado para abrir un buffer con todos los comandos disponibles en Emacs. Cada una de las secuencias abordadas en está guía estan asociadas a una nombre de una función que puede ser llamada desde está búsqueda. Si se decide no llamar la función, está la opción de presionar la secuencia "Ctrl-G" para cancelar cualquiere combinación que se esté haciendo.
+
+Esto es apenas rascar la superficie de qué tipo de poder tiene disponible, pero con suerte puede ayudarte a superar la curva de aprendizaje inicial y comenzar por el camino de la magia de Emacs.
+
 
 ** Vease tambien
 - [[https://www.youtube.com/watch?v=37H7bD-G7nE][Doom Emacs, What you need to now on day one]] by DistroTube
