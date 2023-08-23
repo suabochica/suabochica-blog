@@ -69,7 +69,9 @@ SPC w v
 
 Esta secuencia divide la ventana con el mismo buffer en ambas ventanas:
 
-* TODO insertar imagen
+  #+CAPTION: Emacs Windows
+  [[../../images/emacs/02-emacs-windows.png]]
+
 
 Se puede empezar a encontrar un patron con estas combinaciones de teclado. Estas secuencias están categorizados. ~SPC~ es el evil leader para indicar que se quiere ejecutar algún comando. "w" viene de la categría "window". Si olvida exactamente que tecla presionar, puede recordar la categoría y los plugins de Doom pueden darte una guía a lo largo del proceso. e.g
 
@@ -79,11 +81,15 @@ SPC w
 
 Abre una sección guía en un minibuffer:
 
-* TODO agregar imagen del minibuffer
+  #+CAPTION: Emacs Section Minibuffer
+  [[../../images/emacs/03-emacs-minibuffer.png]]
+
 
 Aquí se observa que "v" ejeuta el comando ~evil-window-vsplit~. Para hacer la división de arriba a abajo  se puede presionar "S" para correr el comando ~evil-window-split~. Una vez se tienen alguna ventanas abiertas, para navegar entre ellas se puede usar el cursor del ratón. pero esto no es lo que emacs fomenta. Hay muchas formas de hacer esta navegación pero las más populares se muestran en la siguiente tabla:
 
-* TODO agregar image con la secuence para navegar entre ventantas
+  #+CAPTION: Emacs Windows
+  [[../../images/emacs/04-emacs-windows-navigation.png]]
+
 
 Finalmente para cerrar las ventanas, se usa la siguiente secuencia:
 
