@@ -1,0 +1,28 @@
+#+TITLE: Links and images in org files
+#+DESCRIPTION: En esta publicación se comparte una breve guía con los primeros pasos a dar en doom emacs
+#+AUTHOR: Sergio Benítez
+#+DATE:<2023-08-22 Tue>
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+** ¿Qué és el modo org?
+
+* TODO add content
+
+** Uso de enlaces en modo org
+
+* TODO add content
+
+** Uso de imágenes en modo org
+
+* TODO add content
+
+** Conclusion
+
+* TODO add content
+
+** Véase tambien
+
+- [[https://davidbosman.fr/tux/emacs-orgmode-always-display-images/][The Emacs Noob, by David Bosman]]
