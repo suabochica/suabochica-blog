@@ -6,11 +6,7 @@
 
 ## TODO
 
-1. ~~Add favicon~~
-2. ~~Add tags~~
-3. ~~Organize images~~
-4. ~~Customize styles~~ changes applied form: suabochica-blog/themes/m10c/resources/_gen/assets/scss/css/main.scss_e86386c8bae1cd02295de71a1be078d6.content
-5. Check how to compile theme changes
+1. Check how to compile theme changes
 
 ## 🗂️ Workflow
 

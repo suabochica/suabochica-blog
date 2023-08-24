@@ -9,7 +9,9 @@
 
 ** ¿Qué és el modo org?
 
-* TODO add content
+El modo Org (versión corta de la palabra orgranize) tiene el siguiente slogan _tu vida en texto plano_. El modo org es una modo principal de GNU Emacs para llevar notas, documentos de autoría, cuadernos computacionales, programación alfabetizada, mantenimiento de listas de tareas por hacer, proyectos de planificación y mucho más, en un sistema de texto plano rápido y eficaz.
+
+Org es un formato de archivo de texto plano estructurado altamente flexible, compuesto por algunas estructuras simples, pero versátiles, construidas para ser lo suficientemente simples para el novato y lo suficientemente potente para el experto.
 
 ** Uso de enlaces en modo org
 
@@ -25,4 +27,6 @@
 
 ** Véase tambien
 
+- [[https://orgmode.org/][Org Mode]] official page
 - [[https://davidbosman.fr/tux/emacs-orgmode-always-display-images/][The Emacs Noob, by David Bosman]]
+- [[https://www.youtube.com/watch?v=8BOiRmjw5aU][Org agenda is a powerful scheduling app]] by DistroTube
