@@ -1,0 +1,8 @@
+* Clean Architecture in NodeJS
+
+
+** The Clean Architecture
+
+** Resources
+
+- [[https://mannhowie.com/clean-architecture-node?utm_source=pocket_saves][Clean Architecture NodeJS build a REST API]] by Howie Mann
