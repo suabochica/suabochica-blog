@@ -1,6 +1,23 @@
+#+REVEAL_ROOT: http://cdn.jsdelivr.net/reveal.js/3.0.0/
+#+OPTIONS: toc:nil num:nil timestamp:nil
+#+OPTIONS: reveal_width:1200 reveal_height:800 reveal_progress:t reveal_center:t
+#+REVEAL_TRANS: zoom
+#+REVEAL_THEME: night
+#+REVEAL_INIT_OPTIONS: slideNumber:true
+#+REVEAL_PLUGINS: (highlight)
+
+#+TITLE: Clean Architecture in NodeJS
+#+DESCRIPTION: Lifting is the "cheat mode" of tetris.
+#+AUTHOR: Sergio Benítez
+#+DATE: September 14, 2023
+
+
 * Clean Architecture in NodeJS
 
 ** Working With Legacy Projects
+:PROPERTIES:
+:reveal_background: #4E1A3D
+:END:
 
 ** MVC Architecture
 
@@ -29,6 +46,8 @@
 *** Clean Architecture Demo
 
 ** Takeaways
+
+*** The map is not the territory
 
 ** Resources
 
