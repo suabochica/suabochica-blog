@@ -1,8 +1,37 @@
 * Clean Architecture in NodeJS
 
+** Working With Legacy Projects
+
+** MVC Architecture
+
+*** History of MVC Architecture
+
+*** What are the three components behind the MVC pattern
+
+*** The Model Component
+
+*** The View Component
+
+*** The Controller Component
+
+*** MVC Demo
 
 ** The Clean Architecture
 
+*** Controllers, services and repositories?
+
+*** Application, core & infraestructure
+
+*** Business Core
+
+*** Database adapter and dependency injection
+
+*** Clean Architecture Demo
+
+** Takeaways
+
 ** Resources
 
+- [[https://www.freecodecamp.org/news/mvc-architecture-what-is-a-model-view-controller-framework/][MVC Architecture]] by Jessica Wilkins
 - [[https://mannhowie.com/clean-architecture-node?utm_source=pocket_saves][Clean Architecture NodeJS build a REST API]] by Howie Mann
+- [[https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/?source=post_page-----19cab9e93be7--------------------------------][DDD, Hexagonal, Onion, Clean, CQRS, ... How to put all together]], by Herberto Graca
