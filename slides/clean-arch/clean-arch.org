@@ -19,6 +19,12 @@
 :reveal_background: #4E1A3D
 :END:
 
+Learnings of software architecture and how a front end can do his initial steps in the backend world.
+
+#+begin_notes
+
+#+end_notes
+
 ** MVC Architecture
 
 *** History of MVC Architecture
@@ -35,7 +41,15 @@
 
 ** The Clean Architecture
 
-*** Controllers, services and repositories?
+*** Fundamental blocks of the system
+
+/image
+
+#+begin_notes
+1. Whatever type that makes it possible to run an *user interface*
+2. The system *business logic/application core* which is used by the user interface to actually makes things happen
+3. *Infrastructure* code, that connect our applicaton core to external tool
+#+end_notes
 
 *** Application, core & infraestructure
 
