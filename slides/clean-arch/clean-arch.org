@@ -51,13 +51,51 @@ Learnings of software architecture and how a front end can do his initial steps 
 3. *Infrastructure* code, that connect our applicaton core to external tool
 #+end_notes
 
-*** Application, core & infraestructure
+*** Tools
 
-*** Business Core
+#+begin_notes
+It might feel weird to put a CLI console in the same "bucket" as a database engine, and although they have differente purposes, there are in fact tools used by the application.
 
-*** Database adapter and dependency injection
+The key difference is that, while the CLI console are used to *tell our application to do something*, the database enfin is *told by our application to do something*.
+#+end_notes
 
-*** Clean Architecture Demo
+***  Adapters
+
+#+begin_notes
+The code units that connect the tools to the application core are called adapters.
+
+The adapters taht *tell* our application to do something are called /driving adapter/, while the ones that are *told* by our application to do something are called /driven adapters/.
+#+end_notes
+
+***  Ports
+
+#+begin_notes
+The adapters are no randomly created; they are created to fit a very specific entry point to the application core, a *port*.
+
+A port *is nothing more than a specification* of how the tool can use or used by the application core.
+
+It is important to note that the ports (*interfaces*) belong inside the business logic, while adapter belong outside.
+#+end_notes
+
+*** Driving Adapters
+
+#+begin_notes
+The driver adapters *wrap* around a port and use it to tell the application core what to do. *They translate whatever comes from a delivery mechanism into a method call in the app core*
+#+end_notes
+
+*** Driven Adapters
+
+#+begin_notes
+The driven adapters *implement* a port and are then injected into application core, wherever the port is required
+#+end_notes
+
+*** Inversion of control
+
+#+begin_notes
+A characteristic to note about this pattern is that the adapters depend on a specific tool and a specific port (by implementing an interface). But our business logic only depends on the port (interface), which is designed to fit the business logic needs, so it doesn’t depend on a specific adapter or tool.
+
+i.e. the thirection of dependencies is towards the centre, it is the *inversion of control principle at the architectural level*
+#+end_notes
 
 ** Takeaways
 
