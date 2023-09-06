@@ -1,0 +1,13 @@
+#+TITLE: Install doom emacs in WSL2
+#+DESCRIPTION: En esta publicación se comparte una breve guía con los primeros pasos a dar en doom emacs
+#+AUTHOR: Sergio Benítez
+#+DATE:<2023-08-22 Tue>
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+
+* Veáse también
+- [[https://emacsredux.com/blog/2021/12/19/using-emacs-on-windows-11-with-wsl2/][Using emacs on windows 11 with WSL2]] by Bozhidar Batsov
+- [[https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps][Run Linux GUI apps on the Windows Subsystem for Linux]] by microsoft learn

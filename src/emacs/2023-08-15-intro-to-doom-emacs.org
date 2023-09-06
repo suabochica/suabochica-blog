@@ -106,6 +106,7 @@ Neotree en un plugin de para emacs inspirado en el NerdTree de vim, para navegar
 Para habilitar neotree en doom Emacs, dentro del archivo ~init.el~ habilitamos el respectivo módulo descomentando la siguiente línea.
 
 #+begin_src lisp
+;; init.el
 neotree           ; a project drawer, like NERDTree for vim
 #+end_src
 
