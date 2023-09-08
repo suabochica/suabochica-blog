@@ -103,8 +103,7 @@ The driven adapters *implement* a port and are then injected into application co
 
 #+CAPTION: Inversion of control
 #+NAME: Inwards
-[[./images/06-driven-adapters.jpg]]
-
+[[./images/07-inversion-of-control.jpg]]
 
 #+begin_notes
 A characteristic to note about this pattern is that the adapters depend on a specific tool and a specific port (by implementing an interface). But our business logic only depends on the port (interface), which is designed to fit the business logic needs, so it doesn’t depend on a specific adapter or tool.
@@ -112,8 +111,11 @@ A characteristic to note about this pattern is that the adapters depend on a spe
 i.e. the thirection of dependencies is towards the centre, it is the *inversion of control principle at the architectural level*
 #+end_notes
 
-
 *** Application Layer
+
+#+CAPTION: Inversion of control
+#+NAME: Inwards
+[[./images/08-app-layer.jpg]]
 
 #+begin_notes
 The Onion Architecture picks up the DDD layers and incorporates them into the Ports & Adapters Architecture. Those layers are intended to bring some organisation to the business logic, the interior of the Ports & Adapters “hexagon”, and just like in Ports & Adapters, the dependencies direction is towards the centre.
@@ -130,7 +132,6 @@ e.g. Several UIs (applications) could trigger use cases that can be specific to 
 
 The use cases are defined in the /application layer/.
 #+end_notes
-
 
 **** Application Services
 
@@ -149,6 +150,10 @@ The use cases are defined in the /application layer/.
 Represent the outcome of a use case.
 
 *** Domain Layer
+
+#+CAPTION: Domain layer
+#+NAME: Domain layer
+[[./images/09-domain-layer.jpg]]
 
 #+begin_notes
 The objects in the domain layer contain the data an the logic to manipulate that data, that is specific to the domain itself and it is independent of the business process that trigger the logic adn the application layer.
@@ -174,11 +179,70 @@ Inside domain models also lives the domain events. These events are triggered wh
 
 *** Components
 
-*** TODO: Add contents
+#+CAPTION: Component
+#+NAME: Component
+[[./images/10-component.jpg]]
+
+#+begin_notes
+So far we have been segregating the code based on layers, but that is the fine-grained code segregation.The coarse-grained segregation of code is at least as important and it’s about segregating the code according to sub-domains and bounded contexts, following Robert C. Martin ideas expressed in screaming architecture.
+#+end_notes
+
+**** Package by layer
+
+#+CAPTION: Package by layer
+#+NAME: Layer
+[[./images/11-package-by-layer.jpg]]
+
+**** Package by feature
+
+#+CAPTION: Package by feature
+#+NAME: Feature
+[[./images/12-package-by-feature.jpg]]
+
+**** Package by component
+
+#+CAPTION: Package by component
+#+NAME: Component
+[[./images/13-package-by-component.jpg]]
+
+*** Demo
+
+*** Recap: Explicit Architecture
+
+++CAPTION: Explicit architecture
+#+NAME: Component
+[[./images/14-explicit-architecture.png]]
+
+*** Recap: Dependencies Go Downwards
+
+++CAPTION: Dependencies go downwards
+#+NAME: Dependencies go downwards
+[[./images/15-downwards.png]]
+
 
 ** Takeaways
 
+*** Dependencies go inwards
+
+++CAPTION: Dependencies go inwards
+#+NAME: Dependencies go inwards
+[[./images/16-dependencies.png]]
+
+
+*** Plans are worthless, but planning is everything.
+
+
+#+begin_notes
+The goal, as always, is to have a codebase that is loosely coupled and high cohesive, so that changes are easy, fast and safe to make.
+#+end_notes
+
 *** The map is not the territory
+
+#+begin_notes
+Meaning that these are just guidelines! The application is the territory, the reality, the concrete use case where we need to apply our knowledge, and that is what will define what the actual architecture will look like!
+
+We need to understand all these patterns, but we also always need to think and understand exactly what our application needs, how far should we go for the sake of decoupling and cohesiveness. This decision can depend on plenty of factors, starting with the project functional requirements, but can also include factors like the time-frame to build the application, the lifespan of the application, the experience of the development team, and so on.
+#+end_notes
 
 ** Resources
 
