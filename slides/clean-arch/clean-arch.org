@@ -21,29 +21,19 @@
 
 Learnings of software architecture and how a front end can do his initial steps in the backend world.
 
-#+begin_notes
-
-#+end_notes
-
-** MVC Architecture
-
-*** History of MVC Architecture
-
-*** What are the three components behind the MVC pattern
-
-*** The Model Component
-
-*** The View Component
-
-*** The Controller Component
-
-*** MVC Demo
-
 ** The Clean Architecture
+
+#+CAPTION: Uncle Bob Clean architecture
+#+NAME: Clean architecture
+[[./images/01-clean-architecture.jpg]]
 
 *** Fundamental blocks of the system
 
-/image
+
+#+CAPTION: Fundamental blocks of the system
+#+NAME: UI, app core and infrastructure.
+[[./images/02-fundamental-blocks.jpg]]
+
 
 #+begin_notes
 1. Whatever type that makes it possible to run an *user interface*
@@ -51,7 +41,17 @@ Learnings of software architecture and how a front end can do his initial steps 
 3. *Infrastructure* code, that connect our applicaton core to external tool
 #+end_notes
 
+*** Flow of control
+
+#+CAPTION: Flow of control
+#+NAME: Flow of control
+[[./images/03-flow-of-control.jpg]]
+
 *** Tools
+
+#+CAPTION: Tools
+#+NAME: Tools
+[[./images/04-tools.jpg]]
 
 #+begin_notes
 It might feel weird to put a CLI console in the same "bucket" as a database engine, and although they have differente purposes, there are in fact tools used by the application.
@@ -59,7 +59,7 @@ It might feel weird to put a CLI console in the same "bucket" as a database engi
 The key difference is that, while the CLI console are used to *tell our application to do something*, the database enfin is *told by our application to do something*.
 #+end_notes
 
-***  Adapters
+****  Adapters
 
 #+begin_notes
 The code units that connect the tools to the application core are called adapters.
@@ -67,7 +67,7 @@ The code units that connect the tools to the application core are called adapter
 The adapters taht *tell* our application to do something are called /driving adapter/, while the ones that are *told* by our application to do something are called /driven adapters/.
 #+end_notes
 
-***  Ports
+****  Ports
 
 #+begin_notes
 The adapters are no randomly created; they are created to fit a very specific entry point to the application core, a *port*.
@@ -77,19 +77,34 @@ A port *is nothing more than a specification* of how the tool can use or used by
 It is important to note that the ports (*interfaces*) belong inside the business logic, while adapter belong outside.
 #+end_notes
 
-*** Driving Adapters
+**** Driver Adapters
+
+#+CAPTION: Driver Adapters
+#+NAME: UI, CLI
+[[./images/05-driver-adapters.jpg]]
+
 
 #+begin_notes
 The driver adapters *wrap* around a port and use it to tell the application core what to do. *They translate whatever comes from a delivery mechanism into a method call in the app core*
 #+end_notes
 
-*** Driven Adapters
+**** Driven Adapters
+
+#+CAPTION: Driven Adapters
+#+NAME: Database, queues, notifications.
+[[./images/06-driven-adapters.jpg]]
+
 
 #+begin_notes
 The driven adapters *implement* a port and are then injected into application core, wherever the port is required
 #+end_notes
 
-*** Inversion of control
+**** Inversion of control
+
+#+CAPTION: Inversion of control
+#+NAME: Inwards
+[[./images/06-driven-adapters.jpg]]
+
 
 #+begin_notes
 A characteristic to note about this pattern is that the adapters depend on a specific tool and a specific port (by implementing an interface). But our business logic only depends on the port (interface), which is designed to fit the business logic needs, so it doesn’t depend on a specific adapter or tool.
@@ -98,13 +113,11 @@ i.e. the thirection of dependencies is towards the centre, it is the *inversion 
 #+end_notes
 
 
-*** Application Core Organisation
+*** Application Layer
 
 #+begin_notes
 The Onion Architecture picks up the DDD layers and incorporates them into the Ports & Adapters Architecture. Those layers are intended to bring some organisation to the business logic, the interior of the Ports & Adapters “hexagon”, and just like in Ports & Adapters, the dependencies direction is towards the centre.
 #+end_notes
-
-*** Application Layer
 
 #+begin_notes
 The use cases are the processes that can be triggered in our /application core/ by one or several User Interfaces in our application.
@@ -119,19 +132,19 @@ The use cases are defined in the /application layer/.
 #+end_notes
 
 
-*** Application Services
+**** Application Services
 
 1. Use a repository to find on or several entities;
 2. Tell those entities to do some domain logic;
 3. Use the repository to persist entities again, effectively saving the data changes.
 
 
-*** Command Handlers
+**** Command Handlers
 
 1. Contain the actual logic to perform the use case;
 2. Wire pieces in the architecture receiveing a command or trigerring a logic in the application Service.
 
-*** Application Event
+**** Application Event
 
 Represent the outcome of a use case.
 
