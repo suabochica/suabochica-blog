@@ -1,34 +1,23 @@
-#+REVEAL_ROOT: http://cdn.jsdelivr.net/reveal.js/3.0.0/
-#+OPTIONS: toc:nil num:nil timestamp:nil
-#+OPTIONS: reveal_width:1200 reveal_height:800 reveal_progress:t reveal_center:t
-#+REVEAL_TRANS: zoom
-#+REVEAL_THEME: night
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
 #+REVEAL_INIT_OPTIONS: slideNumber:true
-#+REVEAL_PLUGINS: (highlight)
+#+OPTIONS: toc:nil
 
-#+TITLE: Clean Architecture in NodeJS
-#+DESCRIPTION: Lifting is the "cheat mode" of tetris.
-#+AUTHOR: Sergio Benítez
-#+DATE: September 14, 2023
-
-
-* Clean Architecture in NodeJS
-
-** Working With Legacy Projects
+* Working With Legacy Projects
 :PROPERTIES:
-:reveal_background: #4E1A3D
+   :reveal_background: #123456
 :END:
 
 Learnings of software architecture and how a front end can do his initial steps in the backend world.
 
-** The Clean Architecture
+* The Clean Architecture
 
 #+CAPTION: Uncle Bob Clean architecture
 #+NAME: Clean architecture
 [[./images/01-clean-architecture.jpg]]
 
-*** Fundamental blocks of the system
+* The Clean Architecture my understanding
 
+** Fundamental blocks of the system
 
 #+CAPTION: Fundamental blocks of the system
 #+NAME: UI, app core and infrastructure.
@@ -41,13 +30,13 @@ Learnings of software architecture and how a front end can do his initial steps 
 3. *Infrastructure* code, that connect our applicaton core to external tool
 #+end_notes
 
-*** Flow of control
+** Flow of control
 
 #+CAPTION: Flow of control
 #+NAME: Flow of control
 [[./images/03-flow-of-control.jpg]]
 
-*** Tools
+** Tools
 
 #+CAPTION: Tools
 #+NAME: Tools
@@ -59,7 +48,7 @@ It might feel weird to put a CLI console in the same "bucket" as a database engi
 The key difference is that, while the CLI console are used to *tell our application to do something*, the database enfin is *told by our application to do something*.
 #+end_notes
 
-****  Adapters
+***  Adapters
 
 #+begin_notes
 The code units that connect the tools to the application core are called adapters.
@@ -67,7 +56,7 @@ The code units that connect the tools to the application core are called adapter
 The adapters taht *tell* our application to do something are called /driving adapter/, while the ones that are *told* by our application to do something are called /driven adapters/.
 #+end_notes
 
-****  Ports
+***  Ports
 
 #+begin_notes
 The adapters are no randomly created; they are created to fit a very specific entry point to the application core, a *port*.
@@ -77,7 +66,7 @@ A port *is nothing more than a specification* of how the tool can use or used by
 It is important to note that the ports (*interfaces*) belong inside the business logic, while adapter belong outside.
 #+end_notes
 
-**** Driver Adapters
+*** Driver Adapters
 
 #+CAPTION: Driver Adapters
 #+NAME: UI, CLI
@@ -88,7 +77,7 @@ It is important to note that the ports (*interfaces*) belong inside the business
 The driver adapters *wrap* around a port and use it to tell the application core what to do. *They translate whatever comes from a delivery mechanism into a method call in the app core*
 #+end_notes
 
-**** Driven Adapters
+*** Driven Adapters
 
 #+CAPTION: Driven Adapters
 #+NAME: Database, queues, notifications.
@@ -99,7 +88,7 @@ The driver adapters *wrap* around a port and use it to tell the application core
 The driven adapters *implement* a port and are then injected into application core, wherever the port is required
 #+end_notes
 
-**** Inversion of control
+*** Inversion of control
 
 #+CAPTION: Inversion of control
 #+NAME: Inwards
@@ -111,7 +100,7 @@ A characteristic to note about this pattern is that the adapters depend on a spe
 i.e. the thirection of dependencies is towards the centre, it is the *inversion of control principle at the architectural level*
 #+end_notes
 
-*** Application Layer
+** Application Layer
 
 #+CAPTION: Inversion of control
 #+NAME: Inwards
@@ -205,38 +194,38 @@ So far we have been segregating the code based on layers, but that is the fine-g
 #+NAME: Component
 [[./images/13-package-by-component.jpg]]
 
-*** Demo
+* Demo
 
-*** Recap: Explicit Architecture
+* Recap: Explicit Architecture
 
 ++CAPTION: Explicit architecture
 #+NAME: Component
 [[./images/14-explicit-architecture.png]]
 
-*** Recap: Dependencies Go Downwards
+* Recap: Dependencies Go Downwards
 
 ++CAPTION: Dependencies go downwards
 #+NAME: Dependencies go downwards
 [[./images/15-downwards.png]]
 
 
-** Takeaways
+* Takeaways
 
-*** Dependencies go inwards
+** Dependencies go inwards
 
 ++CAPTION: Dependencies go inwards
 #+NAME: Dependencies go inwards
 [[./images/16-dependencies.png]]
 
 
-*** Plans are worthless, but planning is everything.
+** Plans are worthless, but planning is everything.
 
 
 #+begin_notes
 The goal, as always, is to have a codebase that is loosely coupled and high cohesive, so that changes are easy, fast and safe to make.
 #+end_notes
 
-*** The map is not the territory
+** The map is not the territory
 
 #+begin_notes
 Meaning that these are just guidelines! The application is the territory, the reality, the concrete use case where we need to apply our knowledge, and that is what will define what the actual architecture will look like!
@@ -244,7 +233,7 @@ Meaning that these are just guidelines! The application is the territory, the re
 We need to understand all these patterns, but we also always need to think and understand exactly what our application needs, how far should we go for the sake of decoupling and cohesiveness. This decision can depend on plenty of factors, starting with the project functional requirements, but can also include factors like the time-frame to build the application, the lifespan of the application, the experience of the development team, and so on.
 #+end_notes
 
-** Resources
+* Resources
 
 - [[https://www.freecodecamp.org/news/mvc-architecture-what-is-a-model-view-controller-framework/][MVC Architecture]] by Jessica Wilkins
 - [[https://mannhowie.com/clean-architecture-node?utm_source=pocket_saves][Clean Architecture NodeJS build a REST API]] by Howie Mann

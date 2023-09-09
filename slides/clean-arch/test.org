@@ -1,0 +1,21 @@
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: serif
+#+OPTIONS: toc:1 num:nil timestamp:nil
+:END:
+
+* Test 1
+1. Point one
+2. point two
+3. point three
+
+* Slides with sub-slides
+** Sub-slide
+There are som words on this one
+
+* Test 3
+Como
+
+* Thanks!
+Vas
