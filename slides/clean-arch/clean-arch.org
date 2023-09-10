@@ -1,21 +1,27 @@
+:REVEAL_PROPERTIES:
 #+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
 #+REVEAL_INIT_OPTIONS: slideNumber:true
-#+OPTIONS: toc:nil
+#+OPTIONS: toc:1 num:nil timestamp:nil width: 800 height: 1200
+:END:
 
-* Working With Legacy Projects
+#+TITLE: Clean Architecture in Node.js
+#+AUTHOR: Sergio Benítez
+
+* 💭 Working With Legacy Projects
 :PROPERTIES:
    :reveal_background: #123456
 :END:
 
 Learnings of software architecture and how a front end can do his initial steps in the backend world.
 
-* The Clean Architecture
+* 🖼️‍The Clean Architecture
 
 #+CAPTION: Uncle Bob Clean architecture
 #+NAME: Clean architecture
 [[./images/01-clean-architecture.jpg]]
 
-* The Clean Architecture my understanding
+* ✋ The Clean Architecture my understanding
 
 ** Fundamental blocks of the system
 
@@ -107,11 +113,11 @@ i.e. the thirection of dependencies is towards the centre, it is the *inversion 
 [[./images/08-app-layer.jpg]]
 
 #+begin_notes
-The Onion Architecture picks up the DDD layers and incorporates them into the Ports & Adapters Architecture. Those layers are intended to bring some organisation to the business logic, the interior of the Ports & Adapters “hexagon”, and just like in Ports & Adapters, the dependencies direction is towards the centre.
+The Onion Architecture picks up the DDD layers and incorporates them into the Ports & Adapters Architecture. Those layers intended to bring some organisation to the business logic, the interior of the Ports & Adapters “hexagon”, and just like in Ports & Adapters, the dependencies direction is towards the centre.
 #+end_notes
 
 #+begin_notes
-The use cases are the processes that can be triggered in our /application core/ by one or several User Interfaces in our application.
+The use cases are the processes that can triggered in our /application core/ by one or several User Interfaces in our application.
 
 e.g. Several UIs (applications) could trigger use cases that can be specific to one of them or reused by several of them:
 
@@ -194,32 +200,33 @@ So far we have been segregating the code based on layers, but that is the fine-g
 #+NAME: Component
 [[./images/13-package-by-component.jpg]]
 
-* Demo
+* 🤓 Demo
 
-* Recap: Explicit Architecture
+* 📝 Recap
 
-++CAPTION: Explicit architecture
+** Explicit Architecture
+
+#+CAPTION: Explicit architecture
 #+NAME: Component
 [[./images/14-explicit-architecture.png]]
 
-* Recap: Dependencies Go Downwards
+** Dependencies Go Downwards
 
-++CAPTION: Dependencies go downwards
+#+CAPTION: Dependencies go downwards
 #+NAME: Dependencies go downwards
 [[./images/15-downwards.png]]
 
 
-* Takeaways
+* 🥡 Takeaways
 
 ** Dependencies go inwards
 
-++CAPTION: Dependencies go inwards
+#+CAPTION: Dependencies go inwards
 #+NAME: Dependencies go inwards
 [[./images/16-dependencies.png]]
 
 
 ** Plans are worthless, but planning is everything.
-
 
 #+begin_notes
 The goal, as always, is to have a codebase that is loosely coupled and high cohesive, so that changes are easy, fast and safe to make.
@@ -233,8 +240,10 @@ Meaning that these are just guidelines! The application is the territory, the re
 We need to understand all these patterns, but we also always need to think and understand exactly what our application needs, how far should we go for the sake of decoupling and cohesiveness. This decision can depend on plenty of factors, starting with the project functional requirements, but can also include factors like the time-frame to build the application, the lifespan of the application, the experience of the development team, and so on.
 #+end_notes
 
-* Resources
+* 📎 Resources
 
 - [[https://www.freecodecamp.org/news/mvc-architecture-what-is-a-model-view-controller-framework/][MVC Architecture]] by Jessica Wilkins
 - [[https://mannhowie.com/clean-architecture-node?utm_source=pocket_saves][Clean Architecture NodeJS build a REST API]] by Howie Mann
 - [[https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/?source=post_page-----19cab9e93be7--------------------------------][DDD, Hexagonal, Onion, Clean, CQRS, ... How to put all together]], by Herberto Graca
+
+* 🙇 Thanks!

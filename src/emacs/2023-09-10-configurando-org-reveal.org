@@ -16,10 +16,79 @@ Para lograr esta funcionalidad, se recurre al sistema de paquetes de emacs.
 ~org-reveal~ es el paquete the emacs que permite exportar archvios ~.org~ a archivos ~.html~ que utilizan la librería reveal.js para hacer presentaciones impresionanes en la web.
 
 * Instalando org-reveal
-* TODO: add contents
+
+Para instalar ~org-reveal~ se ejecute el siguiente comando:
+
+#+begin_src
+M-x package-install
+#+end_src
+
+#+begin_quote
+Recuerda que el símbolo ~M~ es equivalente a la tecla ~alt~.
+#+end_quote
+
+Espere a que se establezca la conexión con el repositorio de paquete melpa y realice la búsqueda del siguiente paquete:
+
+#+begin_src
+ox-reveal
+#+end_src
+
+Presione ~enter~ y el paquete ox-reveal debería haberse instalado:
+
+Para validar la instalación del paquete, ejecute el siguiente comando:
+
+#+begin_src
+M-x list-packages
+#+end_src
+
+Realice la búsquede de ~ox-reveal~ y deberá aparace una descripción como la siguiente
+
+#+begin_src
+  ox-reveal          20221127.814  installed             reveal.js Presentation Back-End for Org Export Engine
+#+end_src
+
+Si el estado tiene la palabra `installed` significa que el paquete ~ox-reveal~ ha sido installod en emacs.
 
 * Exportación básica
-* TODO: add contents
+
+Para realizar la exportación desde ~.org~ a ~.html~ con el framework the reveal.js  es necesario agregar las siguientes propiedades al inicio del archivo ~.org~:
+
+#+begin_src
+:REVEAL_PROPERTIES
+#+ REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+ REVEAL_REVEAL_JS_VERSION: 4
+:END_REVEAL_PROPERTIES
+#+end_src
+
+A continuación se explican cada una de las propiedades:
+
+- ~REVEAL_ROOT~: se usa para especificar la ruta del archivo reveal.js para este caso estamos definiendo una ruta en un Content Network Delivery (CDN) llamado jsdelivr.
+- ~REVEAL_JS_VERSION~: se usa para especificar que versión del framework se quiere usar.
+
+De esta forma habilitamos el archivo ~.org~ para poder ser exportado a ~.html~ bajo el contexto de reveal.js.
+
+Para hacer dicha exportación habilitamos el panel de exportaciones del modo org ejecutando la siguiente combinación:
+
+#+begin_src
+C-c C-e
+#+end_src
+
+#+begin_quote
+Recuerde que el símbolo ~C~ es equivalente a la tecla ~ctrl~.
+#+end_quote
+
+Al abrir el panel de exportaciones por primera vez, ninguna de las opciones muestra la exportación al formato de reveal.js. Para habilitar dicho formato, es necesario cargar la biblioteca ~ox-reveal~ con el siguiente comando:
+
+#+begin_src
+M-x load-library
+#+end_src
+
+Ahora, al momento de ver el panel de exportaciones, hay una opción disponible para llamada Reveal y al ejecutar la siguiente secuencia, se exportará el archivo ~.org~ a un ~.html~ con el frameword the reveal.js:
+
+#+begin_src
+C-c C-e R R
+#+end_src
+
 
 * Navegación de las diapositivas
 * TODO: add contents
