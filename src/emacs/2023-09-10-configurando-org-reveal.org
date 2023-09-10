@@ -1,0 +1,30 @@
+#+TITLE: Configurando org mode para exportar a reveal.js
+#+DESCRIPTION: En esta publicación se comparte una guía para exportar desde org mode a reveal.js
+#+AUTHOR: Sergio Benítez
+#+DATE:<2023-09-10 dom>
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+Una de las características más llamativas del modo ~org~ de emacs, es su flexibilidad para ser exportado a diferentes formatos; markdown, html, pdf, entre otros. Esto permite que el modo ~org~ sea el punto de partida para crear blogs y presentaciones que utilicen html como marco de referencia. En esta publicación se explicará el paso a paso para habilitar la exportación de archivos ~.org~ a archivos ~.html~ utilizando el framework reveal.js
+
+Para lograr esta funcionalidad, se recurre al sistema de paquetes de emacs.
+
+* org-reveal
+
+~org-reveal~ es el paquete the emacs que permite exportar archvios ~.org~ a archivos ~.html~ que utilizan la librería reveal.js para hacer presentaciones impresionanes en la web.
+
+* Instalando org-reveal
+* TODO: add contents
+
+* Exportación básica
+* TODO: add contents
+
+* Navegación de las diapositivas
+* TODO: add contents
+
+* Veáse también
+- [[https://revealjs.com/][Reveal.js]] by Hakib el Hattab
+- [[https://github.com/yjwen/org-reveal][org-reveal]] by yjwen
+- [[https://www.youtube.com/watch?v=avtiR0AUVlo][Classy slideshow from org mode to org-reveal]] by Jake B
