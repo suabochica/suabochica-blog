@@ -2,7 +2,7 @@
 #+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
 #+REVEAL_REVEAL_JS_VERSION: 4
 #+REVEAL_INIT_OPTIONS: slideNumber:true
-#+OPTIONS: toc:1 num:nil timestamp:nil width: 800 height: 1200
+#+OPTIONS: toc:1 num:nil timestamp:nil width: 800 height: 1000
 :END:
 
 #+TITLE: Clean Architecture in Node.js
@@ -15,11 +15,25 @@
 
 Learnings of software architecture and how a front end can do his initial steps in the backend world.
 
-* 🖼️‍The Clean Architecture
+* 🖼️‍ The Clean Architecture
 
 #+CAPTION: Uncle Bob Clean architecture
 #+NAME: Clean architecture
 [[./images/01-clean-architecture.jpg]]
+
+#+begin_notes
+Uncle Bob's famous Clean Architecture is a way to write resilient software.
+
+Resilient software is divided into layers, underpinned by business logic and is independent of technologies.
+#+end_notes
+
+** Reisilent Software
+
+- Independent of Frameworks
+- Testable
+- Independent of UI
+- Independent of Database
+- Independent of any external agency
 
 * ✋ The Clean Architecture my understanding
 
@@ -56,16 +70,20 @@ The key difference is that, while the CLI console are used to *tell our applicat
 
 ***  Adapters
 
-#+begin_notes
-The code units that connect the tools to the application core are called adapters.
+Code units that *connects* the tools to the application core.
 
-The adapters taht *tell* our application to do something are called /driving adapter/, while the ones that are *told* by our application to do something are called /driven adapters/.
+#+begin_notes
+The code units that connect the tools to the application core are adapters.
+
+The adapters taht *tell* our application to do something are /driving adapters/, while the ones that are *told* by our application to do something are /driven adapters/.
 #+end_notes
 
 ***  Ports
 
+A specification of *how* the tool can use or used by the application core.
+
 #+begin_notes
-The adapters are no randomly created; they are created to fit a very specific entry point to the application core, a *port*.
+The adapters are no randomly created; they are to fit a specific entry point to the application core, a *port*.
 
 A port *is nothing more than a specification* of how the tool can use or used by the application core.
 
@@ -78,7 +96,6 @@ It is important to note that the ports (*interfaces*) belong inside the business
 #+NAME: UI, CLI
 [[./images/05-driver-adapters.jpg]]
 
-
 #+begin_notes
 The driver adapters *wrap* around a port and use it to tell the application core what to do. *They translate whatever comes from a delivery mechanism into a method call in the app core*
 #+end_notes
@@ -88,7 +105,6 @@ The driver adapters *wrap* around a port and use it to tell the application core
 #+CAPTION: Driven Adapters
 #+NAME: Database, queues, notifications.
 [[./images/06-driven-adapters.jpg]]
-
 
 #+begin_notes
 The driven adapters *implement* a port and are then injected into application core, wherever the port is required
@@ -128,23 +144,23 @@ e.g. Several UIs (applications) could trigger use cases that can be specific to 
 The use cases are defined in the /application layer/.
 #+end_notes
 
-**** Application Services
+*** Application Services
 
 1. Use a repository to find on or several entities;
 2. Tell those entities to do some domain logic;
 3. Use the repository to persist entities again, effectively saving the data changes.
 
 
-**** Command Handlers
+*** Command Handlers
 
 1. Contain the actual logic to perform the use case;
 2. Wire pieces in the architecture receiveing a command or trigerring a logic in the application Service.
 
-**** Application Event
+*** Application Event
 
 Represent the outcome of a use case.
 
-*** Domain Layer
+** Domain Layer
 
 #+CAPTION: Domain layer
 #+NAME: Domain layer
@@ -154,25 +170,30 @@ Represent the outcome of a use case.
 The objects in the domain layer contain the data an the logic to manipulate that data, that is specific to the domain itself and it is independent of the business process that trigger the logic adn the application layer.
 #+end_notes
 
-**** Domain Services
+*** Domain Services
+
+Receive a set of entities and *perform* business logic on them.
 
 #+begin_notes
-The role of the /domain service/ is receive a set of entities and perfomr business logic on them. A domain service belongs to the domain layer and consume domain models.
+The role of the /domain service/ is receive a set of entities and perform business logic on them. A domain service belongs to the domain layer and consume domain models.
 #+end_notes
 
-**** Domain Model
+*** Domain Model
 
+Contains the bussiness objects that *represent* something in the domain (e.g. entities, value objects, enums, etc.)
 #+begin_notes
 In the centre, the domain model contains the bussiness objects that represent something in the domain (e.g. entities, value objects, enums, etc.)
 #+end_notes
 
-**** Domain Events
+*** Domain Events
+
+They are triggered when a specific set of data *changes*.
 
 #+begin_notes
-Inside domain models also lives the domain events. These events are triggered when a specific set of data changes and they carry those changes with theme.
+Inside domain models also lives the domain events. These events are triggered when a specific set of data changes and they carry those changes with them.
 #+end_notes
 
-*** Components
+** Components
 
 #+CAPTION: Component
 #+NAME: Component
@@ -182,19 +203,19 @@ Inside domain models also lives the domain events. These events are triggered wh
 So far we have been segregating the code based on layers, but that is the fine-grained code segregation.The coarse-grained segregation of code is at least as important and it’s about segregating the code according to sub-domains and bounded contexts, following Robert C. Martin ideas expressed in screaming architecture.
 #+end_notes
 
-**** Package by layer
+*** Package by layer
 
 #+CAPTION: Package by layer
 #+NAME: Layer
 [[./images/11-package-by-layer.jpg]]
 
-**** Package by feature
+*** Package by feature
 
 #+CAPTION: Package by feature
 #+NAME: Feature
 [[./images/12-package-by-feature.jpg]]
 
-**** Package by component
+*** Package by component
 
 #+CAPTION: Package by component
 #+NAME: Component
@@ -228,11 +249,15 @@ So far we have been segregating the code based on layers, but that is the fine-g
 
 ** Plans are worthless, but planning is everything.
 
+/by Eisenhower/
+
 #+begin_notes
 The goal, as always, is to have a codebase that is loosely coupled and high cohesive, so that changes are easy, fast and safe to make.
 #+end_notes
 
 ** The map is not the territory
+
+/by Alfred Korzybski/
 
 #+begin_notes
 Meaning that these are just guidelines! The application is the territory, the reality, the concrete use case where we need to apply our knowledge, and that is what will define what the actual architecture will look like!

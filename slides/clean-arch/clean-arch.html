@@ -24,14 +24,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#/slide-org6111ed1">💭 Working With Legacy Projects</a></li>
-<li><a href="#/slide-org49f7ae3">🖼️‍The Clean Architecture</a></li>
-<li><a href="#/slide-org9f2808c">✋ The Clean Architecture my understanding</a></li>
-<li><a href="#/slide-orgaff6098">🤓 Demo</a></li>
-<li><a href="#/slide-orgd3c9432">📝 Recap</a></li>
-<li><a href="#/slide-org908e804">🥡 Takeaways</a></li>
-<li><a href="#/slide-orgba3550f">📎 Resources</a></li>
-<li><a href="#/slide-orgb31147c">🙇 Thanks!</a></li>
+<li><a href="#/slide-orge4b9693">💭 Working With Legacy Projects</a></li>
+<li><a href="#/slide-orgd1e8df6">🖼️‍ The Clean Architecture</a></li>
+<li><a href="#/slide-org092ae0c">✋ The Clean Architecture my understanding</a></li>
+<li><a href="#/slide-orgb657405">🤓 Demo</a></li>
+<li><a href="#/slide-orgd973a04">📝 Recap</a></li>
+<li><a href="#/slide-org4a8f265">🥡 Takeaways</a></li>
+<li><a href="#/slide-org120f429">📎 Resources</a></li>
+<li><a href="#/slide-orgc3e6159">🙇 Thanks!</a></li>
 </ul>
 </div>
 </div>
@@ -39,8 +39,8 @@
 
 
 <section>
-<section id="slide-org6111ed1" data-background="#123456">
-<h2 id="org6111ed1">💭 Working With Legacy Projects</h2>
+<section id="slide-orge4b9693" data-background="#123456">
+<h2 id="orge4b9693">💭 Working With Legacy Projects</h2>
 <p>
 Learnings of software architecture and how a front end can do his initial steps in the backend world.
 </p>
@@ -48,27 +48,50 @@ Learnings of software architecture and how a front end can do his initial steps 
 </section>
 </section>
 <section>
-<section id="slide-org49f7ae3">
-<h2 id="org49f7ae3">🖼️‍The Clean Architecture</h2>
+<section id="slide-orgd1e8df6">
+<h2 id="orgd1e8df6">🖼️‍ The Clean Architecture</h2>
 
-<div id="org12dae15" class="figure">
+<div id="orgb30a777" class="figure">
 <p><img src="./images/01-clean-architecture.jpg" alt="01-clean-architecture.jpg" />
 </p>
 <p><span class="figure-number">Figure 1: </span>Uncle Bob Clean architecture</p>
 </div>
 
+<aside class="notes">
+<p>
+Uncle Bob&rsquo;s famous Clean Architecture is a way to write resilient software.
+</p>
+
+<p>
+Resilient software is divided into layers, underpinned by business logic and is independent of technologies.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-orga72e3ea">
+<h3 id="orga72e3ea">Reisilent Software</h3>
+<ul>
+<li>Independent of Frameworks</li>
+<li>Testable</li>
+<li>Independent of UI</li>
+<li>Independent of Database</li>
+<li>Independent of any external agency</li>
+
+</ul>
+
 </section>
 </section>
 <section>
-<section id="slide-org9f2808c">
-<h2 id="org9f2808c">✋ The Clean Architecture my understanding</h2>
-<div class="outline-text-2" id="text-org9f2808c">
+<section id="slide-org092ae0c">
+<h2 id="org092ae0c">✋ The Clean Architecture my understanding</h2>
+<div class="outline-text-2" id="text-org092ae0c">
 </div>
 </section>
-<section id="slide-orgd6a0265">
-<h3 id="orgd6a0265">Fundamental blocks of the system</h3>
+<section id="slide-org4439eba">
+<h3 id="org4439eba">Fundamental blocks of the system</h3>
 
-<div id="org927caff" class="figure">
+<div id="org1b3eef6" class="figure">
 <p><img src="./images/02-fundamental-blocks.jpg" alt="02-fundamental-blocks.jpg" />
 </p>
 <p><span class="figure-number">Figure 2: </span>Fundamental blocks of the system</p>
@@ -86,20 +109,20 @@ Learnings of software architecture and how a front end can do his initial steps 
 </aside>
 
 </section>
-<section id="slide-orgce30e4f">
-<h3 id="orgce30e4f">Flow of control</h3>
+<section id="slide-org772c4ef">
+<h3 id="org772c4ef">Flow of control</h3>
 
-<div id="orgf0bfc4b" class="figure">
+<div id="orgf3badc8" class="figure">
 <p><img src="./images/03-flow-of-control.jpg" alt="03-flow-of-control.jpg" />
 </p>
 <p><span class="figure-number">Figure 3: </span>Flow of control</p>
 </div>
 
 </section>
-<section id="slide-orgc9bc2d5">
-<h3 id="orgc9bc2d5">Tools</h3>
+<section id="slide-org6171709">
+<h3 id="org6171709">Tools</h3>
 
-<div id="org129c080" class="figure">
+<div id="org1a63483" class="figure">
 <p><img src="./images/04-tools.jpg" alt="04-tools.jpg" />
 </p>
 <p><span class="figure-number">Figure 4: </span>Tools</p>
@@ -117,25 +140,33 @@ The key difference is that, while the CLI console are used to <b>tell our applic
 </aside>
 
 </section>
-<section id="slide-org2a65d9f">
-<h4 id="org2a65d9f">Adapters</h4>
+<section id="slide-orga245d24">
+<h4 id="orga245d24">Adapters</h4>
+<p>
+Code units that <b>connects</b> the tools to the application core.
+</p>
+
 <aside class="notes">
 <p>
-The code units that connect the tools to the application core are called adapters.
+The code units that connect the tools to the application core are adapters.
 </p>
 
 <p>
-The adapters taht <b>tell</b> our application to do something are called <i>driving adapter</i>, while the ones that are <b>told</b> by our application to do something are called <i>driven adapters</i>.
+The adapters taht <b>tell</b> our application to do something are <i>driving adapters</i>, while the ones that are <b>told</b> by our application to do something are <i>driven adapters</i>.
 </p>
 
 </aside>
 
 </section>
-<section id="slide-org7e0be26">
-<h4 id="org7e0be26">Ports</h4>
+<section id="slide-orgeb965a3">
+<h4 id="orgeb965a3">Ports</h4>
+<p>
+A specification of <b>how</b> the tool can use or used by the application core.
+</p>
+
 <aside class="notes">
 <p>
-The adapters are no randomly created; they are created to fit a very specific entry point to the application core, a <b>port</b>.
+The adapters are no randomly created; they are to fit a specific entry point to the application core, a <b>port</b>.
 </p>
 
 <p>
@@ -149,15 +180,14 @@ It is important to note that the ports (<b>interfaces</b>) belong inside the bus
 </aside>
 
 </section>
-<section id="slide-org9c9a626">
-<h4 id="org9c9a626">Driver Adapters</h4>
+<section id="slide-orgf81c743">
+<h4 id="orgf81c743">Driver Adapters</h4>
 
-<div id="org2c44b00" class="figure">
+<div id="orgcba1b11" class="figure">
 <p><img src="./images/05-driver-adapters.jpg" alt="05-driver-adapters.jpg" />
 </p>
 <p><span class="figure-number">Figure 5: </span>Driver Adapters</p>
 </div>
-
 
 <aside class="notes">
 <p>
@@ -167,15 +197,14 @@ The driver adapters <b>wrap</b> around a port and use it to tell the application
 </aside>
 
 </section>
-<section id="slide-orga6702c2">
-<h4 id="orga6702c2">Driven Adapters</h4>
+<section id="slide-orgb5597e6">
+<h4 id="orgb5597e6">Driven Adapters</h4>
 
-<div id="org3e1acd5" class="figure">
+<div id="orgc6579b9" class="figure">
 <p><img src="./images/06-driven-adapters.jpg" alt="06-driven-adapters.jpg" />
 </p>
 <p><span class="figure-number">Figure 6: </span>Driven Adapters</p>
 </div>
-
 
 <aside class="notes">
 <p>
@@ -185,10 +214,10 @@ The driven adapters <b>implement</b> a port and are then injected into applicati
 </aside>
 
 </section>
-<section id="slide-org2133d62">
-<h4 id="org2133d62">Inversion of control</h4>
+<section id="slide-org6b196b7">
+<h4 id="org6b196b7">Inversion of control</h4>
 
-<div id="org9e6f5e3" class="figure">
+<div id="orgd8b0de0" class="figure">
 <p><img src="./images/07-inversion-of-control.jpg" alt="07-inversion-of-control.jpg" />
 </p>
 <p><span class="figure-number">Figure 7: </span>Inversion of control</p>
@@ -206,10 +235,10 @@ i.e. the thirection of dependencies is towards the centre, it is the <b>inversio
 </aside>
 
 </section>
-<section id="slide-org5d6699d">
-<h3 id="org5d6699d">Application Layer</h3>
+<section id="slide-org3071403">
+<h3 id="org3071403">Application Layer</h3>
 
-<div id="orgee0d6e2" class="figure">
+<div id="org8da6e62" class="figure">
 <p><img src="./images/08-app-layer.jpg" alt="08-app-layer.jpg" />
 </p>
 <p><span class="figure-number">Figure 8: </span>Inversion of control</p>
@@ -244,37 +273,38 @@ The use cases are defined in the <i>application layer</i>.
 
 </aside>
 
-<ul class="org-ul">
-<li><a id="org746f996"></a>Application Services<br />
+</section>
+<section id="slide-orgbafba0f">
+<h4 id="orgbafba0f">Application Services</h4>
 <ol>
 <li>Use a repository to find on or several entities;</li>
 <li>Tell those entities to do some domain logic;</li>
 <li>Use the repository to persist entities again, effectively saving the data changes.</li>
 
 </ol>
-</li>
 
 
-<li><a id="orgce46b0f"></a>Command Handlers<br />
+</section>
+<section id="slide-org615da97">
+<h4 id="org615da97">Command Handlers</h4>
 <ol>
 <li>Contain the actual logic to perform the use case;</li>
 <li>Wire pieces in the architecture receiveing a command or trigerring a logic in the application Service.</li>
 
 </ol>
-</li>
 
-<li><a id="org269dc60"></a>Application Event<br />
+</section>
+<section id="slide-org2a93826">
+<h4 id="org2a93826">Application Event</h4>
 <p>
 Represent the outcome of a use case.
 </p>
-</li>
-</ul>
 
 </section>
-<section id="slide-orge2eb459">
-<h4 id="orge2eb459">Domain Layer</h4>
+<section id="slide-org006086a">
+<h3 id="org006086a">Domain Layer</h3>
 
-<div id="org5dcee64" class="figure">
+<div id="org700d624" class="figure">
 <p><img src="./images/09-domain-layer.jpg" alt="09-domain-layer.jpg" />
 </p>
 <p><span class="figure-number">Figure 9: </span>Domain layer</p>
@@ -287,40 +317,52 @@ The objects in the domain layer contain the data an the logic to manipulate that
 
 </aside>
 
-<ul class="org-ul">
-<li><a id="org5682aaf"></a>Domain Services<br />
+</section>
+<section id="slide-org0f97ff1">
+<h4 id="org0f97ff1">Domain Services</h4>
+<p>
+Receive a set of entities and <b>perform</b> business logic on them.
+</p>
+
 <aside class="notes">
 <p>
-The role of the <i>domain service</i> is receive a set of entities and perfomr business logic on them. A domain service belongs to the domain layer and consume domain models.
+The role of the <i>domain service</i> is receive a set of entities and perform business logic on them. A domain service belongs to the domain layer and consume domain models.
 </p>
 
 </aside>
-</li>
 
-<li><a id="orgd6f60e5"></a>Domain Model<br />
+</section>
+<section id="slide-org7b4bac4">
+<h4 id="org7b4bac4">Domain Model</h4>
+<p>
+Contains the bussiness objects that <b>represent</b> something in the domain (e.g. entities, value objects, enums, etc.)
+</p>
 <aside class="notes">
 <p>
 In the centre, the domain model contains the bussiness objects that represent something in the domain (e.g. entities, value objects, enums, etc.)
 </p>
 
 </aside>
-</li>
 
-<li><a id="org901e2d6"></a>Domain Events<br />
+</section>
+<section id="slide-org45ef1de">
+<h4 id="org45ef1de">Domain Events</h4>
+<p>
+They are triggered when a specific set of data <b>changes</b>.
+</p>
+
 <aside class="notes">
 <p>
-Inside domain models also lives the domain events. These events are triggered when a specific set of data changes and they carry those changes with theme.
+Inside domain models also lives the domain events. These events are triggered when a specific set of data changes and they carry those changes with them.
 </p>
 
 </aside>
-</li>
-</ul>
 
 </section>
-<section id="slide-org9fb25c9">
-<h4 id="org9fb25c9">Components</h4>
+<section id="slide-orga93d9b7">
+<h3 id="orga93d9b7">Components</h3>
 
-<div id="orgdef3d80" class="figure">
+<div id="org5ce5b2c" class="figure">
 <p><img src="./images/10-component.jpg" alt="10-component.jpg" />
 </p>
 <p><span class="figure-number">Figure 10: </span>Component</p>
@@ -333,60 +375,64 @@ So far we have been segregating the code based on layers, but that is the fine-g
 
 </aside>
 
-<ul class="org-ul">
-<li><a id="orgbca448b"></a>Package by layer<br />
-<div id="orgcc456ed" class="figure">
+</section>
+<section id="slide-orga1e15f5">
+<h4 id="orga1e15f5">Package by layer</h4>
+
+<div id="org6777375" class="figure">
 <p><img src="./images/11-package-by-layer.jpg" alt="11-package-by-layer.jpg" />
 </p>
 <p><span class="figure-number">Figure 11: </span>Package by layer</p>
 </div>
-</li>
 
-<li><a id="orgf2bb682"></a>Package by feature<br />
-<div id="orgefffe6a" class="figure">
+</section>
+<section id="slide-org9decfd8">
+<h4 id="org9decfd8">Package by feature</h4>
+
+<div id="org3225acc" class="figure">
 <p><img src="./images/12-package-by-feature.jpg" alt="12-package-by-feature.jpg" />
 </p>
 <p><span class="figure-number">Figure 12: </span>Package by feature</p>
 </div>
-</li>
 
-<li><a id="org5f4d516"></a>Package by component<br />
-<div id="orge16b884" class="figure">
+</section>
+<section id="slide-org472f4be">
+<h4 id="org472f4be">Package by component</h4>
+
+<div id="org3e0c4ac" class="figure">
 <p><img src="./images/13-package-by-component.jpg" alt="13-package-by-component.jpg" />
 </p>
 <p><span class="figure-number">Figure 13: </span>Package by component</p>
 </div>
-</li>
-</ul>
 
 </section>
 </section>
 <section>
-<section id="slide-orgaff6098">
-<h2 id="orgaff6098">🤓 Demo</h2>
+<section id="slide-orgb657405">
+<h2 id="orgb657405">🤓 Demo</h2>
 
 </section>
 </section>
 <section>
-<section id="slide-orgd3c9432">
-<h2 id="orgd3c9432">📝 Recap</h2>
-<div class="outline-text-2" id="text-orgd3c9432">
+<section id="slide-orgd973a04">
+<h2 id="orgd973a04">📝 Recap</h2>
+<div class="outline-text-2" id="text-orgd973a04">
 </div>
 </section>
-<section id="slide-org7711cfb">
-<h3 id="org7711cfb">Explicit Architecture</h3>
+<section id="slide-orge162184">
+<h3 id="orge162184">Explicit Architecture</h3>
 
-<div id="orgc06e02a" class="figure">
+<div id="org78c1507" class="figure">
 <p><img src="./images/14-explicit-architecture.png" alt="14-explicit-architecture.png" />
 </p>
 <p><span class="figure-number">Figure 14: </span>Explicit architecture</p>
 </div>
 
 </section>
-<section id="slide-org6f49246">
-<h3 id="org6f49246">Dependencies Go Downwards</h3>
+<section id="slide-orgfad6ec0">
+<h3 id="orgfad6ec0">Dependencies Go Downwards</h3>
 
-<div id="org677a95b" class="figure">
+<div id="org7899db6" class="figure">
 <p><img src="./images/15-downwards.png" alt="15-downwards.png" />
 </p>
 <p><span class="figure-number">Figure 15: </span>Dependencies go downwards</p>
@@ -396,15 +442,15 @@ So far we have been segregating the code based on layers, but that is the fine-g
 </section>
 </section>
 <section>
-<section id="slide-org908e804">
-<h2 id="org908e804">🥡 Takeaways</h2>
-<div class="outline-text-2" id="text-org908e804">
+<section id="slide-org4a8f265">
+<h2 id="org4a8f265">🥡 Takeaways</h2>
+<div class="outline-text-2" id="text-org4a8f265">
 </div>
 </section>
-<section id="slide-orgeeec812">
-<h3 id="orgeeec812">Dependencies go inwards</h3>
+<section id="slide-org25cf926">
+<h3 id="org25cf926">Dependencies go inwards</h3>
 
-<div id="orgfe3a299" class="figure">
+<div id="org3a1f54e" class="figure">
 <p><img src="./images/16-dependencies.png" alt="16-dependencies.png" />
 </p>
 <p><span class="figure-number">Figure 16: </span>Dependencies go inwards</p>
@@ -412,8 +458,12 @@ So far we have been segregating the code based on layers, but that is the fine-g
 
 
 </section>
-<section id="slide-org3fe207d">
-<h3 id="org3fe207d">Plans are worthless, but planning is everything.</h3>
+<section id="slide-org55c1388">
+<h3 id="org55c1388">Plans are worthless, but planning is everything.</h3>
+<p>
+<i>by Eisenhower</i>
+</p>
+
 <aside class="notes">
 <p>
 The goal, as always, is to have a codebase that is loosely coupled and high cohesive, so that changes are easy, fast and safe to make.
@@ -422,8 +472,12 @@ The goal, as always, is to have a codebase that is loosely coupled and high cohe
 </aside>
 
 </section>
-<section id="slide-org5cc065f">
-<h3 id="org5cc065f">The map is not the territory</h3>
+<section id="slide-orgc1e6f8d">
+<h3 id="orgc1e6f8d">The map is not the territory</h3>
+<p>
+<i>by Alfred Korzybski</i>
+</p>
+
 <aside class="notes">
 <p>
 Meaning that these are just guidelines! The application is the territory, the reality, the concrete use case where we need to apply our knowledge, and that is what will define what the actual architecture will look like!
@@ -438,8 +492,8 @@ We need to understand all these patterns, but we also always need to think and u
 </section>
 </section>
 <section>
-<section id="slide-orgba3550f">
-<h2 id="orgba3550f">📎 Resources</h2>
+<section id="slide-org120f429">
+<h2 id="org120f429">📎 Resources</h2>
 <ul>
 <li><a href="https://www.freecodecamp.org/news/mvc-architecture-what-is-a-model-view-controller-framework/">MVC Architecture</a> by Jessica Wilkins</li>
 <li><a href="https://mannhowie.com/clean-architecture-node?utm_source=pocket_saves">Clean Architecture NodeJS build a REST API</a> by Howie Mann</li>
@@ -450,8 +504,8 @@ We need to understand all these patterns, but we also always need to think and u
 </section>
 </section>
 <section>
-<section id="slide-orgb31147c">
-<h2 id="orgb31147c">🙇 Thanks!</h2>
+<section id="slide-orgc3e6159">
+<h2 id="orgc3e6159">🙇 Thanks!</h2>
 </section>
 </section>
 </div>
