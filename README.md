@@ -72,7 +72,15 @@ From these folder structure, below I list the relevant ones:
 - `content/images`: folder with all the local images
 - `content/post`: folder with all posts. They should be in markdown
 - `src/`: folder with in progress posts. They are written in ~.org~ and should be exported to markdown
-- `themes/m10c`: folder with in progress posts. They are written in ~.org~ and should be exported to markdown
+- `themes/m10c`: folder with the hugo themes for the blog.
+
+## 👁️‍🗨️ Overview
+
+- filenames that start with the `***` prefix are _in progress_ posts.
+- filenames that start with the `*` prefix are _not published_ posts.
+- filenames has a timestamp after prefix.
+- filenames that has an `en` in the name, mean that the post is in English.
+- filenames that has an `es` in the name, mean that the post is in Spanish.
 
 ## :bookmark: Adding tags
 
