@@ -16,7 +16,7 @@ En el desarrollo de software, sandbox es un entorno de prueba que aisla los camb
 
 Los temas a abordar son:
 
-  - Instalación de Storybook
+- Instalación de Storybook
 - Branding con Storybook
 - Escritura de historias
 - Uso y escritura de complementos (add-ons)
