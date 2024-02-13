@@ -3,10 +3,9 @@
 #+REVEAL_REVEAL_JS_VERSION: 4
 #+REVEAL_INIT_OPTIONS: slideNumber:true
 #+OPTIONS: toc:1 num:nil timestamp:nil width: 800 height: 1000
-:END:
-
 #+TITLE: Clean Architecture in Node.js
 #+AUTHOR: Sergio Benítez
+:END:
 
 * 💭 Working With Legacy Projects
 :PROPERTIES:
@@ -146,7 +145,7 @@ The use cases are defined in the /application layer/.
 
 *** Application Services
 
-1. Use a repository to find on or several entities;
+1. Use a repository to find one or several entities;
 2. Tell those entities to do some domain logic;
 3. Use the repository to persist entities again, effectively saving the data changes.
 

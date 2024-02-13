@@ -1,18 +1,34 @@
 # 📝 Suabochica Blog
 
-## 🧰  Tech Stack
-
-- [hugo](https://gohugo.io/getting-started/quick-start/)
-
 ## TODO
 
 [ ] Check how to compile theme changes
 
-## 🗂️ Workflow
+## 🧰  Tech Stack
+
+- [hugo](https://gohugo.io/getting-started/quick-start/), a go framework for build websites.
+
+
+## 🗂️Workflow
+
+In this blog I have to types of exports:
+
+- Blog posts
+- Slides with RevealJS
+
+Both, have the same source; the `ORG` mode of emacs. I'm using Doom Emacs as a framework configuraton network.
+
+To export blog post from `.org` to markdown (`.md`) I use the [ox-hugo](https://ox-hugo.scripter.co/)
 
 1. Use ORG mode to create drafts.
-2. Export ORG scratch to markdown.
-3. Add tags in markdown file
+2. Export ORG to markdown using the `SPC m e m m` keybindings.
+3. Add tags in the exported markdown file
+
+To export a slide from `.org` to RevealJS I use the [org-reveal](https://alexshroyer.com/posts/2021-08-13-Org-Reveal.html)
+
+1. Use ORG mode to create drafts.
+2. Export ORG to RevealJS using the `SPC m e R R` keybindings.
+3. Open in your browser the exported file
 
 ## 🚀 Build
 
@@ -30,61 +46,22 @@ hugo
 
 ## :file_folder:  Folder structure
 
-```txt
-.
-├── content
-│   ├── images
-│   │   ├── jpg
-│   │   ├── microservices
-│   │   └── png
-│   └── post
-├── resources
-│   └── _gen
-│       └── images
-├── src
-│   ├── emacs
-│   └── microservices
-└── themes
-    └── m10c
-        ├── assets
-        │   └── css
-        │       └── components
-        ├── data
-        │   └── m10c
-        ├── exampleSite
-        │   └── content
-        │       └── posts
-        ├── images
-        ├── layouts
-        │   ├── _default
-        │   └── partials
-        ├── resources
-        │   └── _gen
-        │       └── assets
-        │           └── scss
-        │               └── css
-        ├── scripts
-        └── static
-```
 
 From these folder structure, below I list the relevant ones:
 
 - `content/images`: folder with all the local images
 - `content/post`: folder with all posts. They should be in markdown
 - `src/`: folder with in progress posts. They are written in ~.org~ and should be exported to markdown
-<<<<<<< HEAD
 - `themes/m10c`: folder with the hugo themes for the blog.
 
-## 👁️‍🗨️ Overview
+## 👁️‍ Overview
 
 - filenames that start with the `***` prefix are _in progress_ posts.
 - filenames that start with the `*` prefix are _not published_ posts.
 - filenames has a timestamp after prefix.
 - filenames that has an `en` in the name, mean that the post is in English.
 - filenames that has an `es` in the name, mean that the post is in Spanish.
-=======
 - `themes/m10c`: folder with hugo themes
->>>>>>> 2bd26b1 (blog: fit some posts.)
 
 ## :bookmark: Adding tags
 
