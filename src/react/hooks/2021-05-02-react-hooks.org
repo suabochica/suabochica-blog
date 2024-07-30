@@ -186,8 +186,6 @@ Con este ejemplo se obtiene un entendimiento sólido sobre como usar React Hooks
 
 * ~useRef~
 
-  - Note taken on [2021-05-14 Fri 18:18] \\
-    note test
 Una definición para el ~useRef~ hook es:
 
 #+begin_quote
@@ -364,13 +362,13 @@ Si se quiere que el componente sea renderizado basado en ciertas condiciones, lo
 * Usando ~useEffect~, ~useRef~ y ~useState~ para dar color con un efecto de scroll
 
 ** Comparación co el ejercicio previo y descripción
-   CLOSED: [2021-05-21 Fri 08:53]
+
 Trayendo a coalición el ejemplo previo de las imágenes que cambian de blanco y negro a color cuando el cursor del ratón se posiciona sobre una de ellas, y viceversa cuando el cursor esta por fuera del rectángulo de la imagen, se va a realizar una modificación sobre el evento que da color a la imagen para revisar un caso que combina los hooks revisados hasta el momento: ~useState~, ~useRef~ y ~useEffect~.
 
 Esta modificación consiste en que el evento para dar color sobre la imagen es la interacción de la barra de desplazamiento del navegador. Si la imagen esta dentro de la vista completa del navegador, se mostrará la imagen a color. De lo contrario la imagen quedara a blanco y negro. La interacción co la barra de desplazamiento determinará el cálculo para colorear las imágenes.
 
 ** Crear el archivo ImageToggleOnScroll
-   CLOSED: [2021-05-22 Sat 08:09]
+
 Se va a iniciar la implementación con base al contenido del archivo ~ImageToggleOnMouseOver~ y se van a realizar las siguiente modificaciones:
 
 - Renombrar el archivo por ~ImageToggleOnScroll~
@@ -425,7 +423,6 @@ El tercer punto es la administración del evento ~scroll~ en el ~useEffect~. la 
 Por último, en la maquetación del componente dentro del atributo ~src~ se usa una sintaxis de condición ternaria para definir que imagen renderizar dentro del componente. La imagen a color si se encuentra dentro de la vista completa del navegador o la image a blanco y negro si la imagen esta por fuera de la vista del navegador.
 
 ** Crear el archivo ImageChangeOnScroll
-   CLOSED: [2021-05-23 Sun 17:14]
 
 El siguiente paso es consumir el componente ~ImageToggleOnScroll~. Para ello se va a crear un archivo ~ImageChangeOnScroll~ con el siguiente contedio.
 
@@ -459,7 +456,7 @@ En primera instancia, esta página debe importar el componente ~ImageToggleOnScr
 Por otra parte, se observa que en el uso del componente ~<ImageToggleOnScroll>~ se suministran las rutas de las imágenes dependiendo el caso con los atributos ~primaryImg~ y ~secondaryImg~.
 
 ** Bug con la primera imagen
-   CLOSED: [2021-05-23 Sun 17:14]
+
 Actualmente tenemos un comportamiento por mejorar en el estado de la aplicativo. Al momento de renderizar las imágenes por primera vez en el navegador, todas las imágenes se muestran en su versión blanco y negro. El resultado esperado es que las imágenes que se encuentran dentro de la vista completa del navegador este en su versión a color. Los siguientes cambios ayudarán a cumplir con este objetivo:
 
 #+begin_src jsx
@@ -555,8 +552,6 @@ Por último, en el JSX del componente dentro del atributo ~src~ se agrega la con
 * Agregando un efecto secundario al componente Scroller
 
 ** Explicar la estructura del useEffect y el parametro []
-   CLOSED: [2021-05-26 Wed 09:03]
-
 
 Para el estado actual de la paǵina que da color a las imágenes en función a la barra de desplazamiento se usó el hook ~useEffect~ tomando ventaja del conocimiento previo de que la función que se pasa como primer parámetro de ~useEffect~ es ejecutada despues de que el componente haya sido completamente renderizado por primera vez. Al poner un arreglo vació ~[]~ como segundo parámetro de ~useEffect~ se establece que la instrucción de ejecutar la función que se pasa como primer parámetro solo cuando el comoponente es renderizado y no sobre actualizaciones subsecuentes.
 
@@ -565,7 +560,6 @@ El detalle de pasar un como dependencia un arreglo vació como segundo parámetr
 #+end_notes
 
 ** Modificar el archvio ImageChangeOnScroll para agregar el efecto secundario de mostrar el identificador del expositor en el título cuando el cursor está sobre la imagen
-   CLOSED: [2021-06-01 Tue 09:30]
 
 Para ahondar en el contexto del segundo parámetro del ~useEffect~ se expone el siguiente ejemplo: Dentro del componente ~ImageChangeOnScroll~, que actualmente es el encargado de mostrar las imágenes de los expositores, se va a atender el evento del ~MouseOver~ sobre cada imagen del expositor para estrablecer el título de la ventana del navegador con el identificador de la imagen asociada a determinado expositor. El siguiente código atiende este nuevo efecto secundario:
 
@@ -613,7 +607,7 @@ Varias cosas por explicar en este snippet. El primer punto es la creación de un
 El segundo detalle esta dentro del retorno del componente. Aquí se agrego el evento ~onMouseOver~ sobre el padre ~<div>~ del cual se va a recuperar el identificador del expositor y actua como un empaquetador de la imagen. Se puede observar que es sobre este evento se ejecutan las funciones ~setCurrentSpeakerId(speakerId)~ y ~setMouseEventCounter(mouseEventCounter++)~
 
 ** Explicar el contador del evento del ratón
-   CLOSED: [2021-06-01 Tue 09:30]
+
 El estado ~[mouseEventCounter, setMouseEventCounter] = useState(0)~ es otro efecto secundario que se incluye para tener un registro de las veces que se activa el evento ~onMouseOver~. Dicho conteo se esta registrando en la parte superior del navegador dentro de una etiqueta ~<span>~.
 
 Por último, el detalle más relevante es el uso de la función ~useEffect~ para actualizar el título de la ventana del navegador, aprovechando la ventaja de los momentos del ciclo de vida de un componente funcional que expone este hook. Aquí explicitamente se asigna el título del documento al valor del ~currentSpeakerId~ y con ayuda de un log se deja un registro del valor actual de dicha variable.
@@ -621,7 +615,7 @@ Por último, el detalle más relevante es el uso de la función ~useEffect~ para
 Adicionalmente, para este caso la función ~useEffect~ no recibe un segundo parámetro, indicando así que la función ~useEffect~ se va a llamar cada vez que se presente un cambio en el componente.
 
 ** Señalar el problema de optimización asociado al evento del botón
-   CLOSED: [2021-06-02 Wed 09:01]
+
 Al realizar las pruebas en el navegador se puede observar el comportamiento esperado en la actualización del título de la ventana del navegador con el identificador de la imagen cuando el usuario posiciona el cursor sobre la imagen de algún expositor. No obstante hay un comportamiento que se evidencia dentro de la consola del navegador que puede ser considerado un bug.
 
 Cuando se posiciona el cursor sobre una imagen, se deja un registro en la consoloa. Si el cursor se posiciona por fuera de la imagen y se vuelve a colocar sobre la imagen inicial se vuelve a tener un registro en la consola del llamado al ~useEffect~, lo que significa que el título de la ventana del navegador se actualizó dos veces con el mismo identificador de la imagen. El escenario ideal sería evitar el segundo llamado a la actualización del título de la ventana cuando el identificador previo coincide con el identificador actual. A continuación se tiene una propuesta para optimizar este comportamiento:

@@ -4,12 +4,12 @@
 
 [ ] Check how to compile theme changes
 
-## 🧰  Tech Stack
+## 🧰 Tech Stack
 
 - [hugo](https://gohugo.io/getting-started/quick-start/), a go framework for build websites.
 
 
-## 🗂️Workflow
+## 🗂 Workflow
 
 In this blog I have to types of exports:
 
@@ -51,7 +51,7 @@ From these folder structure, below I list the relevant ones:
 
 - `content/images`: folder with all the local images
 - `content/post`: folder with all posts. They should be in markdown
-- `src/`: folder with in progress posts. They are written in ~.org~ and should be exported to markdown
+- `src/`: folder with in progress posts. They write in ~.org~ and should exported to markdown
 - `themes/m10c`: folder with the hugo themes for the blog.
 
 ## 👁️‍ Overview
@@ -79,6 +79,7 @@ tags = [
 ]
 
 # What is this?
+
 categories = [ 
     "development",
     "golang",

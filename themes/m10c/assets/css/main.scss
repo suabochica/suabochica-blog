@@ -12,6 +12,7 @@ $primary-color: {{ .Site.Params.style.primaryColor | default "#ffa86a" }};
 @import 'components/pagination';
 @import 'components/post';
 @import 'components/posts_list';
+@import 'components/fonts';
 @import 'components/tag';
 @import 'components/tags_list';
 
