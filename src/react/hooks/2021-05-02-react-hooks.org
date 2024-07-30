@@ -60,6 +60,7 @@ El estado ayuda a construir aplicaciones web de alto rendimiento
 
 La idea de estado consiste en que cada vez que se ve algo nuevo en la pantalla, sea rastreado como un estado nuevo. Para aterrizar este concepto se presenta el siguiente ejemplo:
 
+** TODO: Add image
 #+CAPTION: Two way data-binding
   [[../../images/react/react-hooks/01-two-way-data-binding.png]]
 

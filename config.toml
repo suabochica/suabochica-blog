@@ -5,20 +5,23 @@ paginate = 12
 
 [menu]
   [[menu.main]]
-    identifier = "home"
-    name = "Home"
+    identifier = "blog"
+    name = "Blog"
     url = "/"
   [[menu.main]]
     identifier = "tags"
     name = "Tags"
-    url = "/tags/"
+    url = "/tags"
 
 [params]
   author = "Sergio Benítez"
-  description = "Code like a writer"
+  description = "Desarrollador Full-Stack con más de 10 años de experiencia."
   avatar = "/sua_profile.jpg"
   favicon = "/favicon.ico"
   menu_item_separator = " - "
+  [[params.social]]
+    name = "porfolio"
+    url = "https://suabochica.com"
   [[params.social]]
     name = "github"
     url = "https://github.com/suabochica"

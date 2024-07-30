@@ -3,23 +3,36 @@
 }
 
 html {
-  line-height: 1.6;
+  font-family: "iA Writer Duo", monospace;
 }
 
 body {
   margin: 0;
   background: $dark-color;
   color: $light-color;
-  font-weight: normal;
-  font-size: 16px;
-  font-family: "ia writer duo latin";
-  line-height: 1.725;
+  font-size: 0.8rem;
+  line-height: 1.4;
   text-rendering: geometricPrecision;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "ia writer quattro latin";
+  font-family: "iA Writer Quattro", sans-serif;
   color: $lightest-color;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.1rem;
+  text-wrap: balance;
+}
+
+p {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  text-wrap: pretty;
 }
 
 a {
@@ -43,12 +56,13 @@ blockquote {
 // small inline code-blocks in the middle of normal text (mainly because of
 // the very noticeable difference in x-height). This CSS corrects that problem.
 code {
-  font-family: "ia writer mono latin", monospace;
+  font-family: "iA Writer Mono", monospace;
   font-size: 1em;
   color: rgba($light-color, .8);
 }
 
 pre {
+  font-family: "iA Writer Mono", monospace;
   font-size: 1rem;
   line-height: 1.2em;
   margin: 0;
@@ -58,7 +72,7 @@ pre {
   // generally looks heavier than normal text with the same font size. For this
   // reason using a smaller monospaced font size makes sense in this situation.
   code {
-    font-family: "ia writer mono latin";
+    font-family: "iA Writer Mono", monospace;
     font-size: .8em;
   }
 }

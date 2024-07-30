@@ -1,6 +1,7 @@
 .DS_Store
-public
 
 *.swp
 
 .vscode/
+public/
+resources/

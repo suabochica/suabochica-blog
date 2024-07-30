@@ -2,7 +2,10 @@
 
 ## TODO
 
-[ ] Check how to compile theme changes
+[x] Check how to compile theme changes.
+[x] Check how to consume iA Writer fonts.
+[ ] Customize a theme for RevelaJS.
+[ ] Optimize images.
 
 ## 🧰 Tech Stack
 
@@ -18,11 +21,15 @@ In this blog I have to types of exports:
 
 Both, have the same source; the `ORG` mode of emacs. I'm using Doom Emacs as a framework configuraton network.
 
+
 To export blog post from `.org` to markdown (`.md`) I use the [ox-hugo](https://ox-hugo.scripter.co/)
 
 1. Use ORG mode to create drafts.
 2. Export ORG to markdown using the `SPC m e m m` keybindings.
 3. Add tags in the exported markdown file
+4. Copy the generated `.md` file into the `/content/post` folder. 
+5. Run `rm -rf /public /resources`
+6. Run `hugo`
 
 To export a slide from `.org` to RevealJS I use the [org-reveal](https://alexshroyer.com/posts/2021-08-13-Org-Reveal.html)
 
@@ -49,7 +56,6 @@ hugo
 
 From these folder structure, below I list the relevant ones:
 
-- `content/images`: folder with all the local images
 - `content/post`: folder with all posts. They should be in markdown
 - `src/`: folder with in progress posts. They write in ~.org~ and should exported to markdown
 - `themes/m10c`: folder with the hugo themes for the blog.
