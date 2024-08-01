@@ -11,15 +11,16 @@
 En esta publicación se usará Bitcoin Core para explorar las limitaciones y las mejores prácticas al incorporar datos en transacciones de blockchain.
 
 Los propósitos puntuales de esta sección son:
+
 - Reconocer la estructura de datos de bloques y transacciones.
 - Reconocer el propósito de los códigos de operación de Bitcoin Script que se usan comúnmente en las partes de entrada y salida de un proceso de transacción.
-- Explore las limitaciones y las mejores prácticas para incorporar datos en transacciones de blockchain. 
+- Explorar las limitaciones y las mejores prácticas para incorporar datos en transacciones de blockchain.
 
 ¡Usar estas habilidades lo ayudará con la con la construcción de los componentes de su propia cadena de bloques simple y privada desde cero!
 
 * Modelos de datos en Blockchain
 
-Para entender como la información es almacenada en cualquier blockchain, es necesario aclarar los modelos de datos del bloque y la transacción. Anteriormente se menciono que el modelo de dato de un bloque se comopone de:
+Para entender como la información es almacenada en cualquier blockchain, es necesario aclarar los modelos de datos del bloque y la transacción. Anteriormente se mencionó que el modelo de dato de un bloque se comopone de:
 
 - Un encabezado
 - Un cuerpo
@@ -122,13 +123,43 @@ En donde ~<sig> <pubKey>~ es el unlocking script y el ~OP_DUP OP_HASH160 <pubKey
 
 Los dos atributos de un script son:
 
-- No aplican la completitud de Turing
+- Incompletud de Turing
 - Verificación sin estado
 
-Cuando se habla de que un script no cumple con la cumplitud the Turing significa que no maneja bucles o estructuras de control complejas. Por otra parte es completamente determinístico, es decir, se sabe cuando y como el programa va a terminar. Así se remueve el miedo a que una ejecución de un script termine en un bucle infinito o rompa le red de la cadena de bloques. Por último al tener un lenguaje limitado se previene a que la validación de transacciones sea objetivo de ataques ya que lo hace un sistema simple y seguro.
+Cuando se habla de que un script con incompletud de Turing significa que no maneja bucles o estructuras de control complejas. Por otra parte es completamente determinístico, es decir, se sabe cuando y como el programa va a terminar. Así se remueve el miedo a que una ejecución de un script termine en un bucle infinito o rompa le red de la cadena de bloques. Por último al tener un lenguaje limitado se previene a que la validación de transacciones sea objetivo de ataques ya que lo hace un sistema simple y seguro.
 
 En cuanto a la verificación sin estado, el script debe contar con toda la información necesaria para ser ejecutado y ningún estado debe guardarse antes o después de que el script se ejecute. Así se tiene garantías de que el mismo script puede ser utilizado en diferentes sistemas.
 
-* TODO Ciclo de Vida de una Transacción en Blockchain
+* Ciclo de Vida de una Transacción en Blockchain
+
+Ahora que se tiene conocimiento de las partes de una transacción cruda, es tiempo de usar el protocolo de Bitcoin para construir nuestra propia transacción cruda.
+
+Como se ha visto, la billetera principal de Bitcoin permite aprovechar muchas funciones del protocolo de Bitcoin, pero estas se limitan cuando accedemos a través de una interfaz gráfica de usuario.
+
+Para aprovecar al máximo el potencial del protocolo, se debe omitir la interfaz gráfica de usuario y trabajar directamente con el protocolo.
+
+Esto te ayudará a saber que comandos implementar al crear tu propia cadena de bloques privada que pueda realizar transacciones y asegurar el bloque con una firma digital.
+
+A continuacións se comparten los pasos que debe seguir una transacciones en Blockchain.
+
+- Paso 1: ver todos los UTXO confirmados no gastados en la billetera.
+- Paso 2: ver detalles sobre un UTXO específico.
+- Paso 3: crear una transacción sin procesar.
+- Paso 4: decodificar la transacción sin procesar (para verificar que se realizó correctamente).
+- Paso 5: firmar la transacción sin procesar.
+- Paso 6: enviar la transacción sin procesar a la red.
+- Paso 7: consultar el TxID de la transacción que enviamos.
+
+Una cosa a tener en cuenta es que estos pasos siguen el flujo del ciclo de vida de la transacción.
+
+* Incustar datos en transacciones
+
+El Blockchain es una base de datos donde no es posible editar o borrar información. Las acciones que se tienen son /leer/, /adjuntar/ y /validar/ los datos.
+
+Esta característica da beneficios sobre un registro de históricos preciso y hace más rápida la lectura y escritura de estos registros. No obstante, hay una desventaja y es que se debe llegar a un consenso con los registros.
+
+Una pregunta válida es si además de datos transaccionales, se pueden guardar otro tipo de datos en el Blockchain. El protocolo como tal no esta diseñado para almacenar datos que no sean transaccionales. No obstante, para agregar otro tipos de datos, estos deben incluirse dentro de la transacción. Es por eso que Blockchain es utilizado en el manejo de datos financieros.
+
+El hecho de incluir datos de almacenamiento dentro de las transacciones nos expone a riesgos y problemas. Es por eso que hay que tener varias consideraciones antes de almacenar datos en un blockchain público.
 
 * TODO Incrustar datos en el Blockchain
