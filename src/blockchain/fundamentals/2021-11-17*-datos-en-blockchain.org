@@ -72,7 +72,7 @@ SHA256(SHA256(01000…)) = b138360800cdc72248c3ca8dfd06de85913d1aac7f41b4fa54eb1
 
 Para explorar los contenidos de una transacción de forma legible se puede utilizar [[https://live.blockcypher.com/btc/tx/b138360800cdc72248c3ca8dfd06de85913d1aac7f41b4fa54eb1f5a4a379081/][BlockCypher]]. Ahora bien, es tiempo de desglozar la transacción en bruto:
 
-#+CAPTION: Rasw Transaction Breakdown
+#+CAPTION: Raw Transaction Breakdown
 [[../../images/blockchain/19-bitcoin-scripts.png]]
 
 
@@ -162,4 +162,24 @@ Una pregunta válida es si además de datos transaccionales, se pueden guardar o
 
 El hecho de incluir datos de almacenamiento dentro de las transacciones nos expone a riesgos y problemas. Es por eso que hay que tener varias consideraciones antes de almacenar datos en un blockchain público.
 
-* TODO Incrustar datos en el Blockchain
+* PROJ Incrustar datos en el Blockchain
+
+En los primeros días de la comunidad Bitcoin, los miembros probaron diferentes formas para obtener alguna ventaha de la irreversibiidad de los datos almacenados en el blockchain.
+
+Reslovieron incluir la información en el valor del atributo ~scriptSig~ para no alterar el resultado final del script ejecutado. Los usuario pueden tomar estos datos, convertirlos en un hash y luego incorporarlo en la salida.
+
+Ahora podemos manejar cualquier tipo de datos, desde fotografías de oradores de Nelson Mandela ofrecidas a los mineros que aman tener notas alamcenadas permanentemente on el blockchain.
+
+No obstante, este enfoque desperto algunos objetores que argumentaban que dicho almacenamiento sobrecargaba la cadena de bloques por que estaba forzando a los nodos de Bitcoin a pagar el costo del almacenamiento de datos que no debería pagar, ya los UTXO tienen scripts de bloqueo que no pueden desbloquearse, para evitar que el UTXO se remueva y dicha información se almacena para siempre en los nodos de Bitcoin.
+
+Es por esta razón que los desarrolladores Bitcoin introdujeron el Opcode ~OP_RETURN~  que permita usar 40 bytes en una transacción prescindible para de esta forma, se evita la necesida de almacenarlos en el conjunto UXTO. A pesar de que las salidas del ~OP_RETURN~ se registrand en la cadena de bloques usando memoria, estos no son almacenados en el conjunto UXTO evitando la carga adicinal del fondo de memoria del UXTO.
+
+Los datos que usan el ~OP_RETURN~ es guardado en el script en este formato: ~OP_RETURN<data>~. A menudo es el resultado desde un hashsing SHA256. La siguiente imagen especifica en que parte de la transacción se incorporan el ~OP_RETURN~:
+
+
+#+CAPTION: Raw Transaction OP_RETURN
+[[../../images/blockchain/20-bitcoin-op-return.png]]
+
+Los datos resaltados en la imagen son hasheados en formato hexadecimal, el cual puede convertirse en un string y ver el resultado final "charley loves heidi".
+
+Hemos visto como es posible incrustar datos en el blockchain, y una pregunta válida es si ¿este proceso ético y debería hacerse? este tema se desarrollará en la siguiente sección.
