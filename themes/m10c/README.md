@@ -9,17 +9,20 @@ A Hugo minimalistic theme for bloggers
 ### Installation
 
 Create a new Hugo site:
+
 ```bash
-$ hugo new site [path]
+hugo new site [path]
 ```
 
 Clone this repository into `themes/` directory:
+
 ```bash
-$ cd [path]
-$ git clone https://github.com/vaga/hugo-theme-m10c.git themes/m10c
+cd [path]
+git clone https://github.com/vaga/hugo-theme-m10c.git themes/m10c
 ```
 
 Add this line  in the `config.toml` file:
+
 ```toml
 theme = "m10c"
 ```
@@ -36,7 +39,7 @@ In your `config.toml` file, define the following variables in `params`:
 
 To add a menu item, add the following lines in `menu`:
 
-```
+```txt
 [[menu.main]]
   identifier = "tags"
   name = "Tags"
@@ -47,7 +50,7 @@ To add a menu item, add the following lines in `menu`:
 
 To add a social link, add the following lines in `params`:
 
-```
+```txt
 [[params.social]]
   name = "github"
   url = "https://github.com/vaga"
@@ -55,7 +58,7 @@ To add a social link, add the following lines in `params`:
 
 To change theme colors, add the following lines in `params`:
 
-```
+```txt
 [params.style]
   darkestColor = "#d35050"
   darkColor = "#212121"

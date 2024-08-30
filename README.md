@@ -4,13 +4,12 @@
 
 [x] Check how to compile theme changes.
 [x] Check how to consume iA Writer fonts.
-[ ] Customize a theme for RevelaJS.
+[ ] Customize a theme for RevealJS.
 [ ] Optimize images.
 
 ## 🧰 Tech Stack
 
 - [hugo](https://gohugo.io/getting-started/quick-start/), a go framework for build websites.
-
 
 ## 🗂 Workflow
 
@@ -19,15 +18,14 @@ In this blog I have to types of exports:
 - Blog posts
 - Slides with RevealJS
 
-Both, have the same source; the `ORG` mode of emacs. I'm using Doom Emacs as a framework configuraton network.
-
+Both, have the same source; the `ORG` mode of emacs. I'm using Doom Emacs as a framework configuration network.
 
 To export blog post from `.org` to markdown (`.md`) I use the [ox-hugo](https://ox-hugo.scripter.co/)
 
 1. Use ORG mode to create drafts.
 2. Export ORG to markdown using the `SPC m e m m` keybindings.
 3. Add tags in the exported markdown file
-4. Copy the generated `.md` file into the `/content/post` folder. 
+4. Copy the generated `.md` file into the `/content/post` folder.
 5. Run `rm -rf /public /resources`
 6. Run `hugo`
 
@@ -51,8 +49,7 @@ Command to build the page
 hugo
 ```
 
-## :file_folder:  Folder structure
-
+## 📁  Folder structure
 
 From these folder structure, below I list the relevant ones:
 
@@ -69,7 +66,7 @@ From these folder structure, below I list the relevant ones:
 - filenames that has an `es` in the name, mean that the post is in Spanish.
 - `themes/m10c`: folder with hugo themes
 
-## :bookmark: Adding tags
+## 🔖 Adding tags
 
 To add tags to the posts, at the beginning of each file we have to set the ~tags~ property with an array of the relevant tags. Below it I share an example.
 

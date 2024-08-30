@@ -15,7 +15,12 @@ body {
   text-rendering: geometricPrecision;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "iA Writer Quattro", sans-serif;
   color: $lightest-color;
 }
@@ -25,7 +30,18 @@ h1 {
 }
 
 h2 {
-  font-size: 1.1rem;
+  font-size: 1.5rem;
+  text-wrap: balance;
+  color: $primary-color;
+}
+
+h3 {
+  font-size: 1.17rem;
+  text-wrap: balance;
+}
+
+h4 {
+  font-size: 1rem;
   text-wrap: balance;
 }
 
@@ -43,6 +59,7 @@ a {
   &:hover {
     color: $lightest-color;
   }
+
 }
 
 blockquote {
@@ -77,9 +94,34 @@ pre {
   }
 }
 
+table {
+  text-align: center;
+
+  th {
+    color: $lightest_color;
+  }
+
+  td {
+    border: 1px solid;
+  }
+}
+
+.posts-list-item-title {
+  font-size: 1rem;
+  line-height: 1.5;
+  text-wrap: pretty;
+  margin-bottom: 8px;
+}
+
+.posts-list-item-description {
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
 ::selection {
   background: rgba($light-color, .25);
 }
+
 ::-moz-selection {
   background: rgba($light-color, .25);
 }

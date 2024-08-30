@@ -1,5 +1,5 @@
 baseurl = "https://blog.suabochica.com"
-title = "suabochica"
+title = "Blog de suabochica"
 theme = "m10c"
 paginate = 12
 
