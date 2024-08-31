@@ -1,4 +1,4 @@
-#+TITLE: Por qué no React?
+#+TITLE: ¿Por qué no React?
 #+DESCRIPTION: Serie que recopila una descripción general de React
 #+AUTHOR: Sergio Benítez
 #+DATE:<2021-03-10 Wed> 
