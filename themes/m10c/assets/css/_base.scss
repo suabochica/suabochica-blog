@@ -10,8 +10,8 @@ body {
   margin: 0;
   background: $dark-color;
   color: $light-color;
-  font-size: 0.8rem;
-  line-height: 1.4;
+  font-size: 1rem;
+  line-height: 1.5rem;
   text-rendering: geometricPrecision;
 }
 
@@ -27,27 +27,28 @@ h6 {
 
 h1 {
   font-size: 2rem;
+  line-height: 1.8rem;
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   text-wrap: balance;
   color: $primary-color;
 }
 
 h3 {
-  font-size: 1.17rem;
+  font-size: 1.5rem;
   text-wrap: balance;
 }
 
 h4 {
-  font-size: 1rem;
+  font-size: 1.3rem;
   text-wrap: balance;
 }
 
 p {
-  font-size: 0.8rem;
-  line-height: 1.5;
+  font-size: 1rem;
+  line-height: 1.5rem;
   text-wrap: pretty;
 }
 
@@ -59,7 +60,6 @@ a {
   &:hover {
     color: $lightest-color;
   }
-
 }
 
 blockquote {
@@ -74,14 +74,14 @@ blockquote {
 // the very noticeable difference in x-height). This CSS corrects that problem.
 code {
   font-family: "iA Writer Mono", monospace;
-  font-size: 1em;
+  font-size: 1rem;
   color: rgba($light-color, .8);
 }
 
 pre {
   font-family: "iA Writer Mono", monospace;
   font-size: 1rem;
-  line-height: 1.2em;
+  line-height: 1.2rem;
   margin: 0;
   overflow: auto;
 
@@ -90,7 +90,7 @@ pre {
   // reason using a smaller monospaced font size makes sense in this situation.
   code {
     font-family: "iA Writer Mono", monospace;
-    font-size: .8em;
+    font-size: 1rem;
   }
 }
 
@@ -108,14 +108,14 @@ table {
 
 .posts-list-item-title {
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.5rem;
   text-wrap: pretty;
   margin-bottom: 8px;
 }
 
 .posts-list-item-description {
   font-size: 0.8rem;
-  line-height: 1.5;
+  line-height: 1.5rem;
 }
 
 ::selection {

@@ -1,4 +1,4 @@
-#+TITLE: Qué es la progrgamación?
+#+TITLE: ¿Qué es la progrgamación?
 #+DESCRIPTION: Definciones sobre la práctica de la progrgamamción
 #+AUTHOR: Sergio Benítez
 #+DATE:<2023-03-05 Sun> 
