@@ -35,13 +35,8 @@ To export a slide from `.org` to RevealJS I use the [org-reveal](https://alexshr
 2. Export ORG to RevealJS using the `SPC m e R R` keybindings.
 3. Open in your browser the exported file
 
-## 🚀 Build
+## 🚀 Commands
 
-Command to run the hugo server
-
-```sh
-hugo server
-```
 
 Command to build the page
 
@@ -49,9 +44,17 @@ Command to build the page
 hugo
 ```
 
+Command to run the hugo server
+
+```sh
+hugo server
+```
+
+Then visit the blog in http://localhost:1313
+
 ## 📁  Folder structure
 
-From these folder structure, below I list the relevant ones:
+    From these folder structure, below I list the relevant ones:
 
 - `content/post`: folder with all posts. They should be in markdown
 - `src/`: folder with in progress posts. They write in ~.org~ and should exported to markdown

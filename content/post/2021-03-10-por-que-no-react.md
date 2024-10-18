@@ -1,5 +1,5 @@
 +++
-title = "Por qué no React?"
+title = "¿Por qué no React?"
 author = ["Sergio Benítez"]
 description = "Serie que recopila una descripción general de React"
 date = 2021-03-10T00:00:00-05:00
@@ -10,33 +10,72 @@ tags = [
 ]
 +++
 
+
 Con el propósito de abordar un panorama general sobre React, es momento de presentar los posibles problemas a los que se enfrete por haber elegido esta libreria.
 
 En esta publicación se van a compartir las preocupaciones comunes que se han manifestado en React por parte de la comunidad de desarroladores. Uno de los principales puntos en contra era su licencia patentada. No obstante, con la liberación de la versión 16 de React, el proyecto ahora usa el estandár MIT con una licencia de código abierto. Este es un testimonio de la inicativa que tiene la comunidad que soporta React para ir mejorando el proyecto.
 
+1.  [Preocupación 1: HTML y JSX difieren](#orge77d66d)
+2.  [Preocupación 2: Paso de compilación es requerido](#orgc583965)
+3.  [Preocupación 3: Conflictos entre versiones](#org3e4f39d)
+4.  [Preocupación 4: Recursos desactualizados](#orgf5bf619)
+5.  [Preocupación 5: Fatiga de toma de deciciones](#org0479336)
+6.  [Resumen](#org359af7b)
+
 Por otra parte, la idea es identificar que algunas de las preocupaciones son validas y otras son simplemente conceptos erróneos o problemas que pueden mitigarse fácilmente.
 
 
-## Preocupación 1: HTML y JSX difieren {#preocupación-1-html-y-jsx-difieren}
+# Preocupación 1: HTML y JSX difieren {#orge77d66d}
+ 
 
 Repasemos el contexto de como la sintáxis opcional JSX se compila en JavaScript:
 
-```javascript
-<h1 color="red"> Heading here </h1>
-// is equal to
-React.createElement("h1", {color: "red"}, "Heading here");
+```jsx
+    <h1 color="red"> Heading here </h1>
+    // is equal to
+    React.createElement("h1", {color: "red"}, "Heading here");
 ```
 
 Cabe resaltar que el uso de JSX es opcional, pero gracias a su similitud con HTML, y su legibilidad, ha sido fuertemente aceptada por la comunidad. El JavaScript pleno que corresponde a la última parte del ejemplo es lo que realmente se envía al navegador.
 
 Ahora bien, la sintáxis JSX es 99% lo mismo a HTML pero difieren en cosas muy puntuales que son agrupadas en la siguiente tabla:
 
-| HTML                 | JSX                      |
-|----------------------|--------------------------|
-| for                  | htmlFor                  |
-| class                | className                |
-| <style color="blue"> | <style={{color:'blue'}}> |
-| <!-- Comment -->     | {_\* Comment \*_}        |
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">HTML</th>
+<th scope="col" class="org-left">JSX</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">for</td>
+<td class="org-left">htmlFor</td>
+</tr>
+
+<tr>
+<td class="org-left">class</td>
+<td class="org-left">className</td>
+</tr>
+
+<tr>
+<td class="org-left">&lt;style color=&ldquo;blue&rdquo;&gt;</td>
+<td class="org-left">&lt;style={{color:&rsquo;blue&rsquo;}}&gt;</td>
+</tr>
+
+<tr>
+<td class="org-left">&lt;!&#x2013; Comment &#x2013;&gt;</td>
+<td class="org-left">{<i>* Comment *</i>}</td>
+</tr>
+</tbody>
+</table>
 
 Como se puede observar, aprender estás diferencias es trivial, ya que la lista de diferencias es muy corta y fácil de asimilar.
 
@@ -48,8 +87,7 @@ Una preocupación frecuente con los primeros pasos que se dan en React es cuando
 
 La elección es parte del desarrollador, pero en últimas si es necesario hacer la conversión a JSX lo cual en definitiva es una molestía.
 
-
-## Preocupación 2: Paso de compilación es requerido {#preocupación-2-paso-de-compilación-es-requerido}
+# Preocupación 2: Paso de compilación es requerido {#orgc583965}
 
 Esta preocupación esta muy relacionada con la anterior, ya que como se menciono antes, para al usar la sintáxis JSX React requiere de un paso de construcción que compile el JSX en llamados JavaScript planos que el navegador pueda comprender.
 
@@ -60,11 +98,11 @@ En consecuencia, compilar el código JSX es una labor que se puede realizar de m
 Por último, el paquete Create React App es un generador de proyectos que le ahorra al desarrollador todos los pasos de configuración necesarios para crear una aplicación web moderna con tan solo correr un comando. Al correr este comando accedemos a un paso de construcción por defecto que administra varias tareas, entre ellas la compilación automática de JSX.
 
 
-## Preocupación 3: Conflictos entre versiones {#preocupación-3-conflictos-entre-versiones}
+# Preocupación 3: Conflictos entre versiones {#org3e4f39d}
 
 Como se mencionó anterior mente React con React DOM pesan al rededor de 35Kb al ser minificado y comprimido con gzip. Este tamaño es razonable pero hay algunas desventajas que se presentan en tiempo de ejecución. Por ejemplo, no se pueden correr dos versiones de React al mismo tiempo en la misma página. Por ende, los todos los componentes web deben respetar la misma versión es su respectiva página.
 
-Si se compara con la construcción estandarizada de componentes web, no es necesario enfrentarse a conflictos entre versiones porque este enfoque no precisa de tiempos de ejecución ya que el componente se construye directamente en el navegador. No obstante, en la publicación pasada se agruparon los argumentos para seguir favoreciondo el uso de React sobre el estándar web.
+  Si se compara con la construcción estandarizada de componentes web, no es necesario enfrentarse a conflictos entre versiones porque este enfoque no precisa de tiempos de ejecución ya que el componente se construye directamente en el navegador. No obstante, en la publicación pasada se agruparon los argumentos para seguir favoreciondo el uso de React sobre el estándar web.
 
 Por otra parte, hay herramientas interesantes a considerar como Svelte o Skate, que ofrecen todas las funcionalidades para un desarrollo de componentes web sin depender de un framework y incluyen el tiempo de ejecución en cada componente, evitando así potenciales conflictos entre versiones.
 
@@ -77,32 +115,28 @@ A contincuación se comparten tres consejos para evitar conflictos entre version
 3.  Maneje la actualización de versioines a nivel de equipo
 
 
-## Preocupación 4: Recursos desactualizados {#preocupación-4-recursos-desactualizados}
+# Preocupación 4: Recursos desactualizados {#orgf5bf619}
 
-Otro tema a lidiar con React es la revisión de contenidos desactualizados en búsquedas web. React tiene una comunidad muy grande y fue liberado como código abierto en 2013. Al hacer una búsqueda de _react example_ en Google, se obtienen más de 300 millones de resultados. En StackOverflow hay más de 189k hilos asociados a la etiqueta React. Esta bien tener muchos recusros pero hay un riesgo alto y es la consulta de contenidos depreciados.
+Otro tema a lidiar con React es la revisión de contenidos desactualizados en búsquedas web. React tiene una comunidad muy grande y fue liberado como código abierto en 2013. Al hacer una búsqueda de *react example* en Google, se obtienen más de 300 millones de resultados. En StackOverflow hay más de 189k hilos asociados a la etiqueta React. Esta bien tener muchos recusros pero hay un riesgo alto y es la consulta de contenidos depreciados.
 
 Desde la versión del 2013 hasta el día de hoy se han presentado varios cambios dentro de React, y por ende algunos patrones y algunas funcionalidades ya han sido reemplazados. Un ejemplo puntual es el siguiente:
 
-```javascript
-// Viejo
-import {render} from 'react';
-```
+```jsx
+    // Viejo
+    import {render} from 'react';
 
-```javascript
-// Nuevo
-import {render} from 'react-dom';
+    // Nuevo
+    import {render} from 'react-dom';
 ```
 
 Se recuerda, que hoy en día React tiene soporte en diferentes plataformas, como ReactNative o ReactVR, por lo tanto es conveniente importar la función render de la librería adecuada. Otro ejemplo es la creación de clases:
 
-```javascript
-// Viejo
-React.createClass
-```
+```jsx
+    // Viejo
+    React.createClass
 
-```javascript
-// Nuevo
-var crc = require('create-react-class');
+    // Nuevo
+    var crc = require('create-react-class');
 ```
 
 En las últimas versiones, para seguir usando el estilo `createClass` es necesario importar el paquete `'create-react-class'`. El último ejemplo de estaś transiciones esta relacionado con los mixins y su reemplazo llamado hooks.
@@ -110,7 +144,7 @@ En las últimas versiones, para seguir usando el estilo `createClass` es necesar
 La moraleja esta en siempre revisar la documentación oficial de React para estar al tanto de las funcionalidades y los patrones que se han venido actualizando.
 
 
-## Preocupación 5: Fatiga de toma de deciciones {#preocupación-5-fatiga-de-toma-de-deciciones}
+# Preocupación 5: Fatiga de toma de deciciones {#org0479336}
 
 La última preocupación a abordar es la fatiga en la toma de decisiones que expone React. Al ser una librería tan ligera y flexible el desarrollo se abre a un campo en donde existen muchas alternativas para hacer las mismas cosas.
 
@@ -136,79 +170,77 @@ Algunos desarrolladores optan por construir su propio ambiente React. No está d
 
 La segunda decisión es si se declaran los componentes a través de clases o funciones. A continuación se muestran dos snippets con dichas aproximaciones:
 
-```javascript
-// Class
-class Greeting extends React.Component {
-  render() {
-    return <h1>Hello</h1>
-  }
-}
-```
+```jsx
+    // Class
+    class Greeting extends React.Component {
+      render() {
+        return <h1>Hello</h1>
+      }
+    }
 
-```javascript
-// Function
-function Greeting {
-  render() {
-    return <h1>Hello</h1>
-  }
-}
+    // Function
+    function Greeting {
+      render() {
+        return <h1>Hello</h1>
+      }
+    }
 ```
 
 Ambos endoques cumplen el mismo objetivo, pero hoy en día los desarrolladores de React han optado por usar los componentes como funciones, ya que su sintáxis es mas concisa y tiende a evitar bugs.
 
 La tercera decisión es el manejo de tipos con las siguientes alternativas: PropTypes, TypeScript ó Flow. A continuación se revisa la propuesta de PropTypes con un componente simple llamado `Greeting`:
 
-```javascript
-import React from "react";
-import PropTypes from "prop-types";
-
-// Function
-function Greeting(props) {
-  render() {
-    return (<h1>Hello {props.name}</h1>)
-  }
-}
-
-Greeting.propTypes = {
-  name: PropTypes.string
-};
+```jsx
+    import React from "react";
+    import PropTypes from "prop-types";
+    
+    // Function
+    function Greeting(props) {
+      render() {
+        return (<h1>Hello {props.name}</h1>)
+      }
+    }
+    
+    Greeting.propTypes = {
+      name: PropTypes.string
+    };
 ```
 
 Para este ejemplo las propiedades del componente están declaradas al final. Se resalta que con PropTypes los tipos son validados solo en tiempo de ejecución y durante el desarrollo.
 
 La segunta opción es TypeScript y se versión es la siguiente:
 
-```javascript
-import * as React from "react";
-
-interface Props {
-  name: string;
-}
-// Function
-function Greeting(props: Props) {
-  render() {
-    return (<h1>Hello {props.name}</h1>)
-  }
-}
+```jsx
+    import * as React from "react";
+    
+    interface Props {
+      name: string;
+    }
+    // Function
+    function Greeting(props: Props) {
+      render() {
+        return (<h1>Hello {props.name}</h1>)
+      }
+    }
 ```
 
 En esta versión se usa una funcionalidad de TypeScript llamada `interface` para establecer las propiedades del componente y dentro de la definición del componente se aclara que el argumento `prop` es de typo `Props`. A diferencia de PropTypes, con TypeScript las validaciones son hechas en tiempo de compilación, lo que significa que los errores serán identificados más temprano.
 
-La tercera opción es Flow, un proyecto de Facebook para agregar validaciones de tipos estáticos a JavaScript. A diferencia de TypeScript, Flow utiliza anotaciones sobre el código JavaScript para inferir los tipos del mismo. El siguiente ejemplo es la versión del `Greeting` component con Flow:
+La tercera opción es Flow, un proyecto de Facebook para agregar validaciones de tipos estáticos a JavaScript. A diferencia de TypeScript, Flow utiliza anotaciones sobre el código JavaScript para inferir los tipos del mismo. El siguiente ejemplo es la versión del `Greeting` component con Flow: 
 
-```javascript
-// @flow
-import React from "react";
-
-type Props {
-  name: string;
-}
-// Function
-function Greeting(props: Props) {
-  render() {
-    return (<h1>Hello {props.name}</h1>)
-  }
-}
+```jsx
+    // @flow
+    import React from "react";
+    
+    type Props {
+      name: string;
+    }
+    // Function
+    function Greeting(props: Props) {
+      render() {
+        return (<h1>Hello {props.name}</h1>)
+      }
+    }
 ```
 
 El punto más relevante en este snippet es la anotación al principio de cada archivo para habilitar la validación por parte de Flow. La declaración de los props y su especificación del tipo en el argumento que recibe la función del componente es similar a la versión de TypeScript. Ahora bien, Flow corre en un proceso diferente y por ende los tipos son validados cuando se corre dicho proceso.
@@ -225,17 +257,52 @@ La última decisión es la de estilismo que muchos consideran como absurda ya qu
 
 En resumidas cuenta se tiene:
 
-| Decisión               | Recomendación           |
-|------------------------|-------------------------|
-| Ambiente de desarrollo | create-react-app        |
-| Clases o funciones     | Funciones               |
-| Tipos                  | PropTypes ó TypeScript  |
-| Estado                 | React plano             |
-| Estilismo              | Lo que usted ya conozca |
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Decisión</th>
+<th scope="col" class="org-left">Recomendación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Ambiente de desarrollo</td>
+<td class="org-left">create-react-app</td>
+</tr>
+
+<tr>
+<td class="org-left">Clases o funciones</td>
+<td class="org-left">Funciones</td>
+</tr>
+
+<tr>
+<td class="org-left">Tipos</td>
+<td class="org-left">PropTypes ó TypeScript</td>
+</tr>
+
+<tr>
+<td class="org-left">Estado</td>
+<td class="org-left">React plano</td>
+</tr>
+
+<tr>
+<td class="org-left">Estilismo</td>
+<td class="org-left">Lo que usted ya conozca</td>
+</tr>
+</tbody>
+</table>
 
 Definitivamente, la cantidad de opciones que se tiene para aforntar problemas puntuales con React es algo intimidante. Por lo tanto, se motiva a revisar estás recomendaciones como un punto de partidad para que usted establezca su propio criterio.
 
 
-## Resumen {#resumen}
+# Resumen {#org359af7b}
 
 En este módulo, se consideraron las preocupaciones comunes que se escuchan por trabajar con React: JSX difiere de HTML pero hay varias herramientas que permiten convertir de una sintáxis a otra. El paso de compilación requerido para JSX ya es algo trivial puesto que el paso de compilación va a ser necesario para otro tipo de tareas, como por ejemplo la minificación de arcivos. Los conflictos potenciales entre las versiones de React se sobrellevan con actualizaciones sencillas a través de codemods cuando sea necesario. Las viejas funcionalidades en búsquedas web promueven el uso efectivo de documentaciones oficiales para evitar confusiones. Y por último esta la fatiga en toma de decisiones, una preocupación empírica cuya recomendación es comenzar de lo sencillo a lo complejo para ir construyendo un criterio propio.
+

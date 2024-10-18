@@ -14,7 +14,10 @@ Esta serie estará dividida por tres publicaciones:
 2. Compesasiones de usar React (Trade offs)
 3. Por qué /no/ usar React?
 
-El objetivo de esta serie es evaluar el panorama que ofrece React como herramienta para el desarrollo de aplicaciones web.
+El objetivo de esta serie es evaluar el panorama que ofrece React como herramienta para el desarrollo de aplicaciones web. En este articulo se cubren los siguientes temas:
+
+- Historia de React.
+- Las 6 razones por las cuales usar React.
 
 * Historia
   A continuación se muestra una línea de tiempo con la historia de React:
@@ -24,7 +27,7 @@ El objetivo de esta serie es evaluar el panorama que ofrece React como herramien
 
   React ya lleva casi una década en el mercado y quizas el hecho más importante en su historia fue su liberación a código abierto, ya que este evento marco la pauta para un crecimiento en la comunidad que se vío reflejado en la implementación de los nuevos complementos como React Native y los nuevos features como React Hooks. Esta misma comunidad liderada por el equipo dedicado de Facebook esta en constante actividad para actualizar documentación y desarrollar mejoras sobre la librería.
 
-* Por qué React?
+* ¿Por qué React?
 
 Una de las principales dudas a resolver en esta serie es identificar el por qué usar React ante tantas alternativas que hay actualmente para el desarrollo de aplicaciones web. Le respuesta en detalle será desarrollada a lo largo de estás publicaciones. No obstante, se pueden anticipar seis razones importantes que soportan la elección de React:
 
