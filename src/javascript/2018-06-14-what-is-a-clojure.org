@@ -1,0 +1,31 @@
++++
+title = ""
+author = ["Sergio Benítez"]
+description = "Serie que pretende explicar la funcionalidad de React Hooks"
+date = 2018-06-14T00:00:00-05:00
+draft = true
+tags = [
+  "javascript",
+]
++++
+
+#+TITLE: ¿Qué es una clausura?
+#+DESCRIPTION: Codificar en JavaScript sin entender las clausuras es como intentear hablas inglés sin entender las reglas gramaticales.
+#+AUTHOR: Sergio Benítez
+#+DATE:<2018-05-13 Sun>
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+
+** ¿Qué es una clausura?
+
+** Usando clausuras
+
+*** Privacidad de datos
+*** Aplicaciones parciales
+
+
+** Puntos clave
