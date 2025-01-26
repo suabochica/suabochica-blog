@@ -2,10 +2,11 @@
 
 ## TODO
 
-[x] Check how to compile theme changes.
-[x] Check how to consume iA Writer fonts.
-[ ] Customize a theme for RevealJS.
-[ ] Optimize images.
+- [ ] Complete what is a clojure post.
+- [x] Check how to compile theme changes.
+- [x] Check how to consume iA Writer fonts.
+- [ ] Customize a theme for RevealJS.
+- [ ] Optimize images.
 
 ## 🧰 Tech Stack
 
