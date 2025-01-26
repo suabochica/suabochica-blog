@@ -19,8 +19,44 @@ tags = [
 #+HUGO_WEIGHT: auto
 #+HUGO_AUTO_SET_LASTMOD: t
 
+Las clausuras (/clojures/ en inglés) son importantes en JavaScript porque son quienes controlan que esta y que no esta dentro del alcance de una función en particular, junto con variables que son compartidas entre funciones hermanas que se encuentran en un mismo ámbito.
+
+Entender cómo estas variables y funciones se relacionan es crítico para el entendimiento del código en JavaScript en ambos estilos de programación; programación funcional y programación orientada a objetos.
+
+El no tener conocimiento de como las clausuras funcionan, es una bandera roja que puede revelar falta de experiencia no solo en JavaScript, sino en cualquier lenguaje que se basa en clausuras (e.g., Haskell, C##, Python, etc...).
+
+Las clausuras son **usadas con frecuenca en JavaScript** para la privacidad de datos en objetos, en manejadores de eventos, funciones de respaldo, aplicaciones parciales, currying y otros patrones de programación funcional.
+
+** Aprenderás
+
+- ✅ ¿Qué es una clausura?
+- ✅ Clausuras en privacidad de datos
+- ✅ Clausuras en aplicaciones parciales
 
 ** ¿Qué es una clausura?
+
+
+Por definición se tiene:
+
+#+BEGIN_QUOTE
+Un clausura es la combinación de una función agrupada (cerrada) con referencias a su estado circundante (el entorno léxico)
+#+END_QUOTE
+
+El concepto técnico /entorno léxico/ puede ser engorroso; no obstante, se puede entender una clausura como un acceso hacia el alcance de una función externa desde una función interna. La siguiente es la estructura básica de una clausura:
+
+#+BEGIN_SRC
+const outerFn = (outerFnParam) => {
+  return {
+    innerFn = () => outerFnParam
+  }
+}
+#+END_SRC
+
+En JavaScript, las clausuras son creadas cada vez que una función es creada.
+
+Para usar una clausura, se debe definir una función dentro de otra función y exponerla. Para exponer una función, se retorna la función ó se pasa como parámetro de otra función.
+
+La función interior tendrá acceso a las variables en el ámbito de la función externa, incluso después de que la función externa se haya retornado.
 
 ** Usando clausuras
 
