@@ -2,7 +2,7 @@
 
 ## TODO
 
-- [ ] Complete what is a clojure post.
+- [x] Complete what is a clojure post.
 - [x] Check how to compile theme changes.
 - [x] Check how to consume iA Writer fonts.
 - [ ] Customize a theme for RevealJS.
@@ -19,7 +19,7 @@ In this blog I have to types of exports:
 - Blog posts
 - Slides with RevealJS
 
-Both, have the same source; the `ORG` mode of emacs. I'm using Doom Emacs as a framework configuration network.
+Both, have the same source; the `ORG` mode of emacs. I'm using Doom Emacs as a configuration framework for GNU Emacs.
 
 To export blog post from `.org` to markdown (`.md`) I use the [ox-hugo](https://ox-hugo.scripter.co/)
 
@@ -27,8 +27,9 @@ To export blog post from `.org` to markdown (`.md`) I use the [ox-hugo](https://
 2. Export ORG to markdown using the `SPC m e m m` keybindings.
 3. Add tags in the exported markdown file
 4. Copy the generated `.md` file into the `/content/post` folder.
-5. Run `rm -rf /public /resources`
-6. Run `hugo`
+5. Sort the generate ids for the TOC.
+7. Run `rm -rf /public /resources`
+8. Run `hugo`
 
 To export a slide from `.org` to RevealJS I use the [org-reveal](https://alexshroyer.com/posts/2021-08-13-Org-Reveal.html)
 
@@ -37,7 +38,6 @@ To export a slide from `.org` to RevealJS I use the [org-reveal](https://alexshr
 3. Open in your browser the exported file
 
 ## 🚀 Commands
-
 
 Command to build the page
 
@@ -55,7 +55,7 @@ Then visit the blog in http://localhost:1313
 
 ## 📁  Folder structure
 
-    From these folder structure, below I list the relevant ones:
+From these folder structure, below I list the relevant ones:
 
 - `content/post`: folder with all posts. They should be in markdown
 - `src/`: folder with in progress posts. They write in ~.org~ and should exported to markdown
@@ -69,6 +69,7 @@ Then visit the blog in http://localhost:1313
 - filenames that has an `en` in the name, mean that the post is in English.
 - filenames that has an `es` in the name, mean that the post is in Spanish.
 - `themes/m10c`: folder with hugo themes
+- the element `#+BEGIN-CENTER #+END-CENTER` has exportation issues with ox-hugo, so avoid it.
 
 ## 🔖 Adding tags
 

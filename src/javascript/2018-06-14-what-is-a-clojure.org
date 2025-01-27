@@ -1,14 +1,3 @@
-+++
-title = ""
-author = ["Sergio Benítez"]
-description = "Serie que pretende explicar la funcionalidad de React Hooks"
-date = 2018-06-14T00:00:00-05:00
-draft = true
-tags = [
-  "javascript",
-]
-+++
-
 #+TITLE: ¿Qué es una clausura?
 #+DESCRIPTION: Codificar en JavaScript sin entender las clausuras es como intentear hablas inglés sin entender las reglas gramaticales.
 #+AUTHOR: Sergio Benítez
@@ -67,13 +56,15 @@ Por otra parte, en programación funcional las clausuras se usan con frequencia 
 
 En JavaScript, las clausuras son el mecanismo principal utilizado para permitir la privacidad de los datos. Con clausuras, las variables adjuntas solo están en alcance dentro de la función externa que contiene dichas variables. No puedes obtener los datos de un alcance exterior salvo que se usen los métodos privilegiados de objetos. En JavaScript, cualquier método expuesto definido dentro del alcance de una clausura es privilegiado. El siguiente código nos ilustra el concepto de métodos privilegiados:
 
-#+BEGIN_SRC
+#+BEGIN_SRC js
 const getSecret = (secret) => {
   return {
     get: () => secret
   };
 };
+#+END_SRC
 
+#+BEGIN_SRC
 test('Closure for object privacy.', assert => {
   const msg = '.get() should have access to the closure.';
   const expected = 1;
@@ -97,11 +88,13 @@ Aquí, el método ~.get()~ es definido dentro del alcance de ~.getSecret()~, lo 
 
 *** Funciones con estado
 
-Los objetos no son la única manera de producir privacidad de datos. Los cierres también se pueden utilizar para crear funciones con estado cuyos valores de retorno pueden estar influenciados por su estado interno. Revisemos el siguiente código:
+Los objetos no son la única manera de producir privacidad de datos. Las clausuras también se pueden utilizar para crear funciones con estado cuyos valores de retorno pueden estar influenciados por su estado interno. Revisemos el siguiente código:
+
+#+BEGIN_SRC js
+const secret = (msg) => () => msg;
+#+END_SRC
 
 #+BEGIN_SRC
-const secret = (msg) => () => msg;
-
 test('secret', assert => {
   const msg = 'secret() should return a function that returns the passed secret.';
 
@@ -116,37 +109,39 @@ test('secret', assert => {
 });
 #+END_SRC
 
+#+RESULTS:
+
 Para este caso puntual, la función interna sólo retorna el valor que recibio del parámetro ~msg~ de la función externa. No obstante, la función interna esta en capacidad de modificar el valor del parámetro ~msg~.
 
 *** Programación funcional
 
-Para explorar el uso de clausuras en programación funcional se requieren las siguiente definiciones:
+Para explorar el uso de clausuras en programación funcional se requieren las siguientes definiciones:
 
-#+BEGIN_CENTER
+#+BEGIN_QUOTE
 *Aplicación:* Es el proceso de /aplicar/ una función a sus argumentos con el proposito de producir un valor de retorno
-#+END_CENTER
+#+END_QUOTE
 
-#+BEGIN_CENTER
+#+BEGIN_QUOTE
 *Aplicación Parcial:* Es el proceso de /aplicar/ una función a /algunos de sus argumentos/. La función parcialmente aplicada se devuelve para un posterior uso sobre uno o más argumentos dentro de la función devuelta, y la función devuelta toma los parámetros restantes como argumentos para completar la aplicación de función.
-#+END_CENTER
+#+END_QUOTE
 
 La definición de la aplicación parcial es engorrosa, pero con el concepto de clausuras se mejora su entendimiento.La aplicación parcial aprovecha el alcance de la clausura para *fijar* parámetros. Puede escribir una función genérica que aplicará parcialmente argumentos a la función de destino. La siguiente firma corresponde a una aplicación parcial:
 
-#+BEGIN_SRC
+#+BEGIN_SRC text
 partialApply(targetFunction: Function, ...fixedArgs: Any[]) =>
   functionWithFewerParams(...remainingArgs: Any[])
 #+END_SRC
 
 En esta firma tenemos que la aplicación parcial tomará una función que tome cualquier número de argumentos, seguido de argumentos que queremos aplicar parcialmente a la función, y devuelve una función que tomará los argumentos restantes. El siguiente ejemplo ilustra un caso de uso de aplicación parcial. Digamos que hay una función que suma 2 números:
 
-#+BEGIN_SRC
+#+BEGIN_SRC js
 const add = (a, b) => a + b;
 #+END_SRC
 
 Ahora, se quiere una función que sume 10 a cualquier número. Dicha función se llamará ~add10()~. El resultado de ~add10(5)~ debería ser ~15~. Una función ~partialApply()~ hace que esto sea posible de la siguiente manera:
 
-#+BEGIN_SRC
-cosnt add10 = partialApply(add, 10);
+#+BEGIN_SRC js
+const add10 = partialApply(add, 10);
 add10(5);
 #+END_SRC
 
@@ -154,14 +149,16 @@ Aquí, el argumento ~10~ se convierte en un parámetro fijo que será recordado 
 
 Quedaría pendiente una implementación de la función ~partialApply()~. El siguiente código es una posible implementación de dicha función:
 
-#+BEGIN_SRC
+#+BEGIN_SRC js
 const partialApply = (fn, ...fixedArgs) => {
   return function (...remainingArgs) {
     return fn.apply(this, fixedArgs.concat(remainingArgs));
   };
 };
+#+END_SRC
 
 
+#+BEGIN_SRC
 test('add10', assert => {
   const msg = 'partialApply() should partially apply functions'
 
@@ -179,4 +176,10 @@ test('add10', assert => {
 
 Como puedes ver, en la implementación simplemente se devuelve una función que conserva el acceso a los argumentos de ~FixedArgs~ que se pasaron a la función ~partialApply()~ .
 
-** TODO Puntos clave
+** Puntos clave
+
+- Una clausura permite un acceso hacia el alcance de una función externa desde una función interna.
+- Las clausuras permiten manejar privacidad de datos en objetos.
+- La privacidad de datos es una propiedad esencial para programar una interfaz y no una implementación
+- Las clausuras permiten manejar funciones con estado.
+- Las clausuras habilita aplicaciones parciales en JavaScript.
