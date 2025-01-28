@@ -1,0 +1,12 @@
+{{ define "toc" }}
+  <nav>
+    <h4>En esta página</h4>
+    <ul class="toc-list">
+      {{ range where .Paginator.Pages "Type" "!=" "page" }}
+        <li class="toc-list-item">
+          <a class="toc-link" href="{{ .Permalink }}">{{ .Title }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  </nav>
+{{ end }}

@@ -11,8 +11,9 @@ body {
   background: $dark-color;
   color: $light-color;
   font-size: 1rem;
-  line-height: 1.5rem;
-  text-rendering: geometricPrecision;
+  line-height: 1.8;
+  text-rendering: optimizeLegibility;
+  overflow-wrap: break-word;
 }
 
 h1,
@@ -27,29 +28,31 @@ h6 {
 
 h1 {
   font-size: 2rem;
-  line-height: 1.8rem;
+  line-height: 1.1;
 }
 
 h2 {
   font-size: 1.8rem;
+  line-height: 1.3;
   text-wrap: balance;
   color: $primary-color;
 }
 
 h3 {
   font-size: 1.5rem;
+  line-height: 1.8;
   text-wrap: balance;
 }
 
 h4 {
   font-size: 1.3rem;
+  line-height: 2;
   text-wrap: balance;
 }
 
 p {
-  font-size: 1rem;
-  line-height: 1.5rem;
-  text-wrap: pretty;
+  margin: 1rem 0 2rem;
+  text-wrap: stable;
 }
 
 a {
@@ -65,7 +68,12 @@ a {
 blockquote {
   border: $primary-color solid medium;
   font-style: italic;
-  padding: 20px;
+  padding: 1rem;
+  margin: 1rem 0 2rem;
+
+  > p {
+    margin: 0;
+  }
 }
 
 // Browsers seem to use a smaller default font-size with monospaced code
@@ -106,17 +114,6 @@ table {
   }
 }
 
-.posts-list-item-title {
-  font-size: 1rem;
-  line-height: 1.5rem;
-  text-wrap: pretty;
-  margin-bottom: 8px;
-}
-
-.posts-list-item-description {
-  font-size: 0.8rem;
-  line-height: 1.5rem;
-}
 
 ::selection {
   background: rgba($light-color, .25);

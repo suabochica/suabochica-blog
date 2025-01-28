@@ -1,33 +1,27 @@
 .body-grid-container {
-  display: grid;
   gap: 3rem;
   grid-template-areas:
     "post"
-    "post-list"
   ;
   padding: 0;
+  width: 100%
 }
 
-.app-header {
-  // padding: 2.5em;
+.header-container {
+  padding: 2.5rem 2rem;
   background: $darkest-color;
   text-align: center;
   grid-area: header;
 }
 
-.app-header-avatar {
+.header-avatar {
   max-width: 15rem;
   max-height: 15rem;
   border-radius: 100%;
   border: 0.5rem solid $primary-color;
 }
 
-.blog-post {
-  // padding: 2.5rem;
-  grid-area: post;
-}
-
-.app-header-social {
+.header-social {
   font-size: 2em;
   color: $lightest-color;
 
@@ -36,21 +30,51 @@
   }
 }
 
+.post-container {
+  grid-area: post;
+  max-width: 52rem;
+  padding: 2.5rem 2rem;
+}
+
+.post {
+  margin: 0 auto;
+}
+
+.toc-container {
+  display: none;
+  margin-top: 2rem;
+}
+
+
+
 @media (min-width: 940px) {
-  .app-header {
-    min-height: 100vh;
-  }
-
-  .app-container {
-    max-width: 65rem;
-    margin-left: 20rem;
-  }
-
   .body-grid-container {
+    display: grid;
     grid-template-areas:
-      "header post toc"
-      "header post-list place";
+      "header post toc";
+    grid-template-columns: 21rem minmax(0, 52rem) minmax(15rem, 1fr);
+  }
 
-    grid-template-columns: minmax(15rem, 1fr) minmax(0, 52rem) minmax(15rem, 1fr);
+  .header-container {
+    min-height: 100vh;
+    left: 0;
+    top: 0;
+  }
+
+
+  .post-container {
+    padding: 0;
+  }
+
+  .toc-container {
+    display: flex;
+    flex-direction: column;
+    grid-area: toc ;
+  }
+
+  .toc {
+    position: sticky;
+    height: max-content;
+    overflow: auto;
   }
 }

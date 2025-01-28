@@ -1,5 +1,6 @@
 .posts-list {
   padding: 0;
+  grid-area: posts;
 }
 
 .posts-list-item {
@@ -11,7 +12,15 @@
   }
 }
 
+.posts-list-item-title {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  text-wrap: pretty;
+  margin-bottom: 8px;
+}
+
 .posts-list-item-description {
   display: block;
-  font-size: 0.8em;
+  font-size: 0.8rem;
+  line-height: 1.5rem;
 }

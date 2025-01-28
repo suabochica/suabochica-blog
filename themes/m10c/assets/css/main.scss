@@ -15,6 +15,7 @@ $primary-color: {{ .Site.Params.style.primaryColor | default "#ffa86a" }};
 @import 'components/fonts';
 @import 'components/tag';
 @import 'components/tags_list';
+@import 'components/toc';
 
 // The last 'extra' import can optionally be overridden on a per project
 // basis by creating a <HUGO_PROJECT>/assets/css/_extra.scss file.
