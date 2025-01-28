@@ -1,7 +1,18 @@
+.body-grid-container {
+  display: grid;
+  gap: 3rem;
+  grid-template-areas:
+    "post"
+    "post-list"
+  ;
+  padding: 0;
+}
+
 .app-header {
-  padding: 2.5em;
+  // padding: 2.5em;
   background: $darkest-color;
   text-align: center;
+  grid-area: header;
 }
 
 .app-header-avatar {
@@ -11,8 +22,9 @@
   border: 0.5rem solid $primary-color;
 }
 
-.app-container {
-  padding: 2.5rem;
+.blog-post {
+  // padding: 2.5rem;
+  grid-area: post;
 }
 
 .app-header-social {
@@ -26,15 +38,19 @@
 
 @media (min-width: 940px) {
   .app-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 20rem;
     min-height: 100vh;
   }
 
   .app-container {
     max-width: 65rem;
     margin-left: 20rem;
+  }
+
+  .body-grid-container {
+    grid-template-areas:
+      "header post toc"
+      "header post-list place";
+
+    grid-template-columns: minmax(15rem, 1fr) minmax(0, 52rem) minmax(15rem, 1fr);
   }
 }

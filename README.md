@@ -7,6 +7,7 @@
 - [x] Check how to consume iA Writer fonts.
 - [ ] Customize a theme for RevealJS.
 - [ ] Optimize images.
+- [ ] Update blog to use grid and enable a TOC as aside.
 
 ## 🧰 Tech Stack
 
