@@ -83,7 +83,7 @@ blockquote {
 code {
   font-family: "iA Writer Mono", monospace;
   font-size: 1rem;
-  color: rgba($light-color, .8);
+  color: rgba($light-color, 0.8);
 }
 
 pre {
@@ -114,11 +114,10 @@ table {
   }
 }
 
-
 ::selection {
-  background: rgba($light-color, .25);
+  background: rgba($light-color, 0.25);
 }
 
 ::-moz-selection {
-  background: rgba($light-color, .25);
+  background: rgba($light-color, 0.25);
 }

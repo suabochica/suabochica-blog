@@ -46,9 +46,10 @@
       {{ block "toc" . }}
         <nav class="toc">
           <h4>En esta página</h4>
+          <h5>{{.Title}}</h5>
           <ul class="toc-list">
             <li class="toc-list-item">
-              <a class="toc-link" href="{{ .Permalink }}">{{ .Title }}</a>
+              <a class="toc-link" href="{{ .Permalink }}">{{ .TableOfContents }}</a>
             </li>
           </ul>
         </nav>

@@ -2,12 +2,12 @@
 
 ## TODO
 
-- [x] Complete what is a clojure post.
-- [x] Check how to compile theme changes.
-- [x] Check how to consume iA Writer fonts.
+- [X] Update blog to use grid and enable a TOC as aside.
 - [ ] Customize a theme for RevealJS.
 - [ ] Optimize images.
-- [ ] Update blog to use grid and enable a TOC as aside.
+- [ ] Remove TOCs in blog content.
+- [ ] Fix post that use `h1` in content.
+- [ ] Check a masthead component on blogs.
 
 ## 🧰 Tech Stack
 
@@ -71,6 +71,7 @@ From these folder structure, below I list the relevant ones:
 - filenames that has an `es` in the name, mean that the post is in Spanish.
 - `themes/m10c`: folder with hugo themes
 - the element `#+BEGIN-CENTER #+END-CENTER` has exportation issues with ox-hugo, so avoid it.
+- To work properly with TOC, respect header hierarchy and use `h2` in the contents of the blog.
 
 ## 🔖 Adding tags
 

@@ -1,10 +1,8 @@
 .body-grid-container {
   gap: 3rem;
-  grid-template-areas:
-    "post"
-  ;
+  grid-template-areas: "post";
   padding: 0;
-  width: 100%
+  width: 100%;
 }
 
 .header-container {
@@ -45,22 +43,19 @@
   margin-top: 2rem;
 }
 
-
-
 @media (min-width: 940px) {
   .body-grid-container {
     display: grid;
-    grid-template-areas:
-      "header post toc";
+    grid-template-areas: "header post toc";
     grid-template-columns: 21rem minmax(0, 52rem) minmax(15rem, 1fr);
   }
 
   .header-container {
+    position: sticky;
     min-height: 100vh;
     left: 0;
     top: 0;
   }
-
 
   .post-container {
     padding: 0;
@@ -69,11 +64,13 @@
   .toc-container {
     display: flex;
     flex-direction: column;
-    grid-area: toc ;
+    grid-area: toc;
   }
 
   .toc {
     position: sticky;
+    top: 0;
+    right: 0;
     height: max-content;
     overflow: auto;
   }
