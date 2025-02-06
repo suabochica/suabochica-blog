@@ -11,24 +11,7 @@ tags = [
 ]
 +++
 
-Los contenidos a explorar en esta publicación son:
-
-1.  [¿Qué son los React Hooks?](#orga982a01)
-2.  [`useState`](#orgc3ee1ea)
-3.  [`useRef`](#org4351b6e)
-4.  [`useEffect`](#org688ecff)
-5.  [Usando `useEffect`, `useRef` y `useState` para dar color con un efecto de scroll](#org006d161)
-    1.  [Comparación co el ejercicio previo y descripción](#org8ca8565)
-    2.  [Crear el archivo ImageToggleOnScroll](#orge19cc96)
-    3.  [Crear el archivo ImageChangeOnScroll](#org2f1479a)
-    4.  [Bug con la primera imagen](#org6b61ba5)
-6.  [Agregando un efecto secundario al componente Scroller](#org64adb0d)
-    1.  [Modificar el archvio ImageChangeOnScroll para agregar el efecto secundario de mostrar el identificador del expositor en el título cuando el cursor está sobre la imagen](#orgaa313c2)
-    3.  [Explicar el contador del evento del ratón](#orgd66dc35)
-    4.  [Señalar el problema de optimización asociado al evento del botón](#orgd11afe3)
-7.  [Conclusiones](#org3ed3afd)
-
-React Hooks representa un enorme paso hacia adelante hacia la construcción de aplicaciones plenamente funcionales con un uso mínimo de componentes de clase.
+Los ganchos de React (React Hooks en inglés) representan un enorme paso hacia adelante hacia la construcción de aplicaciones plenamente funcionales con un uso mínimo de componentes de clase.
 
 El manejo de estado y los eventos de ciclo de vida de un componente React requieren menos código y ganan legibilidad con el uso de los Hooks. Los Hooks respetan la forma en la que JavaScript fue diseñado para ser programado, y por ende se pueden implementar Hooks personalizados.
 
@@ -42,7 +25,7 @@ El propósito de estas publicaciones es lograr un entendimiento pleno de como us
 
 Para tener garantías del objetivo, es pre requisito tener conocimientos previos y sentirse cómo con las construcción de aplicaciones web con React.
 
-# ¿Qué son los React Hooks? {#orga982a01}
+## ¿Qué son los React Hooks?
 
 React Hooks agrega la habilidad de administrar el estado de React y la interfaz de usuario con los eventos del ciclo de vida de React en componentes funcionales, apoyándose en un estilo declarativo.
 
@@ -71,7 +54,7 @@ Los tres React Hooks más populares son:
 
 Tiempo de dar un vistazo mas profundo a cada uno de ellos:
 
-# `useState` {#orgc3ee1ea}
+## `useState`
 
 En los últimos años del mundo de la programación front-end, no importa el framework o la librería que se este utilizando, la siguiente declaración a sido una tendencia:
 
@@ -144,6 +127,7 @@ Esta es la forma típica de hacer uso del hook `useState`. Retomando la funciona
 
 Para complementar la propuesta del diagrama con un enlace de datos bidireccional se debe imprimir el valor de la variable `inputText` actualizado, como se ilustra a continuación:
 
+```jsx
     import React, { useState } from "react";
     
     const InputElement = () => {
@@ -160,6 +144,7 @@ Para complementar la propuesta del diagrama con un enlace de datos bidireccional
     };
     
     export default InputElement;
+```
 
 Ahora bien, para un mejor entendimiento de como fuciona el estado en React, se va a agregar un detalle en la implementación actual para imprimir el historial de la variable `inputText`.
 
@@ -200,7 +185,7 @@ Con este ejemplo se obtiene un entendimiento sólido sobre como usar React Hooks
 -   Por convención usan el prefijo `use`.
 -   Todos contribuyen a los eventos de ciclo de vida y la administración del estado en un componente React.
 
-# `useRef` {#org4351b6e}
+## `useRef`
 
 Una definición para el `useRef` hook es:
 
@@ -312,7 +297,7 @@ Esto es el hook `useRef` en pocas palabras. Un mecanismo para acceder a las prop
 
 Un característica llamativa de los hooks es que se pueden combinar, tal y como se explicará a continuación en un ejemplo que plantea un caso de uso para usar `useRef` en conjunto con `useEffect`. El ejemplo también servirá para dar explorar el hook `useEffect`.
 
-# `useEffect` {#org688ecff}
+## `useEffect`
 
 El uso del hook `useEffect` en componentes funcionales es similar a las funciones de ciclos de vida `componentDidMount`, `componentDidUpdate` y `componentWillUnmount` en un componente de clase React.
 
@@ -372,13 +357,11 @@ El segundo parámetro de `useEffect` es un arreglo con las dependencias del comp
 
 Si se quiere que el componente sea renderizado basado en ciertas condiciones, los valores para cumplir dichas restricciones deben se parte de este arreglo. Para el ejemplo anterior, la condición aplicada es sobre la variable `checkBoxValue` que representa un booleano y hace parte del estado del componente. Esto significa que si el valor de `checkBoxValue` cambia, la función `useEffect` será llamada.
  
-## Comparación co el ejercicio previo y descripción {#org8ca8565}
-
 Trayendo a coalición el ejemplo previo de las imágenes que cambian de blanco y negro a color cuando el cursor del ratón se posiciona sobre una de ellas, y viceversa cuando el cursor esta por fuera del rectángulo de la imagen, se va a realizar una modificación sobre el evento que da color a la imagen para revisar un caso que combina los hooks revisados hasta el momento: `useState`, `useRef` y `useEffect`.
 
 Esta modificación consiste en que el evento para dar color sobre la imagen es la interacción de la barra de desplazamiento del navegador. Si la imagen esta dentro de la vista completa del navegador, se mostrará la imagen a color. De lo contrario la imagen quedara a blanco y negro. La interacción co la barra de desplazamiento determinará el cálculo para colorear las imágenes.
 
-## Crear el archivo ImageToggleOnScroll {#orge19cc96}
+## Evento scroll
 
 Se va a iniciar la implementación con base al contenido del archivo `ImageToggleOnMouseOver` y se van a realizar las siguiente modificaciones:
 
@@ -433,7 +416,7 @@ El tercer punto es la administración del evento `scroll` en el `useEffect`. la 
 
 Por último, en la maquetación del componente dentro del atributo `src` se usa una sintaxis de condición ternaria para definir que imagen renderizar dentro del componente. La imagen a color si se encuentra dentro de la vista completa del navegador o la image a blanco y negro si la imagen esta por fuera de la vista del navegador.
 
-## Crear el archivo ImageChangeOnScroll {#org2f1479a}
+## Crear el archivo ImageChangeOnScroll
 
 El siguiente paso es consumir el componente `ImageToggleOnScroll`. Para ello se va a crear un archivo `ImageChangeOnScroll` con el siguiente contedio.
 
@@ -465,8 +448,6 @@ El siguiente paso es consumir el componente `ImageToggleOnScroll`. Para ello se 
 En primera instancia, esta página debe importar el componente `ImageToggleOnScroll` para poder utilizarlo. Para renderizar varias imágenes se va a hacer un `.map` sobre un arreglo con los identificadores de las imágenes y con ayuda de los strings literales se va a consumir la ruta de la imagen de manera recursiva.
 
 Por otra parte, se observa que en el uso del componente `<ImageToggleOnScroll>` se suministran las rutas de las imágenes dependiendo el caso con los atributos `primaryImg` y `secondaryImg`.
-
-## Bug con la primera imagen {#org6b61ba5}
 
 Actualmente tenemos un comportamiento por mejorar en el estado de la aplicativo. Al momento de renderizar las imágenes por primera vez en el navegador, todas las imágenes se muestran en su versión blanco y negro. El resultado esperado es que las imágenes que se encuentran dentro de la vista completa del navegador este en su versión a color. Los siguientes cambios ayudarán a cumplir con este objetivo:
 
@@ -506,6 +487,7 @@ Actualmente tenemos un comportamiento por mejorar en el estado de la aplicativo.
     };
     
     export default ImageChangeOnMouseOver;
+```
 
 Se recuerda que estos cambios se realizan sobre el archivo `ImageToggleOnScroll`. En esta primera aproximación lo único que se agrego fue el llamado de la función `setInView()` dentro del `useEffect` una vez el componente se haya renderizado por primera vez. Al probar esta modificación en el navegador tenemos el resultados esperado, las imágenes que están en la vista completa del navegador están con su versión a color.
 
@@ -558,11 +540,11 @@ Se puede observar la creación de un nuevo estado llamado `isLoading` para deter
 
 Por último, en el JSX del componente dentro del atributo `src` se agrega la condición `isLoading` que de ser cierta, entonces muestra un loader, de lo contrario aplica la condición `inView` que determina que versión de la imagen se va a renderizar.
 
-# Agregando un efecto secundario al componente Scroller {#org64adb0d}
+# Agregando un efecto secundario al componente Scroller 
 
-Para el estado actual de la paǵina que da color a las imágenes en función a la barra de desplazamiento se usó el hook `useEffect` tomando ventaja del conocimiento previo de que la función que se pasa como primer parámetro de `useEffect` es ejecutada despues de que el componente haya sido completamente renderizado por primera vez. Al poner un arreglo vació `[]` como segundo parámetro de `useEffect` se establece que la instrucción de ejecutar la función que se pasa como primer parámetro solo cuando el comoponente es renderizado y no sobre actualizaciones subsecuentes.
+Para el estado actual de la paǵina que da color a las imágenes en función a la barra de desplazamiento se usó el hook `useEffect` tomando ventaja del conocimiento previo de que la función que se pasa como primer parámetro de `useEffect` es ejecutada despues de que el componente haya sido completamente renderizado por primera vez. Al poner un arreglo vació `[]` como segundo parámetro de `useEffect` se establece que la instrucción de ejecutar la función que se pasa como primer parámetro se hace cuando el comoponente es renderizado y no sobre actualizaciones subsecuentes.
 
-El detalle de pasar un como dependencia un arreglo vació como segundo parámetro del <code>useEffect</code> es a menudo utilizado para optimizar la ejecución del componente.
+El detalle de pasar un arreglo vació como segundo parámetro del `useEffect` es utilizado para optimizar la ejecución del componente.
 
 Para ahondar en el contexto del segundo parámetro del `useEffect` se expone el siguiente ejemplo: Dentro del componente `ImageChangeOnScroll`, que actualmente es el encargado de mostrar las imágenes de los expositores, se va a atender el evento del `MouseOver` sobre cada imagen del expositor para estrablecer el título de la ventana del navegador con el identificador de la imagen asociada a determinado expositor. El siguiente código atiende este nuevo efecto secundario:
 
@@ -609,7 +591,7 @@ Varias cosas por explicar en este snippet. El primer punto es la creación de un
 
 El segundo detalle esta dentro del retorno del componente. Aquí se agrego el evento `onMouseOver` sobre el padre `<div>` del cual se va a recuperar el identificador del expositor y actua como un empaquetador de la imagen. Se puede observar que es sobre este evento se ejecutan las funciones `setCurrentSpeakerId(speakerId)` y `setMouseEventCounter(mouseEventCounter++)`
 
-## Explicar el contador del evento del ratón {#orgd66dc35}
+## Evento del ratón
 
 El estado `[mouseEventCounter, setMouseEventCounter] = useState(0)` es otro efecto secundario que se incluye para tener un registro de las veces que se activa el evento `onMouseOver`. Dicho conteo se esta registrando en la parte superior del navegador dentro de una etiqueta `<span>`.
 
@@ -617,7 +599,7 @@ Por último, el detalle más relevante es el uso de la función `useEffect` para
 
 Adicionalmente, para este caso la función `useEffect` no recibe un segundo parámetro, indicando así que la función `useEffect` se va a llamar cada vez que se presente un cambio en el componente.
 
-## Señalar el problema de optimización asociado al evento del botón {#orgd11afe3}
+## Señalar el problema de optimización asociado al evento del botón
 
 Al realizar las pruebas en el navegador se puede observar el comportamiento esperado en la actualización del título de la ventana del navegador con el identificador de la imagen cuando el usuario posiciona el cursor sobre la imagen de algún expositor. No obstante hay un comportamiento que se evidencia dentro de la consola del navegador que puede ser considerado un bug.
 
@@ -668,7 +650,11 @@ En pocas palabras esta es la optimización, usar el arreglo de dependencias para
 
 Por otra parte, una pregunta valida es porque se decidió mostrar un contador de los eventos del ratón en la pagína web. La razón es que dicho contador suministra información de que comportamiento esta generando el evento. Si el contador se hubiera omitido, probablemente nunca se hubiera identificado el problema de optimización descrito anteriormente.
 
-# Conclusiones {#org3ed3afd}
+# Conclusiones
 
-En esta publicación se explicaron los hooks más usados en el mundo de React. `useState` es para rastrear el estado de manera fácil sobre detalles puntuales. `useEffect` ofrece una forma limpia para configurar funcionalidades dentro del ciclo de vida de un componente funcional en react, como por ejemplo, el estado. Y por último `useRef` suministra el control que en ocaciones se precisa sobre elementos del DOM.
+En esta publicación se explicaron los hooks más usados en el mundo de React:
+
+- `useState` es para rastrear el estado de manera fácil sobre detalles puntuales.
+- `useEffect` ofrece una forma limpia para configurar funcionalidades dentro del ciclo de vida de un componente funcional en react, como por ejemplo, el estado.
+- `useRef` suministra el control que en ocaciones se precisa sobre elementos del DOM.
 
