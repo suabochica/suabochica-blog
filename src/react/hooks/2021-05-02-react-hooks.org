@@ -22,7 +22,7 @@ El propósito de estas publicaciones es lograr un entendimiento pleno de como us
 
 Para tener garantías del objetivo, es pre requisito tener conocimientos previos y sentirse cómo con las construcción de aplicaciones web con React.
 
-* ¿Qué son los React Hooks?
+** ¿Qué son los React Hooks?
 
 React Hooks agrega la habilidad de administrar el estado de React y la interfaz de usuario con los eventos del ciclo de vida de React en componentes funcionales, apoyándose en un estilo declarativo.
 
@@ -50,7 +50,7 @@ Los tres React Hooks más populares son:
 
 Tiempo de dar un vistazo mas profundo a cada uno de ellos:
 
-* ~useState~
+** ~useState~
 
 En los últimos años del mundo de la programación front-end, no importa el framework o la librería que se este utilizando, la siguiente declaración a sido una tendencia:
 
@@ -60,7 +60,6 @@ El estado ayuda a construir aplicaciones web de alto rendimiento
 
 La idea de estado consiste en que cada vez que se ve algo nuevo en la pantalla, sea rastreado como un estado nuevo. Para aterrizar este concepto se presenta el siguiente ejemplo:
 
-** TODO: Add image
 #+CAPTION: Two way data-binding
   [[../../images/react/react-hooks/01-two-way-data-binding.png]]
 
@@ -185,7 +184,7 @@ Con este ejemplo se obtiene un entendimiento sólido sobre como usar React Hooks
 - Por convención usan el prefijo ~use~.
 - Todos contribuyen a los eventos de ciclo de vida y la administración del estado en un componente React.
 
-* ~useRef~
+** ~useRef~
 
 Una definición para el ~useRef~ hook es:
 
@@ -299,7 +298,7 @@ Esto es el hook ~useRef~ en pocas palabras. Un mecanismo para acceder a las prop
 
 Un característica llamativa de los hooks es que se pueden combinar, tal y como se explicará a continuación en un ejemplo que plantea un caso de uso para usar ~useRef~ en conjunto con ~useEffect~. El ejemplo también servirá para dar explorar el hook ~useEffect~.
 
-* ~useEffect~
+** ~useEffect~
 
 El uso del hook ~useEffect~ en componentes funcionales es similar a las funciones de ciclos de vida ~componentDidMount~, ~componentDidUpdate~ y ~componentWillUnmount~ en un componente de clase React.
 
@@ -360,7 +359,7 @@ El segundo parámetro de ~useEffect~ es un arreglo con las dependencias del comp
 
 Si se quiere que el componente sea renderizado basado en ciertas condiciones, los valores para cumplir dichas restricciones deben se parte de este arreglo. Para el ejemplo anterior, la condición aplicada es sobre la variable ~checkBoxValue~ que representa un booleano y hace parte del estado del componente. Esto significa que si el valor de ~checkBoxValue~ cambia, la función ~useEffect~ será llamada.
 
-* Usando ~useEffect~, ~useRef~ y ~useState~ para dar color con un efecto de scroll
+** Usando ~useEffect~, ~useRef~ y ~useState~ para dar color con un efecto de scroll
 
 ** Comparación co el ejercicio previo y descripción
 
@@ -550,7 +549,7 @@ Se puede observar la creación de un nuevo estado llamado ~isLoading~ para deter
 Por último, en el JSX del componente dentro del atributo ~src~ se agrega la condición ~isLoading~ que de ser cierta, entonces muestra un loader, de lo contrario aplica la condición ~inView~ que determina que versión de la imagen se va a renderizar.
 
 
-* Agregando un efecto secundario al componente Scroller
+** Agregando un efecto secundario al componente Scroller
 
 ** Explicar la estructura del useEffect y el parametro []
 
@@ -667,6 +666,6 @@ En pocas palabras esta es la optimización, usar el arreglo de dependencias para
 Por otra parte, una pregunta valida es porque se decidió mostrar un contador de los eventos del ratón en la pagína web. La razón es que dicho contador suministra información de que comportamiento esta generando el evento. Si el contador se hubiera omitido, probablemente nunca se hubiera identificado el problema de optimización descrito anteriormente.
 
 
-* Conclusiones
+** Conclusiones
 
 En esta publicación se explicaron los hooks más usados en el mundo de React. ~useState~ es para rastrear el estado de manera fácil sobre detalles puntuales. ~useEffect~ ofrece una forma limpia para configurar funcionalidades dentro del ciclo de vida de un componente funcional en react, como por ejemplo, el estado. Y por último ~useRef~ suministra el control que en ocaciones se precisa sobre elementos del DOM.

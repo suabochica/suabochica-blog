@@ -1,37 +1,36 @@
-#+TITLE: La Revolución Blockchain
-#+DESCRIPTION: Serie que recopila contenidos sobre blockchain
-#+AUTHOR: Sergio Benítez
-#+DATE:<2021-10-25 Thu> 
-#+STARTUP: fold
-#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
-#+HUGO_SECTION: /post
-#+HUGO_WEIGHT: auto
-#+HUGO_AUTO_SET_LASTMOD: t
++++
+title = "La Revolución Blockchain"
+description = "Serie que recopila contenidos sobre blockchain"
+date = 2021-10-25T02:13:50Z
+author = "Sergio Benítez"
+tags = [
+    "blockchain",
+]
++++
 
-La cadena de bloques (conocida como _Blockchain_) se ha descrito como un todo todo que va desde oro digital hasta un reemplazo de Internet.
+La cadena de bloques (conocida como <span class="underline">Blockchain</span>) se ha descrito como un todo todo que va desde oro digital hasta un reemplazo de Internet.
 
 Este campo se está desarrollando increíblemente rápido y hay muchas oportunidades en las que puede participar.
 
 La Blockchain tiene el potencial de revolucionar industrias como las finanzas, el gobierno y la medicina. Incluso está reimaginando la forma en que pensamos sobre la identidad y la seguridad personal.
 
-#+CAPTION: Blockchain Illustration
-[[https://static.vecteezy.com/system/resources/previews/000/523/606/original/blockchain-new-technology-in-3d-box-and-isometric-concept-digital-crytocurrency-electronic-cyber-system-vector.jpg]]
+![img](https://static.vecteezy.com/system/resources/previews/000/523/606/original/blockchain-new-technology-in-3d-box-and-isometric-concept-digital-crytocurrency-electronic-cyber-system-vector.jpg "Blockchain Illustration")
 
-** ¿Por qué Blockchain?
- 
+## ¿Por qué Blockchain?
+
 Trabajar en el espacio de Blockchain hoy en día es muy llamativo ya que básicamente esta reinventado el Wall Street. Con Blockchain se esta automatizando todo lo que se hace en la bolsa de valores y se esta tranformando en código. En otras palabras el Blockchain está construyendo una economía digital.
 
 Es emocionante ver como todo este concepto se inicia ya que puede equipararse con el hecho de haber nacido hace 20 o 30 años en la era del Internet y ser testigo de como este cambio hizo que la información se volviera digitalizada y programable.
 
 Ciertamente, desarrollar una nueva Blockchain es retador, ya que requiere de conocimiento de varios temas y es una tarea díficil para cualquier programador. Paralelamente, la demanda de posiciones abiertas para trabajos con Blockchain ha venido incrementando en los últimos años, no obstante, la oferta sigue siendo limitada porque es un campo que se ha venido acercando sigilosamente a la gente con una estrucura demasiado amplia, si se compara con aprendizajes web.
 
-** La Influencia del Blockchain
+## La Influencia del Blockchain
 
-El _Blockchain_ está cambiando las industrias en todo el mundo a tráves de las siguientes industrias: identificación personal, medicina, finanzas, gestión de cadenas de suministros y manejo de información gobernamental. Ahora bien ¿cómo Blockchain hace esto posible?.
+El /Blockchain/ está cambiando las industrias en todo el mundo a tráves de las siguientes industrias: identificación personal, medicina, finanzas, gestión de cadenas de suministros y manejo de información gobernamental. Ahora bien ¿cómo Blockchain hace esto posible?.
 
 Básicamente, Blockchain es una nueva forma de compartir datos que permite realizar transacciones de forma más segura, más transparente y más barata que antes. Todo esto se puede lograr sin que grandes compañias collecionen y administren nuestra información como lo hacen hoy en dia.
 
-Por ejemplo, para la industria de identificación personal todos queremos que nuestra identidad sea segura. Nadie debería estar en capacidad de acceder a la información sobre los lugares a donde vamos, que estamos haciendo o incluso que estamos planificando sin nuestro permiso. El problema es que _hoy en día estamos otorgando esta información a las grandes corporaciones a cambio de los servicios que ellos proveen_. Este escenario nos expone a perder el control sobre como nuestra información esta siendo usada.
+Por ejemplo, para la industria de identificación personal todos queremos que nuestra identidad sea segura. Nadie debería estar en capacidad de acceder a la información sobre los lugares a donde vamos, que estamos haciendo o incluso que estamos planificando sin nuestro permiso. El problema es que <span class="underline">hoy en día estamos otorgando esta información a las grandes corporaciones a cambio de los servicios que ellos proveen</span>. Este escenario nos expone a perder el control sobre como nuestra información esta siendo usada.
 
 Dichas corporaciones almacenan los datos que nosotros producimos en grandes bases de datos centralizadas, teniendo información tan importante en una única ubicación, que en primera instancia podía ser de utilidad, pero nos exhibe a algunos riesgos, como por ejemplo los ataques de hackers para el robo de datos. Un caso reciente fue en 2017 con Equifax, en donde aproximadamente 140 millones de personas perdió información importante de accesos a tarjetas de creditos y cuentas bancarias gracias a un ataque de hackers.
 
@@ -43,13 +42,11 @@ Con Blockchain, la información del carro sería pública y estaría disponible 
 
 Concluyendo de manera rapida la influencia de Blockchain en las diferentes industrias se tiene para medicina la oportunidad de salvar más vidas con información más segura y precisa del paciente. También es posible envíar dinero a todos el mundo de manera gratuita y segura cambiando de manera potencial el sistema finaciero. Por último las elecciones gubernamentales podrían realizarse de una manera segura y transparente sobre el Blockchain.
 
-** Visión General de Blockchain
+## Visión General de Blockchain
 
 Cada día la popularidad del Blockchain sigue creciendo pero en escencia ¿qué son los Blockchains? ¿cómo funcionan? y ¿qué problemas solucionan? Una definición de Blockchain puede ser la siguiente:
 
-#+begin_src quote
-Blockchain es una base de datos compartida que contiene una lista de transacciones. Dichas transacciones son hecha por usuarios que son parte de la red de cadenas de bloques.
-#+end_src
+> Blockchain es una base de datos compartida que contiene una lista de transacciones. Dichas transacciones son hecha por usuarios que son parte de la red de cadenas de bloques.
 
 Con esta definición en mente, se puede establecer como una transacción algo tan simple como el envío de dinero. De hecho, este es quizas el caso de uso más popular de Blockchain establecido por la criptomoneda Bitcoin. La idea de Bitcoin vino de un desarrollador desconocido bajo el alias de Satoshi Nakamoto en 2009 con el propósito de crear una nuevo tipo de moneda que esta abierta a cualquier persona para establecer la confianza necesaria para facilitar las tranasacciones.
 
@@ -59,17 +56,19 @@ Ahora bien ¿Cómo funciona el Blockchain? Las entidades relevantes en el Blockc
 
 Al actualizar la información de la transacción, como por ejemplo reducir la cantidad de dinero enviada, el Hash será cambiado y se crea un nuevo bloque haciendo invalido el bloque antiguo. No obstante, ambos bloque se unirán y con el tiempo se continuará con la creación de cadenas de bloques cada vez más largas. El resultado es una cadena de bloques con registros históricos de transacciones cuya información no puede ser modificada y sucedieron en una red de usuarios. 
 
-** Motivación del Blockchain
+## Motivación del Blockchain
 
 Si bien Blockchain tiene sus raíces en las finanzas, sus aplicaciones van mucho más allá. Quizas su característica más llamativa es su naturaleza disruptiva en todos los verticales de las tecnologías de información. Es emocionante saber que hoy en día se pueden hacer transacciones con cualquier persona en cualquier lugar del mundo a través de una red confiable. El otro aspecto llamativo es la anulación de intermediarios en las transacciones. Evidentemente esto fomenta intercambios y procesos más transparentes que pueden reflejarse en campos gubernamentales e incluso en la mejora de los registros médicos electrónicos de los datos de un paciente.
 
 En escencia, los más emocionante de Blockchain es simplemente su capacidad de derribar las paredes sin tener que preocuparse por las fronteras cuando se trata de realizar transacciones con varias comunidades. Es importante aclarar que Blockchain no es solo las transacciones. Las tecnologías que hacen que esas transacciones funcionen y el tipo de datos que se pueden embuir en dichas transacciones es un hecho maravilloso por la flexibilidad que nos ofrece por solo usar a nuestro favor la tecnología como tal.
 
-** Recapitulación
+
+## Recapitulación
 
 En esta publicación compartimos:
 
-- Blockchain se perfila como una tecnología de vanguardia en donde la oferta sigue siendo limitada porque se ha venido acercando sigilosamente a la gente con una estrucura demasiado amplia.
-- La influencia del Blockchain sobre industrias tales como: identificación personal, medicina, finanzas, gestión de cadenas de suministros y manejo de información publica de gobiernos.
-- Blochain es una base de datos compartida que comparte una lista de transacciones públicas hechas por usuarios registrado en la cadena de bloques.
-- El campo de acción del Blockchain es muy extenso dado que su fundamento son los sistemas trasnsaccionales que son de uso popular hoy en día.
+-   Blockchain se perfila como una tecnología de vanguardia en donde la oferta sigue siendo limitada porque se ha venido acercando sigilosamente a la gente con una estrucura demasiado amplia.
+-   La influencia del Blockchain sobre industrias tales como: identificación personal, medicina, finanzas, gestión de cadenas de suministros y manejo de información publica de gobiernos.
+-   Blochain es una base de datos compartida que comparte una lista de transacciones públicas hechas por usuarios registrado en la cadena de bloques.
+-   El campo de acción del Blockchain es muy extenso dado que su fundamento son los sistemas trasnsaccionales que son de uso popular hoy en día.
+

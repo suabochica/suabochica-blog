@@ -3,7 +3,7 @@
 #+AUTHOR: Sergio Benítez
 #+DATE:<2021-12-11 Sat>
 #+STARTUP: fold
-#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/ op
 #+HUGO_SECTION: /post
 #+HUGO_WEIGHT: auto
 #+HUGO_AUTO_SET_LASTMOD: t
@@ -35,13 +35,13 @@ TradeLens utiliza la tecnología IBM Blockchain como base para las cadenas de su
 
 Maersk e IBM fueron los primeros en unirse a TradeLens, pero más de 90 organizaciones de todo el mundo se han unido para participar en la plataforma TradeLens.
 
-* TODO Descriprción General de la Arquitectura Blockchain 
+** TODO Descriprción General de la Arquitectura Blockchain
 
-** Web 2.0
+*** Web 2.0
 
-** Web 3.0 
+*** Web 3.0
 
-* TODO UML
+** TODO UML
 
 ** TODO Diagramas de Actividad
 
@@ -50,11 +50,11 @@ Maersk e IBM fueron los primeros en unirse a TradeLens, pero más de 90 organiza
 ** TODO Diagramas de Estado
 
 
-* TODO Modelando Datos
+** TODO Modelando Datos
 
-* TODO Decisiones en la Capa de Servicios
+** TODO Decisiones en la Capa de Servicios
 
-* Recapitulación
+** Recapitulación
 
 En esta publicación se discutió la arquitectura de una cadena de bloques para luego planificar y diseñar una solución Blockchain.
 

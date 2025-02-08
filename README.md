@@ -2,7 +2,8 @@
 
 ## TODO
 
-- [X] Update blog to use grid and enable a TOC as aside.
+- [x] Update blog to use grid and enable a TOC as aside.
+- [x] Redactar el post de la revolucion blockchain
 - [ ] Customize a theme for RevealJS.
 - [ ] Optimize images.
 - [ ] Remove TOCs in blog content.
