@@ -29,9 +29,8 @@ To export blog post from `.org` to markdown (`.md`) I use the [ox-hugo](https://
 2. Export ORG to markdown using the `SPC m e m m` keybindings.
 3. Add tags in the exported markdown file
 4. Copy the generated `.md` file into the `/content/post` folder.
-5. Sort the generate ids for the TOC.
-7. Run `rm -rf /public /resources`
-8. Run `hugo`
+5. Run `rm -rf /public /resources`
+6. Run `hugo`
 
 To export a slide from `.org` to RevealJS I use the [org-reveal](https://alexshroyer.com/posts/2021-08-13-Org-Reveal.html)
 
