@@ -87,10 +87,7 @@ tags = [
     "design",
     "furniture",
 ]
-
-# What is this?
-
-categories = [ 
+categories = [ ???
     "development",
     "golang",
 ]
