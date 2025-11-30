@@ -1,0 +1,7 @@
+  /home/suabochica/Development/suabochica-blog/src/javascript:
+  drwxrwxr-x  3 suabochica suabochica  4096 Nov 29 21:43   .
+  drwxrwxr-x 11 suabochica suabochica  4096 Oct 19  2024   ..
+  -rw-rw-r--  1 suabochica suabochica 27607 Oct 19  2024   2018-05-13-js-basics.org
+  -rw-rw-r--  1 suabochica suabochica 19329 Oct 19  2024   2018-05-23-how-js-works.org
+  -rw-rw-r--  1 suabochica suabochica  8404 Feb  5  2025   2018-06-14-what-is-a-clojure.org
+  drwxrwxr-x  2 suabochica suabochica  4096 Nov 29 21:43   en

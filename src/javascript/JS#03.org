@@ -10,7 +10,7 @@
 
 Las clausuras (/clojures/ en inglés) son importantes en JavaScript porque son quienes controlan que esta y que no esta dentro del alcance de una función en particular, junto con variables que son compartidas entre funciones hermanas que se encuentran en un mismo ámbito.
 
-Entender cómo estas variables y funciones se relacionan es crítico para el entendimiento del código en JavaScript en ambos estilos de programación; programación funcional y programación orientada a objetos.
+Entender cómo estás variables y funciones se relacionan es crítico para el entendimiento del código en JavaScript en ambos estilos de programación; programación funcional y programación orientada a objetos.
 
 El no tener conocimiento de como las clausuras funcionan, es una bandera roja que puede revelar falta de experiencia no solo en JavaScript, sino en cualquier lenguaje que se basa en clausuras (e.g., Haskell, C##, Python, etc...).
 
