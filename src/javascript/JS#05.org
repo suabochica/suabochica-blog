@@ -1,0 +1,16 @@
+#+TITLE: Callbacks, promesas y async/awai
+#+DESCRIPTION:
+#+AUTHOR: Sergio Benítez
+#+DATE:<2025-11-30 Sun>
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+
+** TODO Callbacks
+
+** TODO Promesas
+
+** TODO async/await

@@ -1,9 +1,11 @@
 # 📝 Suabochica Blog
 
-## TODO
+## :ballot_box_with_check: TODO
 
 - [x] Update blog to use grid and enable a TOC as aside.
 - [x] Redactar el post de la revolucion blockchain
+- [ ] Add content for modern JavaScript
+- [ ] Document new file format. Instead of dates use theme id, '#', incremental numbers (e.g., JS#01.org)
 - [ ] Customize a theme for RevealJS.
 - [ ] Optimize images.
 - [ ] Remove TOCs in blog content.
@@ -14,7 +16,7 @@
 
 - [hugo](https://gohugo.io/getting-started/quick-start/), a go framework for build websites.
 
-## 🗂 Workflow
+## :bug: Workflow
 
 In this blog I have to types of exports:
 
