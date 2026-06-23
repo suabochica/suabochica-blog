@@ -15,7 +15,7 @@ paginate = 12
 
 [params]
   author = "Sergio Benítez"
-  description = "Desarrollador Full-Stack con más de 10 años de experiencia."
+  description = "Desarrollador de Sofwtare con más de 11 años de experiencia."
   avatar = "/sua_profile.jpg"
   favicon = "/favicon.ico"
   menu_item_separator = " - "

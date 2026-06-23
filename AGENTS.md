@@ -19,7 +19,7 @@ hugo --gc --minify   # Production build (used by Netlify)
 ### Blog Posts
 1. Draft in Org mode files under `src/<topic>/`
 2. Export to Markdown using ox-hugo: `SPC m e m m` (Doom Emacs)
-3. Add tags to frontmatter in exported `.md` file
+3. Add tags to format in exported `.md` file
 4. Copy `.md` to `content/post/`
 
 ### Slides

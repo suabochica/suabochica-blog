@@ -1,5 +1,5 @@
 +++
-title = "Gestion de Transacciones"
+title = "Gestion de transacciones"
 description = "Serie que recopila una aprendizaje sobre Blockchain"
 date = 2021-11-10T02:13:50Z
 author = "Sergio Benítez"
@@ -47,7 +47,7 @@ Con este contexto, es tiempo de ahondar en el concepto de billeteras:
 
 La identidad en la cadena de bloques se logra con herramientas importantes como billeteras, direcciones y llaves. Además de que tener diferentes alternativas en la selección de las herramientas también es posible implementarlas en diferentes formas. Estas implementaciones se reflejan en diferentes tipos de billeteras.
 
-### Tipos de Billeteras
+### Tipos de billeteras
 
 -   **Billeteras no determinísticas:** También conocidas como billeteras aleatorias son billeteras en donde las llaves privadas se generan desde números aleatorios.
 -   **Billeteras determinísticas:** Son billeteras en donde las direcciones, las llaves privada y las llaves públicas se pueden rastrear hasta sus palabras originales
@@ -59,7 +59,7 @@ A continuación se inventan una variedad de escenarios para explorar. Con base e
 
 - **Escenarion 1**: Quiero crear billeteras de papel derivadas de una clave maestra para poder almacenarlas y recuperarlas todas de forma determinista. ¿Qué billetera se usa para lograr esto?
 
-__Respuesta_: Billetera Secuencial Determinista
+_Respuesta_: Billetera Secuencial Determinista
 
 - **Escenario 2**: Estoy creando un servidor web que vende widgets y quiero generar una dirección de transacción única para cada cliente habilitando un seguimiento de forma independiente. Quiero poder tomar una clave pública maestra y generar una secuencia de claves subpúblicas, cada una asociada con una transacción y colocarla en un servidor web público y asegurarme de que el servidor web no tenga claves privadas.
 
@@ -67,7 +67,7 @@ _Respuesta_: Billetera Jerárquica Determinista
 
 - **Escenarion 3**: Se está auditando una cadena de suministro de calzado. Los auditores reciben una clave pública para que puedan ver todas las transacciones del subárbol, pero no pueden desbloquearlo. ¿Qué billetera se usa para lograr esto?
 
-__Respuesta_: Billetera Jerárquica Determinista
+_Respuesta_: Billetera Jerárquica Determinista
 
 - **Escenario 4**: Un sitio web de redes sociales de Blockchain utiliza claves privadas para proteger los datos personales de los usuarios. Utiliza billeteras para servicios de back-end que usan claves privadas que no se derivan de una semilla. ¿Qué billetera se usa para lograr esto?
 
@@ -77,7 +77,7 @@ A lo largo de esta sección, se analizo más de cerca las diferencias entre las 
 
 Es importante tener presenta que la billetera es el primer paso para describir una pieza increíblemente importante para la seguridad de su identidad de Blockchain: ¡las claves privadas!
 
-## Llaves Privadas
+## Llaves privadas
 
 Las carteras son geniales, pero es lo que hay dentro lo que cuenta. ¡Dentro de las carteras encontrarás llaves!
 
@@ -90,7 +90,7 @@ Las siguiente definiciones son relevantes:
 -   **Llave privada:** Un número aleatorio de 256 bits entre 1 y 2<sup>256</sup>.
 -   **Entropía:** Un número aleatorio de 256 bits entre 1 y 2<sup>256</sup>.
 
-### Genere su Propia Llave Privada
+### Genere su propia llave privada
 
 Una vez entendido el concepto de llaves privadas se procede a generar una propia. Estos son los métodos para crear una clave privada:
 
@@ -100,7 +100,7 @@ Una vez entendido el concepto de llaves privadas se procede a generar una propia
 
 En esta sección, se repasaron los conceptos básicos de las claves privadas, por qué son seguras y cómo crear una. Después se compartieron instrucciones para crear una propia. Próximamente, se usará el conocimiento de billeteras y claves para establecer identidades propias de cadena de bloques usando una billetera Bitcoin.
 
-## Obtenga su Propia Billetera
+## Obtenga su propia billetera
 
 Los tipos de billeteras y las claves privadas son interesantes, pero hasta ahora todo ha sido teoría. Es tiempo de conseguir una billetera propia para aterrizar esta teoría a la práctica.
 
@@ -116,7 +116,7 @@ Para usar electrum, deberá instalarlo en su computadora. Analicemos los detalle
 
 Para obtener más información sobre cómo comenzar con electrum, consulte el siguiente [enlace](https://www.youtube.com/watch?v=WdVlH9N2oKU). Esta es una excelente descripción general de las características básicas de esta billetera.
 
-## Restaurando la Identidad en Blockchain
+## Restaurando la identidad en Blockchain
 
 ¡Toda persona olvida las contraseñas de vez en cuando, y nadie es inmune a las historias de terror de contraseñas!
 
@@ -134,12 +134,12 @@ Ojalá ninguna de estas cosas suceda, ¡pero es importante estar preparado por s
 Para ayudarlo a prepararse para situaciones como esta, es útil saber cómo restaurar su billetera Bitcoin.
 
 
-### Formas Para Recuperar Una Cartera
+### Formas para recuperar una cartera
 
 Si alguna vez necesita restaurar su billetera, hay 2 formas de hacerlo. Puede hacerlo con las palabras de la billetera que guardó o con las claves privadas de cuando creó su billetera por primera vez.
 
 
-#### Usando Una Semilla
+#### Usando una semilla
 
 Una forma de restaurar una billetera es usando una semilla. La &rsquo;semilla&rsquo; son las 12 palabras que le dieron al crear su billetera. ¡Si puede recordar estas palabras, puede usarlas para restaurar su billetera!
 
@@ -149,7 +149,7 @@ La parte más difícil de todo esto es almacenar o recordar esta información de
 
 ¡Así que tenga mucho cuidado!
 
-#### Usando Una Clave Privada
+#### Usando una clave privada
 
 Otra forma de restaurar una billetera es con una clave privada.
 
@@ -169,7 +169,7 @@ Esto es un poco diferente a importar porque elimina completamente los fondos de 
 
 Vea más sobre cómo barrer una clave privada en [BitcoinElectrum.com](https://bitcoinelectrum.com/sweeping-your-private-keys-into-electrum/).
 
-#### ¿Cuál Deberías Elegir?
+#### ¿Cuál deberías elegir?
 
 ¿Por qué importaría o barrería una clave privada? Barra una billetera si le preocupa la seguridad de la billetera. Esto podría suceder en el caso de que crea que alguien podría tener acceso a su clave privada. El barrido limpia completamente la billetera para que nadie tenga acceso a sus Bitcoins.
 
@@ -177,7 +177,7 @@ Si está seguro de que nadie ha tenido acceso a su clave privada, y de que nadie
 
 En caso de duda, quédese con el barrido. Es más seguro de esta manera y evita algunos problemas asociados con la importación de una billetera.
 
-## Firma de una Transacción
+## Firma de una transacción
 
 Al tener una billetera, eventualmente comenzará a realizar algunas transacciones por sí mismo. En esta sección, se retrocedera un poco a la teoría para explorar algunas ideas más sobre lo que hace que esas transacciones sean seguras. El propósito es que esto le ayude a tener la confianza para comenzar a trabajar con estas herramientas por cuenta propia.
 
@@ -205,7 +205,7 @@ Con los aspectos básicos de la firma de una transacción se abre la oportunidad
 
 <a id="org2c745ed"></a>
 
-## Ciclo de Vida de una Transacción en Blockchain
+## Ciclo de vida de una transacción en Blockchain
 
 Se ha cubierto una gran cantidad de información y es momento de sintetizar en un ejemplo el ciclo de vida de una transacción para poder llegar a la cadena de bloques. El ejemplo empiezan con dos usuario Bitcoin, Joe y Brandy. Joe queire enviar 1 BTC a brandy y a continuación se describe el paso a paso de como lograr esta solicitud:
 
