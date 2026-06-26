@@ -32,7 +32,7 @@ JavaScript puede crearse en 2 formas:
 1. **Script en línea**: Poniendo el código JavaScript dentro de la etiqueta ~<script>~.
 2. **Script externo**: Escribir el código JavaScript en un archivo externo e importarlo usando el atributo ~src~ de la etiqueta ~<script>~.
 
-** Variables y Tipos de Datos
+** Variables y tipos de Datos
 
 Una variable es un contenedor en el que podemos almacenar un valor para usarlo posteriormente. Al guardar un valor en una variable, no es necesario escribirlo cada vez que queramos usarlo.
 
@@ -46,7 +46,7 @@ El tipo de dato de un valor es un atributo que nos dice qué tipo de dato puede 
 
 JavaScript tiene una característica llamada tipado dinámico. Esto significa que el programador no tiene que definir manualmente el tipo de dato de la variable. JavaScript determina el tipo de dato por sí mismo, lo que significa que incluso podemos cambiar el tipo de una variable más adelante en nuestro código. Esto puede ser muy útil, pero también puede ser la fuente de errores difíciles de encontrar. Existe una envoltura para evitar el tipado dinámico en JavaScript llamada TypeScript.
 
-** Mutación de Variables y Coerción de Tipos
+** Mutación de variables y coerción de tipos
 
 La **coerción de tipos** es una característica de JavaScript relacionada con el tipado dinámico. Básicamente significa que, cuando tienes diferentes tipos de datos y los mezclas, JavaScript intenta automáticamente averiguar qué variable debe convertir y luego las convierte todas al mismo tipo. Veamos algunos ejemplos:
 
@@ -67,7 +67,7 @@ console.log(age); //-> 'Twenty'
 
 En este código, cambias el valor de la variable edad de 20 a "veinte". Observa que no usaste la palabra clave var porque solo se usa para declarar variables la primera vez. Es importante saber que el compilador de JavaScript lee nuestro código en una secuencia de instrucciones de arriba hacia abajo.
 
-** Operadores Básicos
+** Operadores básicos
 
 Los **operadores** son construcciones que se comportan generalmente como funciones, pero que difieren sintáctica o semánticamente de las funciones usuales. Los tipos más comunes de operadores simples son:
 
@@ -132,7 +132,7 @@ En la tabla de precedencia podemos observar lo siguiente:
 
 Entonces, ¿cómo ejecutará JavaScript ~x = y = (3 + 5) * 4 - 6~? Primero, comenzará con ~(3 + 5)~ porque el operador de agrupamiento ~( ... )~ tiene la mayor precedencia. Luego obtenemos ~8~. Segundo, JavaScript ejecutará ~8 * 4~, porque el operador ~*~ tiene mayor precedencia que ~-~ . Luego obtenemos ~32~. Tercero, ejecutará ~32 - 6~ para obtener ~26~.
 
-** Estructuras de Control
+** Estructuras de control
 
 JavaScript, como la mayoría de los lenguajes de programación, tiene un par de estructuras de control.
 
