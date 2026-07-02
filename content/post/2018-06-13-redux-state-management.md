@@ -1,18 +1,14 @@
-
 +++
-title = "Gestión del estado con Redux""
+title = "Gestión del estado con Redux"
 date = 2018-06-13T02:13:50Z
 author = "Sergio L. Benítez D."
-description = "Notas sobre el curso de JavaScript."
+description = "Notas sobre el curso de React con el manejo de estado con Redux."
 tags = [
     "javascript",
     "react",
     "redux",
 ]
 +++
-
-Gestión del estado con Redux
-==================
 
 Una mala gestión del estado provoca errores difíciles de rastrear. Esto significa que tu aplicación esperaba que el estado fuera una cosa, pero en realidad es otra. El objetivo de _Redux_ es hacer que la gestión del estado en cualquier aplicación que construyas sea más predecible, para así mejorar la calidad del software.
 

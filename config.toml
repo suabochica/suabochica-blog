@@ -1,7 +1,8 @@
 baseurl = "https://blog.suabochica.com"
 title = "Blog de suabochica"
 theme = "m10c"
-paginate = 12
+[pagination]
+  pagerSize = 12
 
 [menu]
   [[menu.main]]
