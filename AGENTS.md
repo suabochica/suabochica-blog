@@ -4,7 +4,7 @@ This file provides guidance to AI coding agents (OpenCode, Claude Code) when wor
 
 ## Project Overview
 
-Personal blog by Sergio Benítez (suabochica). Built with **Hugo 0.83.1** using the **m10c** minimal theme (MIT, by Fabien Casters "vaga"). Content is authored in Org mode (Doom Emacs) and exported to Markdown for Hugo. Hosted on Netlify at `https://blog.suabochica.com`.
+Personal blog by Sergio Benítez (suabochica). Built with **Hugo 0.154.5** using the **m10c** minimal theme (MIT, by Fabien Casters "vaga"). Content is authored in Org mode (Doom Emacs) and exported to Markdown for Hugo. Hosted on Netlify at `https://blog.suabochica.com`.
 
 ## Commands
 
@@ -118,7 +118,7 @@ paginate = 12
 ```
 - Author: Sergio Benítez
 - Social: porfolio (suabochica.com), github, twitter, instagram
-- Netlify: `hugo --gc --minify` with Hugo 0.83.1; deploy previews use `--buildFuture`
+- Netlify: `hugo --gc --minify` with Hugo 0.154.5; deploy previews use `--buildFuture`
 
 ## Key Constraints
 
