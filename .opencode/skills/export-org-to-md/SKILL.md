@@ -1,6 +1,6 @@
 ---
 name: export-org-to-md
-description: Export the ORG files to Markdown files using the Emacs export file functionality.
+description: Export the ORG files to Markdown files using the Emacs export file functionality, and post the Markdown.
 ---
 
 To export blog post from ORG `.org` to Markdown (`.md`) I use the [ox-hugo](https://ox-hugo.scripter.co/)

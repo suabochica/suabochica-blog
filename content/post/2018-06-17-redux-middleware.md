@@ -10,7 +10,7 @@ tags = ["react", "javascript", "redux"]
 
 Hasta ahora, tenemos los siguientes tres conceptos como base de Redux:
 
--   Alamcenamiento - (Store en inglés)
+-   Alamcenamiento (Store en inglés)
 -   Acciones (Actions en inglés)
 -   Reductores (Reducers en inglés)
 
