@@ -16,8 +16,8 @@ theme = "m10c"
 
 [params]
   author = "Sergio Benítez"
-  description = "Desarrollador de Sofwtare con más de 11 años de experiencia."
-  avatar = "/sua_profile.jpg"
+  description = "Desarrollador de Software con más de 11 años de experiencia."
+  avatar = "/sua-bg-texture-me-gray.png"
   favicon = "/favicon.ico"
   menu_item_separator = " - "
   [[params.social]]
@@ -32,6 +32,9 @@ theme = "m10c"
   [[params.social]]
     name = "instagram"
     url = "https://instagram.com/suabochica"
+  [[params.social]]
+    name = "linkedin"
+    url = "https://linkedin.com/in/slbenitezd"
 
 [params.style]
   darkestColor = "#3c3836"

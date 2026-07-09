@@ -10,6 +10,16 @@ tags = [
 ]
 +++
 
+Bienvenido a una serie de publicaciones de Redux. Sin duda, Redux y su ecosistema son herramientas muy valiosas. Sin embargo, no es un tema para principiantes y puede resultar un poco intimidante para afrontar. Hemos dividido este aprendizaje de Redux en las siguientes publicaciones
+
+- Publicación 1 - Administración del Store: Técnicas para hacer que tu estado sea más predecible trasladando tu estado a una ubicación central y estableciendo reglas estrictas para obtener, escuchar y actualizar dicho estado.
+- Publicación 2 - UI + Redux: Aprenderás a prescindir de que el estado resida en el DOM creando una aplicación JavaScript pura cuyo estado sea gestionado completamente por Redux.
+- Publicación 3 - Redux Middleware: Crear un middleware personalizado y a agregarlo a tu store de Redux. Este middleware te permitirá mejorar tu store interceptando acciones antes de que lleguen a los reducers.
+- Publicación 4 - Redux con React: Añadir React a una aplicación Redux y cómo gestionar el estado de dicha aplicación mediante Redux.
+- Publicación 5 - Redux Asíncrono: Abstraer mejor los eventos asíncronos creando tu propio middleware Thunk personalizado y agregándolo a tu store.
+- Publicación 6 - Paquete react-redux: Aprovechar las bibliotecas `react-redux` para sacar partido de las ventajas de una biblioteca de interfaz de usuario como React y de una biblioteca de gestión de estado como Redux.
+- Publicación 7 - Redux en el mundo real: Aplicar los conocimientos de Redux para construir una aplicación real, revisando temas avanzados como la composición de reductores y la normalización.
+
 Una mala gestión del estado provoca errores difíciles de rastrear. Esto significa que tu aplicación esperaba que el estado fuera una cosa, pero en realidad es otra. El objetivo de _Redux_ es hacer que la gestión del estado en cualquier aplicación que construyas sea más predecible, para así mejorar la calidad del software.
 
 El Store
