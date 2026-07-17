@@ -1,6 +1,10 @@
 baseurl = "https://blog.suabochica.com"
 title = "Blog de suabochica"
 theme = "m10c"
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+
 [pagination]
   pagerSize = 12
 
