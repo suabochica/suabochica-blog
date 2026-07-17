@@ -1,5 +1,5 @@
 #+TITLE: Redux Asíncrono
-#+DESCRIPTION: Cómo manejar peticiones asíncronas en Redux usando middleware thunk y actualizaciones optimistas
+#+DESCRIPTION: En este artículo vamos a trabajar con una base de datos remota (simulada). Usaremos una API proporcionada para interactuar con esta base de datos.
 #+AUTHOR: Sergio Benítez
 #+DATE: <2018-06-19 Tue>
 #+STARTUP: fold
@@ -31,21 +31,21 @@ Vamos a usar una base de datos para interactuar con nuestra aplicación de tarea
 #+END_SRC
 
 #+BEGIN_QUOTE
-*** API basada en Promesas
-Los métodos de la API proporcionada están basados en Promesas. Echemos un vistazo al método ~.fetchTodos()~:
-#+BEGIN_SRC js
+### API basada en Promesas
+Los métodos de la API proporcionada están basados en Promesas. Echemos un vistazo al método `.fetchTodos()`:
+```js
 API.fetchTodos = function () {
  return new Promise((res, rej) => {
    setTimeout(function () {
      res(todos);
    }, 2000);
  });
-};
-#+END_SRC
-Aquí estamos creando y devolviendo un objeto ~Promise()~.
-
-Actualmente, nuestra app hace que el usuario espere un tiempo innecesariamente largo mientras la API obtiene todas las tareas y todos los objetivos. Como la API está basada en Promesas, podemos usar ~Promise.all()~ para esperar a que todas las Promesas se hayan resuelto antes de mostrar el contenido al usuario.
-
+>};
+```
+Aquí estamos creando y devolviendo un objeto `Promise()`.
+>
+Actualmente, nuestra app hace que el usuario espere un tiempo innecesariamente largo mientras la API obtiene todas las tareas y todos los objetivos. Como la API está basada en Promesas, podemos usar `Promise.all()` para esperar a que todas las Promesas se hayan resuelto antes de mostrar el contenido al usuario.
+>
 Las promesas son asíncronas, por lo tanto trabajaremos con datos asíncronos y peticiones asíncronas.
 #+END_QUOTE
 
@@ -141,8 +141,8 @@ Por defecto, el store de Redux solo soporta el flujo /síncrono/ de datos. Middl
 Sin thunks, los despachos síncronos son el comportamiento predeterminado. /Podríamos/ seguir haciendo llamadas a la API desde los componentes React (por ejemplo, usando el método del ciclo de vida ~componentDidMount()~ para hacer estas peticiones), pero usar el middleware thunk nos da una separación de responsabilidades más limpia. Los componentes no necesitan manejar lo que sucede después de una llamada asíncrona, ya que la lógica de la API se /traslada/ de los componentes a los action creators. Esto también favorece una mayor previsibilidad, ya que los action creators se convierten en la fuente de cada cambio de estado. Con thunks, despachamos una acción solo cuando la petición al servidor se resuelve.
 
 #+BEGIN_QUOTE
-*** Orden de ejecución con el middleware Thunk
-Esperamos que la petición a la API ocurra primero. ~TodoAPIUtil.fetchTodos()~ debe resolverse antes de que se pueda hacer cualquier otra cosa. Una vez que la petición se resuelve, el middleware thunk invoca la función con ~dispatch()~. Ten en cuenta: la acción solo se despacha /después/ de que la petición a la API se haya resuelto.
+### Orden de ejecución con el middleware Thunk
+Esperamos que la petición a la API ocurra primero. `TodoAPIUtil.fetchTodos()` debe resolverse antes de que se pueda hacer cualquier otra cosa. Una vez que la petición se resuelve, el middleware thunk invoca la función con `dispatch()`. Ten en cuenta: la acción solo se despacha _después_ de que la petición a la API se haya resuelto.
 #+END_QUOTE
 
 En resumen, si una aplicación web requiere interacción con un servidor, aplicar middleware como *thunk* ayuda a resolver el problema del flujo de datos asíncrono. El middleware thunk nos permite escribir action creators que devuelven /funciones/ en lugar de objetos.

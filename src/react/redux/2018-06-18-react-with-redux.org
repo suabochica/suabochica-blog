@@ -1,5 +1,5 @@
 #+TITLE: React con Redux
-#+DESCRIPTION: Cómo conectar componentes React al store de Redux para gestionar el estado de la aplicación
+#+DESCRIPTION: Introducción
 #+AUTHOR: Sergio Benítez
 #+DATE: <2018-06-18 Mon>
 #+STARTUP: fold
@@ -7,6 +7,10 @@
 #+HUGO_SECTION: /post
 #+HUGO_WEIGHT: auto
 #+HUGO_AUTO_SET_LASTMOD: t
+
+* React con Redux
+
+** Introducción
 
 Redux se puede usar con:
 
@@ -17,7 +21,7 @@ Redux se puede usar con:
 
 En esta lección veremos cómo conectar Redux a una aplicación que usa React para su interfaz de usuario.
 
-* React como UI
+** React como UI
 
 Es hora de convertir nuestra aplicación de tareas de HTML plano a una basada en React. Para ello, necesitaremos añadir:
 
@@ -27,7 +31,7 @@ Es hora de convertir nuestra aplicación de tareas de HTML plano a una basada en
 
 Los cambios que acabamos de implementar deberían resultarte familiares: simplemente hemos convertido partes de nuestra app de HTML a Componentes de React.
 
-** Combinando React y Redux
+*** Combinando React y Redux
 
 Muy bien, ya has aprendido React. Has construido Redux y lo has usado en una aplicación HTML normal. Pero ahora hemos empezado a convertir ese HTML a una aplicación React. Es el momento de conectar los /Componentes de React/ al /Store de Redux/.
 
@@ -47,6 +51,6 @@ Otro tema en el uso de React es el manejo del DOM. En la app de JavaScript vanil
 
 Con React, no tienes que hacer nada de manipulación del DOM, porque React se encarga de todo eso por nosotros. Sin embargo, aún queremos ~subscribe()~ al store dentro de nuestro componente React para re-renderizar nuestros componentes. Para re-renderizar un componente en React deberíamos llamar a ~setState()~ para indicarle a React que el estado de la app ha cambiado y que actualice la UI. En este caso, no tenemos estado dentro de este componente y no tiene sentido añadir ninguno solo para provocar un re-renderizado. Así que podemos usar un anti-patrón llamando al método ~this.forceUpdate()~ del componente React para re-renderizar ese componente específico sin modificar el estado.
 
-** Resumen
+*** Resumen
 
 En esta sección, convertimos nuestra aplicación de HTML plano a una que usa Componentes de React. No implementamos ninguna funcionalidad nueva. En su lugar, mejoramos la organización del código separando distintas partes en bloques reutilizables.

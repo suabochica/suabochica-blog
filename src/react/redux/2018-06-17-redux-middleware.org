@@ -1,5 +1,5 @@
 #+TITLE: Redux Middleware
-#+DESCRIPTION: Qué es el middleware de Redux, cómo funciona y cómo aplicarlo para interceptar acciones antes de que lleguen al reducer
+#+DESCRIPTION: Introducción
 #+AUTHOR: Sergio Benítez
 #+DATE: <2018-06-17 Sun>
 #+STARTUP: fold
@@ -8,15 +8,19 @@
 #+HUGO_WEIGHT: auto
 #+HUGO_AUTO_SET_LASTMOD: t
 
+* Redux Middleware
+
+** Introducción
+
 Hasta ahora, tenemos los siguientes tres conceptos como base de Redux:
 
-- Alamcenamiento - (Store en inglés)
-- Acciones (Actions en inglés)
-- Reductores (Reducers en inglés)
+- Store
+- Actions
+- Reducers
 
 En esta lección profundizaremos en el Middleware de Redux. Veremos cómo nos permite engancharnos al ciclo de vida de Redux y por qué eso es beneficioso.
 
-Para empezar con el repaso del Middleware de Redux, imagina que quieres añadir como tarea pendiente u objetivo la acción de invertir en Bitcoin. Sin embargo, tu asesor financiero no para de decirte que es una mala idea. Así que decidimos añadir una nueva funcionalidad a nuestra app de tareas; cada vez que añadamos un ítem o un nuevo objetivo que contenga la palabra "Bitcoin", en lugar de añadirlo a la lista correspondiente, la aplicación nos avise de que es una mala idea añadir ese ítem.
+Para empezar con el repaso del Middleware de Redux, imagina que quieres añadir como tarea pendiente u objetivo la acción de invertir en Bitcoin. Sin embargo, tu asesor financiero no para de decirte que es una mala idea. Así que decidimos añadir una nueva funcionalidad a nuestra app de tareas: que cada vez que añadamos un ítem o un nuevo objetivo que contenga la palabra "Bitcoin", en lugar de añadirlo a la lista correspondiente, la aplicación nos avise de que es una mala idea añadir ese ítem.
 
 Para conseguirlo, deberíamos engancharnos al momento justo después de que se despache una acción, pero antes de que llegue al reducer y modifique el estado. Entonces, en el momento de crear el store añadiremos la siguiente función:
 
@@ -40,7 +44,7 @@ function checkAndDispatch (store, action) {
 
 Finalmente, tendremos que usar la función ~checkAndDispatch()~ en lugar de la función ~dispatch()~ habitual. Con estos cambios, no podremos añadir ítems a las listas que contengan la palabra "Bitcoin".
 
-* Middleware nativo de Redux
+** Middleware nativo de Redux
 
 Ya has aprendido cómo Redux hace la gestión del estado más predecible: para cambiar el estado del store, se debe despachar una acción que describa ese cambio hacia el reducer. A su vez, el reducer produce el nuevo estado. Este nuevo estado reemplaza al estado anterior en el store. Así, la próxima vez que se llame a ~store.getState()~, se devolverá el nuevo estado más actualizado.
 
@@ -52,12 +56,12 @@ Un punto de extensión de terceros entre el despacho de una acción y el momento
 
 Lo bueno del middleware es que, una vez que recibe la acción, puede realizar una serie de operaciones, entre ellas:
 
-- Producir un efecto secundario (p. ej., registrar información sobre el store)
-- Procesar la propia acción (p. ej., hacer una petición HTTP asíncrona)
-- Redirigir la acción (p. ej., a otro middleware)
-- Despachar acciones complementarias
+- producir un efecto secundario (p. ej., registrar información sobre el store)
+- procesar la propia acción (p. ej., hacer una petición HTTP asíncrona)
+- redirigir la acción (p. ej., a otro middleware)
+- despachar acciones complementarias
 
-Incluso alguna combinación de lo anterior. El middleware puede hacer cualquiera de estas cosas /antes/ de pasar la acción al reducer.
+... o incluso alguna combinación de lo anterior. El middleware puede hacer cualquiera de estas cosas /antes/ de pasar la acción al reducer.
 
 Vamos a reemplazar nuestra función ~checkAndDispatch()~ por la auténtica función middleware de Redux.
 
@@ -84,7 +88,7 @@ const store = Redux.createStore(Redux.combineReducers({
 }), Redux.applyMiddleware(checker));
 #+END_SRC
 
-** Dónde encaja el Middleware
+*** Dónde encaja el Middleware
 
 La forma en que tuvimos que estructurar nuestro código originalmente implicaba que nuestra función ~checkAndDispatch()~ /tenía/ que ejecutarse /antes/ de ~store.dispatch()~. ¿Por qué? Porque cuando se invoca ~store.dispatch()~, este llama inmediatamente al reducer que se pasó al invocar ~createStore()~. Si recuerdas la primera lección, así era nuestra función ~dispatch()~:
 
@@ -107,31 +111,28 @@ const store = Redux.createStore(<reducer-function>, <middleware-function>)
 
 El método ~createStore()~ de Redux recibe la función reducer como primer argumento, y puede recibir un segundo argumento con las funciones middleware a ejecutar. Como configuramos el store de Redux teniendo conocimiento de la función middleware, esta se ejecuta entre ~store.dispatch()~ y la invocación del reducer.
 
-** Aplicando Middleware
+*** Aplicando Middleware
 
 La función ~applyMiddleware()~ es un argumento opcional de ~createStore()~. Su firma es:
 
-#+BEGIN_EXAMPLE
-applyMiddleware(...middlewares)
-#+END_EXAMPLE
+    applyMiddleware(...middlewares)
 
 Fíjate en el operador spread sobre el parámetro ~middlewares~. Esto significa que podemos pasar tantos middleware como queramos. Los middleware se ejecutan en el orden en que se proporcionaron a ~applyMiddleware()~.
 
 Actualmente tenemos el middleware ~checker~ aplicado a nuestra app. Vamos a añadir un nuevo middleware ~logger~.
 
 #+BEGIN_QUOTE
-*** Funciones que devuelven funciones
-El middleware de Redux aprovecha un concepto llamado *funciones de orden superior*. Una función de orden superior es aquella que:
-
+### Funciones que devuelven funciones
+El middleware de Redux aprovecha un concepto llamado **funciones de orden superior**. Una función de orden superior es aquella que:
 - Acepta una función como argumento
 - Devuelve una función
-
+>
 Las funciones de orden superior son una técnica de programación potente que permite que las funciones sean mucho más dinámicas.
-
-De hecho, ya has escrito una función de orden superior en este curso. La función ~createRemoveButton()~ es de orden superior porque se espera que el parámetro ~onClick~ sea una función (ya que ~onClick~ se configura como callback de un event listener).
+>
+De hecho, ya has escrito una función de orden superior en este curso. La función `createRemoveButton()` es de orden superior porque se espera que el parámetro `onClick` sea una función (ya que `onClick` se configura como callback de un event listener).
 #+END_QUOTE
 
-** Un nuevo Middleware: Logging
+*** Un nuevo Middleware: Logging
 
 Podemos usar múltiples funciones middleware en una misma aplicación. Vamos a crear una nueva función middleware llamada ~logger~ que registrará información sobre el estado y la acción.
 
@@ -153,9 +154,9 @@ const store = Redux.createStore(Redux.combineReducers({
 }), Redux.applyMiddleware(checker, logger));
 #+END_SRC
 
-** Resumen
+*** Resumen
 
-En esta publicación hemos visto cómo usar middleware. Según la documentación de Redux:
+En esta sección hemos visto cómo usar middleware. Según la documentación de Redux:
 
 #+BEGIN_QUOTE
 El middleware es la forma recomendada de extender Redux con funcionalidad personalizada.
