@@ -1,27 +1,17 @@
 ---
-name: post-redux
-description: Translate an English Redux blog post into Spanish, create Org draft, and publish it. Use when the user wants to publish or translate a Redux-related post from src/react/redux/en/.
+name: post-react-native
+description: Translate an English React Native blog posts into Spanish, create Org draft, and publish it. Use when the user wants to publish or translate a Redux-related post from src/react/react-native/en/.
 ---
 
-You are a professional bilingual blogger and localization expert. Your task is to translate an English Redux blog post into Spanish and publish it. Follow these steps:
+You are a professional bilingual blogger and localization expert. Your task is to translate an English React Native blog posts into Spanish and publish it. Follow these steps:
 
 ## Step 1: Identify the source file
 
-Look in `src/react/redux/en/` for the English Markdown post to translate. If the user doesn't specify which one, ask.
+Look in `src/react/react-native/en/` for the English Markdown post to translate. If the user doesn't specify which one, ask.
 
-## Step 2: Translate to Spanish
+## Step 2: Create the original Org draft file in English
 
-Translate the post following these rules:
-- Provide localized, natural-sounding Spanish (not a literal word-for-word translation).
-- Maintain the original Markdown formatting: headings, bullet points, code snippets, etc.
-- Adapt idioms and expressions for a native-level reading experience.
-- Preserve SEO structure with localized keyword equivalents where appropriate.
-
-Save the translated Markdown file in `src/react/redux/es/` with the same filename.
-
-## Step 3: Create the Org mode draft
-
-Convert the translated Markdown to Org mode format. Save it in `src/react/redux/es/` with the same filename but `.org` extension.
+Convert the original Markdown file to Org format using the ../from-md-to-org/SKILL.md. Save the generated file in `src/react/react-native/en` with the same filename
 
 Use this header template:
 
@@ -49,9 +39,22 @@ Syntax conversion (Markdown → Org):
 | ` ```lang ` blocks | `#+BEGIN_SRC lang` / `#+END_SRC` |
 | `---` (hr) | `-----` |
 
-## Step 4: Publish to content/post/
+Then, delete the original markdown.
 
-Create the final Markdown file in `content/post/` with TOML frontmatter:
+## Step 3: Translate the Org draft file to Spanish
+
+Translate the post following these rules:
+
+- Provide localized, natural-sounding Spanish (not a literal word-for-word translation).
+- Maintain the original Markdown formatting: headings, bullet points, code snippets, etc.
+- Adapt idioms and expressions for a native-level reading experience.
+- Preserve SEO structure with localized keyword equivalents where appropriate.
+
+Please, use the ../translate-es/SKILL.md and put the translated Org file in `src/react/react-native/` with the same filename.
+
+## Step 5: Publish to content/post/
+
+Create the final Markdown file in `content/post/` with TOML frontmatter, and using as reference the ../export-org-to-md/SKILL.md.
 
 ```toml
 +++
@@ -67,7 +70,7 @@ tags = [
 +++
 ```
 
-Use the same date as the source post. Tags should include `javascript`, `react`, `redux` plus any topic-specific tags from the [known tags inventory](../../AGENTS.md).
+Use the same date as the source post. Tags should include `javascript`, `react`, `react-native` plus any topic-specific tags from the [known tags inventory](../../AGENTS.md).
 
 Convert the Org content back to Markdown for this file:
 - `* Heading` → `Heading` with `===` underline
@@ -77,10 +80,10 @@ Convert the Org content back to Markdown for this file:
 - `/italic/` → `_italic_`
 - `#+BEGIN_SRC lang` / `#+END_SRC` → ` ```lang ` fences
 
-## Step 5: Build and verify
+## Step 6: Build and verify
 
 ```sh
 rm -rf public resources && hugo
 ```
 
-Confirm the post appears in the build output (page count should increase by 1). If the build fails, fix any issues and rebuild.
+Confirm the post appears in the build output (page count should increase by 1). If the build fails, fix any issues and rebuild. Finally check that under the ../../../src/ folder there is *no* Markdown files.
