@@ -1,0 +1,315 @@
+#+TITLE: Estilos y Layout en React Native
+#+DESCRIPTION: CSS-in-JS en React Native, la API StyleSheet, diferencias de flexbox con la web y enfoques profesionales de estilizado.
+#+AUTHOR: Sergio Benítez
+#+DATE: <2018-08-22 Wed>
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+* Estilos y Layout en React Native
+
+Es hora de hablar de presentación. El estilizado en React Native es diferente al de la web — y honestamente, requiere un período de adaptación. Veamos paso a paso.
+
+** CSS in JS
+
+Aquí tenemos HTML y CSS tradicional:
+
+#+BEGIN_SRC html
+<!-- index.css -->
+.avatar {
+    border-radius: 5px;
+    margin: 10px;
+    width: 48px;
+    height: 48px;
+}
+
+<!-- // index.html -->
+<div>
+    <img class='avatar' src='https://tylermcginnis.com/tylermcginnis_glasses-300.png' />
+</div>
+#+END_SRC
+
+Nada sorprendente. Pero como no estamos usando archivos HTML o CSS para construir apps móviles, ¿cómo se ve esto en React Native?
+
+Cada componente principal en React Native acepta una prop ~style~. Puedes pasar objetos JavaScript en línea:
+
+#+BEGIN_SRC js
+function Avatar ({ src }) {
+    return (
+        <View>
+            <Image
+                style={{borderRadius: 5, margin: 10, width: 48, height: 48}}
+                source={{uri: 'https://tylermcginnis.com/tylermcginnis_glasses-300.png'}}
+            />
+        </View>
+    );
+}
+#+END_SRC
+
+La prop ~style~ es simplemente un objeto JavaScript. Las propiedades se escriben en /camelCase/ — ~borderRadius~, no ~border-radius~.
+
+Esto funciona, pero se vuelve desordenado rápidamente. Imagina una docena de propiedades en un solo componente, o reutilizando los mismos estilos en múltiples lugares. Una forma de mantener el código DRY es almacenar el objeto en una variable:
+
+#+BEGIN_SRC js
+const styles = {
+    image: {
+        borderRadius: 5,
+        margin: 10,
+        width: 48,
+        height: 48,
+    }
+}
+
+function Avatar ({ src }) {
+    return (
+        <View>
+            <Image
+                style={styles.image}
+                source={{uri: 'https://tylermcginnis.com/tylermcginnis_glasses-300.png'}}
+            />
+        </View>
+    );
+}
+#+END_SRC
+
+Mejor. Pero React Native va un paso más allá con la *API ~StyleSheet~*:
+
+#+BEGIN_SRC js
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
+export default class TextExample extends React.Component {
+    render() {
+        return (
+            <View>
+                <Text style={styles.greenLarge}>¡Este texto es grande y verde!</Text>
+                <Text style={styles.red}>¡Este texto es rojo y más pequeño!</Text>
+            </View>
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+    greenLarge: {
+        color: 'green',
+        fontWeight: 'bold',
+        fontSize: 40
+    },
+    red: {
+        color: 'red',
+        padding: 30
+    },
+});
+#+END_SRC
+
+~StyleSheet.create()~ se ve similar a usar una variable, pero ofrece beneficios reales:
+
+**** Calidad del código
+- Mover los estilos fuera de la función render hace que el código sea más legible.
+- Nombrar los estilos añade significado a los componentes de bajo nivel.
+
+**** Rendimiento
+- Las hojas de estilo se referencian por ID en lugar de crear un nuevo objeto en cada renderizado.
+- Los estilos se envían a través del puente solo una vez. Los usos posteriores referencian un ID.
+
+~StyleSheet~ también /valida/ tus estilos. Los errores en los objetos de estilo se lanzan en tiempo de compilación, no en tiempo de ejecución. Y si necesitas múltiples estilos en un componente, la prop ~style~ acepta un arreglo.
+
+CSS-in-JS significa que el estilizado se maneja mediante objetos de JavaScript en lugar de CSS tradicional. Puedes escribir estilos en línea o usar variables de objeto, pero ~StyleSheet~ es la opción idiomática — es eficiente, componible y valida tus estilos en tiempo de compilación.
+
+** Guía de Flexbox
+
+Siempre que aprendo una tecnología nueva, me gusta responder la pregunta: /¿por qué existe esto?/ Con flexbox, la respuesta podría ser que crear un diseño versátil con CSS tradicional es complicado.
+
+El objetivo de flexbox es "organizar, alinear y distribuir el espacio entre elementos dentro de un contenedor, incluso cuando su tamaño es desconocido o dinámico." En resumen: /flexbox se trata de diseños dinámicos/.
+
+La idea central: dale al elemento padre el control sobre el diseño de sus hijos (¡inmediatos!), en lugar de que cada hijo gestione su propio layout. El padre se convierte en un *contenedor flex*; los hijos se convierten en *elementos flex*. En lugar de flotar hijos a la izquierda y añadir margen a cada uno, le dices al padre: coloca estos en una fila con espacio uniforme. La responsabilidad del layout pasa de los hijos al padre. Eso te da un control más preciso.
+
+React Native usa flexbox precisamente porque proporciona diseños consistentes en diferentes tamaños de pantalla. Cada contenedor flex tiene dos ejes — un *eje principal* y un *eje transversal* — y las propiedades críticas son ~flex-direction~, ~justify-content~ y ~align-items~. Pero el flexbox de React Native tiene algunas peculiaridades comparado con el estándar CSS, así que veámoslas ahora.
+
+** Layout en React Native
+
+*** Implementación de Flexbox en React Native
+
+React Native implementa flexbox, pero hay diferencias clave con la web.
+
+Primero: todos los contenedores en React Native son /contenedores flex por defecto/. En la web, escribirías:
+
+#+BEGIN_SRC css
+/* example.css */
+.container {
+    display: flex;
+}
+#+END_SRC
+
+En React Native, esto es completamente innecesario. Todo es ~display: flex;~ de fábrica.
+
+Segundo: ~flex-direction~. En la web, los elementos por defecto se alinean en ~row~ (fila). En móvil, el valor por defecto es ~column~ — los elementos se colocan verticalmente. Tiene sentido para una pantalla de teléfono.
+
+Tercero: la propiedad ~flex~ funciona de manera diferente. En la web, ~flex~ especifica cómo un elemento flex crece o se encoge. En React Native, ~flex~ se usa con elementos hermanos que tienen valores diferentes:
+
+#+BEGIN_SRC js
+import React from 'react';
+import { View } from 'react-native';
+
+const FlexDemo = props => (
+    <View style={{flex: 1}}>
+        <View style={{flex: 1, backgroundColor: 'red'}} />
+        <View style={{flex: 2, backgroundColor: 'green'}} />
+        <View style={{flex: 3, backgroundColor: 'blue'}} />
+    </View>
+);
+
+export default FlexDemo;
+#+END_SRC
+
+El contenedor exterior (~flex: 1~) ocupa toda la pantalla. Sus hijos dividen el espacio proporcionalmente: azul ocupa 3× más espacio que rojo, verde ocupa 2×.
+
+*** Otras diferencias
+
+React Native aplica estos valores por defecto que difieren de la web:
+
+#+BEGIN_SRC css
+box-sizing: border-box;
+position: relative;
+align-items: stretch;
+flex-shrink: 0;
+align-content: flex-start;
+border: 0 solid black;
+margin: 0;
+padding: 0;
+min-width: 0;
+#+END_SRC
+
+La mayoría son solo valores predeterminados diferentes — nada que deba preocuparte.
+
+*** API Platform
+
+La filosofía de React es "aprende una vez, escribe en cualquier lado". Pero a veces necesitas código /distinto/ para cada plataforma — como diferentes estilos para componentes visuales de iOS y Android. La API ~Platform~ de React Native maneja exactamente esto, para que puedas mantener tus UIs de iOS y Android con aspecto nativo.
+
+*** API Dimensions
+
+React Native también te ofrece la [[https://facebook.github.io/react-native/docs/dimensions.html][API Dimensions]] para obtener el ancho y alto de la ventana del dispositivo:
+
+#+BEGIN_SRC js
+import { Dimensions } from 'react-native'
+
+const { width, height } = Dimensions.get('window')
+#+END_SRC
+
+Úsalas para planificar cómo se verán tus ~<View>~ en diferentes tamaños de pantalla.
+
+Resumiendo la historia del layout: React Native usa flexbox con algunas diferencias menores respecto al estándar web (columna por defecto, todo es un contenedor flex). La API ~Platform~ te permite bifurcar estilos por plataforma, y ~Dimensions~ te da las medidas de la pantalla cuando flexbox solo no es suficiente.
+
+** Cómo manejan los estilos los profesionales
+
+*** StyleSheet vs En línea
+
+Presentamos ~StyleSheet~ antes. Profundicemos en por qué es importante.
+
+Tomemos este componente con estilos en línea:
+
+#+BEGIN_SRC js
+<View style={{
+    borderRadius: 4,
+    borderWidth: 0.5,
+    borderColor: '#d6d7da',
+}}>
+    <Text style={[
+        {fontSize: 19, fontWeight: 'bold'},
+        props.isActive && { color: 'red' }
+    ]}>
+        Bienvenido
+    </Text>
+</View>
+#+END_SRC
+
+Incluso para una UI simple, el estilizado hace que el JSX sea difícil de leer. Esa es la mayor ventaja de ~StyleSheet~: /mover los estilos fuera de la función render hace que el código sea legible/. Nombrar los estilos también hace que los componentes sean más declarativos. Aquí está la misma UI con ~StyleSheet~:
+
+#+BEGIN_SRC js
+var styles = StyleSheet.create({
+    container: {
+        borderRadius: 4,
+        borderWidth: 0.5,
+        borderColor: '#d6d7da',
+    },
+    title: {
+        fontSize: 19,
+        fontWeight: 'bold',
+    },
+    activeTitle: {
+        color: 'red',
+    },
+});
+
+<View style={styles.container}>
+    <Text style={[styles.title, props.isActive && styles.activeTitle]} />
+</View>
+#+END_SRC
+
+Además de la legibilidad, hay una ventaja de rendimiento: los estilos se referencian por ID en lugar de recrearse en cada renderizado.
+
+*** Media Queries
+
+~StyleSheet~ de React Native no soporta media queries. En la mayoría de los casos, flexbox maneja las cuadrículas responsivas sin ellas. Cuando flexbox no sea suficiente, usa la API ~Dimensions~ para obtener resultados similares.
+
+*** Bibliotecas CSS-in-JS
+
+El estilizado en React está viviendo un renacimiento — similar a lo que Flux experimentó hace algunos años (que eventualmente nos dio Redux). Hay muchas bibliotecas de estilizado, cada una con diferentes ventajas y desventajas.
+
+Dos de las más populares son *Glamorous* y *Styled Components*. La idea central: el estilizado es una preocupación principal del componente, por lo que debería estar /acoplado/ con el propio componente.
+
+Veamos Styled Components con React Native:
+
+#+BEGIN_SRC js
+import React, { Component } from 'react'
+import { Text, StyleSheet, View } from 'react-native'
+import styled from 'styled-components/native'
+
+const CenterView = styled.View`
+    align-items: center;
+    background: #333;
+    flex: 1;
+    justify-content: center;
+`
+
+const WelcomeText = styled.Text`
+    color: white;
+    font-size: 20;
+`
+
+const WelcomeButton = styled.TouchableOpacity`
+    align-items: center;
+    background: red;
+    border-radius: 5px;
+    height: 50px;
+    justify-content: center;
+    width: 100px;
+`
+
+export default class App extends Component {
+    render () {
+        return (
+            <CenterView>
+                <WelcomeText>
+                    Estilos Geniales
+                </WelcomeText>
+                <WelcomeButton onPress={() => alert('Hola')}>
+                    <WelcomeText>
+                        Púlsame
+                    </WelcomeText>
+                </WelcomeButton>
+            </CenterView>
+        )
+    }
+}
+#+END_SRC
+
+** Resumen
+
+El estilizado en React Native es CSS-in-JS: objetos de JavaScript en lugar de hojas de estilo, propiedades en camelCase en lugar de kebab-case. La API ~StyleSheet~ es la opción idiomática — mueve los estilos fuera de las funciones render, valida en tiempo de compilación y referencia los estilos por ID para mejor rendimiento.
+
+El layout usa flexbox, pero con valores predeterminados diferentes a los de la web: dirección ~column~, todo es un contenedor flex, y ~flex~ funciona de manera proporcional en lugar de como factor de crecimiento/contracción. La API ~Platform~ maneja las diferencias de estilo por plataforma, y ~Dimensions~ te da las medidas de la pantalla cuando flexbox solo no es suficiente.
+
+Además de las herramientas integradas, bibliotecas CSS-in-JS como Styled Components ofrecen una filosofía diferente — acoplar estilos directamente a los componentes. Ambos enfoques son válidos. Elige el que se sienta menos incómodo para tu proyecto.

@@ -1,0 +1,157 @@
+#+TITLE: React vs React Native
+#+DESCRIPTION: Cómo se diferencia React de React Native — filosofía de diseño web vs nativo, componentes principales, AsyncStorage e integración con Redux.
+#+AUTHOR: Sergio Benítez
+#+DATE: <2018-08-21 Tue>
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+* React vs React Native
+
+En este post veremos cómo se diferencian la web, iOS y Android — tanto desde una perspectiva de UI como de UX. Cubriremos los componentes que vienen con React Native y conectaremos Redux en una aplicación de React Native. Vamos a ello.
+
+** Web vs Nativo
+
+React Native hace un gran trabajo permitiéndote llevar tu experiencia web al entorno nativo. Pero la cuestión es esta: las experiencias en móvil son *fundamentalmente* diferentes a las de la web. Y las apps de iOS son diferentes a las de Android. Si pusieras una app con estilo de Android en iOS, simplemente se sentiría fuera de lugar.
+
+La diferencia más obvia es la filosofía de diseño:
+
+- Android usa /Material Design/ de Google
+- iOS usa /Human Interface Design/ de Apple
+
+Cuando diseñas para móvil, importa que una app de iOS /se sienta/ como una app de iOS, y una app de Android /se sienta/ como una app de Android.
+
+*** Diferencias clave entre Web y Nativo
+
+- *Animaciones*: Las apps nativas dependen en gran medida de las animaciones. Efectos de botones, transiciones de pantalla, retroalimentación visual — son sutiles, pero crean continuidad. Cuentan una historia sobre cómo funciona tu app. Sin ellas, tu app se siente como una colección de pantallas estáticas. Profundizaremos en animaciones más adelante en la serie.
+- *Navegación*: En la web, el componente ~Route~ de React Router asigna una URL a un componente de UI. En React Native, los enrutadores funcionan como una /pila/ — las pantallas se /apilan/ y /desapilan/ según sea necesario. Es un modelo mental completamente diferente.
+
+Recapitulando: desarrollar para móvil significa diseñar para una experiencia completamente diferente. Las animaciones sutiles crean continuidad, Android e iOS tienen lenguajes de diseño distintos, y la navegación se basa en pilas en lugar de URLs. Veamos los componentes que hacen posible todo esto.
+
+** Componentes comunes de React Native
+
+En la web, usamos ~<div>~ y ~<span>~ para definir secciones y contenedores. En React Native, ~<View>~ hace el mismo trabajo. Acepta props (como ~style~) y puede anidarse dentro de otros componentes ~<View>~.
+
+~<Text>~ funciona exactamente como esperarías — renderiza texto. El estilo y el anidamiento funcionan igual que con ~<View>~.
+
+*** Íconos
+
+CRNA viene con miles de iconos vectoriales listos para usar. Revisa el [[https://expo.github.io/vector-icons][directorio de iconos vectoriales de Expo]] para ver la lista completa. Solo elige un conjunto de iconos que se ajuste a la apariencia de tu app.
+
+Para UdaciFitness, añadiremos una función ~getMetricMetaInfo()~ en ~utils/helpers.js~ que devuelve un objeto con toda la información de la actividad:
+
+#+BEGIN_SRC js
+const info = {
+    run: {
+        displayName: 'Correr',
+        max: 50,
+        unit: 'metros',
+        step: 1,
+        type: 'steppers',
+        getIcon() {
+            return (
+                <View>
+                    <MaterialIcons
+                        name="directions-run"
+                        color={black}
+                        size={35}
+                    />
+                </View>
+            )
+        }
+        ...
+    }
+}
+#+END_SRC
+
+La función ~getMetricMetaInfo()~ será consumida por el componente ~<AddEntry />~.
+
+*** Touchables
+
+En la web, los usuarios interactúan con /clics/. En móvil, hay múltiples gestos táctiles: tocar un botón, deslizar una lista, etc.
+
+React Native te ofrece varios componentes para manejar gestos táctiles — lo que llama Touchables:
+
+- ~Button~
+- ~TouchableHighlight~
+- ~TouchableOpacity~
+- ~TouchableNativeFeedback~
+- ~TouchableWithoutFeedback~
+
+Tanto los Botones como los Touchables tienen una prop ~onPress~. Puedes anidar Touchables dentro de Views, y Views dentro de Touchables.
+
+*** Listas
+
+React Native tiene varias formas de renderizar listas. Usarás ~ScrollView~ y ~FlatList~ con mayor frecuencia:
+
+- *~ScrollView~*: Renderiza todos los hijos de una vez. Ideal para listas pequeñas y estáticas.
+- *~FlatList~*: Renderiza solo los elementos visibles en pantalla. Úsalo para listas largas — es mucho más eficiente.
+- *~SectionList~*: Como FlatList, pero con encabezados de sección.
+
+*** Formularios
+
+Los formularios en React Native son idénticos a los formularios en React. El estado de los elementos de entrada es controlado por el componente que renderiza el formulario — el estado del componente es la única fuente de verdad.
+
+React Native proporciona estos componentes de formulario:
+
+- ~TextInput~
+- ~KeyboardAvoidingView~ — esencial para asegurar que el teclado no oculte tus campos de entrada
+- ~Slider~
+- ~Switch~
+
+*** Otros componentes
+
+Hemos cubierto lo esencial, pero la lista continúa. Revisa la [[https://facebook.github.io/react-native/docs/components-and-apis.html#components-and-apis][documentación de React Native]] para ver todo lo disponible. Ten en cuenta que algunos componentes son específicos de cada plataforma. Generalmente querrás componentes multiplataforma mediante composición, pero a veces tiene sentido que iOS y Android difieran.
+
+La conclusión: React Native viene con una sólida biblioteca de componentes integrada. Algunos manejan lo básico — texto, imágenes, listas — mientras que otros se encargan de tareas especializadas como pull-to-refresh e indicadores de carga. La API resulta familiar si conoces React: formularios controlados, manejadores táctiles y composición de componentes funcionan exactamente igual.
+
+** AsyncStorage
+
+*** LocalStorage en la Web
+
+Para persistir datos en una app web, normalmente usarías una base de datos. Pero ~localStorage~ te permite almacenar datos directamente en el navegador del usuario — y no tiene fecha de caducidad. Incluso si la pestaña del navegador se cierra, los datos permanecen.
+
+Así es como se ve guardar en ~localStorage~ con Redux:
+
+#+BEGIN_SRC js
+// store.js
+
+import { createStore } from 'redux';
+import Reducer from '../reducers/reducer';
+
+const configureStore = () => {
+    const store = createStore(Reducer);
+
+    store.subscribe(() => {
+        localStorage.state = JSON.stringify(store.getState());
+    });
+
+    return store;
+};
+
+export default configureStore;
+#+END_SRC
+
+Después de crear el store, llamamos a ~store.subscribe()~ y pasamos un callback que guarda una cadena JSON del estado del store en ~localStorage~. Cada despacho (dispatch) dispara un guardado. Limpio.
+
+*** AsyncStorage en React Native
+
+La versión de React Native de ~localStorage~ es *~AsyncStorage~*. Es la misma idea, excepto que es asíncrona. La belleza es que ~AsyncStorage~ es una abstracción en JavaScript sobre los equivalentes de iOS y Android — no piensas en la plataforma, solo lo usas.
+
+Los tres métodos principales son ~setItem~, ~removeItem~ y ~clear~ (además de ~mergeItem~ y ~getItem~ para un control más granular). Convenientemente, como abstrae las diferencias de plataforma, no hay nada adicional de qué preocuparse.
+
+AsyncStorage es un sistema de almacenamiento clave-valor simple, sin encriptar, asíncrono, persistente y global para la app. Úsalo en lugar de localStorage.
+
+** Redux y React Native
+
+Redux es un /contenedor de estado predecible/. Es agnóstico respecto a cualquier biblioteca o framework de vistas en particular. Esto significa que puedes usarlo con React, y puedes usarlo con React Native — sin necesidad de tratamiento especial.
+
+Con su tamaño reducido y dependencias mínimas, Redux es ideal para proyectos de React Native. Y lo mejor de todo: React Native sigue siendo fundamentalmente /solo JavaScript/. Añadir Redux implica los mismos principios y procesos que añadirlo a una app web — el mismo ~createStore~, los mismos reducers, el mismo ~connect~. Nada cambia.
+
+** Resumen
+
+Desarrollar para móvil es una experiencia fundamentalmente diferente a la web. Las animaciones crean continuidad, la navegación funciona como una pila en lugar de enrutamiento por URLs, y Android/iOS tienen filosofías de diseño distintas que debes respetar.
+
+La biblioteca de componentes de React Native — ~<View>~, ~<Text>~, Touchables, ~FlatList~, controles de formulario — cubre la mayoría de las necesidades desde el inicio. Para persistencia, ~AsyncStorage~ reemplaza a ~localStorage~ como un almacén clave-valor multiplataforma. ¿Y Redux? Se integra exactamente igual que en la web: el mismo ~createStore~, los mismos reducers, el mismo ~connect~. React Native sigue siendo solo JavaScript.

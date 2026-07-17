@@ -1,0 +1,162 @@
+#+TITLE: Funcionalidades Nativas
+#+DESCRIPTION: APIs nativas en React Native con Expo — geolocalización, animaciones, notificaciones locales, fotos y publicación en tiendas de apps.
+#+AUTHOR: Sergio Benítez
+#+DATE: <2018-08-25 Sat>
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+* Funcionalidades Nativas
+
+La última pieza del rompecabezas son las APIs nativas. Hablamos de animaciones, geolocalización, notificaciones, la cámara del teléfono — y finalmente, la publicación en las tiendas de iOS y Android. Repasemos cada una.
+
+** Geolocalización
+
+Acceder a la ubicación del usuario es una de las funcionalidades nativas más comunes. Expo nos ofrece una API limpia en JavaScript que funciona tanto en iOS como en Android:
+
+#+BEGIN_SRC js
+import { Location } from 'expo'
+#+END_SRC
+
+Cuando trabajas con servicios de ubicación, necesitas dos cosas:
+
+1. *~getCurrentPositionAsync~*: Obtiene la ubicación actual una vez, sin estar pendiente de actualizaciones.
+2. *~watchPositionAsync~*: Obtiene la ubicación actual /y/ se suscribe a actualizaciones. ¿El dispositivo se mueve? Lo sabrás.
+
+Revisa la [[https://docs.expo.io/versions/latest/sdk/location.html][documentación de Location]] para la API completa.
+
+*** Manejo de permisos
+
+Cada vez que una funcionalidad necesita el permiso del usuario, debes considerar todos los estados posibles de la UI. Con la ubicación, hay tres escenarios:
+
+1. El usuario concede el permiso (mejor caso).
+2. El usuario ni lo niega ni lo concede (el término medio indeciso).
+3. El usuario deniega el acceso rotundamente.
+
+En un mundo ideal, todos conceden el permiso. Pero como desarrollador de UI, planeas para todo. Muestra diferentes pantallas, diferentes mensajes — no te limites a fallar cuando el usuario dice que no. ~watchPositionAsync~ es tu opción para seguimiento continuo; solo asegúrate de que tu UI maneje los tres estados de permiso con elegancia.
+
+** Animaciones
+
+Las animaciones son una parte fundamental de cualquier app nativa. React Native viene con una biblioteca de animaciones integrada llamada *~Animated~*.
+
+La idea detrás de ~Animated~ es "relaciones declarativas entre entradas y salidas, con transformaciones configurables en medio, y métodos simples de inicio/parada para controlar la ejecución de animaciones basadas en tiempo." En español sencillo: defines transformaciones en valores específicos. Animas la ~opacity~ (opacidad) de una imagen de 0 a 1, y aparece gradualmente.
+
+Hay tres configuraciones de animación listas para usar:
+
+1. *~decay~*: Comienza con una velocidad inicial y disminuye gradualmente hasta detenerse.
+2. *~spring~*: Una animación tipo resorte normal.
+3. *~timing~*: Anima un valor durante un tiempo específico.
+
+Aquí hay un ejemplo rápido:
+
+#+BEGIN_SRC js
+import React, { Component } from 'react'
+import { Animated, Image, StyleSheet, View } from 'react-native'
+
+export default class extends Component {
+    state = {
+        opacity: new Animated.Value(0),
+        height: new Animated.Value(0),
+        width: new Animated.Value(0),
+    }
+
+    componentDidMount () {
+        const { opacity, height, width } = this.state
+
+        Animated.timing(opacity, { toValue: 1, duration: 100 }).start()
+        Animated.timing(height, { toValue: 300, speed: 5 }).start()
+        Animated.timing(width, { toValue: 300, speed: 5 }).start()
+    }
+
+    render () {
+        const { opacity, height, width } = this.state
+
+        return (
+            <View style={styles.container}>
+                <Animated.Image
+                    style={[styles.img, { opacity, height, width }]}
+                    source={{uri: 'https://www.clavecd.es/wp-content/uploads/buy-the-legend-of-zelda-breathe-of-the-wild-expansion-pass-cd-key-pc-download-img1.jpg'}}
+                />
+            </View>
+        )
+    }
+
+    const styles = StyleSheet.create({
+        container: {
+            alignItems: 'center',
+            flex: 1,
+            justifyContent: 'center',
+        },
+        img: {
+            height: 200,
+            width: 200,
+        }
+    })
+}
+#+END_SRC
+
+*** Una palabra de precaución
+
+Una vez que comprendes la API de ~Animated~, se abre un mundo completamente nuevo. Y eso es un arma de doble filo. Ahora tienes el poder de mejorar la sensación de tu app — pero un gran poder conlleva una gran responsabilidad.
+
+El objetivo de las animaciones es /añadir/ a la experiencia del usuario, no distraer de ella. Tenlo en cuenta y construirás mejores apps, más eficientes. Las animaciones innecesarias arruinan la UX más rápido que la ausencia total de animaciones. Usa ~decay~, ~spring~ y ~timing~ con criterio, y tu app se sentirá pulida en lugar de caótica.
+
+** Notificaciones locales
+
+Una notificación es un mensaje emergente que recibes en tu teléfono, ya sea que la app esté ejecutándose o no. Expo nos ofrece una API ~Notifications~ con ~scheduleLocalNotificationAsync~ para lanzar notificaciones locales en momentos específicos.
+
+Hay dos tipos de notificaciones:
+
+1. *Notificaciones Locales*: No necesitan infraestructura externa. Todo ocurre en el dispositivo. El único requisito: el dispositivo está encendido.
+2. *Notificaciones Push*: Requieren un servidor para enviar notificaciones a los dispositivos de los usuarios cuando ocurren eventos específicos.
+
+Como no estamos configurando un servidor y toda la lógica de notificaciones puede vivir en el teléfono, las notificaciones locales son la opción adecuada para UdaciFitness. La API ~Notifications~ de Expo maneja la programación; solo recuerda que en iOS, las notificaciones no aparecen en la parte superior de la pantalla si la app está en primer plano, y las notificaciones push no funcionan en el simulador de iOS.
+
+** Manejo de fotos
+
+Expo proporciona ~ImagePicker~ — una abstracción en JavaScript sobre los enfoques nativos de iOS y Android para acceder a las fotos. Hace exactamente lo que su nombre sugiere: te da acceso a la UI del sistema para seleccionar imágenes de la biblioteca de fotos, o tomar una foto con la cámara. Una API, ambas plataformas — esa es la promesa de Expo.
+
+** Preparación para la tienda de apps
+
+Publicar en cualquiera de las tiendas de apps requiere más que solo tu app. Necesitas una descripción, un icono y muchos otros metadatos. Expo lo hace fácil — solo edita el archivo ~app.json~ en la raíz de tu proyecto.
+
+*** ¿Qué son los archivos .apk y .ipa?
+
+Antes de enviar, necesitas /empaquetar/ tu app:
+
+- La App Store de iOS quiere un archivo *~.ipa~* ("iOS App Store Package")
+- Google Play quiere un archivo *~.apk~* ("Android Application Package")
+
+Cada uno es un paquete con todo lo que la tienda necesita para procesar y ejecutar tu app.
+
+La forma más fácil de generar ambos es con el CLI ~exp~ de Expo:
+
+#+BEGIN_SRC bash
+npm install -g exp
+#+END_SRC
+
+Una vez instalado (y después de configurar ~app.json~), ejecuta:
+
+#+BEGIN_SRC bash
+exp build:ios
+exp build:android
+#+END_SRC
+
+El servidor de React Native debe estar ejecutándose cuando construyas.
+
+Estas compilaciones tardan entre 10 y 20 minutos. Verifica el estado con ~exp build:status~. Eventualmente obtendrás una URL donde descargar tu archivo ~.ipa~ o ~.apk~.
+
+*** El resto del camino
+
+La parte más difícil es generar el archivo ~.ipa~ o ~.apk~. El proceso de subida está bien documentado:
+
+- iOS: [[https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/UploadingBinariesforanApp.html#//apple_ref/doc/uid/TP40011225-CH38-SW1][Subir una compilación para una app]]
+- Android: [[https://support.google.com/googleplay/android-developer/answer/113469?hl=en][Subir una app]]
+
+** Resumen
+
+Expo hace accesibles las funcionalidades nativas a través de APIs limpias en JavaScript. Para geolocalización, ~watchPositionAsync~ rastrea el movimiento del usuario — solo maneja los tres estados de permiso en tu UI. Para animaciones, la librería ~Animated~ te ofrece ~decay~, ~spring~ y ~timing~ — úsalos con criterio para mejorar la UX, no para distraer. Las notificaciones locales mediante la API ~Notifications~ de Expo funcionan sin servidor, y ~ImagePicker~ maneja fotos de la galería o la cámara con una sola API multiplataforma.
+
+Cuando llegue el momento de publicar, configura ~app.json~, ejecuta ~exp build:ios~ y ~exp build:android~, y Expo genera los archivos ~.ipa~ y ~.apk~. A partir de ahí, sigue la documentación de subida de Apple y Google y estarás en vivo.

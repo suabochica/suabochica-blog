@@ -1,0 +1,157 @@
+#+TITLE: React vs React Native
+#+DESCRIPTION: How React differs from React Native — web vs native design philosophy, core components, AsyncStorage, and integrating Redux.
+#+AUTHOR: Sergio Benítez
+#+DATE: <2018-08-21 Tue>
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+* React vs React Native
+
+In this post we'll look at how the web, iOS, and Android differ — from both a UI and UX perspective. We'll cover the components React Native ships with, and we'll wire Redux into a React Native application. Let's dive in.
+
+** Web vs. Native
+
+React Native does a great job of letting you take your web experience to native. But here's the thing: experiences on mobile are *fundamentally* different than on the web. And iOS apps are different than Android apps. If you dropped an Android-style app onto iOS, it would just feel wrong.
+
+The most obvious difference is design philosophy:
+
+- Android uses Google's /Material Design/
+- iOS uses Apple's /Human Interface Design/
+
+When you're designing for mobile, it matters that an iOS app /feels/ like an iOS app, and an Android app /feels/ like an Android app.
+
+*** Key Differences Between Web and Native
+
+- *Animations*: Native apps lean heavily on animations. Button effects, screen transitions, visual feedback — they're subtle, but they build continuity. They tell a story about how your app works. Without them, your app feels like a collection of static screens. We'll go deep on animations later in the series.
+- *Navigation*: On the web, React Router's ~Route~ component maps a URL to a UI component. In React Native, routers work as a /stack/ — screens are /pushed/ and /popped/ as needed. It's a different mental model entirely.
+
+So to recap: building for mobile means designing for a completely different experience. Subtle animations build continuity, Android and iOS have distinct design languages, and navigation is stack-based rather than URL-based. Let's look at the components that make all of this possible.
+
+** Common React Native Components
+
+On the web, we use ~<div>~ and ~<span>~ to define sections and containers. In React Native, ~<View>~ does the same job. It accepts props (like ~style~) and can be nested inside other ~<View>~ components.
+
+~<Text>~ works exactly how you'd expect — it renders text. Styling and nesting work the same way as ~<View>~.
+
+*** Icons
+
+CRNA comes with thousands of vector icons out of the box. Check out [[https://expo.github.io/vector-icons][Expo's vector icon directory]] for the full list. Just pick an icon set that fits your app's look and feel.
+
+For UdaciFitness, we'll add a ~getMetricMetaInfo()~ function in ~utils/helpers.js~ that returns an object with all the activity info:
+
+#+BEGIN_SRC js
+const info = {
+    run: {
+        displayName: 'Run',
+        max: 50,
+        unit: 'meters',
+        step: 1,
+        type: 'steppers',
+        getIcon() {
+            return (
+                <View>
+                    <MaterialIcons
+                        name="directions-run"
+                        color={black}
+                        size={35}
+                    />
+                </View>
+            )
+        }
+        ...
+    }
+}
+#+END_SRC
+
+The ~getMetricMetaInfo()~ function will be consumed by the ~<AddEntry />~ component.
+
+*** Touchables
+
+On the web, users interact with /clicks/. On mobile, there are multiple touch gestures: tapping a button, swiping through a list, and so on.
+
+React Native gives you a handful of components for handling tap gestures — what it calls Touchables:
+
+- ~Button~
+- ~TouchableHighlight~
+- ~TouchableOpacity~
+- ~TouchableNativeFeedback~
+- ~TouchableWithoutFeedback~
+
+Both Buttons and Touchables have an ~onPress~ prop. You can nest Touchables inside Views, and Views inside Touchables.
+
+*** Lists
+
+React Native has a few ways to render lists. You'll use ~ScrollView~ and ~FlatList~ most often:
+
+- *~ScrollView~*: Renders all children at once. Good for small, static lists.
+- *~FlatList~*: Renders only items visible on screen. Use this for long lists — it's way more performant.
+- *~SectionList~*: Like FlatList, but with section headers.
+
+*** Forms
+
+Forms in React Native are identical to forms in React. The state of input elements is controlled by the component that renders the form — component state is the single source of truth.
+
+React Native provides these form components:
+
+- ~TextInput~
+- ~KeyboardAvoidingView~ — critical for making sure the keyboard doesn't hide your inputs
+- ~Slider~
+- ~Switch~
+
+*** Other Components
+
+We've covered the essentials, but the list goes on. Check the [[https://facebook.github.io/react-native/docs/components-and-apis.html#components-and-apis][React Native docs]] for everything available. Note that some components are platform-specific. You'll generally want cross-platform components via composition, but sometimes it makes sense for iOS and Android to differ.
+
+The takeaway: React Native ships with a solid built-in component library. Some handle the basics — text, images, lists — while others handle specialized work like pull-to-refresh and loading indicators. The API feels familiar if you know React: controlled forms, touch handlers, and component composition all work exactly the same way.
+
+** AsyncStorage
+
+*** LocalStorage on the Web
+
+To persist data in a web app, you'd normally use a database. But ~localStorage~ lets you store data directly in the user's browser — and it has no expiration date. Even if the browser tab closes, the data sticks around.
+
+Here's what saving to ~localStorage~ looks like with Redux:
+
+#+BEGIN_SRC js
+// store.js
+
+import { createStore } from 'redux';
+import Reducer from '../reducers/reducer';
+
+const configureStore = () => {
+    const store = createStore(Reducer);
+
+    store.subscribe(() => {
+        localStorage.state = JSON.stringify(store.getState());
+    });
+
+    return store;
+};
+
+export default configureStore;
+#+END_SRC
+
+After the store is created, we call ~store.subscribe()~ and pass a callback that saves a JSON string of the store's state into ~localStorage~. Every dispatch triggers a save. Clean.
+
+*** AsyncStorage in React Native
+
+React Native's version of ~localStorage~ is *~AsyncStorage~*. It's the same idea, except it's asynchronous. The beauty is that ~AsyncStorage~ is a JavaScript abstraction over both iOS and Android equivalents — you don't think about the platform, you just use it.
+
+The three main methods are ~setItem~, ~removeItem~, and ~clear~ (plus ~mergeItem~ and ~getItem~ for more granular control). Conveniently, since it abstracts away the platform differences, there's nothing extra to worry about.
+
+AsyncStorage is a simple, unencrypted, asynchronous, persistent, key-value storage system that is global to the app. Use it instead of localStorage.
+
+** Redux and React Native
+
+Redux is a /predictable state container/. It's agnostic to any particular view library or framework. That means you can use it with React, and you can use it with React Native — no special treatment needed.
+
+With its lean size and minimal dependencies, Redux is a great fit for React Native projects. And best of all: React Native is fundamentally still /just JavaScript/. Adding Redux involves the exact same principles and processes as adding it to a web app — same ~createStore~, same reducers, same ~connect~. Nothing changes.
+
+** Summary
+
+Building for mobile is a fundamentally different experience than the web. Animations build continuity, navigation works as a stack instead of URL routing, and Android/iOS have distinct design philosophies you need to respect.
+
+React Native's component library — ~<View>~, ~<Text>~, Touchables, ~FlatList~, form controls — covers most needs out of the box. For persistence, ~AsyncStorage~ replaces ~localStorage~ as a platform-agnostic key-value store. And Redux? It drops in exactly like it does on the web: same ~createStore~, same reducers, same ~connect~. React Native is still just JavaScript.

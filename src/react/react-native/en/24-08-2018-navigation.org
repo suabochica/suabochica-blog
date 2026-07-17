@@ -1,0 +1,199 @@
+#+TITLE: Navigation in React Native
+#+DESCRIPTION: How navigation works in React Native — Tab Navigator, Stack Navigator, and Drawer Navigator with React Navigation v2.
+#+AUTHOR: Sergio Benítez
+#+DATE: <2018-08-24 Fri>
+#+STARTUP: fold
+#+HUGO_BASE_DIR: ~/Development/suabochica-blog/
+#+HUGO_SECTION: /post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+* Navigation in React Native
+
+Routing on native is a completely different paradigm than routing on the web. Let's break that down:
+
+- *Routing on the Web*: You map a URL to a specific component.
+- *Routing on Native*: The router keeps track of a /route stack/ — think of it as an array of routes. To navigate, the router /pushes/ and /pops/ routes off the stack.
+
+The library we'll use is *React Navigation*, built by the team at Facebook. It's the official routing solution for React Native.
+
+A quick note: React Navigation has two major versions.
+- [[https://v1.reactnavigation.org/][React Navigation v1]]
+- [[https://reactnavigation.org/][React Navigation v2]]
+- [[https://reactnavigation.org/blog][Differences between v1 and v2]]
+
+** Tab Navigator
+
+*** Tab Navigator v1
+
+With ~TabNavigator~, users navigate between screens by pressing tabs. Each tab renders a different component.
+
+*** Tab Navigator v2
+
+~TabNavigator~ is deprecated in favor of ~createBottomTabNavigator~. It's functionally identical, but the name makes it clear: this is a /function that returns a component/. Here's what it looks like:
+
+#+BEGIN_SRC js
+import { createBottomTabNavigator } from 'react-navigation';
+
+const Tabs = createBottomTabNavigator({
+    Hello: {
+        screen: Hello
+    },
+    Goodbye: {
+        screen: Goodbye
+    },
+});
+
+const Hello = () => (
+    <View>
+        <Text>Hello!</Text>
+    </View>
+);
+
+const Goodbye = () => (
+    <View>
+        <Text>Goodbye!</Text>
+    </View>
+);
+
+export default class App extends React.Component {
+    render() {
+        return (
+            <Tabs />
+        );
+    }
+}
+#+END_SRC
+
+Each key-value pair in the object represents a tab. The key is the tab's name (what users see), and the ~screen~ property is the component rendered when the tab is active.
+
+Here's the interesting part: ~createBottomTabNavigator~ returns a /component/. Store it in a variable (~Tabs~) and render it like any other component.
+
+*** StatusBar
+
+So far our app has been using arbitrary ~padding~ to account for the status bar at the top of the screen. React Native gives us a proper ~StatusBar~ component.
+
+Import it from ~react-native~:
+
+#+BEGIN_SRC js
+import { StatusBar } from 'react-native';
+#+END_SRC
+
+It's straightforward — set a few properties and you're done. No more arbitrary padding hacks. Between the Tab Navigator and ~StatusBar~, you've got the foundation for any tabbed mobile UI.
+
+** Stack Navigator
+
+When you tap an item in a list, you expect to go to a detail screen. React Navigation's *Stack Navigator* handles this: new screens are added and removed as a /stack/, in a "last in, first out" manner — like an array's ~push()~ and ~pop()~.
+
+*** Stack Navigator v1
+
+~StackNavigator~ works similarly to ~TabNavigator~, but instead of tabs, you pass in an object of screens available in that stack.
+
+*** Stack Navigator v2
+
+~StackNavigator~ is deprecated in favor of ~createStackNavigator~. The new version is "less pushy," according to the docs:
+
+Each time you call ~push~, we add a new route to the navigation stack. When you call ~navigate~, it first tries to find an existing route with that name, and only pushes a new route if there isn't one on the stack yet.
+
+If you actually want to add another details screen (common when passing unique data to each route via ~params~), use ~push~ instead of ~navigate~. This expresses the intent to add another route regardless of the navigation history.
+
+Here's ~createStackNavigator~ in action:
+
+#+BEGIN_SRC js
+import { createStackNavigator } from 'react-navigation';
+
+const Stack = createStackNavigator({
+    Home: {
+        screen: Home
+    },
+    Dashboard: {
+        screen: Dashboard
+    }
+})
+
+const Home = ({ navigation }) => (
+    <View>
+        <Text>This is the Home view</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Dashboard')}>
+            <Text>Press here for the Dashboard</Text>
+        </TouchableOpacity>
+    </View>
+);
+
+const Dashboard = () => (
+    <View>
+        <Text>This is the Dashboard</Text>
+    </View>
+);
+
+export default class App extends React.Component {
+    render() {
+        return (
+            <Stack />
+        );
+    }
+}
+#+END_SRC
+
+The ~navigation~ prop lets the ~Home~ component navigate to another route via ~navigation.navigate()~. Pass an object into ~createStackNavigator~, render the returned component — done.
+
+Stack Navigator and Tab Navigator often go hand-in-hand. Since both return components, nesting one inside the other is a common pattern. In fact, the API for all three navigators follows the same formula: pass in an object of screen definitions, get back a component you can render or nest.
+
+** Drawer Navigator
+
+React Navigation offers one more navigator: the *Drawer Navigator*. Instead of tabs, it uses a drawer that slides in from the side.
+
+*** Drawer Navigator v1
+
+#+BEGIN_SRC js
+import { DrawerNavigator } from 'react-navigation';
+
+const Drawer = DrawerNavigator({
+    Home: {
+        screen: Home
+    },
+    Dashboard: {
+        screen: Dashboard
+    }
+});
+
+const Home = ({ navigation }) => (
+    <View>
+        <Text>This is the Home view</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
+            <Text>Press here to open the drawer!</Text>
+        </TouchableOpacity>
+    </View>
+);
+
+const Dashboard = ({ navigation }) => (
+    <View>
+        <Text>This is the Dashboard view</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
+            <Text>Press here to open the drawer!</Text>
+        </TouchableOpacity>
+    </View>
+);
+
+export default class App extends React.Component {
+    render() {
+        return (
+            <Drawer />
+        );
+    }
+}
+#+END_SRC
+
+Each ~TouchableOpacity~ opens the drawer. Use ~'DrawerClose'~ to close it, or ~'DrawerToggle'~ to automatically pick the right action based on the current state.
+
+*** Drawer Navigator v2
+
+~DrawerNavigator~ is deprecated in favor of ~createDrawerNavigator~. According to the docs:
+
+Rather than opening a drawer with ~navigation.navigate('DrawerOpen')~, you can now call ~navigation.openDrawer()~. Other methods are ~closeDrawer()~ and ~toggleDrawer()~.
+
+** Summary
+
+Navigation in React Native is a fundamentally different paradigm from the web — it's stack-based rather than URL-based. React Navigation (v2) gives you three composable navigators: ~createBottomTabNavigator~ for tabbed interfaces, ~createStackNavigator~ for push/pop screen transitions, and ~createDrawerNavigator~ for side-drawer menus.
+
+All three follow the same pattern: pass in an object of screen definitions, get back a component. Since they all return components, nesting them is trivial — drawer inside stack, stack inside tab, whatever your app calls for. Add the ~StatusBar~ component for proper control of the device's top bar, and you've got every navigation pattern covered.
